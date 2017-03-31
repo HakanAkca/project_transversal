@@ -11,6 +11,7 @@ class DefaultController
     }
 
     public function inscriptionAction(){
-        echo "I hope you will register here soon mate";
+        if(checkRegister)
+        require('Views/inscription.php');
     }
 }

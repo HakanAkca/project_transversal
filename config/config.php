@@ -7,8 +7,8 @@ $routes = [
 ];
 
 $db_config = [
-    'name' => 'mvc',
+    'name' => 'transversal',
     'host' => 'localhost',
-    'user' => 'mvc',
-    'pass' => 'mvcpass'
+    'user' => 'root',
+    'pass' => ''
 ];

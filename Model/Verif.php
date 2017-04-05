@@ -3,7 +3,7 @@
 class Verif {
 
     public function checkValidRegister(){
-        if(empty($_POST['username'])){
+        if(empty($_POST['pseudo'])){
             return "Missing Username";
         }
         if(empty($_POST['email'])){

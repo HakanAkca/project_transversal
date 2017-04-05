@@ -1,49 +1,71 @@
 <?php
 
-class User
+class UserManager
 {
-    private $pseudo;
-    private $email;
-    private $pass;
-    private $city;
-
-    public function __construct($pseudo, $email, $pass, $city)
+    private $DBManager;
+    
+    public function __construct()
     {
-        $this->setPseudo($pseudo);
-        $this->setEmail($email);
-        $this->setPass($pass);
-        $this->setCity($city);
+        $this->DBManager = DBManager::getInstance();
     }
 
-    public function getEmail(){
-        return $this -> email;
+    public function getUserById($id)
+    {
+        $id = (int)$id;
+        $data = $this->DBManager->findOne("SELECT * FROM users WHERE id = ".$id);
+        return $data;
     }
     
-    public function setEmail($email){
-        $this->email = $email;
-    }
-
-    public function getPass(){
-        return $this->pass;
-    }
-    
-    public function setPass($pass){
-        $this->pass = $pass;
-    }
-
-    public function getPseudo(){
-        return $this->pseudo;
+    public function getUserByUsername($username)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
+                                ['username' => $username]);
+        return $data;
     }
     
-    public function setPseudo($pseudo){
-        $this->pseudo = $pseudo;
-    }
-
-    public function getCity(){
-        return $this->city;
+    public function userCheckRegister($data)
+    {
+        if (empty($data['pseudo']) OR empty($data['email']) OR empty($data['password']))
+            return 'false';
+        /*$data = $this->DBManager->getUserByUsername($data['username']);
+        if ($data !== false)
+            return false;
+        // TODO : Check valid email*/
+        return true;
     }
     
-    public function setCity($city){
-        $this->city = $city;
+    private function userHash($pass)
+    {
+        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        return $hash;
+    }
+    
+    public function userRegister($data)
+    {
+        $this->DBManager->insert('users');
+    }
+    
+    public function userCheckLogin($data)
+    {
+        if (empty($data['username']) OR empty($data['password']))
+            return false;
+        $user = $this->getUserByUsername($data['username']);
+        if ($user === false)
+            return false;
+        $hash = $this->userHash($data['password']);
+        if ($hash !== $user['password'])
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    public function userLogin($username)
+    {
+        $data = $this->getUserByUsername($username);
+        if ($data === false)
+            return false;
+        $_SESSION['user_id'] = $data['id'];
+        return true;
     }
 }

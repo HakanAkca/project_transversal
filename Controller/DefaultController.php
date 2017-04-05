@@ -16,13 +16,12 @@ class DefaultController
 
     public function inscriptionAction(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            $testInscription = new Verif();
-            if($testInscription->checkValidRegister() === true){
-                print('cool dude');
-                //connectUser();
+            $testInscription = new UserManager();
+            if($testInscription->userCheckRegister($_POST) === true){
+                $testInscription->userRegister($_POST);
             }
             else{
-                print($testInscription->checkValidRegister());
+                print($testInscription->userCheckRegister($_POST));
             }
         }
         require('Views/inscription.php');

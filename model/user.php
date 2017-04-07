@@ -18,8 +18,7 @@ function get_user_by_username($username)
 
 function user_check_register($data)
 {
-    if (empty($data['username']) OR empty($data['password']) OR 
-        empty($data['repeat_password']) OR empty($data['secret_ask'])){
+    if (empty($data['username']) OR empty($data['password'])){
         return false;
     }
         
@@ -47,8 +46,7 @@ function user_hash($pass)
     return $hash;
 }
 
-function user_register($data)
-{
+function user_register($data) {
     $user['username'] = $data['username'];
     $user['email'] = $data['email'];
     $user['city'] = $data['city'];
@@ -56,6 +54,9 @@ function user_register($data)
     $user['points'] = 0;
     $user['bottlesNumber'] = 0;
     $user['level'] = 1;
+    echo "<pre>";
+        var_dump($user);
+    echo "</pre>";
     db_insert('users', $user);
 }
 
@@ -82,9 +83,6 @@ function user_login($username)
         return false;
     $_SESSION['user_id'] = $data['id'];
     $_SESSION['user_username'] = $data['username'];
-    $date = give_me_date(); 
-    $actions = $date . ' -- ' .$username . ' has just log.' ."\n"; 
-    watch_action_log('access.log',$actions);
     return true;
 
 }

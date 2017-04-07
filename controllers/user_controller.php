@@ -32,6 +32,9 @@ function register_action()
         if (user_check_register($_POST))
         {
             $error = "champs OK";
+
+            user_register($_POST);
+
             /*user_register($_POST);
             header('Location: ?action=login');
             exit(0);*/
@@ -40,7 +43,7 @@ function register_action()
         else {
             $error = "Invalid data";
         }
-        user_register($_POST);
+
     }
     require('views/register.php');
 }

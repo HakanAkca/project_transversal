@@ -44,3 +44,11 @@ function register_action()
     }
     require('views/register.php');
 }
+
+function admin_action(){
+    require('views/admin.php');
+}
+
+function profil_action(){
+    require('views/profil.php');
+}

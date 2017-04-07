@@ -16,16 +16,6 @@ function get_user_by_username($username)
     return $data;
 }
 
-function all_files(){
- 
-        $data = find_all_secure("SELECT * FROM files ORDER BY DATE DESC",
-                            []);
-        return $data;
-}
-function file_extension($file_name){
-        return strrchr($file_name, '.');
-}
-
 function user_check_register($data)
 {
     if (empty($data['username']) OR empty($data['password']) OR 

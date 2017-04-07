@@ -3,10 +3,18 @@
 session_start();
 
 require('config/config.php');
-require('Router/Router.php');
 
-$router = new Router($routes);
-if (!empty($_GET['action']))
-    $router->callAction($_GET['action']);
+if (empty($_GET['action']))
+    $action = 'home';
+else {
+    $action = $_GET['action'];
+}
+
+if (isset($routes[$action]))
+{
+    require('controllers/'.$routes[$action].'_controller.php');
+    call_user_func($action.'_action');
+}
 else
-    $router->callAction('home');
+    die('Illegal route , action = '.$action);
+?>

@@ -6,6 +6,7 @@ $routes = [
     'admin'     => 'user',
     'profil'    => 'user',
     'about'     => 'default', 
+    'offers'    => 'user',
 ];
 
 $db_config = [

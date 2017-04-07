@@ -52,3 +52,7 @@ function admin_action(){
 function profil_action(){
     require('views/profil.php');
 }
+
+function offers_action(){
+    require('views/offers.php');
+}

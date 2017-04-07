@@ -29,18 +29,30 @@ function register_action()
     $error = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        /*if (user_check_register($_POST))
+        if (user_check_register($_POST))
         {
             $error = "champs OK";
-            user_register($_POST);
+            /*user_register($_POST);
             header('Location: ?action=login');
-            exit(0);
+            exit(0);*/
 
         }
         else {
             $error = "Invalid data";
-        }*/
+        }
         user_register($_POST);
     }
     require('views/register.php');
+}
+
+function admin_action(){
+    require('views/admin.php');
+}
+
+function profil_action(){
+    require('views/profil.php');
+}
+
+function offers_action(){
+    require('views/offers.php');
 }

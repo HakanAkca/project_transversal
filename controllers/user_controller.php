@@ -5,7 +5,7 @@ function login_action()
     $error = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        if (user_check_login($_POST))
+        if(user_check_login($_POST))
         {
             user_login($_POST['username']);
             header('Location: ?action=home');

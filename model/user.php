@@ -26,14 +26,14 @@ function user_check_register($data)
     if ($data2 !== false){
         return false;
     }
-    // TODO : Check valid username, password, secret ask
-    if(strlen($data['username'])<6){
+    //TODO : Check valid username, password, secret ask
+    /*if(strlen($data['username'])<6){
         return false;
     }
-    if($data['password'] !== $data['repeat_password']){
+    if($data['password'] !== $data['verifpassword']){
         return false;
     }
-    
+    */
     /*$regexp = "/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/";
     if(!preg_match($regexp, $data['password']))
         return false;*/

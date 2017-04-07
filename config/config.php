@@ -5,6 +5,7 @@ $routes = [
     'home'      => 'default',
     'admin'     => 'user',
     'profil'    => 'user',
+    'login'    => 'user',
     'about'     => 'default', 
     'offers'    => 'user',
 ];

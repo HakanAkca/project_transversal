@@ -2,7 +2,7 @@
 
 $routes = [
     'home'     => 'default',
-    'register' => 'default',
+    'register' => 'user',
 ];
 
 $db_config = [

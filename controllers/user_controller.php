@@ -14,9 +14,6 @@ function login_action()
         else {
             $error = "Invalid username or password";
             $username = $_POST['username'];
-            $date = give_me_date();
-            $actions = $date . ' -- ' .$username . ' could not log.' ."\n";
-            watch_action_log('security.log',$actions);
         }
     }
     require('views/login.php');
@@ -32,15 +29,18 @@ function register_action()
     $error = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        if (user_check_register($_POST))
+        /*if (user_check_register($_POST))
         {
+            $error = "champs OK";
             user_register($_POST);
             header('Location: ?action=login');
             exit(0);
+
         }
         else {
             $error = "Invalid data";
-        }
+        }*/
+        user_register($_POST);
     }
     require('views/register.php');
 }

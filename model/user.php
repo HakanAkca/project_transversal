@@ -23,7 +23,7 @@ function user_check_register($data)
         return false;
     }
         
-    $data2 = get_user_by_username($data['username']);
+    /*$data2 = get_user_by_username($data['username']);
     if ($data2 !== false){
         return false;
     }
@@ -35,9 +35,9 @@ function user_check_register($data)
         return false;
     }
     
-    $regexp = "/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/";    
+    /*$regexp = "/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/";
     if(!preg_match($regexp, $data['password']))
-        return false;
+        return false;*/
     return true;
 }
 
@@ -50,21 +50,19 @@ function user_hash($pass)
 function user_register($data)
 {
     $user['username'] = $data['username'];
+    $user['email'] = $data['email'];
+    $user['city'] = $data['city'];
     $user['password'] = user_hash($data['password']);
-    $user['firstname'] = $data['firstname'];
-    $user['lastname'] = $data['lastname'];
-    $user['secret_ask'] = $data['secret_ask'];
-    $user['secret_answer'] = $data['secret_answer'];
-    mkdir('uploads/'.$user["username"]);
+    $user['points'] = 0;
+    $user['bottlesNumber'] = 0;
+    $user['level'] = 1;
     db_insert('users', $user);
-    $date = give_me_date(); 
-    $actions = $date . ' -- ' .$user['username'] . ' has just registered.' ."\n"; 
-    watch_action_log('access.log',$actions);
 }
 
 function user_check_login($data)
 {
-    if (empty($data['username']) OR empty($data['password']))
+    if (empty($data['username']) OR empty($data['password'])
+    OR empty($data['verifpassword']) OR empty($data['city']))
         return false;
     $user = get_user_by_username($data['username']);
     if ($user === false)

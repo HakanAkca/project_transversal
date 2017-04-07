@@ -9,5 +9,5 @@ $db_config = [
     'name' => 'transversal',
     'host' => 'localhost',
     'user' => 'root',
-    'pass' => ''
+    'pass' => 'root'
 ];

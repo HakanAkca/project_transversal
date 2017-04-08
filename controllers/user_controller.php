@@ -32,9 +32,7 @@ function register_action()
         if (user_check_register($_POST))
         {
             $error = "champs OK";
-            /*user_register($_POST);
-            header('Location: ?action=login');
-            exit(0);*/
+            user_register($_POST);
 
         }
         else {

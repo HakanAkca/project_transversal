@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Register</title>
+        <title>Partner</title>
         <meta charset="UTF-8">
         <link href="web/register.css" rel="stylesheet">
     </head>
@@ -14,23 +14,24 @@
             <div id="nav">
                 <a>Home</a>
                 <a>Nous</a>
-                <a>Devenir Partenaires</a>
+                <a class="clicked">Devenir Partenaires</a>
             </div>
             <div id="current">
                 <a>Inscription</a>
             </div>
         </div>
         <div id="title">
-            INSCRIPTION
+           DEVENIR PARTENAIRE
         </div>
         <div id="line"></div>
-        <form method="POST" action="?action=register" class="form">
-            <input type="text" name="username" placeholder="Pseudo*"><br>
+        <form method="POST" action="?action=partner" class="form">
+            <input type="text" name="name" placeholder="Name*"><br>
             <input type="email" name="email" placeholder="Mail*"><br>
-            <input type="password" name="password" placeholder="Mot de Passe*"><br>
-            <input type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*"><br>
             <input type="text" name="city" placeholder="Ville*"><br>
-            <input type="submit" value="Créer mon compte" id="button" >
+            <input type="text" name="phone" placeholder="Téléphone*"><br>
+            <input type="text" name="statut" placeholder="Statut*"><br>
+            
+            <input type="submit" value="Devenir Partenaire" id="button" >
         </form>
     </body>
 </html>

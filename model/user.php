@@ -18,8 +18,7 @@ function get_user_by_username($username)
 
 function user_check_register($data)
 {
-    if (empty($data['username']) OR empty($data['password']) OR 
-        empty($data['repeat_password']) OR empty($data['secret_ask'])){
+    if (empty($data['username']) OR empty($data['password'])){
         return false;
     }
         

@@ -18,7 +18,6 @@ function get_user_by_username($username)
 
 function user_check_register($data)
 {
-    if (empty($data['username']) OR empty($data['password'])){
     if (empty($data['username']) OR empty($data['password'])
         OR empty($data['verifpassword']) OR empty($data['email'])
         OR empty($data['city'])){
@@ -104,4 +103,3 @@ function user_login($username)
     return true;
 
 }
-?>

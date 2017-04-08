@@ -17,7 +17,7 @@
                 <a class="clicked">Devenir Partenaires</a>
             </div>
             <div id="current">
-                <a>Inscription</a>
+                <a href="?action=register" >Inscription</a>
             </div>
         </div>
         <div id="title">

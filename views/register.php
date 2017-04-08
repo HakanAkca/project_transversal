@@ -14,7 +14,7 @@
             <div id="nav">
                 <a>Home</a>
                 <a>Nous</a>
-                <a>Devenir Partenaires</a>
+                <a href="?action=partner" >Devenir Partenaires</a>
             </div>
             <div id="current">
                 <a>Inscription</a>

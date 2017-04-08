@@ -1,12 +1,11 @@
 <?php
 
 $routes = [
-    'home'     => 'default',
     'register' => 'user',
     'home'      => 'default',
-    'register'  => 'user',
     'admin'     => 'user',
     'profil'    => 'user',
+    'login'    => 'user',
     'about'     => 'default', 
     'offers'    => 'user',
     'partner'   => 'default',

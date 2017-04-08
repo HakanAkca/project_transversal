@@ -5,7 +5,7 @@ function login_action()
     $error = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
-        if (user_check_login($_POST))
+        if(user_check_login($_POST))
         {
             user_login($_POST['username']);
             header('Location: ?action=home');
@@ -33,12 +33,16 @@ function register_action()
         {
             $error = "champs OK";
             user_register($_POST);
+            user_register($_POST);
+            /*user_register($_POST);
+            header('Location: ?action=login');
+            exit(0);*/
 
         }
         else {
             $error = "Invalid data";
         }
-        user_register($_POST);
+
     }
     require('views/register.php');
 }

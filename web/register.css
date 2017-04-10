@@ -25,7 +25,7 @@ body{
 }
 
 #nav_bar #stats{
-    margin-left:200px;
+    margin-left:15%;
     width:200px;
     color:white;
 }
@@ -35,7 +35,7 @@ body{
 }
 
 #nav_bar #nav{
-    margin-left: 200px;
+    margin-left: 12%;
     width:300px;
     color:white;
     display: flex;
@@ -47,7 +47,7 @@ body{
 }
 
 #nav_bar #current{
-    margin-left: 400px;
+    margin-left: 25%;
     background-color: #f1816d;
     color:white;
     padding : 15px 20px 0px 20px;
@@ -87,8 +87,6 @@ margin: 10px 20px 0px 20px;
 .form input[type="password"]
 {
     box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     outline: none;
     display: block;
     width: 100%;
@@ -106,6 +104,7 @@ margin: 10px 20px 0px 20px;
     padding : 10px 20px;
     color:white;
     margin-left: 170px;
+    border  : 0px;
 }
 
 a{

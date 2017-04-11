@@ -4,6 +4,7 @@
         <title>Register</title>
         <meta charset="UTF-8">
         <link href="web/register.css" rel="stylesheet">
+        <script src="assets/register.js"></script>
     </head>
     <body>
         <div id="nav_bar">
@@ -24,7 +25,7 @@
             INSCRIPTION
         </div>
         <div id="line"></div>
-        <form method="POST" action="?action=register" class="form">
+        <form id="myRegister" method="POST" action="?action=register" class="form">
             <input type="text" name="username" placeholder="Pseudo*"><br>
             <input type="email" name="email" placeholder="Mail*"><br>
             <input type="password" name="password" placeholder="Mot de Passe*"><br>

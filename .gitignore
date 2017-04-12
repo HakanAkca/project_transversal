@@ -2,7 +2,6 @@
 .#*
 #*#
 /vendor
-/composer.phar
 /cache
 /.idea
 /config

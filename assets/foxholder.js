@@ -6,8 +6,8 @@ $.fn.foxholder = function(number) {
     var placeholderText, formItemId, inputType; 
 
     //wrapping form elements in their oun <div> tags
-    $(this).wrap('<div class="form-item-block"></div>'); 
-
+    $(this).wrap('<div class="form-item-block"></div>');
+    console.log(this);
     //creating labels
     inputType = $(this).attr('type');
 
@@ -22,7 +22,7 @@ $.fn.foxholder = function(number) {
   });
 
   //adding class on blur
-  $('.form-container form').find('input,textarea').blur(function(){
+  $('.form-container12 form').find('input,textarea').blur(function(){
     if ($.trim($(this).val())!="") {
       $(this).addClass("active");
     } else {

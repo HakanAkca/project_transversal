@@ -1,20 +1,22 @@
 <?php
 
+use Router\Router;
+use Symfony\Component\Yaml\Yaml;
+
 session_start();
 
-require('config/config.php');
+require __DIR__ . '/vendor/autoload.php';
 
-if (empty($_GET['action']))
-    $action = 'home';
-else {
-    $action = $_GET['action'];
-}
+$config = Yaml::parse(file_get_contents('config/config.yml'));
 
-if (isset($routes[$action]))
-{
-    require('controllers/'.$routes[$action].'_controller.php');
-    call_user_func($action.'_action');
-}
+$loader = new Twig_Loader_Filesystem('views/');
+$twig = new Twig_Environment($loader, array(
+    // 'cache' => 'cache/twig/',
+    'cache' => false,
+));
+
+$router = new Router($config['routes'], $twig);
+if (!empty($_GET['action']))
+    $router->callAction($_GET['action']);
 else
-    die('Illegal route , action = '.$action);
-?>
+    $router->callAction($config['defaut_route']);

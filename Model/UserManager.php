@@ -28,7 +28,7 @@ class UserManager
     
     public function getUserByUsername($username)
     {
-        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
+        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE pseudo = :username",
                                 ['username' => $username]);
         return $data;
     }
@@ -52,13 +52,13 @@ class UserManager
     
     public function userRegister($data)
     {
-        $user['Pseudo'] = $data['username'];
-        $user['Email'] = $data['email'];
-        $user['City'] = $data['city'];
-        $user['Password'] = $this->userHash($data['password']);
-        $user['Points'] = 0;
-        $user['BottlesNumber'] = 0;
-        $user['Level'] = 1;
+        $user['pseudo'] = $data['username'];
+        $user['email'] = $data['email'];
+        $user['city'] = $data['city'];
+        $user['password'] = $this->userHash($data['password']);
+        $user['points'] = 0;
+        $user['bottlesNumber'] = 0;
+        $user['level'] = 1;
 
         $this->DBManager->insert('users', $user);
     }

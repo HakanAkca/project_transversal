@@ -10,22 +10,6 @@
         <script src="assets/register.js"></script>
     </head>
     <body>
-        <header>
-            <div id="nav_bar">
-                <div id="logo"></div>
-                <div id="stats">
-                    <span>558 524</span> Objets recyclés
-                </div>
-                <div id="nav">
-                    <a>Home</a>
-                    <a>Nous</a>
-                    <a href="?action=partner" >Devenir Partenaires</a>
-                </div>
-                <div id="current">
-                    <a>Inscription</a>
-                </div>
-            </div>
-        </header>
         {% if error is defined and error is not empty %}
         <p class="error">Error : {{ error }}</p>
         {% endif %}

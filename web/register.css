@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url('Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'RobotoBold';
+    src: url('Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('Roboto-Light.ttf');
+}
+
 body{
     margin: 0px;
 }
@@ -28,29 +43,42 @@ body{
     margin-left:15%;
     width:200px;
     color:white;
+    font-family: 'RobotoBold';
 }
 
 #nav_bar #stats span{
     color: #e17b65;
 }
 
-#nav_bar #nav{
+#nav{
     margin-left: 12%;
     width:300px;
     color:white;
     display: flex;
     justify-content: space-between;
+    font-family: 'RobotoRegular';
+}
+
+#nav a:hover{
+    color: #e17b65;
+    transition: 0.5s;
 }
 
 .clicked{
     color:#e17b65;
 }
 
-#nav_bar #current{
+#current{
     margin-left: 25%;
     background-color: #f1816d;
     color:white;
     padding : 15px 20px 0px 20px;
+    font-family: 'RobotoLight';
+}
+
+#current:hover{
+    background-color: #F7230C;
+    transition : 0.5s;
 }
 
 #nav_bar #current a{
@@ -65,6 +93,7 @@ body{
     font-size: 30px;
     text-align: center;
     color :#ed7b60;
+    font-family: 'RobotoLight';
 }
 
 #line{
@@ -98,15 +127,20 @@ margin: 10px 20px 0px 20px;
     height: 45px;
 }
 
+label span{
+    font-family: 'RobotoLight';
+}
+
 #button{
     background-color: #f1816d;
     padding : 10px 20px;
     color:white;
     margin-left: 170px;
     border  : 0px;
+    font-family: 'RobotoRegular';
 }
 
 a{
-      text-decoration: none;
-      color:white;
+    text-decoration: none;
+    color:white;
 }

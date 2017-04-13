@@ -77,7 +77,7 @@ body{
 }
 
 #current:hover{
-    background-color: #F7230C;
+    background-color: #D1482E;
     transition : 0.5s;
 }
 
@@ -138,6 +138,11 @@ label span{
     margin-left: 170px;
     border  : 0px;
     font-family: 'RobotoRegular';
+}
+
+#button:hover{
+    background-color: #D1482E;
+    transition: 0.5s;
 }
 
 a{

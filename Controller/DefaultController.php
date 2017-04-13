@@ -26,6 +26,13 @@ class DefaultController extends BaseController
 
     public function partnerAction()
     {
-        echo $this->renderView('partner.html.twig');
+        if(empty($_SESSION['user_id'])){
+            $user = '';
+        }
+        else{
+            $user = $_SESSION['user_id'];
+        }
+        echo $this->renderView('partner.html.twig', 
+                                ['log' => $user]);
     }
 }

@@ -24,34 +24,36 @@ body{
     display: flex;
 }
 
-#nav_bar div{
+#nav_bar #nav{
     padding-top: 15px;
 }
 
 #logo{
-    width :140px;
-    height: 110px;
-    background-color: #01D758;
+    width :140px;    
     position: absolute;
     left : 3%;
+}
+
+#logo #icon{
+    background-color: #01D758;
+    height: 110px;
     border-bottom: 6px solid lightgray;
     border-right: 6px solid lightgray;
     border-left: 6px solid lightgray;
 }
 
-#nav_bar #stats{
-    margin-left:15%;
-    width:200px;
-    color:white;
-    font-family: 'RobotoBold';
-}
-
-#nav_bar #stats span{
+#logo span{
     color: #e17b65;
 }
 
+#logo #stats{
+    color : #4b4b4b;
+    font-family: 'RobotoBold';
+    text-align: center;
+}
+
 #nav{
-    margin-left: 12%;
+    margin-left: 38%;
     width:300px;
     color:white;
     display: flex;
@@ -93,7 +95,8 @@ body{
     font-size: 30px;
     text-align: center;
     color :#ed7b60;
-    font-family: 'RobotoLight';
+    font-family: 'Poppins Medium';
+    font-weight: bold;
 }
 
 #line{
@@ -118,7 +121,7 @@ margin: 10px 20px 0px 20px;
     outline: none;
     display: block;
     width: 100%;
-    padding: 7px;
+    padding: 15px;
     border: none;
     border-bottom: 1px solid #ddd;
     background: transparent;
@@ -156,5 +159,80 @@ footer{
     background-color: #4b4b4b; 
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: center;    
+}
+
+#nav_bar_mobile{
+    display: none;
+}
+
+@media (max-width: 1023px){
+    body{
+        font-size:28px;
+    }
+    
+    #nav_bar{
+        display: none;
+    }
+
+    #nav_bar_mobile{
+        display: flex;
+        width: 100%;
+        height:80px;
+        background-color: #4b4b4b;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 35px;
+    }
+
+    #mobile_left_side{
+        display: flex;
+        width: 20%;
+        justify-content: space-between;
+    }
+    #mobile_logo{
+        color: white;
+        margin-left:20px;
+    }
+
+    #mobile_stats_number{
+        color: #e17b65;
+        font-family: 'RobotoBold';
+        text-align: center;
+    }
+
+    #mobile_right_side{
+        margin-right: 20px;
+    }
+
+    #mobile_stats{
+        color:white;
+        font-size: 22px;
+    }
+
+    #burger{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 38px;
+        margin-left:20px;
+    }
+
+    #burger .burger_line{
+        width: 50px;
+        height: 5px;
+        background-color: white;
+    }
+
+    .mobile_dropdown{
+        display: none;
+        position: absolute;
+        padding-left: 20px;
+        top:80px;
+        height: 150px;
+        background-color: #4b4b4b;
+        margin: 0px;
+        width: 300px;
+        z-index: 1;
+    }
 }

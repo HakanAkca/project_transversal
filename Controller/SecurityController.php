@@ -52,4 +52,15 @@ class SecurityController extends BaseController
             echo $this->renderView('home.html.twig');
         }
     }
+
+    public function profilAction(){
+        if(empty($_SESSION['user_id'])){
+            $user = '';
+        }
+        else{
+            $user = $_SESSION['user_id'];
+        }
+        echo $this->renderView('profil.html.twig', 
+                                ['log' => $user]);
+    }
 }

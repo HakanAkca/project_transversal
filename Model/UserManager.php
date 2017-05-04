@@ -140,16 +140,13 @@ class UserManager
             $res['barCode'] = $this->barCode();
             $res['user_id'] = (int)$_SESSION['user_id'];
         }
-<<<<<<< HEAD
         if(!empty($res)){
             //To Do Later
             $this->setPoints($res['numberOfBottles'],$_SESSION['user_id']);
         }
-=======
         $date = $this->DBManager->take_date();
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' add bottles' . "\n";
         $this->DBManager->watch_action_log('action.log', $write);
->>>>>>> 02257b03ab209c7ae49c95f66b5cb9386fbb2f53
         return $res;
     }
 
@@ -216,7 +213,7 @@ class UserManager
         );
     }
 
-<<<<<<< HEAD
+
     public function setPoints($point,$user_id){
         $user = $this->getUserById($user_id);
         $points = (int)$user["points"] + $point;
@@ -228,11 +225,9 @@ class UserManager
         );
     }
 
-    public function recycledObjects(){
-=======
+
     public function recycledObjects()
     {
->>>>>>> 02257b03ab209c7ae49c95f66b5cb9386fbb2f53
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users ");
         foreach ($data as $collected) {

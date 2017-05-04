@@ -196,21 +196,25 @@ $red : #f0816c;
             flex-wrap: wrap;
         }
         div:nth-child(1){
-            width: 30%;
+            @media(min-width:1026px){
+                width: 30%;
+            }
         }
         .newsletter{
             color:white;
             @include flex_trinity(column, space-around);
             height: 80px;
-            width: 30%;
             align-items: center;
+            @media(min-width:1026px){
+                width: 30%;
+            }
         }
         .nav{
             @include flex_trinity(row, space-between);
             margin: 20px 0px;
-            width: 20%;
-            margin-left: 10%;
             @media(min-width:1026px){
+                width: 20%;
+                margin-left: 10%;
                 @include flex_trinity(column, space-between);
             }
             div:nth-child(2){

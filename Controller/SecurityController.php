@@ -36,12 +36,12 @@ class SecurityController extends BaseController
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $result = $manager->userCheckRegister($_POST);
-                if ($result['isFormGood']) {
+                $res = $manager->userCheckRegister($_POST);
+                if ($res['isFormGood']) {
                     $manager->userRegister($_POST);
                     $this->redirect('home');
                 } else {
-                    $errors = $result['errors'];
+                    $errors = $res['errors'];
                 }
             }
             echo $this->renderView('register.html.twig',
@@ -60,11 +60,12 @@ class SecurityController extends BaseController
             $username = $_SESSION['user_username'];
             $bottlesNumber = $manager->getBottlesNumber($_SESSION['user_id']);
             $level = $manager->getLevel($_SESSION['user_id']);
+            $offers = $manager->getOffers();
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $result = $manager->pushBottles($_POST);
-                if (is_array($result) && !empty($result)) {
-                    $manager->addCodeBar($result);
+                $res = $manager->pushBottles($_POST);
+                if (is_array($res) && !empty($res)) {
+                    $manager->addCodeBar($res);
                 }
 
             }
@@ -73,7 +74,8 @@ class SecurityController extends BaseController
                     'recycledObjects' => $recycledObjects,
                     'username' => $username,
                     'bottlesNumber' => $bottlesNumber,
-                    'level' => $level
+                    'level' => $level,
+                    'offers' => $offers
                 ]);
         } else {
             echo $this->redirect('login');
@@ -88,8 +90,8 @@ class SecurityController extends BaseController
         ) {
             $manager = UserManager::getInstance();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $result = $manager->checkCatalogue($_POST);
-                if ($result['isFormGood']) {
+                $res = $manager->checkCatalogue($_POST);
+                if ($res['isFormGood']) {
                     $manager->addCatalogue($_POST);
                 }
             }

@@ -1,5 +1,24 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello {{ name }} !</h1>
+
+    <br>
+    <br>
+    <br><br><br><br>
+    <div id="title">
+        Hi {{ username }}
+        <h3>Stats</h3>
+        <p>Vous avez recyclé {{ bottlesNumber }} bouteille(s)</p>
+        <p>Niveau : {{ level }} sur 5</p>
+
+    </div>
+
+
+    <div id="line"></div>
+    <div>
+        <form action="?action=profil"  method="POST">
+            <input type="text" name="numberOfBottles" placeholder="mettez vos bouteilles">
+            <input id="button" type="submit" value="Valider">
+        </form>
+    </div>
 {% endblock %}

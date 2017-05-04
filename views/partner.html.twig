@@ -1,39 +1,18 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<header>
-    <div id="nav_bar">
-        <div id="logo">
-            <div id="icon"></div>
-            <div id="stats"><span>558 524</span><br> Objets recyclés</div>
-        </div>
-        <div id="nav">
-            <a>Home</a>
-            <a>Nous</a>
-            <a class="clicked">Devenir Partenaires</a>
-        </div>
-        <div id="current">
-            {% if log is not empty %}
-            <a id="inscri" href="?action=logout">Logout</a>
-            {% else %}
-            <a id="inscri" href="?action=register">Inscription</a>
-            {% endif %}
-        </div>
-    </div>
-</header>
 <div id="title">
            DEVENIR PARTENAIRE
         </div>
         <div id="line"></div>
     <div class="form-container-2 form-container form" id="example-2">
-        <form id="myRegister" method="POST" action="?action=register">
+        <form method="POST" action="?action=register">
             <input id="name" type="text" name="name" placeholder="Name*"><br>
             <input id="email" type="email" name="email" placeholder="Mail*"><br>
             <input id="city" type="text" name="city" placeholder="Ville*"><br>
             <input id="phone" type="text" name="phone" placeholder="Téléphone*"><br>
             <input id="statut" type="text" name="statut" placeholder="Statut*"><br>
-            
-           <button id="button">Devenir Partenaire</button>
+            <button id="button">Devenir Partenaire</button>
         </form>
     </div>
 

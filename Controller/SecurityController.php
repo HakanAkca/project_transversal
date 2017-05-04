@@ -15,7 +15,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
+                $this->redirect('profil');
             }
             else {
                 $error = "Invalid username or password";
@@ -32,11 +32,15 @@ class SecurityController extends BaseController
 
     public function registerAction()
     {
-        if(empty($_SESSION['user_id'])){
+        if (!empty($_SESSION['user_id'])) {
+            $this->redirect('home');
+        }
+        else{
             $error = '';
+            $manager = UserManager::getInstance();
+            $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $manager = UserManager::getInstance();
                 if ($manager->userCheckRegister($_POST))
                 {
                     $manager->userRegister($_POST);
@@ -44,23 +48,41 @@ class SecurityController extends BaseController
                 }
                 else {
                     $error = "Invalid data";
-                }    
+                }
             }
-            echo $this->renderView('register.html.twig', ['error' => $error]);
-        }
-        else{
-            echo $this->renderView('home.html.twig');
+            echo $this->renderView('register.html.twig',
+                [
+                    'error' => $error,
+                    'recycledObjects' => $recycledObjects
+                ]);
         }
     }
 
     public function profilAction(){
-        if(empty($_SESSION['user_id'])){
-            $user = '';
+        if(!empty($_SESSION['user_id'])){
+            $manager = UserManager::getInstance();
+            $recycledObjects = $manager->recycledObjects();
+            $username = $_SESSION['user_username'];
+            $bottlesNumber = $manager->getBottlesNumber($_SESSION['user_id']);
+            $level = $manager->getLevel($_SESSION['user_id']);
+
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $res = $manager->pushBottles($_POST);
+                if(is_array($res) && !empty($res)){
+                    $manager->addCodeBar($res);
+                }
+            }
+            echo $this->renderView('profil.html.twig',
+                [
+                    'recycledObjects' => $recycledObjects,
+                    'username' => $username,
+                    'bottlesNumber' => $bottlesNumber,
+                    'level' => $level
+                ]);
+        }else{
+            echo $this->redirect('login');
         }
-        else{
-            $user = $_SESSION['user_id'];
-        }
-        echo $this->renderView('profil.html.twig', 
-                                ['log' => $user]);
+
     }
 }

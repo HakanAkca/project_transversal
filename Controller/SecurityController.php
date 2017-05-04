@@ -66,6 +66,7 @@ class SecurityController extends BaseController
                 $res = $manager->pushBottles($_POST);
                 if (is_array($res) && !empty($res)) {
                     $manager->addCodeBar($res);
+                    header('Loaction:?action=profil');
                 }
 
             }

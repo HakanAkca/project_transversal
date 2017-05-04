@@ -4,4 +4,11 @@
     <br>
     <br>
     <br><br><br><br><br>
+    <p>Nos offres</p>
+    {% for offre in allOffres %}
+        Partenaire : {{ offre["Partenaire"] }} ---
+        Secteur : {{ offre["Secteur"] }} ---
+        Réduction : {{ offre["Reduction"] }} ---
+        Cout : {{ offre["Cout"] }} <br>
+    {% endfor %}
 {% endblock %}

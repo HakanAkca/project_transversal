@@ -139,11 +139,23 @@ class UserManager
         if(!empty($res)){
             //To Do Later
             $this->setPoints($res['numberOfBottles'],$_SESSION['user_id']);
+            /*$offres = $this->getCouts($res['numberOfBottles']);
+            if(!empty($offres)){
+                $this->userOffre($offres);
+            }*/
         }
         $date = $this->DBManager->take_date();
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' add bottles' . "\n";
         $this->DBManager->watch_action_log('action.log', $write);
         return $res;
+    }
+
+    public function userOffre($data){
+        //var_dump($data);
+        $offre['user_id'] = (int)$_SESSION['user_id'];
+        //$offre['offre_id'] = (int)$data['id'];
+        $offre['date'] = $this->getDatetimeNow();
+        //$this->DBManager->insert('offres', $offre);
     }
 
     public function addCodeBar($data)
@@ -163,6 +175,12 @@ class UserManager
             $randstring .= $characters[mt_rand(0, 9)];
         }
         return $randstring;
+    }
+
+    public function getCouts($c){
+        $cout = (int)$c;
+        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue WHERE cout =:cout",
+                                                ["cout" => $cout]);
     }
 
     public function setBottlesNumber($number, $user_id)
@@ -209,7 +227,7 @@ class UserManager
             ]
         );
     }
-    
+
     public function getOffers(){
         return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue");
     }
@@ -271,5 +289,9 @@ class UserManager
         $catalogue['Reduction'] = $data['reduction'];
         $catalogue['Cout'] = (int)$data['cout'];
         $this->DBManager->insert('offres_catalogue', $catalogue);
+    }
+    public function getDatetimeNow() {
+        date_default_timezone_set('Europe/Paris');
+        return date("Y-m-d H:i:s");
     }
 }

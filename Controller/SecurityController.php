@@ -85,6 +85,13 @@ class SecurityController extends BaseController
         } else {
             echo $this->redirect('login');
         }
+    }
 
+    public function adminAction(){
+        if(!empty($_SESSION['user_username'] == 'admin')) {
+            echo 'ok';
+        }else{
+            echo $this->redirect('home');
+        }
     }
 }

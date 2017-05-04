@@ -35,19 +35,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserManager.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserManager.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
+            <state relative-caret-position="-1660">
               <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding>
-                <marker date="1493909109760" expanded="true" signature="488:519" ph="SELECT * FRO... users" />
-                <marker date="1493909109760" expanded="true" signature="662:706" ph="SELECT * FRO... users" />
-                <marker date="1493909109760" expanded="true" signature="5844:5909" ph="UPDATE users... " />
-                <marker date="1493909109760" expanded="true" signature="6829:6878" ph="UPDATE users... " />
-                <marker date="1493909109760" expanded="true" signature="7183:7234" ph="UPDATE users... " />
-                <marker date="1493909109760" expanded="true" signature="7468:7499" ph="SELECT bottl... users" />
+                <marker date="1493933772360" expanded="true" signature="488:519" ph="SELECT * FRO... users" />
+                <marker date="1493933772360" expanded="true" signature="662:706" ph="SELECT * FRO... users" />
+                <marker date="1493933772360" expanded="true" signature="5686:6428" ph="{...}" />
+                <marker date="1493933772360" expanded="true" signature="5844:5909" ph="UPDATE users... " />
+                <marker date="1493933772360" expanded="true" signature="6936:6985" ph="UPDATE users... " />
+                <marker date="1493933772360" expanded="true" signature="7193:7223" ph="SELECT * FRO... offres_catalogue" />
+                <marker date="1493933772360" expanded="true" signature="7465:7516" ph="UPDATE users... " />
+                <marker date="1493933772360" expanded="true" signature="7750:7781" ph="SELECT bottl... users" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/register.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -65,8 +77,8 @@
       <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1940">
-              <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+            <state relative-caret-position="454">
+              <caret line="49" column="27" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -126,11 +138,11 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/views/profil.html.twig" />
         <option value="$PROJECT_DIR$/config/config.yml" />
-        <option value="$PROJECT_DIR$/views/register.html.twig" />
         <option value="$PROJECT_DIR$/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/views/admin.html.twig" />
         <option value="$PROJECT_DIR$/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/Model/UserManager.php" />
+        <option value="$PROJECT_DIR$/views/register.html.twig" />
       </list>
     </option>
   </component>
@@ -190,20 +202,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project_transversal" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="project_transversal" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -374,12 +372,12 @@
       <workItem from="1493728459351" duration="3254000" />
       <workItem from="1493813319259" duration="8469000" />
       <workItem from="1493888432598" duration="19222000" />
-      <workItem from="1493933523097" duration="70000" />
+      <workItem from="1493933523097" duration="468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83580000" />
+    <option name="totallyTimeSpent" value="83978000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="34" width="1535" height="876" extended-state="0" />
@@ -534,10 +532,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1491993803389" expanded="true" signature="111:142" ph="SELECT * FRO... users" />
-            <marker date="1491993803389" expanded="true" signature="243:287" ph="SELECT * FRO... users" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -580,13 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/register.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -624,26 +612,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1660">
+          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <marker date="1493933772360" expanded="true" signature="488:519" ph="SELECT * FRO... users" />
+            <marker date="1493933772360" expanded="true" signature="662:706" ph="SELECT * FRO... users" />
+            <marker date="1493933772360" expanded="true" signature="5686:6428" ph="{...}" />
+            <marker date="1493933772360" expanded="true" signature="5844:5909" ph="UPDATE users... " />
+            <marker date="1493933772360" expanded="true" signature="6936:6985" ph="UPDATE users... " />
+            <marker date="1493933772360" expanded="true" signature="7193:7223" ph="SELECT * FRO... offres_catalogue" />
+            <marker date="1493933772360" expanded="true" signature="7465:7516" ph="UPDATE users... " />
+            <marker date="1493933772360" expanded="true" signature="7750:7781" ph="SELECT bottl... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1940">
-          <caret line="97" column="17" lean-forward="false" selection-start-line="97" selection-start-column="17" selection-end-line="97" selection-end-column="17" />
+        <state relative-caret-position="454">
+          <caret line="49" column="27" lean-forward="false" selection-start-line="49" selection-start-column="21" selection-end-line="49" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
+    <entry file="file://$PROJECT_DIR$/views/register.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="23" column="5" lean-forward="false" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <marker date="1493909109760" expanded="true" signature="488:519" ph="SELECT * FRO... users" />
-            <marker date="1493909109760" expanded="true" signature="662:706" ph="SELECT * FRO... users" />
-            <marker date="1493909109760" expanded="true" signature="5844:5909" ph="UPDATE users... " />
-            <marker date="1493909109760" expanded="true" signature="6829:6878" ph="UPDATE users... " />
-            <marker date="1493909109760" expanded="true" signature="7183:7234" ph="UPDATE users... " />
-            <marker date="1493909109760" expanded="true" signature="7468:7499" ph="SELECT bottl... users" />
-          </folding>
+        <state relative-caret-position="440">
+          <caret line="31" column="34" lean-forward="false" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

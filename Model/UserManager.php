@@ -5,21 +5,17 @@ namespace Model;
 class UserManager
 {
     private $DBManager;
-
     private static $instance = null;
-
     public static function getInstance()
     {
         if (self::$instance === null)
             self::$instance = new UserManager();
         return self::$instance;
     }
-
     private function __construct()
     {
         $this->DBManager = DBManager::getInstance();
     }
-
     public function getUserById($id)
     {
         $id = (int)$id;

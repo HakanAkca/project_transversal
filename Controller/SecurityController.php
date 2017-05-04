@@ -36,12 +36,12 @@ class SecurityController extends BaseController
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $res = $manager->userCheckRegister($_POST);
-                if ($res['isFormGood']) {
+                $result = $manager->userCheckRegister($_POST);
+                if ($result['isFormGood']) {
                     $manager->userRegister($_POST);
                     $this->redirect('home');
                 } else {
-                    $errors = $res['errors'];
+                    $errors = $result['errors'];
                 }
             }
             echo $this->renderView('register.html.twig',
@@ -62,9 +62,9 @@ class SecurityController extends BaseController
             $level = $manager->getLevel($_SESSION['user_id']);
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $res = $manager->pushBottles($_POST);
-                if (is_array($res) && !empty($res)) {
-                    $manager->addCodeBar($res);
+                $result = $manager->pushBottles($_POST);
+                if (is_array($result) && !empty($result)) {
+                    $manager->addCodeBar($result);
                 }
 
             }

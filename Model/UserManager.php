@@ -188,6 +188,7 @@ class UserManager
         } else {
             $this->setLevel(5, $user_id);
         }
+        //TODO: revoir les niveau par rapport au bouteilles déposer, faire un resset des level chaque mois
     }
 
     public function getBottlesNumber($user_id)
@@ -231,6 +232,7 @@ class UserManager
         }
         return $res;
     }
+
     public function checkCatalogue($data){
         $errors = array();
         $res = array();
@@ -255,6 +257,11 @@ class UserManager
         }
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' new catalog send ' . $data['partner'] . ' '
+                                . $data['secteur'] . ' ' . $data['reduction']
+                                . ' ' . $data['cout'] . "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
         return $res;
     }
     public function addCatalogue($data){

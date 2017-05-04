@@ -104,6 +104,7 @@ class UserManager
         $code_bar['nb_bouteille'] = $data['numberOfBottles'];
         $code_bar['user_id'] = $data['user_id'];
         $this->DBManager->insert('code_barre', $code_bar);
+        $this->setBottlesNumber($code_bar['nb_bouteille'], $code_bar['user_id']);
     }
 
     public function barCode()
@@ -114,5 +115,32 @@ class UserManager
             $randstring .= $characters[mt_rand(0, 9)];
         }
         return $randstring;
+    }
+
+    public function setBottlesNumber($number, $user_id){
+        $user = $this->getUserById($user_id);
+        $bottlesNumber = (int)$user["bottlesNumber"] + $number;
+        $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
+                                            [
+                                                "user_id" => $user_id,
+                                                "bottlesNumber" => $bottlesNumber
+                                            ]
+                                        );
+    }
+
+    public function getBottlesNumber($user_id){
+        $user = $this->getUserById($user_id);
+        if($user !== false){
+            return $user['bottlesNumber'];
+        }
+    }
+
+    public function recycledObjects(){
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users ");
+       foreach ($data as $collected){
+           $res += (int)$collected["bottlesNumber"];
+       }
+       return $res;
     }
 }

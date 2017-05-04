@@ -7,23 +7,31 @@ use Model\UserManager;
 class DefaultController extends BaseController
 {
     public function homeAction(){
-        echo $this->renderView('home.html.twig');
+        $manager = UserManager::getInstance();
+        $recycledObjects = $manager->recycledObjects();
+        echo $this->renderView('home.html.twig',
+            [
+                'recycledObjects' => $recycledObjects
+            ]);
     }
 
     public function aboutAction()
     {
-        echo $this->renderView('about.html.twig');
+        $manager = UserManager::getInstance();
+        $recycledObjects = $manager->recycledObjects();
+        echo $this->renderView('about.html.twig',
+            [
+                'recycledObjects' => $recycledObjects
+            ]);
     }
 
     public function partnerAction()
     {
-        if(empty($_SESSION['user_id'])){
-            $user = '';
-        }
-        else{
-            $user = $_SESSION['user_id'];
-        }
-        echo $this->renderView('partner.html.twig', 
-                                ['log' => $user]);
+        $manager = UserManager::getInstance();
+        $recycledObjects = $manager->recycledObjects();
+        echo $this->renderView('partner.html.twig',
+            [
+                'recycledObjects' => $recycledObjects
+            ]);
     }
 }

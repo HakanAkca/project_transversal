@@ -1,11 +1,18 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <form action="?action=profil" method="POST">
-        <input type="text" name="numberOfBottles" placeholder="mettez vos bouteilles">
-        <input type="submit" value="Valider">
-    </form>
+
     <br>
     <br>
-    <br>
+    <br><br><br><br>
+    <div id="title">
+        Hi guys :)
+    </div>
+    <div id="line"></div>
+    <div>
+        <form action="?action=profil"  method="POST">
+            <input type="text" name="numberOfBottles" placeholder="mettez vos bouteilles">
+            <input id="button" type="submit" value="Valider">
+        </form>
+    </div>
 {% endblock %}

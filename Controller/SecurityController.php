@@ -32,11 +32,15 @@ class SecurityController extends BaseController
 
     public function registerAction()
     {
-        if(empty($_SESSION['user_id'])){
+        if (!empty($_SESSION['user_id'])) {
+            $this->redirect('home');
+        }
+        else{
             $error = '';
+            $manager = UserManager::getInstance();
+            $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $manager = UserManager::getInstance();
                 if ($manager->userCheckRegister($_POST))
                 {
                     $manager->userRegister($_POST);
@@ -44,26 +48,29 @@ class SecurityController extends BaseController
                 }
                 else {
                     $error = "Invalid data";
-                }    
+                }
             }
-            echo $this->renderView('register.html.twig', ['error' => $error]);
-        }
-        else{
-            echo $this->renderView('home.html.twig');
+            echo $this->renderView('register.html.twig',
+                [
+                    'error' => $error,
+                    'recycledObjects' => $recycledObjects
+                ]);
         }
     }
 
     public function profilAction(){
         if(!empty($_SESSION['user_id'])){
+            $manager = UserManager::getInstance();
+            $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $manager = UserManager::getInstance();
                 $res = $manager->pushBottles($_POST);
                 if(is_array($res) && !empty($res)){
                     $manager->addCodeBar($res);
                 }
             }
-            echo $this->renderView('profil.html.twig');
+            echo $this->renderView('profil.html.twig',
+                ['recycledObjects' => $recycledObjects]);
         }else{
             echo $this->redirect('login');
         }

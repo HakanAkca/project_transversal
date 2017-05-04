@@ -100,6 +100,9 @@
     color: white;
     padding: 0px 20px;
   }
+  header .menu_desktop a:hover {
+    color: #f0816c;
+  }
 }
 @media screen and (min-width: 1026px) {
   header .menu_desktop {
@@ -157,6 +160,7 @@
     justify-content: space-around;
     align-items: center;
     height: 400px;
+    padding-bottom: 15px;
   }
   main .container_form {
     text-align: center;
@@ -192,7 +196,14 @@
     border: none;
     background-color: #f0816c;
     color: white;
-    box-shadow: 0px 3px 1px #d47260;
+    box-shadow: 0px 5px 1px #d47260;
+  }
+  main .form-container #myRegister button:hover {
+    box-shadow: 0px 2px 1px #d47260;
+  }
+  main .form-container #myRegister .error {
+    color: red;
+    margin: 10px;
   }
 }
 @media screen and (min-width: 1026px) {

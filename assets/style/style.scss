@@ -101,6 +101,9 @@ $red : #f0816c;
             a{
                 color: white;
                 padding: 0px 20px;
+                &:hover{
+                    color:$red;
+                }
             }
             @media(min-width:1026px){
                 display: flex;
@@ -147,6 +150,7 @@ $red : #f0816c;
         justify-content: space-around;
         align-items: center;
         height: 400px;
+        padding-bottom: 15px;
         .container_form{
             text-align: center;
             @media(min-width:1026px){
@@ -175,7 +179,14 @@ $red : #f0816c;
                     border : none;
                     background-color: $red;
                     color:white;
-                    box-shadow: 0px 3px 1px #d47260;
+                    box-shadow: 0px 5px 1px #d47260;
+                    &:hover{
+                        box-shadow: 0px 2px 1px #d47260;
+                    }
+                }
+                .error{
+                    color: red;
+                    margin: 10px;
                 }
             }
         }

@@ -3,21 +3,40 @@
     <head>
         <meta charset="utf-8">
         <title>Tritus</title>
-        <link rel="stylesheet" href="assets/foxholder-styles.css">
-        <link rel="stylesheet" href="web/register.css">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <link rel="stylesheet" href="web/foxholder-styles.css">
+        <link rel="stylesheet" href="assets/style/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="assets/foxholder.js"></script>
-        <script src="assets/register.js"></script>
+        <script src="assets/script/foxholder.js"></script>
+        <script src="assets/script/register.js"></script>
     </head>
     <body>
-        {% if error is defined and error is not empty %}
-        <p class="error">Error : {{ error }}</p>
-        {% endif %}
         {% block content %}{% endblock %}
+
         <footer>
-            <div>Liens - Logo</div>
-            <div> Divers Liens</div>
-            <div> Copyright - Mentions</div>
+            <div class="newsletter">
+                <p>Inscrivez vous a la Newsletter</p>
+                <form method="POST">
+                    <input id="newsletter" type="email" name="newsletter"/>
+                    <label for="buttonNewsletter"></label>
+                    <input type="submit" id="buttonNewsletter"/>
+                </form>
+            </div>
+            <div class="nav">
+                <div>
+                    <a href="#">Plan du site</a>
+                    <a href="#">Mentions Légales</a>
+                </div>
+                <div>
+                    <a href="#">Conditions d'utilisations</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+            <div>
+                <p>Retrouvez-nous sur nos résaux sociaux !</p>
+                <div></div>
+            </div>
+            <div class="copy">&copy;Tritus 2017</div>
         </footer>
     </body>
 </html>

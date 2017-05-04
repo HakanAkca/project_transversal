@@ -3,11 +3,13 @@
   margin-bottom: 25px;
 }
 
-.form-container form input, 
-.form-container form textarea {
+.form-container form input {
   outline: none !important;
   box-shadow: none !important;
   transition: all 0.2s linear 0s;
+  border : none;
+  border-bottom: 1px solid #d9d7d7;
+  width: 100%;
 }
 
 .form-container form label {
@@ -28,19 +30,6 @@
 .form-container form label span {
   display: inline-block;
   vertical-align: middle;
-  padding: 0px 20px;
-}
-
-
-.form-container form textarea {
-  resize: none;
-  height: 140px;
-  line-height: 24px;
-}
-
-.form-container form textarea + label {
-  line-height: 24px;
-  padding: 20px 0px;
 }
 
 .form-container form input + label {
@@ -48,10 +37,6 @@
 }
 
 .form-container form button {
-  color: #222;
-  border: 1px solid #222;
-  background: transparent;
-  border-radius: 4px;
   outline: none;
   padding: 10px 20px;
 }
@@ -61,19 +46,8 @@
   transition: all 0.2s linear 0s;
 }
 
-#example-2.form-container input:focus,
-#example-2.form-container input.active,
-#example-2.form-container textarea:focus,
-#example-2.form-container textarea.active {
-  border-left: 1px solid transparent;
-  border-right: 1px solid transparent;
-  border-top: 1px solid transparent;
-}
-
 #example-2.form-container input:focus + label,
-#example-2.form-container input.active + label,
-#example-2.form-container textarea:focus + label,
-#example-2.form-container textarea.active + label {
+#example-2.form-container input.active + label{
   font-size: 80%;
   font-style: italic;
   left: -6px;

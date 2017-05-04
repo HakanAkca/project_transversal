@@ -44,7 +44,7 @@ $.fn.foxholder = function(number) {
     $('#example-2 input, #example-2 textarea').focus(function() {
       var labelTop;
       labelTop = parseInt($(this).css('padding-top'));
-      $(this).next('label').css({'top': 0 - (labelTop + 6)});
+      $(this).next('label').css({'top': 0 - (labelTop + 10)});
     });
 
     $('#example-2 input, #example-2 textarea').blur(function() {

@@ -1,0 +1,169 @@
+$neutralColor : #4b4b4b; // nav || footer
+$red : #f0816c;
+
+  @font-face {
+    src: url('../fonts/Roboto-Bold.ttf');
+    font-family: 'robotoBold';
+  }
+
+  @font-face {
+    src: url('../fonts/Roboto-Regular.ttf');
+    font-family: 'robotoRegular';
+  }
+
+  @font-face {
+    src: url('../fonts/Roboto-Light.ttf');
+    font-family: 'robotoLight';
+  }
+
+  @font-face {
+    src: url('../fonts/Poppins-Medium.ttf');
+    font-family: 'PoppinsMedium';
+  }
+
+@mixin flex_trinity($direction, $content) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $content;
+  }
+
+@media screen{
+    
+    body{
+        margin: 0px;
+    }
+
+    p, ul{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li{
+        list-style:none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+    
+    header{
+        height: 40px;
+        @include flex_trinity(row, space-between);
+        align-items: center;
+        background-color: $neutralColor;
+        .left_side_mobile{
+            @include flex_trinity(row, flex-start);
+            .burger{
+                height: 22px;
+                width : 20px;
+                margin: 5px;
+                @include flex_trinity(column, space-around);
+                .burger_line{
+                    background-color: white;
+                    height: 2px;
+                    width: 100%;
+                }
+            }
+            .mobile_dropdown{
+                display: none;
+                position: absolute;
+                background-color: black;
+                color :white;
+                opacity: 0.8;
+                width: 70%;
+                height: 100vh;
+                margin-top: 35px;
+                z-index: 1;
+                flex-direction: column;
+                li{
+                    padding : 15px 25px;
+                    &:not(:last-child){
+                        border-bottom: 1px solid white;
+                    }
+                    a{
+                        color:white;
+                    }
+                }
+            }
+            .mobile_logo{
+                height: 25px;
+                margin-left: 5px;
+                margin-top: 5px;
+            }
+        }
+        .stats{
+            @include flex_trinity(column, flex-start);
+            align-items: center;
+            margin-right: 5px;
+            font-family: 'robotoBold';
+            color:white;
+            font-size: 14px;
+            span{
+                color:$red;
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+    }
+
+    main{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .title{
+            font-family: 'PoppinsMedium';
+            color:$red;
+        }
+        .form-container{
+            width:60%;
+            #myRegister{
+                text-align: center;
+                .form-item-block{
+                    span{
+                        color :$red;
+                        padding-bottom: 4px;
+                    }
+                }
+                button{
+                    border : none;
+                    background-color: $red;
+                    color:white;
+                    box-shadow: 0px 3px 1px #d47260;
+                }
+            }
+        }
+    }
+
+    footer{
+        background-color: $neutralColor;
+        padding: 20px;
+        margin-top: 20px;
+        color:white;
+        @include flex_trinity(column, space-around);  
+        align-items: center;
+        .newsletter{
+            color:white;
+            @include flex_trinity(column, space-around);
+            height: 80px;
+        }
+        .nav{
+            @include flex_trinity(row, space-between);
+            margin: 20px 0px;
+            div:nth-child(2){
+                margin-left: 28px;
+            }
+            a{
+                color:white;
+                white-space: nowrap;
+                font-size: 14px;
+            }
+        }
+        .copy{
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    }
+
+}

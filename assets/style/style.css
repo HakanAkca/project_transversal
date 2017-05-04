@@ -1,0 +1,168 @@
+@font-face {
+  src: url("../fonts/Roboto-Bold.ttf");
+  font-family: 'robotoBold';
+}
+@font-face {
+  src: url("../fonts/Roboto-Regular.ttf");
+  font-family: 'robotoRegular';
+}
+@font-face {
+  src: url("../fonts/Roboto-Light.ttf");
+  font-family: 'robotoLight';
+}
+@font-face {
+  src: url("../fonts/Poppins-Medium.ttf");
+  font-family: 'PoppinsMedium';
+}
+@media screen {
+  body {
+    margin: 0px;
+  }
+
+  p, ul {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  header {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4b4b4b;
+  }
+  header .left_side_mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  header .left_side_mobile .burger {
+    height: 22px;
+    width: 20px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  header .left_side_mobile .burger .burger_line {
+    background-color: white;
+    height: 2px;
+    width: 100%;
+  }
+  header .left_side_mobile .mobile_dropdown {
+    display: none;
+    position: absolute;
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+    width: 70%;
+    height: 100vh;
+    margin-top: 35px;
+    z-index: 1;
+    flex-direction: column;
+  }
+  header .left_side_mobile .mobile_dropdown li {
+    padding: 15px 25px;
+  }
+  header .left_side_mobile .mobile_dropdown li:not(:last-child) {
+    border-bottom: 1px solid white;
+  }
+  header .left_side_mobile .mobile_dropdown li a {
+    color: white;
+  }
+  header .left_side_mobile .mobile_logo {
+    height: 25px;
+    margin-left: 5px;
+    margin-top: 5px;
+  }
+  header .stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 5px;
+    font-family: 'robotoBold';
+    color: white;
+    font-size: 14px;
+  }
+  header .stats span {
+    color: #f0816c;
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  main .title {
+    font-family: 'PoppinsMedium';
+    color: #f0816c;
+  }
+  main .form-container {
+    width: 60%;
+  }
+  main .form-container #myRegister {
+    text-align: center;
+  }
+  main .form-container #myRegister .form-item-block span {
+    color: #f0816c;
+    padding-bottom: 4px;
+  }
+  main .form-container #myRegister button {
+    border: none;
+    background-color: #f0816c;
+    color: white;
+    box-shadow: 0px 3px 1px #d47260;
+  }
+
+  footer {
+    background-color: #4b4b4b;
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  footer .newsletter {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 80px;
+  }
+  footer .nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0px;
+  }
+  footer .nav div:nth-child(2) {
+    margin-left: 28px;
+  }
+  footer .nav a {
+    color: white;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  footer .copy {
+    margin-top: 20px;
+    font-size: 12px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

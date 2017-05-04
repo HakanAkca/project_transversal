@@ -2,52 +2,36 @@
 
 {% block content %}
     <header>
-        <div id="nav_bar">        
-            <div id="logo">
-                <div id="icon"></div>
-                <div id="stats"><span>558 524</span><br> Objets recyclés</div>
+        <div class="left_side_mobile">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
             </div>
-            <div id="nav">
-                <a>Home</a>
-                <a>Nous</a>
-                <a href="?action=partner">Devenir Partenaires</a>
-            </div>
-            <div id="current">
-                <a id="inscri">Inscription</a>
-            </div>
+            <ul class="mobile_dropdown">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Connection</a></li>
+                <li><a href="#">Nous</a></li>
+                <li><a href="#">Devenir Partenaires</a></li>
+            </ul>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
         </div>
-        <div id="nav_bar_mobile">
-            <div id="mobile_left_side">
-                <div id="burger">
-                    <div class="burger_line"></div>
-                    <div class="burger_line"></div>
-                    <div class="burger_line"></div>
-                </div>
-                <div class="mobile_dropdown">
-                    <a>Home</a><br>
-                    <a>Nous</a><br>
-                    <a href="?action=partner">Devenir Partenaires</a>
-                </div>
-                <div id="mobile_logo">Tritus</div>
-            </div>
-            <div id="mobile_right_side">
-                <div id="mobile_stats_number">556 956</div>
-                <div id="mobile_stats">Objets recyclés</div>
-            </div>
+        <div class="stats">
+            <span>556 931</span>
+            <p>objets recylés !</p>
         </div>
     </header>
-    <div id="title">
-        INSCRIPTION
-    </div>
-    <div id="line"></div>
-    <div class="form-container-2 form-container form" id="example-2">
-        <form id="myRegister" method="POST" action="?action=register">
-            <input id="username" type="text" name="username" placeholder="Pseudo*">
-            <input id="email" type="email" name="email" placeholder="Mail*">
-            <input id="password" type="password" name="password" placeholder="Mot de Passe*">
-            <input id="verifpassword" type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*">
-            <input id="city" type="text" name="city" placeholder="Ville*">
-            <button type="submit" id="button">Créer mon compte</button>
-        </form>
-    </div>
+    <main>
+        <h2 class="title">Inscription</h2>
+        <div class="form-container-2 form-container form" id="example-2">
+            <form id="myRegister" method="POST" action="?action=register">
+                <input id="username" type="text" name="username" placeholder="Pseudo*">
+                <input id="email" type="email" name="email" placeholder="Mail*">
+                <input id="password" type="password" name="password" placeholder="Mot de Passe*">
+                <input id="verifpassword" type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*">
+                <input id="city" type="text" name="city" placeholder="Ville*">
+                <button type="submit" id="button">Créer mon compte</button>
+            </form>
+        </div>
+    </main>
 {% endblock %}

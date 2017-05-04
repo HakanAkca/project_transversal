@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <p>Ajouter des offres</p>
+    <form method="POST" action="?action=admin">
+        <input type="text" name="partner" placeholder="Partenaire"><br>
+        <input type="text" name="secteur" placeholder="Secteur"><br>
+        <input type="text" name="reduction" placeholder="Réduction"><br>
+        <input type="text" name="cout" placeholder="Coût"><br>
+        <button type="submit" >Ajouter Offre</button>
+    </form>
+{% endblock %}

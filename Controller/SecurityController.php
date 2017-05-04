@@ -9,15 +9,12 @@ class SecurityController extends BaseController
     public function loginAction()
     {
         $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $manager = UserManager::getInstance();
-            if ($manager->userCheckLogin($_POST))
-            {
+            if ($manager->userCheckLogin($_POST)) {
                 $manager->userLogin($_POST['username']);
                 $this->redirect('profil');
-            }
-            else {
+            } else {
                 $error = "Invalid username or password";
             }
         }
@@ -34,55 +31,73 @@ class SecurityController extends BaseController
     {
         if (!empty($_SESSION['user_id'])) {
             $this->redirect('home');
-        }
-        else{
-            $error = '';
+        } else {
+            $errors = array();
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
-            {
-                if ($manager->userCheckRegister($_POST))
-                {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $res = $manager->userCheckRegister($_POST);
+                if ($res['isFormGood']) {
                     $manager->userRegister($_POST);
                     $this->redirect('home');
-                }
-                else {
-                    $error = "Invalid data";
+                } else {
+                    $errors = $res['errors'];
                 }
             }
             echo $this->renderView('register.html.twig',
                 [
-                    'error' => $error,
-                    'recycledObjects' => $recycledObjects
+                    'recycledObjects' => $recycledObjects,
+                    'errors' => $errors
                 ]);
         }
     }
 
-    public function profilAction(){
-        if(!empty($_SESSION['user_id'])){
+    public function profilAction()
+    {
+        if (!empty($_SESSION['user_id'])) {
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
             $username = $_SESSION['user_username'];
             $bottlesNumber = $manager->getBottlesNumber($_SESSION['user_id']);
             $level = $manager->getLevel($_SESSION['user_id']);
+            $offers = $manager->getOffers();
 
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
-            {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $res = $manager->pushBottles($_POST);
-                if(is_array($res) && !empty($res)){
+                if (is_array($res) && !empty($res)) {
                     $manager->addCodeBar($res);
                 }
+
             }
             echo $this->renderView('profil.html.twig',
                 [
                     'recycledObjects' => $recycledObjects,
                     'username' => $username,
                     'bottlesNumber' => $bottlesNumber,
-                    'level' => $level
+                    'level' => $level,
+                    'offers' => $offers
                 ]);
-        }else{
+        } else {
             echo $this->redirect('login');
         }
+    }
 
+    public function adminAction()
+    {
+        if (!empty($_SESSION['user_username'] == 'adminHakan') ||
+            !empty($_SESSION['user_username'] == 'adminOmar') ||
+            !empty($_SESSION['user_username'] == 'adminNath')
+        ) {
+            $manager = UserManager::getInstance();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $res = $manager->checkCatalogue($_POST);
+                if ($res['isFormGood']) {
+                    $manager->addCatalogue($_POST);
+                }
+            }
+            echo $this->renderView('admin.html.twig');
+        } else {
+            echo $this->redirect('home');
+        }
     }
 }

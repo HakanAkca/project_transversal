@@ -10,28 +10,35 @@
             </div>
             <ul class="mobile_dropdown">
                 <li><a href="#">Accueil</a></li>
-                <li><a href="#">Connection</a></li>
                 <li><a href="#">Nous</a></li>
                 <li><a href="#">Devenir Partenaires</a></li>
             </ul>
             <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
         </div>
         <div class="stats">
-            <span>556 931</span>
+            <span>{{recycledObjects}}</span>
             <p>objets recylés !</p>
         </div>
+        <ul class="menu_desktop">
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">Nous</a></li>
+            <li><a href="#">Devenir Partenaires</a></li>
+        </ul>
+        <div class="current"><a href="#">Inscription</a></div>
     </header>
     <main>
-        <h2 class="title">Inscription</h2>
-        <div class="form-container-2 form-container form" id="example-2">
-            <form id="myRegister" method="POST" action="?action=register">
-                <input id="username" type="text" name="username" placeholder="Pseudo*">
-                <input id="email" type="email" name="email" placeholder="Mail*">
-                <input id="password" type="password" name="password" placeholder="Mot de Passe*">
-                <input id="verifpassword" type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*">
-                <input id="city" type="text" name="city" placeholder="Ville*">
-                <button type="submit" id="button">Créer mon compte</button>
-            </form>
+        <div class="container_form">
+            <h2 class="title">Inscription</h2>
+            <div class="form-container-2 form-container form" id="example-2">
+                <form id="myRegister" method="POST" action="?action=register">
+                    <input id="username" type="text" name="username" placeholder="Pseudo*">
+                    <input id="email" type="email" name="email" placeholder="Mail*">
+                    <input id="password" type="password" name="password" placeholder="Mot de Passe*">
+                    <input id="verifpassword" type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*">
+                    <input id="city" type="text" name="city" placeholder="Ville*">
+                    <button type="submit" id="button">Créer mon compte</button>
+                </form>
+            </div>
         </div>
     </main>
 {% endblock %}

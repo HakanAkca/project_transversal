@@ -155,8 +155,6 @@ class UserManager
         );
     }
 
-    public function
-
     public function recycledObjects(){
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users ");

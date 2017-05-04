@@ -63,6 +63,9 @@ $red : #f0816c;
                     height: 2px;
                     width: 100%;
                 }
+                @media(min-width:1026px){
+                    display: none;
+                }
             }
             .mobile_dropdown{
                 display: none;
@@ -87,8 +90,20 @@ $red : #f0816c;
             }
             .mobile_logo{
                 height: 25px;
+                width: 115px;
                 margin-left: 5px;
                 margin-top: 5px;
+            }
+        }
+        .menu_desktop{
+            display: none;
+            align-self: center;
+            a{
+                color: white;
+                padding: 0px 20px;
+            }
+            @media(min-width:1026px){
+                display: flex;
             }
         }
         .stats{
@@ -98,11 +113,30 @@ $red : #f0816c;
             font-family: 'robotoBold';
             color:white;
             font-size: 14px;
+            @media(min-width:1026px){
+                flex-direction: row;
+                margin-left: 20px;
+            }
             span{
                 color:$red;
                 letter-spacing: 4px;
                 font-weight: bold;
                 font-size: 18px;
+            }
+        }
+        .current{
+            display: none;
+            height: 40px;
+            background-color: $red;
+            a{
+                padding-top: 9px;
+                color: white;
+            }
+            margin-right: 40px;
+            margin-left: 20%;
+            padding: 0px 10px;
+            @media(min-width:1026px){
+                display: flex;
             }
         }
     }
@@ -112,18 +146,29 @@ $red : #f0816c;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        height: 400px;
+        .container_form{
+            text-align: center;
+            @media(min-width:1026px){
+                background-color: white;
+                padding: 20px 5%;
+            }
+        }
         .title{
             font-family: 'PoppinsMedium';
             color:$red;
         }
         .form-container{
-            width:60%;
             #myRegister{
                 text-align: center;
                 .form-item-block{
                     span{
                         color :$red;
                         padding-bottom: 4px;
+                        font-size: 12px;
+                    }
+                    @media(min-width:1026px){
+                        width: 250px;
                     }
                 }
                 button{
@@ -134,25 +179,50 @@ $red : #f0816c;
                 }
             }
         }
+        @media(min-width:1026px){
+            background-image: url('../img/inscription.png');
+            height: 600px;
+        }
     }
 
     footer{
         background-color: $neutralColor;
         padding: 20px;
-        margin-top: 20px;
         color:white;
         @include flex_trinity(column, space-around);  
         align-items: center;
+        @media(min-width:1026px){
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        div:nth-child(1){
+            width: 30%;
+        }
         .newsletter{
             color:white;
             @include flex_trinity(column, space-around);
             height: 80px;
+            width: 30%;
+            align-items: center;
         }
         .nav{
             @include flex_trinity(row, space-between);
             margin: 20px 0px;
+            width: 20%;
+            margin-left: 10%;
+            @media(min-width:1026px){
+                @include flex_trinity(column, space-between);
+            }
             div:nth-child(2){
                 margin-left: 28px;
+                @media(min-width:1026px){
+                    margin-left: 0px;
+                }
+            }
+            div{
+                @media(min-width:1026px){
+                    @include flex_trinity(column, space-between);
+                }
             }
             a{
                 color:white;
@@ -163,6 +233,8 @@ $red : #f0816c;
         .copy{
             margin-top: 20px;
             font-size: 12px;
+            width: 30%;
+            text-align: center; 
         }
     }
 

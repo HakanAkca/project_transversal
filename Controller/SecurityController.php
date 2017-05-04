@@ -15,7 +15,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
+                $this->redirect('profil');
             }
             else {
                 $error = "Invalid username or password";
@@ -62,6 +62,10 @@ class SecurityController extends BaseController
         if(!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
+            $username = $_SESSION['user_username'];
+            $bottlesNumber = $manager->getBottlesNumber($_SESSION['user_id']);
+            $level = $manager->getLevel($_SESSION['user_id']);
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 $res = $manager->pushBottles($_POST);
@@ -70,7 +74,12 @@ class SecurityController extends BaseController
                 }
             }
             echo $this->renderView('profil.html.twig',
-                ['recycledObjects' => $recycledObjects]);
+                [
+                    'recycledObjects' => $recycledObjects,
+                    'username' => $username,
+                    'bottlesNumber' => $bottlesNumber,
+                    'level' => $level
+                ]);
         }else{
             echo $this->redirect('login');
         }

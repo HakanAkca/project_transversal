@@ -84,6 +84,7 @@ class UserManager
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
+        $_SESSION['user_username'] = $data['pseudo'];
         return true;
     }
 
@@ -126,14 +127,35 @@ class UserManager
                                                 "bottlesNumber" => $bottlesNumber
                                             ]
                                         );
-    }
-
-    public function getBottlesNumber($user_id){
-        $user = $this->getUserById($user_id);
-        if($user !== false){
-            return $user['bottlesNumber'];
+        if($bottlesNumber>=10 && $bottlesNumber<=15){
+            $this->setLevel(2,$user_id);
+        }elseif ($bottlesNumber>15 && $bottlesNumber<=30){
+            $this->setLevel(3,$user_id);
+        }elseif ($bottlesNumber>30 && $bottlesNumber<50){
+            $this->setLevel(4,$user_id);
+        }else{
+            $this->setLevel(5,$user_id);
         }
     }
+    public function getBottlesNumber($user_id){
+        $user = $this->getUserById($user_id);
+        return $user['bottlesNumber'];
+    }
+    public function getLevel($user_id){
+        $user = $this->getUserById($user_id);
+        return $user['level'];
+    }
+    public function setLevel($level,$user_id){
+        $level = (int)$level;
+        $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
+            [
+                "user_id" => $user_id,
+                "level" => $level
+            ]
+        );
+    }
+
+    public function
 
     public function recycledObjects(){
         $res = 0;

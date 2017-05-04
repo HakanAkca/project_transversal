@@ -86,4 +86,33 @@ class UserManager
         $_SESSION['user_id'] = $data['id'];
         return true;
     }
+
+    public function pushBottles($data){
+        $res = array();
+        $numberOfBottles = $data["numberOfBottles"];
+        if(is_numeric($numberOfBottles)){
+            $number = (int)$numberOfBottles;
+            $res['numberOfBottles'] = $number;
+            $res['barCode'] = $this->barCode();
+            $res['user_id'] = (int)$_SESSION['user_id'];
+        }
+        return $res;
+    }
+
+    public function addCodeBar($data){
+        $code_bar['Code'] = $data['barCode'];
+        $code_bar['nb_bouteille'] = $data['numberOfBottles'];
+        $code_bar['user_id'] = $data['user_id'];
+        $this->DBManager->insert('code_barre', $code_bar);
+    }
+
+    public function barCode()
+    {
+        $characters = '0123456789';
+        $randstring = '';
+        for ($i = 0; $i < 6; $i++) {
+            $randstring .= $characters[mt_rand(0, 9)];
+        }
+        return $randstring;
+    }
 }

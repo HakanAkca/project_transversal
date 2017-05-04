@@ -54,13 +54,19 @@ class SecurityController extends BaseController
     }
 
     public function profilAction(){
-        if(empty($_SESSION['user_id'])){
-            $user = '';
+        if(!empty($_SESSION['user_id'])){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $manager = UserManager::getInstance();
+                $res = $manager->pushBottles($_POST);
+                if(is_array($res) && !empty($res)){
+                    $manager->addCodeBar($res);
+                }
+            }
+            echo $this->renderView('profil.html.twig');
+        }else{
+            echo $this->redirect('login');
         }
-        else{
-            $user = $_SESSION['user_id'];
-        }
-        echo $this->renderView('profil.html.twig', 
-                                ['log' => $user]);
+
     }
 }

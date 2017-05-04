@@ -1,5 +1,8 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <h1>Hello {{ name }} !</h1>
+    <form action="?action=profil" method="POST">
+        <input type="text" name="numberOfBottles" placeholder="mettez vos bouteilles">
+        <input type="submit" value="Valider">
+    </form>
 {% endblock %}

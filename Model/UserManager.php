@@ -213,6 +213,7 @@ class UserManager
         );
     }
 
+
     public function setPoints($point,$user_id){
         $user = $this->getUserById($user_id);
         $points = (int)$user["points"] + $point;
@@ -223,6 +224,7 @@ class UserManager
             ]
         );
     }
+
 
     public function recycledObjects()
     {

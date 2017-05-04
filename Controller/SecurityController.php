@@ -89,7 +89,15 @@ class SecurityController extends BaseController
 
     public function adminAction(){
         if(!empty($_SESSION['user_username'] == 'adminHNO')) {
-            echo 'ok';
+            $manager = UserManager::getInstance();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $res = $manager->checkCatalogue($_POST);
+                if($res['isFormGood']){
+                    $manager->addCatalogue($_POST);
+                }
+            }
+            echo $this->renderView('admin.html.twig');
         }else{
             echo $this->redirect('home');
         }

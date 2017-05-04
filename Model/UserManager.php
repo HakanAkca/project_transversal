@@ -212,8 +212,6 @@ class UserManager
             ]
         );
     }
-
-
     public function setPoints($point,$user_id){
         $user = $this->getUserById($user_id);
         $points = (int)$user["points"] + $point;
@@ -224,8 +222,6 @@ class UserManager
             ]
         );
     }
-
-
     public function recycledObjects()
     {
         $res = 0;
@@ -234,5 +230,38 @@ class UserManager
             $res += (int)$collected["bottlesNumber"];
         }
         return $res;
+    }
+    public function checkCatalogue($data){
+        $errors = array();
+        $res = array();
+        $isFormGood = true;
+
+        if (!isset($data['partner']) || empty($data['partner'])) {
+            $errors['partner'] = 'Veuillez remplir le champs partenaire';
+            $isFormGood = false;
+        }
+
+        if(!isset($data['secteur']) || empty($data['secteur'])){
+            $errors['secteur'] = "Veiller remplir le secteur ";
+            $isFormGood = false;
+        }
+        if(!isset($data['reduction']) || empty($data['reduction'])){
+            $errors['reduction'] = "Veiller mettre la reduction";
+            $isFormGood = false;
+        }
+        if(!isset($data['cout']) || !is_numeric($data['cout'])){
+            $errors['cout'] = "Veiller mettre le coût";
+            $isFormGood = false;
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        return $res;
+    }
+    public function addCatalogue($data){
+        $catalogue['Partenaire'] = $data['partner'];
+        $catalogue['Secteur'] = $data['secteur'];
+        $catalogue['Reduction'] = $data['reduction'];
+        $catalogue['Cout'] = (int)$data['cout'];
+        $this->DBManager->insert('offres_catalogue', $catalogue);
     }
 }

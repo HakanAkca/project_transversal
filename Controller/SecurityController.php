@@ -36,24 +36,25 @@ class SecurityController extends BaseController
             $this->redirect('home');
         }
         else{
-            $error = '';
+            $errors = array();
             $manager = UserManager::getInstance();
             $recycledObjects = $manager->recycledObjects();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                if ($manager->userCheckRegister($_POST))
+                $res = $manager->userCheckRegister($_POST);
+                if ($res['isFormGood'])
                 {
                     $manager->userRegister($_POST);
                     $this->redirect('home');
                 }
                 else {
-                    $error = "Invalid data";
+                    $errors = $res['errors'];
                 }
             }
             echo $this->renderView('register.html.twig',
                 [
-                    'error' => $error,
-                    'recycledObjects' => $recycledObjects
+                    'recycledObjects' => $recycledObjects,
+                    'errors' => $errors
                 ]);
         }
     }

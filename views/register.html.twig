@@ -22,6 +22,9 @@
         </div>
     </header>
     <main>
+        {% for error in errors %}
+            {{ error }} <br>
+        {% endfor %}
         <h2 class="title">Inscription</h2>
         <div class="form-container-2 form-container form" id="example-2">
             <form id="myRegister" method="POST" action="?action=register">

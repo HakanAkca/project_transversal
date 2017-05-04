@@ -35,13 +35,45 @@ class UserManager
     
     public function userCheckRegister($data)
     {
-        if (empty($data['username']) OR empty($data['email']) OR empty($data['password']))
-            return false;
-        $data = $this->getUserByUsername($data['username']);
-        if ($data !== false)
-            return false;
-        // TODO : Check valid email
-        return true;
+        $errors = array();
+        $res = array();
+        $isFormGood = true;
+
+        if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
+            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $isFormGood = false;
+        }
+        $data2 = $this->getUserByUsername($data['username']);
+        if($data2 !== false){
+            $errors['username'] = 'Le pseudo existe déjà';
+            $isFormGood = false;
+        }
+        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+            $errors['password'] = "Veiller saisir un mot de passe valide ";
+            $isFormGood = false;
+        }
+        if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
+            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
+            $isFormGood = false;
+        }
+        if(!$this->emailValid($data['email'])){
+            $errors['email'] = "email non valide";
+            $isFormGood = false;
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        return $res;
+    }
+
+    private function emailValid($email){
+        return filter_var($email, FILTER_VALIDATE_EMAIL);
+    }
+    private function usernameValid($username){
+        return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
+    }
+    //Minimum : 8 caractères avec au moins une lettre majuscule et un nombre
+    private function passwordValid($password){
+        return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
     }
     
     private function userHash($pass)
@@ -96,6 +128,10 @@ class UserManager
             $res['numberOfBottles'] = $number;
             $res['barCode'] = $this->barCode();
             $res['user_id'] = (int)$_SESSION['user_id'];
+        }
+        if(!empty($res)){
+            //To Do Later
+            $this->setPoints($res['numberOfBottles'],$_SESSION['user_id']);
         }
         return $res;
     }
@@ -155,7 +191,16 @@ class UserManager
         );
     }
 
-    public function
+    public function setPoints($point,$user_id){
+        $user = $this->getUserById($user_id);
+        $points = (int)$user["points"] + $point;
+        $this->DBManager->findOneSecure("UPDATE users SET points = :points WHERE id=:user_id",
+            [
+                "user_id" => $user_id,
+                "points" => $points
+            ]
+        );
+    }
 
     public function recycledObjects(){
         $res = 0;

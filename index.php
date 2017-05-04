@@ -13,7 +13,9 @@ $loader = new Twig_Loader_Filesystem('views/');
 $twig = new Twig_Environment($loader, array(
     // 'cache' => 'cache/twig/',
     'cache' => false,
+    'debug' => true,
 ));
+$twig->addExtension(new Twig_Extension_Debug());
 
 $router = new Router($config['routes'], $twig);
 if (!empty($_GET['action']))

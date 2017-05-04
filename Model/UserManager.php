@@ -211,9 +211,7 @@ class UserManager
     }
     
     public function getOffers(){
-        $show = $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue");
-        var_dump($show);
-        return $show;
+        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue");
     }
 
     public function setPoints($point,$user_id){

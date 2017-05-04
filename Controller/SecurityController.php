@@ -73,6 +73,7 @@ class SecurityController extends BaseController
                 if(is_array($res) && !empty($res)){
                     $manager->addCodeBar($res);
                 }
+
             }
             echo $this->renderView('profil.html.twig',
                 [
@@ -81,7 +82,7 @@ class SecurityController extends BaseController
                     'bottlesNumber' => $bottlesNumber,
                     'level' => $level
                 ]);
-        }else{
+        } else {
             echo $this->redirect('login');
         }
 

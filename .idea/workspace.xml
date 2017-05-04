@@ -38,21 +38,17 @@
       <file leaf-file-name="UserManager.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="73" column="76" lean-forward="false" selection-start-line="73" selection-start-column="76" selection-end-line="73" selection-end-column="76" />
+            <state relative-caret-position="560">
+              <caret line="74" column="76" lean-forward="false" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
               <folding>
-                <marker date="1493903763032" expanded="true" signature="499:530" ph="SELECT * FRO... users" />
-                <marker date="1493903763032" expanded="true" signature="675:719" ph="SELECT * FRO... users" />
-                <marker date="1493903763032" expanded="true" signature="5042:5107" ph="SELECT * FRO... users" />
-                <marker date="1493903763032" expanded="true" signature="6144:6193" ph="UPDATE users... " />
-                <marker date="1493903763032" expanded="true" signature="6499:6550" ph="UPDATE users... " />
-                <marker date="1493903763032" expanded="true" signature="6780:6811" ph="SELECT bottl... users" />
+                <marker date="1493904081684" expanded="true" signature="42:7821" ph="{...}" />
+                <marker date="1493904081684" expanded="true" signature="7794:7818" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="register.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/register.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
@@ -88,17 +84,16 @@
             <state relative-caret-position="300">
               <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
               <folding>
-                <marker date="1493901021535" expanded="true" signature="1511:1534" ph="..." />
-                <marker date="1493901021535" expanded="true" signature="1511:1546" ph="..." />
+                <element signature="e#1494#1500#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
+            <state relative-caret-position="794">
               <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="27" />
               <folding />
             </state>
@@ -395,12 +390,12 @@
       <workItem from="1493380457944" duration="138000" />
       <workItem from="1493728459351" duration="3254000" />
       <workItem from="1493813319259" duration="8469000" />
-      <workItem from="1493888432598" duration="13674000" />
+      <workItem from="1493888432598" duration="14003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77962000" />
+    <option name="totallyTimeSpent" value="78291000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="34" width="1535" height="876" extended-state="0" />
@@ -609,7 +604,7 @@
         <state relative-caret-position="-1406">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1492120902653" expanded="true" signature="1129:1171" ph="INSERT INTO `${$table}`... " />
+            <marker date="1493904081684" expanded="true" signature="1129:1171" ph="INSERT INTO `${$table}`... " />
           </folding>
         </state>
       </provider>
@@ -626,25 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="12" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
-          <folding>
-            <marker date="1493901021535" expanded="true" signature="1511:1534" ph="..." />
-            <marker date="1493901021535" expanded="true" signature="1511:1546" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/SecurityController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -667,15 +643,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="73" column="76" lean-forward="false" selection-start-line="73" selection-start-column="76" selection-end-line="73" selection-end-column="76" />
+        <state relative-caret-position="560">
+          <caret line="74" column="76" lean-forward="false" selection-start-line="74" selection-start-column="76" selection-end-line="74" selection-end-column="76" />
           <folding>
-            <marker date="1493903763032" expanded="true" signature="499:530" ph="SELECT * FRO... users" />
-            <marker date="1493903763032" expanded="true" signature="675:719" ph="SELECT * FRO... users" />
-            <marker date="1493903763032" expanded="true" signature="5042:5107" ph="SELECT * FRO... users" />
-            <marker date="1493903763032" expanded="true" signature="6144:6193" ph="UPDATE users... " />
-            <marker date="1493903763032" expanded="true" signature="6499:6550" ph="UPDATE users... " />
-            <marker date="1493903763032" expanded="true" signature="6780:6811" ph="SELECT bottl... users" />
+            <marker date="1493904081684" expanded="true" signature="42:7821" ph="{...}" />
+            <marker date="1493904081684" expanded="true" signature="7794:7818" ph="..." />
           </folding>
         </state>
       </provider>
@@ -684,6 +656,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding>
+            <element signature="e#1494#1500#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/SecurityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="794">
+          <caret line="56" column="27" lean-forward="false" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="27" />
           <folding />
         </state>
       </provider>

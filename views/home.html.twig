@@ -4,11 +4,13 @@
     <br>
     <br>
     <br><br><br><br><br>
-    <p>Nos offres</p>
-    {% for offre in allOffres %}
-        Partenaire : {{ offre["Partenaire"] }} ---
-        Secteur : {{ offre["Secteur"] }} ---
-        Réduction : {{ offre["Reduction"] }} ---
-        Cout : {{ offre["Cout"] }} <br>
-    {% endfor %}
+    {% if user is not empty %}
+        {% set username = user['pseudo'] %}
+        {% set email = user['email'] %}
+        {% set city = user['city'] %}
+        {% set bottlesNumber = user['bottlesNumber'] %}
+        {% set level = user['level'] %}
+        {{ dump(user) }}
+    {% endif %}
+
 {% endblock %}

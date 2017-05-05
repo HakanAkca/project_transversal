@@ -1,6 +1,14 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    {% if user is not empty %}
+        {% set username = user['pseudo'] %}
+        {% set email = user['email'] %}
+        {% set city = user['city'] %}
+        {% set bottlesNumber = user['bottlesNumber'] %}
+        {% set level = user['level'] %}
+        {{ dump(user) }}
+    {% endif %}
 <div id="title">
            DEVENIR PARTENAIRE
         </div>

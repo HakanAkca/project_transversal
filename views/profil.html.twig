@@ -5,10 +5,16 @@
     <br>
     <br>
     <br><br><br><br>
+    {% set username = user['pseudo'] %}
+    {% set email = user['email'] %}
+    {% set city = user['city'] %}
+    {% set bottlesNumber = user['bottlesNumber'] %}
+    {% set level = user['level'] %}
+
+
     <div id="title">
-        Hi {{ username }}
         <h3>Stats</h3>
-        <p>Vous avez recyclé {{ bottlesNumber }} bouteille(s)</p>
+        <p>Hi {{ username }} ,Vous avez recyclé {{ bottlesNumber }} bouteille(s)</p>
         <p>Niveau : {{ level }} sur 5</p>
     </div>
     <div></div>

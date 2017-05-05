@@ -10,10 +10,15 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $recycledObjects = $manager->recycledObjects();
         $allOffres = $manager->getOffers();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
         echo $this->renderView('home.html.twig',
             [
                 'recycledObjects' => $recycledObjects,
-                'allOffres' => $allOffres
+                'allOffres' => $allOffres,
+                'user' => $user,
             ]);
     }
 
@@ -21,9 +26,14 @@ class DefaultController extends BaseController
     {
         $manager = UserManager::getInstance();
         $recycledObjects = $manager->recycledObjects();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
         echo $this->renderView('about.html.twig',
             [
-                'recycledObjects' => $recycledObjects
+                'recycledObjects' => $recycledObjects,
+                'user' => $user,
             ]);
     }
 
@@ -31,9 +41,14 @@ class DefaultController extends BaseController
     {
         $manager = UserManager::getInstance();
         $recycledObjects = $manager->recycledObjects();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
         echo $this->renderView('partner.html.twig',
             [
-                'recycledObjects' => $recycledObjects
+                'recycledObjects' => $recycledObjects,
+                'user' => $user,
             ]);
     }
 }

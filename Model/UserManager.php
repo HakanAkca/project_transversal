@@ -139,10 +139,10 @@ class UserManager
         if(!empty($res)){
             //To Do Later
             $this->setPoints($res['numberOfBottles'],$_SESSION['user_id']);
-            /*$offres = $this->getCouts($res['numberOfBottles']);
+            $offres = $this->getCouts($res['numberOfBottles']);
             if(!empty($offres)){
                 $this->userOffre($offres);
-            }*/
+            }
         }
         $date = $this->DBManager->take_date();
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' add bottles' . "\n";
@@ -179,7 +179,7 @@ class UserManager
 
     public function getCouts($c){
         $cout = (int)$c;
-        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue WHERE cout =:cout",
+        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue WHERE cout <=:cout",
                                                 ["cout" => $cout]);
     }
 

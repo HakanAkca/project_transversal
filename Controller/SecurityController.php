@@ -66,6 +66,7 @@ class SecurityController extends BaseController
                 $res = $manager->pushBottles($_POST);
                 if (is_array($res) && !empty($res)) {
                     $manager->addCodeBar($res);
+                    header('Loaction:?action=profil');
                 }
 
             }
@@ -99,5 +100,15 @@ class SecurityController extends BaseController
         } else {
             echo $this->redirect('home');
         }
+    }
+
+    public function offresAction(){
+        $manager = UserManager::getInstance();
+        $allOffres = $manager->getOffers();
+
+        echo $this->renderView('home.html.twig',
+            [
+                'allOffres' => $allOffres
+            ]);
     }
 }

@@ -101,4 +101,14 @@ class SecurityController extends BaseController
             echo $this->redirect('home');
         }
     }
+
+    public function offresAction(){
+        $manager = UserManager::getInstance();
+        $allOffres = $manager->getOffers();
+
+        echo $this->renderView('home.html.twig',
+            [
+                'allOffres' => $allOffres
+            ]);
+    }
 }

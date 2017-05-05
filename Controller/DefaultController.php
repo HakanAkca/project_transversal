@@ -9,11 +9,9 @@ class DefaultController extends BaseController
     public function homeAction(){
         $manager = UserManager::getInstance();
         $recycledObjects = $manager->recycledObjects();
-        $allOffres = $manager->getOffers();
         echo $this->renderView('home.html.twig',
             [
-                'recycledObjects' => $recycledObjects,
-                'allOffres' => $allOffres
+                'recycledObjects' => $recycledObjects
             ]);
     }
 

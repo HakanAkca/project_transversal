@@ -16,6 +16,7 @@
 05-05-2017 01:04 -- adminHNO is connected
 05-05-2017 01:23 -- cosinus94 is connected
 05-05-2017 01:26 -- adminOmar is connected
+<<<<<<< HEAD
 05-05-2017 09:28 -- adminHNO is connected
 05-05-2017 09:34 -- cosinus94 is connected
 05-05-2017 09:34 -- adminOMAR not correct password
@@ -23,3 +24,9 @@
 05-05-2017 09:55 -- adminHakan not correct user try to connected
 05-05-2017 09:55 -- adminOmar is connected
 05-05-2017 11:07 -- adminOmar is connected
+=======
+05-05-2017 10:27 -- admin not correct user try to connected
+05-05-2017 10:27 -- adminHakan is connected
+05-05-2017 11:14 -- adminhakan not correct password
+05-05-2017 11:15 -- adminHakan is connected
+>>>>>>> 2b8668cf305bfcb98ecd39ec3d50f2e0b30e7ca8

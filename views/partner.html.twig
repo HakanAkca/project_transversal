@@ -11,17 +11,25 @@
     {% endif %}
 <div id="title">
            DEVENIR PARTENAIRE
+
+    <main>
+        <div class="container_form">
+            {% for error in errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+            <h2 class="title">Devenir partenaires</h2>
+                <div class="form-container-2 form-container form" id="example-2">
+                    <form id="myRegister" method="POST" action="?action=register">
+                        <input id="name" type="text" name="name" placeholder="Name*"><br>
+                        <input id="email" type="email" name="email" placeholder="Mail*"><br>
+                        <input id="city" type="text" name="city" placeholder="Ville*"><br>
+                        <input id="phone" type="text" name="phone" placeholder="Téléphone*"><br>
+                        <input id="statut" type="text" name="statut" placeholder="Statut*"><br>
+                        <button id="button">Devenir Partenaire</button>
+                    </form>
+            </div>
+>>>>>>> 2b8668cf305bfcb98ecd39ec3d50f2e0b30e7ca8
         </div>
-        <div id="line"></div>
-    <div class="form-container-2 form-container form" id="example-2">
-        <form method="POST" action="?action=register">
-            <input id="name" type="text" name="name" placeholder="Name*"><br>
-            <input id="email" type="email" name="email" placeholder="Mail*"><br>
-            <input id="city" type="text" name="city" placeholder="Ville*"><br>
-            <input id="phone" type="text" name="phone" placeholder="Téléphone*"><br>
-            <input id="statut" type="text" name="statut" placeholder="Statut*"><br>
-            <button id="button">Devenir Partenaire</button>
-        </form>
-    </div>
+    </main>
 
 {% endblock %}

@@ -45,13 +45,17 @@ class UserController extends BaseController
             !empty($_SESSION['user_username'] == 'adminNath')
         ) {
             $manager = UserManager::getInstance();
+            $user = array();
+            if(!empty($_SESSION['user_id'])) {
+                $user = $manager->getUserById($_SESSION['user_id']);
+            }
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $res = $manager->checkCatalogue($_POST);
                 if ($res['isFormGood']) {
                     $manager->addCatalogue($_POST);
                 }
             }
-            echo $this->renderView('admin.html.twig');
+            echo $this->renderView('admin.html.twig', ['user' => $user]);
         } else {
             echo $this->redirect('home');
         }

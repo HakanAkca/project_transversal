@@ -1,8 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <br>
-    <br>
     <br><br><br><br><br>
     {% if user is not empty %}
         {% set username = user['pseudo'] %}
@@ -10,7 +8,12 @@
         {% set city = user['city'] %}
         {% set bottlesNumber = user['bottlesNumber'] %}
         {% set level = user['level'] %}
-        {{ dump(user) }}
     {% endif %}
 
+    <form action="?action=home" method="POST">
+        Login : <input type="text" name="username"><br>
+        Password : <input type="password" name="password"><br>
+        <input type="submit">
+    </form>
+    <p>Nos offres</p>
 {% endblock %}

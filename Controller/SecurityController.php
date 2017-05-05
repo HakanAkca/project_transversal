@@ -6,20 +6,6 @@ use Model\UserManager;
 
 class SecurityController extends BaseController
 {
-    public function loginAction()
-    {
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $manager = UserManager::getInstance();
-            if ($manager->userCheckLogin($_POST)) {
-                $manager->userLogin($_POST['username']);
-                $this->redirect('profil');
-            } else {
-                $error = "Invalid username or password";
-            }
-        }
-        echo $this->renderView('login.html.twig', ['error' => $error]);
-    }
 
     public function logoutAction()
     {
@@ -55,4 +41,35 @@ class SecurityController extends BaseController
 
 
 
+<<<<<<< HEAD
+=======
+    public function adminAction()
+    {
+        if (!empty($_SESSION['user_username'] == 'adminHakan') ||
+            !empty($_SESSION['user_username'] == 'adminOmar') ||
+            !empty($_SESSION['user_username'] == 'adminNath')
+        ) {
+            $manager = UserManager::getInstance();
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $res = $manager->checkCatalogue($_POST);
+                if ($res['isFormGood']) {
+                    $manager->addCatalogue($_POST);
+                }
+            }
+            echo $this->renderView('admin.html.twig');
+        } else {
+            echo $this->redirect('home');
+        }
+    }
+
+    public function offersAction(){
+        $manager = UserManager::getInstance();
+        $allOffres = $manager->getOffers();
+
+        echo $this->renderView('home.html.twig',
+            [
+                'allOffres' => $allOffres
+            ]);
+    }
+>>>>>>> 2b8668cf305bfcb98ecd39ec3d50f2e0b30e7ca8
 }

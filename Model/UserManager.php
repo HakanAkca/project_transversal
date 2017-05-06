@@ -59,6 +59,7 @@ class UserManager
         }
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
+        $res['data'] = $data;
         return $res;
     }
 
@@ -88,6 +89,7 @@ class UserManager
         $user['points'] = 0;
         $user['bottlesNumber'] = 0;
         $user['level'] = 1;
+        $user['date'] = $this->getDatetimeNow();
 
         $this->DBManager->insert('users', $user);
     }
@@ -126,172 +128,131 @@ class UserManager
         return true;
     }
 
-    public function pushBottles($data)
-    {
-        $res = array();
-        $numberOfBottles = $data["numberOfBottles"];
-        if (is_numeric($numberOfBottles)) {
-            $number = (int)$numberOfBottles;
-            $res['numberOfBottles'] = $number;
-            $res['barCode'] = $this->barCode();
-            $res['user_id'] = (int)$_SESSION['user_id'];
-        }
-        if(!empty($res)){
-            //To Do Later
-            $this->setPoints($res['numberOfBottles'],$_SESSION['user_id']);
-            $offres = $this->getCouts($res['numberOfBottles']);
-            if(!empty($offres)){
-                $this->userOffre($offres);
-            }
-        }
-        $date = $this->DBManager->take_date();
-        $write = $date . ' -- ' . $_SESSION['user_username'] . ' add bottles' . "\n";
-        $this->DBManager->watch_action_log('action.log', $write);
-        return $res;
-    }
-
-    public function userOffre($data){
-        //var_dump($data);
-        $offre['user_id'] = (int)$_SESSION['user_id'];
-        //$offre['offre_id'] = (int)$data['id'];
-        $offre['date'] = $this->getDatetimeNow();
-        //$this->DBManager->insert('offres', $offre);
-    }
-
-    public function addCodeBar($data)
-    {
-        $code_bar['Code'] = $data['barCode'];
-        $code_bar['nb_bouteille'] = $data['numberOfBottles'];
-        $code_bar['user_id'] = $data['user_id'];
-        $this->DBManager->insert('code_barre', $code_bar);
-        $this->setBottlesNumber($code_bar['nb_bouteille'], $code_bar['user_id']);
-    }
-
-    public function barCode()
-    {
-        $characters = '0123456789';
-        $randstring = '';
-        for ($i = 0; $i < 6; $i++) {
-            $randstring .= $characters[mt_rand(0, 9)];
-        }
-        return $randstring;
-    }
-
-    public function getCouts($c){
-        $cout = (int)$c;
-        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue WHERE cout <=:cout",
-                                                ["cout" => $cout]);
-    }
-
-    public function setBottlesNumber($number, $user_id)
-    {
-        $user = $this->getUserById($user_id);
-        $bottlesNumber = (int)$user["bottlesNumber"] + $number;
-        $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
-            [
-                "user_id" => $user_id,
-                "bottlesNumber" => $bottlesNumber
-            ]
-        );
-        if ($bottlesNumber >= 10 && $bottlesNumber <= 15) {
-            $this->setLevel(2, $user_id);
-        } elseif ($bottlesNumber > 15 && $bottlesNumber <= 30) {
-            $this->setLevel(3, $user_id);
-        } elseif ($bottlesNumber > 30 && $bottlesNumber < 50) {
-            $this->setLevel(4, $user_id);
-        } else {
-            $this->setLevel(5, $user_id);
-        }
-        //TODO: revoir les niveau par rapport au bouteilles déposer, faire un resset des level chaque mois
-    }
-
-    public function getBottlesNumber($user_id)
-    {
-        $user = $this->getUserById($user_id);
-        return $user['bottlesNumber'];
-    }
-
-    public function getLevel($user_id)
-    {
-        $user = $this->getUserById($user_id);
-        return $user['level'];
-    }
-
-    public function setLevel($level, $user_id)
-    {
-        $level = (int)$level;
-        $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
-            [
-                "user_id" => $user_id,
-                "level" => $level
-            ]
-        );
-    }
-
-    public function getOffers(){
-        return $this->DBManager->findAllSecure("SELECT * FROM offres_catalogue");
-    }
-
-    public function setPoints($point,$user_id){
-        $user = $this->getUserById($user_id);
-        $points = (int)$user["points"] + $point;
-        $this->DBManager->findOneSecure("UPDATE users SET points = :points WHERE id=:user_id",
-            [
-                "user_id" => $user_id,
-                "points" => $points
-            ]
-        );
-    }
-    public function recycledObjects()
-    {
-        $res = 0;
-        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users ");
-        foreach ($data as $collected) {
-            $res += (int)$collected["bottlesNumber"];
-        }
-        return $res;
-    }
-
-    public function checkCatalogue($data){
-        $errors = array();
-        $res = array();
+    public function checkCatalog($data){
         $isFormGood = true;
+        if(!isset($data['partner']) | empty($data['partner'])){
+            $isFormGood = false;
+        }
+        if(!isset($data['city']) | empty($data['city'])){
+            $isFormGood = false;
+        }
+        if(!isset($data['deal']) | empty($data['deal'])){
+            $isFormGood = false;
+        }
+        if(!isset($data['cost']) | empty($data['cost'])){
+            $isFormGood = false;
+        }
+        return $isFormGood;
+    }
+    public function addCatalog($data){
+        $catalog['partner'] = $data['partner'];
+        $catalog['city'] = $data['city'];
+        $catalog['deal'] = $data['deal']."&euro;";
+        $catalog['cost'] = $data['cost'];
+        $catalog['date'] = $this->getDatetimeNow();
 
-        if (!isset($data['partner']) || empty($data['partner'])) {
-            $errors['partner'] = 'Veuillez remplir le champs partenaire';
-            $isFormGood = false;
-        }
+        $this->DBManager->insert('catalogs', $catalog);
+    }
 
-        if(!isset($data['secteur']) || empty($data['secteur'])){
-            $errors['secteur'] = "Veiller remplir le secteur ";
-            $isFormGood = false;
+    public function getAllDeals(){
+        return $this->DBManager->findAllSecure("SELECT * FROM catalogs ORDER BY date DESC");
+    }
+
+    public function getUserDeals(){
+        $cost = $this->getUserCostsNumber();
+        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost ORDER BY date DESC",['cost' => $cost]);
+    }
+
+    public function checkDump($data)
+    {
+        return is_numeric($data['bottlesNumber']);
+    }
+
+    public function addBarcode($data){
+        $barcode['barcode'] = $this->generateBarcode();
+        $barcode['bottlesNumber'] = (int)$data['bottlesNumber'];
+        $barcode['cost'] = $this->setCost((int)$data['bottlesNumber']);
+        $barcode['user_id'] = $_SESSION['user_id'];
+
+        $this->DBManager->insert('barcodes', $barcode);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getUserBottlesRecycled()
+    {
+        $user_id = $_SESSION['user_id'];
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE  user_id =:user_id",
+            ['user_id' => $user_id]);
+        foreach ($data as $bottles){
+            $res += (int)$bottles['bottlesNumber'];
         }
-        if(!isset($data['reduction']) || empty($data['reduction'])){
-            $errors['reduction'] = "Veiller mettre la reduction";
-            $isFormGood = false;
-        }
-        if(!isset($data['cout']) || !is_numeric($data['cout'])){
-            $errors['cout'] = "Veiller mettre le coût";
-            $isFormGood = false;
-        }
-        $res['isFormGood'] = $isFormGood;
-        $res['errors'] = $errors;
-        $date = $this->DBManager->take_date();
-        $write = $date . ' -- ' . $_SESSION['user_username'] . ' new catalog send ' . $data['partner'] . ' '
-                                . $data['secteur'] . ' ' . $data['reduction']
-                                . ' ' . $data['cout'] . "\n";
-        $this->DBManager->watch_action_log('admin.log', $write);
         return $res;
     }
-    public function addCatalogue($data){
-        $catalogue['Partenaire'] = $data['partner'];
-        $catalogue['Secteur'] = $data['secteur'];
-        $catalogue['Reduction'] = $data['reduction'];
-        $catalogue['Cout'] = (int)$data['cout'];
-        $this->DBManager->insert('offres_catalogue', $catalogue);
+    public function setUserBottlesRecycled($data){
+        $user_id = $_SESSION['user_id'];
+        $bottlesNumber = (int)$data;
+        return $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
+            [
+                'user_id' => $user_id,
+                'bottlesNumber' => $bottlesNumber,
+            ]);
+    }
+    public function setUserCostsNumber($data){
+        $user_id = $_SESSION['user_id'];
+        $costs = (int)$data;
+        return $this->DBManager->findOneSecure("UPDATE users SET costs = :costs WHERE id=:user_id",
+                                                [
+                                                    'user_id' => $user_id,
+                                                    'costs' => $costs,
+                                                ]);
+
+    }
+    public function getUserCostsNumber(){
+        $user_id = $_SESSION['user_id'];
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT cost FROM barcodes WHERE  user_id =:user_id",
+                                                ['user_id' => $user_id]);
+        foreach ($data as $cost){
+            $res += (int)$cost['cost'];
+        }
+        return $res;
+    }
+    public function setCost($data){
+        return $data*2;
     }
     public function getDatetimeNow() {
         date_default_timezone_set('Europe/Paris');
         return date("Y-m-d H:i:s");
+    }
+    public function generateBarcode()
+    {
+        $characters = '0123456789';
+        $barcode = '';
+        for ($i = 0; $i < 6; $i++) {
+            $barcode .= $characters[mt_rand(0, 9)];
+        }
+        return $barcode;
     }
 }

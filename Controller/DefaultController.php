@@ -47,8 +47,17 @@ class DefaultController extends BaseController
 
     public function aboutAction()
     {
-
-        echo $this->renderView('about.html.twig');
+        $manager = UserManager::getInstance();
+        $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
+        echo $this->renderView('about.html.twig',
+                                    [
+                                        'bottlesRecycled' => $bottlesRecycled,
+                                        'user' => $user,
+                                    ]);
     }
 
     public function partnerAction()

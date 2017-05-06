@@ -19,9 +19,10 @@ class SecurityController extends BaseController
             $this->redirect('home');
         } else {
             $errors = array();
+            $manager = UserManager::getInstance();
+            $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                $manager = UserManager::getInstance();
                 $res = $manager->userCheckRegister($_POST);
                 if($res['isFormGood']){
                     $manager->userRegister($res['data']);
@@ -31,7 +32,10 @@ class SecurityController extends BaseController
                 }
             }
             echo $this->renderView('register.html.twig',
-                                         ['errors' => $errors]);
+                                         [
+                                             'errors' => $errors,
+                                             'bottlesRecycled' => $bottlesRecycled,
+                                         ]);
         }
     }
 

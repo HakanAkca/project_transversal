@@ -1,14 +1,11 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <br>
-    <br>
-    <br><br><br><br><br>
+    {%  if user is empty %}
+        {{ user['pseudo'] }}
+    {% endif %}
     <p>Nos offres</p>
-    {% for offre in allOffres %}
-        Partenaire : {{ offre["Partenaire"] }} ---
-        Secteur : {{ offre["Secteur"] }} ---
-        Réduction : {{ offre["Reduction"] }} ---
-        Cout : {{ offre["Cout"] }} <br>
+    {% for deal in allDeals %}
+        <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points - URL IMAGE {{ deal['image'] }}</p>
     {% endfor %}
 {% endblock %}

@@ -130,28 +130,49 @@ class UserManager
 
     public function checkCatalog($data){
         $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+            $data['image'] = $_FILES['image']['name'];
+            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
+            $res['data'] = $data;
+        }
+        else{
+            $errors['image'] = 'Veillez choisir une image';
+            $isFormGood = false;
+        }
         if(!isset($data['partner']) | empty($data['partner'])){
+            $errors['partner'] = "Veillez choisir un partenaire";
             $isFormGood = false;
         }
         if(!isset($data['city']) | empty($data['city'])){
+            $errors['city'] = "Veillez choisir une ville";
             $isFormGood = false;
         }
         if(!isset($data['deal']) | empty($data['deal'])){
+            $errors['deal'] = "Veillez choisir une offre";
             $isFormGood = false;
         }
         if(!isset($data['cost']) | empty($data['cost'])){
             $isFormGood = false;
         }
-        return $isFormGood;
+
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        return $res;
     }
     public function addCatalog($data){
+        $filetmpname = $data['image_tmp_name'];
+        $url = 'uploads/'.$data['image'];;
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = $data['city'];
         $catalog['deal'] = $data['deal']."&euro;";
         $catalog['cost'] = $data['cost'];
+        $catalog['image'] = $url;
         $catalog['date'] = $this->getDatetimeNow();
 
         $this->DBManager->insert('catalogs', $catalog);
+        move_uploaded_file($filetmpname,$url);
     }
 
     public function getAllDeals(){
@@ -198,6 +219,14 @@ class UserManager
 
 
 
+    public function getAllUsersBottlesRecycled(){
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes");
+        foreach ($data as $bottles){
+            $res += (int)$bottles['bottlesNumber'];
+        }
+        return $res;
+    }
 
     public function getUserBottlesRecycled()
     {

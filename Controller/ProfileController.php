@@ -51,14 +51,19 @@ class ProfileController extends BaseController
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
+            $errors = array();
             if($_SERVER['REQUEST_METHOD'] === 'POST'){
-                if($manager->checkCatalog($_POST)){
-                    $manager->addCatalog($_POST);
+                $res = $manager->checkCatalog($_POST);
+                if($res['isFormGood']){
+                    $manager->addCatalog($res['data']);
+                }else{
+                    $errors = $res['errors'];
                 }
             }
             echo $this->renderView('admin.html.twig',
                                     [
                                         'user' => $user,
+                                        'errors' => $errors,
                                     ]);
         }else{
             $this->redirect('home');

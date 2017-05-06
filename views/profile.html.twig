@@ -9,6 +9,14 @@
     {{ user['date'] | date("m/d/Y") }}<br>
 
     <div>
+        <h3>Entrez un code</h3>
+        <form action="?action=profile" method="POST">
+            <input type="text" placeholder="vos bouteilles ici" name="bottlesNumber">
+            <input type="submit" value="Valider">
+        </form>
+    </div>
+    <hr>
+    <div>
         <h3>Notre poubelle</h3>
         <form action="?action=profile" method="POST">
             <input type="text" placeholder="vos bouteilles ici" name="bottlesNumber">

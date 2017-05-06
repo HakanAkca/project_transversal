@@ -9,6 +9,7 @@ class DefaultController extends BaseController
     public function homeAction()
     {
         $manager = UserManager::getInstance();
+        $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $user = array();
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
@@ -19,7 +20,25 @@ class DefaultController extends BaseController
                 echo $this->redirect('profile');
             }
         }
-        echo $this->renderView('home.html.twig',['user' => $user]);
+        echo $this->renderView('home.html.twig',[
+                                'user' => $user,
+                                'bottlesRecycled' => $bottlesRecycled,
+                                ]);
+    }
+    public function offersAction(){
+        $manager = UserManager::getInstance();
+        $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
+        $allDeals = $manager->getAllDeals();
+        echo $this->renderView('offers.html.twig',
+                                [
+                                    'user' => $user,
+                                    'allDeals' => $allDeals,
+                                    'bottlesRecycled' => $bottlesRecycled,
+                                ]);
     }
 
     public function aboutAction()

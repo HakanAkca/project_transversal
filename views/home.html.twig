@@ -2,11 +2,13 @@
 
 {% block content %}
 
-    {{ user['pseudo'] }}
-    <form action="?action=home" method="POST">
-        Login : <input type="text" name="username"><br>
-        Password : <input type="password" name="password"><br>
-        <input type="submit">
-    </form>
+    <p>on a acces a tt les infos du user s'il est connecté ...</p>
+    {%  if user is empty %}
+        <form action="?action=home" method="POST">
+            Login : <input type="text" name="username"><br>
+            Password : <input type="password" name="password"><br>
+            <input type="submit">
+        </form>
+    {% endif %}
     <p>Nos offres</p>
 {% endblock %}

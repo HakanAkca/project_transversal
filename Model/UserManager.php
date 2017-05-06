@@ -29,6 +29,17 @@ class UserManager
             ['username' => $username]);
         return $data;
     }
+    public function getBarcodeByBarcode($barcode)
+    {
+        $user_id = $_SESSION['user_id'];
+        $data = $this->DBManager->findOneSecure("SELECT * FROM barcodes WHERE barcode = :barcode AND user_id =:user_id",
+            [
+                'barcode' => $barcode,
+                'user_id' => $user_id,
+            ]);
+        return $data;
+    }
+
 
     public function userCheckRegister($data)
     {
@@ -196,6 +207,19 @@ class UserManager
         $barcode['user_id'] = $_SESSION['user_id'];
 
         $this->DBManager->insert('barcodes', $barcode);
+    }
+
+    public function checkUserBarcode($data){
+        $isFormGood = true;
+        if(empty($data['barcode'])){
+           $isFormGood = false;
+        }else{
+            $code = $this->getBarcodeByBarcode($data['barcode']);
+            if($code == false){
+                $isFormGood = false;
+            }
+        }
+        return $isFormGood;
     }
 
 

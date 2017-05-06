@@ -24,6 +24,8 @@ class ProfileController extends BaseController
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($manager->checkDump($_POST)) {
                     $manager->addBarcode($_POST);
+                }
+                if($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();
                     $bottlesNumber = $manager->getUserBottlesRecycled();
                     $manager->setUserCostsNumber($costs);
@@ -31,7 +33,6 @@ class ProfileController extends BaseController
                     header('Location:?action=profile');
                 }
             }
-
             echo $this->renderView('profile.html.twig',
                                     [
                                         'user' => $user,

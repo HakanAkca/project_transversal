@@ -15,6 +15,7 @@ class ProfileController extends BaseController
     public function profileAction(){
         if(!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
+            $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
             $allDeals = $manager->getAllDeals();
@@ -36,12 +37,11 @@ class ProfileController extends BaseController
                     $manager->setUserCostsNumber($costs);
                     $manager->setUserBottlesRecycled($bottlesNumber);
 
-                    //$manager->deleteBarcode($_POST['barcode']);
+                    $manager->barcodeUsed($_POST['barcode']);
                     header('Location:?action=profile');
                 }else{
                     $errorBarcode = "Veillez saisir un code barre valide";
                 }
-                var_dump($_POST['barcode']);
             }
             echo $this->renderView('profile.html.twig',
                                     [
@@ -49,7 +49,7 @@ class ProfileController extends BaseController
                                         'userDeals' => $userDeals,
                                         'allDeals' => $allDeals,
                                         'costs' => $costs,
-                                        'bottlesNumber' => $bottlesNumber,
+                                        'bottlesRecycled' => $bottlesRecycled,
                                         'errorBarcode' => $errorBarcode,
                                         'yourBarcode' => $yourBarcode,
                                     ]);

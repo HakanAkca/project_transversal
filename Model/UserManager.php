@@ -230,20 +230,24 @@ class UserManager
             if($code == false){
                 $isFormGood = false;
             }
+            if($code['user_id'] !== $_SESSION['user_id']){
+                $isFormGood = false;
+            }
+            if($code !== false && $code['user_id'] == 1){
+                $isFormGood = false;
+            }
         }
         return $isFormGood;
     }
-    /*public function deleteBarcode($data){
+    public function barcodeUsed($data){
         $barcode = $data;
-
-        var_dump($barcode);
-        /*return $this->DBManager->findOneSecure("DELETE * FROM barcodes WHERE barcode =:barcode",
-                                                [
-                                                    'barcode' => $barcode,
-                                                ]);
-        
-    }*/
-
+        $barcodeUsed = 1;
+        return $this->DBManager->findOneSecure("UPDATE barcodes SET barcodeUsed =:barcodeUsed WHERE barcode =:barcode",
+            [
+                'barcode' => $barcode,
+                'barcodeUsed' => $barcodeUsed,
+            ]);
+    }
 
 
 
@@ -261,20 +265,12 @@ class UserManager
 
 
 
-
-    /*public function getLastBarcodeGenerate(){
-        $res = '';
-        $user_id = $_SESSION['user_id'];
-        $data = $this->DBManager->findAllSecure("SELECT barcode FROM barcodes ORDER BY id DESC WHERE user_id =:user_id",
-                                                    [
-                                                        'user_id' => $user_id,
-                                                    ]);
-
-        var_dump($data);
-    }*/
+    
     public function getAllUsersBottlesRecycled(){
         $res = 0;
-        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes");
+        $barcodeUsed = 1;
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE barcodeUsed =:barcodeUsed",
+                                                    ['barcodeUsed' => $barcodeUsed]);
         foreach ($data as $bottles){
             $res += (int)$bottles['bottlesNumber'];
         }

@@ -144,7 +144,7 @@ $red : #f0816c;
         }
     }
 
-    main{
+    .allForm{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -194,6 +194,11 @@ $red : #f0816c;
             background-image: url('../img/inscription.png');
             height: 600px;
         }
+    }
+
+    .user_page{
+        background-color: #b5f4f2;
+        display: flex;
     }
 
     footer{

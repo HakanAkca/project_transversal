@@ -1,41 +1,60 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
-    {{ user['pseudo'] }}<br>
-    {{ user['email'] }}<br>
-    {{ user['city'] }}<br>
-    {{ user['bottlesNumber'] }} bouteilles recyclées<br>
-    {{ user['costs'] }} points<br>
-    Niveau :{{ user['level'] }}<br>
-    {{ user['date'] | date("m/d/Y") }}<br>
+    <header>
+        <div class="left_side_mobile">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+            </div>
+            <ul class="mobile_dropdown">
+                <li><a href="?action=home">Accueil</a></li>
+                <li><a href="?action=about">Nous</a></li>
+                <li><a href="?action=partner">Devenir Partenaires</a></li>
+            </ul>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+        </div>
+        <div class="stats">
+            <span>{{bottlesRecycled}}</span>
+            <p>objets recylés !</p>
+        </div>
+        <ul class="menu_desktop">
+            <li><a href="?action=home">Accueil</a></li>
+            <li><a href="?action=about">Nous</a></li>
+            <li><a href="?action=partner">Devenir Partenaires</a></li>
+        </ul>
+        <div class="current"><a href="#">{{user.pseudo}}</a></div>
+    </header>
 
-    <div>
-        <h3>Entrez un code</h3>
-        <form action="?action=profile" method="POST">
-            <input type="text" placeholder="code barre" name="barcode">
-            <input type="submit" value="Valider">
-        </form>
-    </div>
-    <hr>
-    <div>
-        <h3>Notre poubelle</h3>
-        <form action="?action=profile" method="POST">
-            <input type="text" placeholder="vos bouteilles ici" name="bottlesNumber">
-            <input type="submit" value="Valider">
-        </form>
-    </div>
-    <hr>
-    <div>
-        <h3>Mes réductions</h3>
-        {% for deal in userDeals %}
-            <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
-        {% endfor %}
-    </div>
-    <hr>
-    <div>
-        <h3>Réductions disponibles</h3>
-        {% for deal in allDeals %}
-            <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
-        {% endfor %}
-    </div>
-
+    <main class="user_page">
+        <div>
+            <h3>Entrez un code</h3>
+            <form action="?action=profile" method="POST">
+                <input type="text" placeholder="code barre" name="barcode">
+                <input type="submit" value="Valider">
+            </form>
+        </div>
+        <hr>
+        <div>
+            <h3>Notre poubelle</h3>
+            <form action="?action=profile" method="POST">
+                <input type="text" placeholder="vos bouteilles ici" name="bottlesNumber">
+                <input type="submit" value="Valider">
+            </form>
+        </div>
+        <hr>
+        <div>
+            <h3>Mes réductions</h3>
+            {% for deal in userDeals %}
+                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
+            {% endfor %}
+        </div>
+        <hr>
+        <div>
+            <h3>Réductions disponibles</h3>
+            {% for deal in allDeals %}
+                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
+            {% endfor %}
+        </div>
+    </main>
 {% endblock %}

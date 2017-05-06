@@ -45,23 +45,26 @@ class DefaultController extends BaseController
                                 ]);
     }
 
-    public function aboutAction()
+    public function partnerAction()
     {
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-        $user = array();
+        $allDeals = $manager->getAllDeals();
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
-        }
-        echo $this->renderView('about.html.twig',
+            echo $this->renderView('partner.html.twig',
                                     [
-                                        'bottlesRecycled' => $bottlesRecycled,
                                         'user' => $user,
+                                        'allDeals' => $allDeals,
+                                        'bottlesRecycled' => $bottlesRecycled,
                                     ]);
-    }
-
-    public function partnerAction()
-    {
-        echo $this->renderView('partner.html.twig');
+        }
+        else{
+            echo $this->renderView('partner.html.twig',
+                                    [
+                                        'allDeals' => $allDeals,
+                                        'bottlesRecycled' => $bottlesRecycled,
+                                    ]);
+        }
     }
 }

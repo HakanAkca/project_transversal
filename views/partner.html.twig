@@ -1,18 +1,41 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    {% if user is not empty %}
-        {% set username = user['pseudo'] %}
-        {% set email = user['email'] %}
-        {% set city = user['city'] %}
-        {% set bottlesNumber = user['bottlesNumber'] %}
-        {% set level = user['level'] %}
-        {{ dump(user) }}
-    {% endif %}
-<div id="title">
-           DEVENIR PARTENAIRE
+    <header>
+        <div class="left_side_mobile">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+            </div>
+            <ul class="mobile_dropdown">
+                <li><a href="?action=home">Accueil</a></li>
+                <li><a href="?action=about">Nous</a></li>
+                {% if user.pseudo is defined %}
+                    <li><a href="?action=profile">Profil</a></li>
+                {% else %}
+                    <li><a href="?action=register">Inscription</a></li>
+                {% endif %}
+            </ul>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+        </div>
+        <div class="stats">
+            <span>{{bottlesRecycled}}</span>
+            <p>objets recylés !</p>
+        </div>
+        <ul class="menu_desktop">
+            <li><a href="?action=home">Accueil</a></li>
+            <li><a href="?action=about">Nous</a></li>
+            {% if user.pseudo is defined %}
+                <li><a href="?action=profile">Profil</a></li>
+            {% else %}
+                <li><a href="?action=register">Inscription</a></li>
+            {% endif %}
+        </ul>
+        <div class="current"><a href="#">Partenaires</a></div>
+    </header>
 
-    <main>
+    <main class="allForm">
         <div class="container_form">
             {% for error in errors %}
                 <p>{{ error }}</p>
@@ -28,7 +51,6 @@
                         <button id="button">Devenir Partenaire</button>
                     </form>
             </div>
->>>>>>> 2b8668cf305bfcb98ecd39ec3d50f2e0b30e7ca8
         </div>
     </main>
 

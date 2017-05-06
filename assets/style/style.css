@@ -154,7 +154,7 @@
 }
 
 @media screen {
-  main {
+  .allForm {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -162,58 +162,63 @@
     height: 400px;
     padding-bottom: 15px;
   }
-  main .container_form {
+  .allForm .container_form {
     text-align: center;
   }
 }
 @media screen and (min-width: 1026px) {
-  main .container_form {
+  .allForm .container_form {
     background-color: white;
     padding: 20px 5%;
   }
 }
 @media screen {
-  main .title {
+  .allForm .title {
     font-family: 'PoppinsMedium';
     color: #f0816c;
   }
-  main .form-container #myRegister {
+  .allForm .form-container #myRegister {
     text-align: center;
   }
-  main .form-container #myRegister .form-item-block span {
+  .allForm .form-container #myRegister .form-item-block span {
     color: #f0816c;
     padding-bottom: 4px;
     font-size: 12px;
   }
 }
 @media screen and (min-width: 1026px) {
-  main .form-container #myRegister .form-item-block {
+  .allForm .form-container #myRegister .form-item-block {
     width: 250px;
   }
 }
 @media screen {
-  main .form-container #myRegister button {
+  .allForm .form-container #myRegister button {
     border: none;
     background-color: #f0816c;
     color: white;
     box-shadow: 0px 5px 1px #d47260;
   }
-  main .form-container #myRegister button:hover {
+  .allForm .form-container #myRegister button:hover {
     box-shadow: 0px 2px 1px #d47260;
   }
-  main .form-container #myRegister .error {
+  .allForm .form-container #myRegister .error {
     color: red;
     margin: 10px;
   }
 }
 @media screen and (min-width: 1026px) {
-  main {
+  .allForm {
     background-image: url("../img/inscription.png");
     height: 600px;
   }
 }
 
 @media screen {
+  .user_page {
+    background-color: #b5f4f2;
+    display: flex;
+  }
+
   footer {
     background-color: #4b4b4b;
     padding: 20px;

@@ -11,6 +11,7 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $user = array();
+        $errors = '';
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
@@ -18,11 +19,14 @@ class DefaultController extends BaseController
             if($manager->userCheckLogin($_POST)){
                 $manager->userLogin($_POST['username']);
                 echo $this->redirect('profile');
+            }else{
+                $errors = "Veillez saisir un pseudo et un mot de passe valide";
             }
         }
         echo $this->renderView('home.html.twig',[
                                 'user' => $user,
                                 'bottlesRecycled' => $bottlesRecycled,
+                                'errors' => $errors,
                                 ]);
     }
     public function offersAction(){

@@ -18,6 +18,7 @@ class SecurityController extends BaseController
         if (!empty($_SESSION['user_id'])) {
             $this->redirect('home');
         } else {
+            $errors = array();
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 $manager = UserManager::getInstance();
@@ -25,9 +26,12 @@ class SecurityController extends BaseController
                 if($res['isFormGood']){
                     $manager->userRegister($res['data']);
                     $this->redirect('home');
+                }else{
+                    $errors = $res['errors'];
                 }
             }
-            echo $this->renderView('register.html.twig');
+            echo $this->renderView('register.html.twig',
+                                         ['errors' => $errors]);
         }
     }
 

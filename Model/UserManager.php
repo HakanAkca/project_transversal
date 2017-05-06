@@ -46,6 +46,15 @@ class UserManager
         $errors = array();
         $res = array();
         $isFormGood = true;
+        if(isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])){
+            $data['image'] = 'upoads/'.$data['username'].'/'.$_FILES['image']['name'];
+            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
+        }else{
+            $data['image'] = 'web/img/avatar.png';
+        }
+        if(isset($_FILES['image']['name']) && empty($_FILES)){
+            $data['image'] = 'web/img/avatar.png';
+        }
 
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
@@ -101,8 +110,10 @@ class UserManager
         $user['bottlesNumber'] = 0;
         $user['level'] = 1;
         $user['date'] = $this->getDatetimeNow();
+        $user['image'] = $data['image'];
 
         $this->DBManager->insert('users', $user);
+        mkdir("uploads/". $user['pseudo']);
     }
 
     public function userCheckLogin($data)
@@ -205,6 +216,7 @@ class UserManager
         $barcode['bottlesNumber'] = (int)$data['bottlesNumber'];
         $barcode['cost'] = $this->setCost((int)$data['bottlesNumber']);
         $barcode['user_id'] = $_SESSION['user_id'];
+        $barcode['barcodeUsed'] = 0;
 
         $this->DBManager->insert('barcodes', $barcode);
     }
@@ -221,6 +233,16 @@ class UserManager
         }
         return $isFormGood;
     }
+    /*public function deleteBarcode($data){
+        $barcode = $data;
+
+        var_dump($barcode);
+        /*return $this->DBManager->findOneSecure("DELETE * FROM barcodes WHERE barcode =:barcode",
+                                                [
+                                                    'barcode' => $barcode,
+                                                ]);
+        
+    }*/
 
 
 
@@ -240,9 +262,16 @@ class UserManager
 
 
 
+    /*public function getLastBarcodeGenerate(){
+        $res = '';
+        $user_id = $_SESSION['user_id'];
+        $data = $this->DBManager->findAllSecure("SELECT barcode FROM barcodes ORDER BY id DESC WHERE user_id =:user_id",
+                                                    [
+                                                        'user_id' => $user_id,
+                                                    ]);
 
-
-
+        var_dump($data);
+    }*/
     public function getAllUsersBottlesRecycled(){
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes");
@@ -256,8 +285,12 @@ class UserManager
     {
         $user_id = $_SESSION['user_id'];
         $res = 0;
-        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE  user_id =:user_id",
-            ['user_id' => $user_id]);
+        $barcodeUsed = 0;
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE  user_id =:user_id AND barcodeUsed =:barcodeUsed",
+            [
+                'user_id' => $user_id,
+                'barcodeUsed' => $barcodeUsed,
+            ]);
         foreach ($data as $bottles){
             $res += (int)$bottles['bottlesNumber'];
         }
@@ -285,8 +318,12 @@ class UserManager
     public function getUserCostsNumber(){
         $user_id = $_SESSION['user_id'];
         $res = 0;
-        $data = $this->DBManager->findAllSecure("SELECT cost FROM barcodes WHERE  user_id =:user_id",
-                                                ['user_id' => $user_id]);
+        $barcodeUsed = 0;
+        $data = $this->DBManager->findAllSecure("SELECT cost FROM barcodes WHERE  user_id =:user_id AND barcodeUsed =:barcodeUsed ",
+                                                [
+                                                    'user_id' => $user_id,
+                                                    'barcodeUsed' => $barcodeUsed,
+                                                ]);
         foreach ($data as $cost){
             $res += (int)$cost['cost'];
         }

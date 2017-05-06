@@ -21,17 +21,27 @@ class ProfileController extends BaseController
             $userDeals = $manager->getUserDeals();
             $costs = 0;
             $bottlesNumber = 0;
-            if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $errorBarcode = '';
+            $yourBarcode = '';
+            if(isset($_POST['submitBottles'])) {
                 if ($manager->checkDump($_POST)) {
                     $manager->addBarcode($_POST);
+                    //$manager->getLastBarcodeGenerate();
                 }
+            }
+            if(isset($_POST['submitBarcode'])) {
                 if($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();
                     $bottlesNumber = $manager->getUserBottlesRecycled();
                     $manager->setUserCostsNumber($costs);
                     $manager->setUserBottlesRecycled($bottlesNumber);
+
+                    //$manager->deleteBarcode($_POST['barcode']);
                     header('Location:?action=profile');
+                }else{
+                    $errorBarcode = "Veillez saisir un code barre valide";
                 }
+                var_dump($_POST['barcode']);
             }
             echo $this->renderView('profile.html.twig',
                                     [
@@ -40,6 +50,8 @@ class ProfileController extends BaseController
                                         'allDeals' => $allDeals,
                                         'costs' => $costs,
                                         'bottlesNumber' => $bottlesNumber,
+                                        'errorBarcode' => $errorBarcode,
+                                        'yourBarcode' => $yourBarcode,
                                     ]);
         }else{
             $this->redirect('home');

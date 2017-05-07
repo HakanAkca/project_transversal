@@ -18,6 +18,15 @@
         <input type="text" name="deal" placeholder="Réduction"><br>
         <input type="text" name="cost" placeholder="Coût"><br>
         <input type="file" name="image"><br>
-        <button type="submit" >Ajouter Offre</button>
+        <button type="submit" name="submitCatalog" >Ajouter Offre</button>
     </form>
+    <hr>
+    <div>
+        <h3>Supprimer un compte indisérable</h3>
+        <form method="post" action="?action=admin">
+            pseudo
+            <input type="text" name="pseudo" placeholder="pseudo">
+            <input type="submit" name="submitAccount" value="Supprimer">
+        </form>
+    </div>
 {% endblock %}

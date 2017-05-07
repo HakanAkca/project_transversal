@@ -149,6 +149,20 @@ class UserManager
         $this->DBManager->watch_action_log('access.log', $write);
         return true;
     }
+    public function checkRemoveAccount($data)
+    {
+        if (empty($data['pseudo']))
+            return false;
+        $user = $this->getUserByUsername($data['pseudo']);
+        if ($user === false)
+            return false;
+        return true;
+    }
+    public function deleteAccount($data){
+        $pseudo = $data['pseudo'];
+        return $this->DBManager->findOneSecure("DELETE FROM users WHERE pseudo =:pseudo",
+                                                ['pseudo' => $pseudo]);
+    }
 
     public function checkCatalog($data){
         $isFormGood = true;
@@ -265,7 +279,7 @@ class UserManager
 
 
 
-    
+
     public function getAllUsersBottlesRecycled(){
         $res = 0;
         $barcodeUsed = 1;

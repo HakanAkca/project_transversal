@@ -65,12 +65,17 @@ class ProfileController extends BaseController
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
             $errors = array();
-            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            if(isset($_POST['submitCatalog'])){
                 $res = $manager->checkCatalog($_POST);
                 if($res['isFormGood']){
                     $manager->addCatalog($res['data']);
                 }else{
                     $errors = $res['errors'];
+                }
+            }
+            if(isset($_POST['submitAccount'])){
+                if($manager->checkRemoveAccount($_POST)){
+                    $manager->deleteAccount($_POST);
                 }
             }
             echo $this->renderView('admin.html.twig',

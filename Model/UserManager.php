@@ -29,6 +29,12 @@ class UserManager
             ['username' => $username]);
         return $data;
     }
+    public function getPartnerByName($name)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM partners WHERE name = :name",
+            ['name' => $name]);
+        return $data;
+    }
     public function getBarcodeByBarcode($barcode)
     {
         $user_id = $_SESSION['user_id'];
@@ -83,6 +89,7 @@ class UserManager
         return $res;
     }
 
+
     private function emailValid($email){
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
@@ -92,6 +99,14 @@ class UserManager
     //Minimum : 8 caractères avec au moins une lettre majuscule et un nombre
     private function passwordValid($password){
         return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
+    }
+    public function phoneNumberValid($phoneNumber, $international = false){
+        $phoneNumber = preg_replace('/[^0-9]+/', '', $phoneNumber);
+        $phoneNumber = substr($phoneNumber, -9);
+        $motif = $international ? '+33 (\1) \2 \3 \4 \5' : '0\1 \2 \3 \4 \5';
+        $phoneNumber = preg_replace('/(\d{1})(\d{2})(\d{2})(\d{2})(\d{2})/', $motif, $phoneNumber);
+
+        return $phoneNumber;
     }
 
     private function userHash($pass)
@@ -148,6 +163,50 @@ class UserManager
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' is connected' . "\n";
         $this->DBManager->watch_action_log('access.log', $write);
         return true;
+    }
+    public function checkPartner($data)
+    {
+        $errors = array();
+        $res = array();
+        $isFormGood = true;
+        if (!isset($data['name']) || empty($data['name'])) {
+            $errors['name'] = 'Veuillez saisir le nom du partenaire';
+            $isFormGood = false;
+        }
+        $data2 = $this->getPartnerByName($data['name']);
+        if($data2 !== false){
+            $errors['name'] = 'Le partenaire existe déjà';
+            $isFormGood = false;
+        }
+        if(!$this->emailValid($data['email'])){
+            $errors['email'] = "email non valide";
+            $isFormGood = false;
+        }
+        if (!isset($data['city']) || empty($data['city'])) {
+            $errors['city'] = 'Veuillez saisir une ville valide';
+            $isFormGood = false;
+        }
+        if (!isset($data['phone']) || !$this->phoneNumberValid($data['phone'])) {
+            $errors['phone'] = 'Veuillez saisir un numéro de téléphone valide';
+            $isFormGood = false;
+        }
+        if (!isset($data['status']) || empty($data['status'])) {
+            $errors['status'] = 'Veuillez saisir une status valide';
+            $isFormGood = false;
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        $res['data'] = $data;
+        return $res;
+    }
+    public function bePartner($data){
+        $partner['name'] = $data['name'];
+        $partner['email'] = $data['email'];
+        $partner['city'] = $data['city'];
+        $partner['phone'] = $data['phone'];
+        $partner['status'] = $data['status'];
+
+        $this->DBManager->insert('partners', $partner);
     }
     public function checkRemoveAccount($data)
     {

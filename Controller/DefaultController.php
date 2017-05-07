@@ -50,20 +50,35 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $allDeals = $manager->getAllDeals();
+        $errors = array();
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $res = $manager->checkPartner($_POST);
+                if ($res['isFormGood']) {
+                    $manager->bePartner($res['data']);
+                } else {
+                    $errors = $res['errors'];
+                    echo "<pre>";
+                    var_dump($errors);
+                    echo "</pre>";
+
+                }
+            }
             echo $this->renderView('partner.html.twig',
                                     [
                                         'user' => $user,
                                         'allDeals' => $allDeals,
                                         'bottlesRecycled' => $bottlesRecycled,
+                                        'errors ' => $errors,
                                     ]);
         }
         else{
+            $message = "Connecter vous avant tout";
             echo $this->renderView('partner.html.twig',
                                     [
-                                        'allDeals' => $allDeals,
-                                        'bottlesRecycled' => $bottlesRecycled,
+                                        'message' => $message,
+                                        
                                     ]);
         }
     }

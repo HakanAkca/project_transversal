@@ -37,11 +37,9 @@
 
     <main class="allForm">
         <div class="container_form">
-            {% if errors is defined and errors is not empty %}
-                {% for error in errors %}
-                    {{ error }}<br>
-                {% endfor %}
-            {% endif %}
+            {% for error in errors %}
+                {{ error }}<br>
+            {% endfor %}
             {%  if message is defined and message is not empty %}
                 Cliquez <a href="?action=home">ici</a> pour se connecter
             {% endif %}

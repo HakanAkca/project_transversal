@@ -59,10 +59,6 @@ class DefaultController extends BaseController
                     $manager->bePartner($res['data']);
                 } else {
                     $errors = $res['errors'];
-                    echo "<pre>";
-                    var_dump($errors);
-                    echo "</pre>";
-
                 }
             }
             echo $this->renderView('partner.html.twig',
@@ -70,7 +66,7 @@ class DefaultController extends BaseController
                                         'user' => $user,
                                         'allDeals' => $allDeals,
                                         'bottlesRecycled' => $bottlesRecycled,
-                                        'errors ' => $errors,
+                                        'errors' => $errors,
                                     ]);
         }
         else{

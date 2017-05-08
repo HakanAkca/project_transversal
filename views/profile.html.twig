@@ -52,8 +52,27 @@
                 <li class="tabs" id="profile_sondage">3</li>
             </ul>
             <div class="all_changing_contents">
-                <div class="changing_content my_reductions">My réductions</div>
-                <div class="changing_content available_reductions">Réductions disponibles</div>
+                <div class="changing_content my_reductions">
+                    <p>Mes réductions</p>
+                    <div class="all_reducs">
+                    
+                    </div>
+                </div>
+                <div class="changing_content available_reductions">
+                    <p>Réductions disponibles</p>
+                    <div class="all_available_deal">
+                        {% for deal in userDeals %}
+                        <div class="available_deal">
+                            <img class="partner_img" src="{{deal.image}}"></img>
+                            <div class="deal_info">
+                                <span>{{deal.partner}}</span>
+                                <span>{{ deal['deal'] | raw }}</span>
+                            </div>
+                            <div class="deal_cost"><span>{{ deal['cost'] }}</span><span> points</span></div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
                 <div class="changing_content sondage">Le sondage du mois</div>
             </div>
         </div>
@@ -75,15 +94,12 @@
         <hr>
         <div>
             <h3>Mes réductions</h3>
-            {% for deal in userDeals %}
-                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
-            {% endfor %}
         </div>
         <hr>
         <div>
             <h3>Réductions disponibles</h3>
             {% for deal in allDeals %}
-                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
+                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points </p>
             {% endfor %}
         </div>
 

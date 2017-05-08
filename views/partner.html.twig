@@ -38,17 +38,21 @@
     <main class="allForm">
         <div class="container_form">
             {% for error in errors %}
-                <p>{{ error }}</p>
+                {{ error }}<br>
             {% endfor %}
+            {%  if message is defined and message is not empty %}
+                Cliquez <a href="?action=home">ici</a> pour se connecter
+            {% endif %}
             <h2 class="title">Devenir partenaires</h2>
                 <div class="form-container-2 form-container form" id="example-2">
-                    <form id="myRegister" method="POST" action="?action=register">
+
+                    <form id="myRegister" method="POST" action="?action=partner">
                         <input id="name" type="text" name="name" placeholder="Name*"><br>
                         <input id="email" type="email" name="email" placeholder="Mail*"><br>
                         <input id="city" type="text" name="city" placeholder="Ville*"><br>
                         <input id="phone" type="text" name="phone" placeholder="Téléphone*"><br>
-                        <input id="statut" type="text" name="statut" placeholder="Statut*"><br>
-                        <button id="button">Devenir Partenaire</button>
+                        <input id="statut" type="text" name="status" placeholder="Statut*"><br>
+                        <button type="submit" id="button">Devenir Partenaire</button>
                     </form>
             </div>
         </div>

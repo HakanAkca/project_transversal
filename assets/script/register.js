@@ -14,4 +14,24 @@ $(function() {
             $('.mobile_dropdown').animate({'left' :"0"}, 1000 )
         }
     })
+
+    function switch_tab($tabs, $content){
+        $('.changing_content').css('display', 'none');
+        $content.css('display', 'block');
+        $('.tabs').removeClass('active');
+        $tabs.addClass('active');
+    }
+
+    $('#profile_user_reductions').click(function(){
+        switch_tab($('#profile_user_reductions'), $('.my_reductions'))
+    });
+
+    $('#profile_availables_reductions').click(function(){
+        switch_tab($('#profile_availables_reductions'), $('.available_reductions'))
+    });
+
+    $('#profile_sondage').click(function(){
+        switch_tab($('#profile_sondage'), $('.sondage'))
+    });
+
 });

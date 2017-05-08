@@ -27,6 +27,37 @@
     </header>
 
     <main class="user_page">
+        <div class="user_info">
+            <img class="profil_img" src="http://www.cipb.bj/wp-content/uploads/2017/01/no-profile-img-1024x1024-e1484312573323.gif"></img>
+            <div class="line"></div>
+            <div class="specific_info">
+                <div class="username_lvl">
+                    <div class="pseudo"><span>{{user.pseudo}}<span><a href="#"><img class="params" src="assets/img/editProfile.png"></img></a></div>
+                    <span>Niv. <span class="lvl">{{user.level}}</span></span>
+                </div>
+                <div class="classement"><a href="#">Voir le Classement</a></div>
+                <div><span class="inscription_date">Inscrit depuis le {{user.date | date("m/d/Y")}}</span></div>
+            </div>
+        </div>
+        <div class="stats">
+            <div class="recycled"><span>{{user.bottlesNumber}}</span> objets recylés</div>
+            <div class="points"><span>{{user.costs}}</span> points</div>
+            <div class="fun_stats">statistiques : 19 bottles/week 4eme</div>
+        </div>
+
+        <div class="box">
+            <ul>
+                <li class="tabs active" id="profile_user_reductions">1</li>
+                <li class="tabs" id="profile_availables_reductions">2</li>
+                <li class="tabs" id="profile_sondage">3</li>
+            </ul>
+            <div class="all_changing_contents">
+                <div class="changing_content my_reductions">My réductions</div>
+                <div class="changing_content available_reductions">Réductions disponibles</div>
+                <div class="changing_content sondage">Le sondage du mois</div>
+            </div>
+        </div>
+
         <div>
             <h3>Entrez un code</h3>
             <form action="?action=profile" method="POST">

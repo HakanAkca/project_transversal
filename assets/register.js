@@ -6,4 +6,5 @@ $(function() {
     $('#burger').click(function(){
         $('.mobile_dropdown').toggle("fast");
     })
+
 });

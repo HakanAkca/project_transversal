@@ -217,6 +217,122 @@
   .user_page {
     background-color: #b5f4f2;
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .user_page .user_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .user_page .user_info .profil_img {
+    margin: 10px 0px;
+    width: 35%;
+    border-radius: 50%;
+  }
+  .user_page .user_info .line {
+    width: 60%;
+    height: 3px;
+    background-color: black;
+  }
+  .user_page .user_info .specific_info {
+    margin: 10px 0px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60%;
+  }
+  .user_page .user_info .specific_info .username_lvl {
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .user_page .user_info .specific_info .username_lvl .params {
+    width: 20px;
+    margin-left: 10px;
+  }
+  .user_page .user_info .specific_info .username_lvl .lvl {
+    color: #f0816c;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .user_page .user_info .specific_info .classement {
+    margin: 20px 0px;
+  }
+  .user_page .user_info .specific_info .classement a {
+    background-color: #f0816c;
+    color: white;
+    padding: 5px 10px;
+  }
+  .user_page .user_info .specific_info .inscription_date {
+    background-color: #f0816c;
+    padding: 5px;
+  }
+  .user_page .stats {
+    margin: 30px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .user_page .stats div {
+    width: 49%;
+    height: 65px;
+    color: white;
+    line-height: 65px;
+    font-size: 12px;
+  }
+  .user_page .stats div span {
+    font-size: 25px;
+    margin: 0px 10px 0px 20px;
+  }
+  .user_page .stats .recycled, .user_page .stats .fun_stats {
+    background: linear-gradient(to bottom, #4b4b4b 50%, #3e3e3e 50%);
+  }
+  .user_page .stats .points {
+    background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
+  }
+  .user_page .stats .fun_stats {
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+    margin-top: 15px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .user_page .box {
+    margin: 0px 10px;
+  }
+  .user_page .box ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .user_page .box ul .tabs {
+    width: 30%;
+    border-radius: 5px 5px 0px 0px;
+    height: 30px;
+    background-color: #333333;
+    border-bottom: 1px solid transparent;
+    box-shadow: 0px -2px 5px black inset;
+  }
+  .user_page .box ul .active {
+    box-shadow: none;
+  }
+  .user_page .box .all_changing_contents .changing_content {
+    background-color: #333333;
+  }
+  .user_page .box .all_changing_contents .available_reductions {
+    display: none;
+  }
+  .user_page .box .all_changing_contents .sondage {
+    display: none;
   }
 
   footer {

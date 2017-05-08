@@ -28,6 +28,13 @@
 
     <main class="user_page">
         <div>
+            <h3>Mes codes barres (généré par la poubelle et pas encore rentré par le user)</h3>
+            {% for barcode in userBarcode %}
+               {{ barcode['barcode'] }}<br>
+            {% endfor %}
+        </div>
+        <hr>
+        <div>
             <h3>Entrez un code</h3>
             <form action="?action=profile" method="POST">
                 <input type="text" placeholder="code barre" name="barcode">
@@ -56,5 +63,6 @@
                 <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points</p>
             {% endfor %}
         </div>
+
     </main>
 {% endblock %}

@@ -90,6 +90,7 @@ class UserManager
     }
 
 
+
     private function emailValid($email){
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
@@ -339,6 +340,55 @@ class UserManager
 
 
 
+
+
+
+    public function getUserBarcodes(){
+        $user_id = $_SESSION['user_id'];
+        $barcodeUsed = 0;
+        return $this->DBManager->findAllSecure("SELECT * FROM barcodes WHERE user_id=:user_id AND barcodeUsed =:barcodeUsed",
+                                                [
+                                                    'user_id' => $user_id,
+                                                    'barcodeUsed' => $barcodeUsed,
+                                                ]);
+    }
+    public function updateLevel(){
+        $user_id = $_SESSION['user_id'];
+        $cost = $this->getUserCostsNumber();
+        if($cost < 10){
+            return ;
+        }
+        elseif($cost>=10 && $cost < 30){
+            $level = 2;
+            return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
+                [
+                    'user_id' => $user_id,
+                    'level' => $level,
+                ]);
+        }elseif($cost>=30 && $cost < 60){
+            $level = 3;
+            return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
+                [
+                    'user_id' => $user_id,
+                    'level' => $level,
+                ]);
+        }elseif($cost>=60 && $cost < 100){
+            $level = 4;
+            return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
+                [
+                    'user_id' => $user_id,
+                    'level' => $level,
+                ]);
+        }else{
+            $level = 5;
+            return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
+                [
+                    'user_id' => $user_id,
+                    'level' => $level,
+                ]);
+        }
+
+    }
     public function getAllUsersBottlesRecycled(){
         $res = 0;
         $barcodeUsed = 1;
@@ -367,7 +417,7 @@ class UserManager
     }
     public function setUserBottlesRecycled($data){
         $user_id = $_SESSION['user_id'];
-        $bottlesNumber = (int)$data;
+        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled();
         return $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
             [
                 'user_id' => $user_id,

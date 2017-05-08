@@ -313,17 +313,27 @@ $red : #f0816c;
                                 height: 60px;
                             }
                             .deal_info{
-                                background-color: white;
+                                background-color: #dadada;
                                 @include flex_trinity(row, space-around);
                                 width: 70%;
                                 line-height: 60px;
+                                color: black;
                             }
                             .deal_cost{
                                 width: 30%;
                                 background-color: $red;
-                                @include flex_trinity(column, center)
+                                @include flex_trinity(column, center);
+                                color: white;
+                                span:nth-child(2){
+                                    color: #464646;
+                                    font-weight: bold;
+                                }
+                            }
+                            &:nth-child(even){
+                                margin: 10px 0px;
                             }
                         }
+                        
                     }
                 }
                 .sondage{

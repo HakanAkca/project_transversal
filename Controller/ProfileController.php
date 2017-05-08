@@ -18,8 +18,8 @@ class ProfileController extends BaseController
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
-            $allDeals = $manager->getAllDeals();
-            $userDeals = $manager->getUserDeals();
+            $dealByCity = $manager->getDealsByCity($user['city']);
+            $userDeals = $manager->getAvailableDeals();
             $costs = 0;
             $errorBarcode = '';
             $yourBarcode = '';
@@ -46,7 +46,7 @@ class ProfileController extends BaseController
                                     [
                                         'user' => $user,
                                         'userDeals' => $userDeals,
-                                        'allDeals' => $allDeals,
+                                        'dealByCity' => $dealByCity,
                                         'costs' => $costs,
                                         'bottlesRecycled' => $bottlesRecycled,
                                         'errorBarcode' => $errorBarcode,

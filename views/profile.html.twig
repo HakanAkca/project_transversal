@@ -97,9 +97,15 @@
         </div>
         <hr>
         <div>
+<<<<<<< HEAD
+            <h3>Offres disponibles à {{ user.city }}</h3>
+            {% for deal in dealByCity %}
+                <p>{{ deal.partner }} - {{ deal.deal | raw }}  - {{ deal.cost }} points</p>
+=======
             <h3>Réductions disponibles</h3>
             {% for deal in allDeals %}
                 <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points </p>
+>>>>>>> 371204987f6749b65e4b42bfc65fb7aea2ae4b12
             {% endfor %}
         </div>
 

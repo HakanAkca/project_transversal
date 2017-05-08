@@ -118,7 +118,7 @@ class UserManager
     {
         $user['pseudo'] = $data['username'];
         $user['email'] = $data['email'];
-        $user['city'] = $data['city'];
+        $user['city'] = ucwords($data['city']);
         $user['password'] = $this->userHash($data['password']);
         $user['points'] = 0;
         $user['bottlesNumber'] = 0;
@@ -201,7 +201,7 @@ class UserManager
     public function bePartner($data){
         $partner['name'] = $data['name'];
         $partner['email'] = $data['email'];
-        $partner['city'] = $data['city'];
+        $partner['city'] = ucwords($data['city']);
         $partner['phone'] = $data['phone'];
         $partner['status'] = $data['status'];
 
@@ -259,7 +259,7 @@ class UserManager
         $filetmpname = $data['image_tmp_name'];
         $url = 'uploads/'.$data['image'];;
         $catalog['partner'] = $data['partner'];
-        $catalog['city'] = $data['city'];
+        $catalog['city'] = ucwords($data['city']);
         $catalog['deal'] = $data['deal']."&euro;";
         $catalog['cost'] = $data['cost'];
         $catalog['image'] = $url;
@@ -273,9 +273,20 @@ class UserManager
         return $this->DBManager->findAllSecure("SELECT * FROM catalogs ORDER BY date DESC");
     }
 
-    public function getUserDeals(){
+    public function getDealsByCity($data){
+        $city = ucwords($data);
+        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE city =:city ORDER BY date DESC",
+                                                ['city' => $city]);
+    }
+    public function getAvailableDeals(){
         $cost = $this->getUserCostsNumber();
-        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost ORDER BY date DESC",['cost' => $cost]);
+        $user = $this->getUserById($_SESSION['user_id']);
+        $city = $user['city'];
+        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost AND city =:city ORDER BY date DESC",
+                                                [
+                                                    'cost' => $cost,
+                                                    'city' => $city,
+                                                ]);
     }
 
     public function checkDump($data)
@@ -316,6 +327,7 @@ class UserManager
                 'barcodeUsed' => $barcodeUsed,
             ]);
     }
+
 
 
 
@@ -418,7 +430,7 @@ class UserManager
     }
     public function setUserCostsNumber($data){
         $user_id = $_SESSION['user_id'];
-        $costs = (int)$data;
+        $costs = (int)$data+$this->getUserCostsNumber();
         return $this->DBManager->findOneSecure("UPDATE users SET costs = :costs WHERE id=:user_id",
                                                 [
                                                     'user_id' => $user_id,

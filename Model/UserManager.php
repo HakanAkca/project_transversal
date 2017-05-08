@@ -37,11 +37,9 @@ class UserManager
     }
     public function getBarcodeByBarcode($barcode)
     {
-        $user_id = $_SESSION['user_id'];
-        $data = $this->DBManager->findOneSecure("SELECT * FROM barcodes WHERE barcode = :barcode AND user_id =:user_id",
+        $data = $this->DBManager->findOneSecure("SELECT * FROM barcodes WHERE barcode = :barcode",
             [
                 'barcode' => $barcode,
-                'user_id' => $user_id,
             ]);
         return $data;
     }
@@ -289,7 +287,6 @@ class UserManager
         $barcode['barcode'] = $this->generateBarcode();
         $barcode['bottlesNumber'] = (int)$data['bottlesNumber'];
         $barcode['cost'] = $this->setCost((int)$data['bottlesNumber']);
-        $barcode['user_id'] = $_SESSION['user_id'];
         $barcode['barcodeUsed'] = 0;
 
         $this->DBManager->insert('barcodes', $barcode);
@@ -304,10 +301,7 @@ class UserManager
             if($code == false){
                 $isFormGood = false;
             }
-            if($code['user_id'] !== $_SESSION['user_id']){
-                $isFormGood = false;
-            }
-            if($code !== false && $code['user_id'] == 1){
+            if($code !== false && $code['barcodeUsed'] == 1){
                 $isFormGood = false;
             }
         }
@@ -402,13 +396,11 @@ class UserManager
 
     public function getUserBottlesRecycled()
     {
-        $user_id = $_SESSION['user_id'];
+        $id = $_SESSION['user_id'];
         $res = 0;
-        $barcodeUsed = 0;
-        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE  user_id =:user_id AND barcodeUsed =:barcodeUsed",
+        $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users WHERE  id =:id",
             [
-                'user_id' => $user_id,
-                'barcodeUsed' => $barcodeUsed,
+                'id' => $id,
             ]);
         foreach ($data as $bottles){
             $res += (int)$bottles['bottlesNumber'];
@@ -437,14 +429,12 @@ class UserManager
     public function getUserCostsNumber(){
         $user_id = $_SESSION['user_id'];
         $res = 0;
-        $barcodeUsed = 0;
-        $data = $this->DBManager->findAllSecure("SELECT cost FROM barcodes WHERE  user_id =:user_id AND barcodeUsed =:barcodeUsed ",
+        $data = $this->DBManager->findAllSecure("SELECT costs FROM users WHERE id =:user_id",
                                                 [
                                                     'user_id' => $user_id,
-                                                    'barcodeUsed' => $barcodeUsed,
                                                 ]);
         foreach ($data as $cost){
-            $res += (int)$cost['cost'];
+            $res += (int)$cost['costs'];
         }
         return $res;
     }

@@ -32,9 +32,9 @@ class ProfileController extends BaseController
             if(isset($_POST['submitBarcode'])) {
                 if($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();
-                    $bottlesNumber = $manager->getUserBottlesRecycled();
-                    $manager->setUserCostsNumber($costs);
-                    $manager->setUserBottlesRecycled($bottlesNumber);
+                    $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
+                    $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
+                    $manager->setUserCostsNumber($barcode['cost']);
                     $manager->updateLevel();
                     $manager->barcodeUsed($_POST['barcode']);
                     header('Location:?action=profile');

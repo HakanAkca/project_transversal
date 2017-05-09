@@ -1,31 +1,31 @@
 $neutralColor : #4b4b4b; // nav || footer
 $red : #f0816c;
 
-@font-face {
+  @font-face {
     src: url('../fonts/Roboto-Bold.ttf');
     font-family: 'robotoBold';
-}
+  }
 
-@font-face {
+  @font-face {
     src: url('../fonts/Roboto-Regular.ttf');
     font-family: 'robotoRegular';
-}
+  }
 
-@font-face {
+  @font-face {
     src: url('../fonts/Roboto-Light.ttf');
     font-family: 'robotoLight';
-}
+  }
 
-@font-face {
+  @font-face {
     src: url('../fonts/Poppins-Medium.ttf');
     font-family: 'PoppinsMedium';
-}
+  }
 
 @mixin flex_trinity($direction, $content) {
     display: flex;
     flex-direction: $direction;
     justify-content: $content;
-}
+  }
 
 @media screen{
     
@@ -54,7 +54,7 @@ $red : #f0816c;
         .left_side_mobile{
             @include flex_trinity(row, flex-start);
             .burger{
-                height: 19px;
+                height: 22px;
                 width : 20px;
                 margin: 5px;
                 @include flex_trinity(column, space-around);
@@ -202,17 +202,16 @@ $red : #f0816c;
         .user_info{
             @include flex_trinity(column, space-between);
             align-items: center;
-            margin-top: 10px;
+            margin-top: 20px;
             .profil_img{
                 margin: 10px 0px;
-                width: 25%;
+                width: 35%;
                 border-radius: 50%;
-                border: 10px solid #8e8e8e;
             }
             .line{
                 width: 60%;
-                height: 2px;
-                background-color: #6a6a6a;
+                height: 3px;
+                background-color: black;
             }
             .specific_info{
                 margin: 10px 0px;
@@ -220,12 +219,10 @@ $red : #f0816c;
                 @include flex_trinity(column, space-between);
                 width: 60%;
                 .username_lvl{
-                    font-family: 'robotoBold';
                     font-size: 18px;
                     width: 100%;
                     @include flex_trinity(row, space-between);
                     align-items: baseline;
-                    color: #4b4b4b;
                     .params{
                         width: 20px;
                         margin-left: 10px;
@@ -237,9 +234,7 @@ $red : #f0816c;
                     }
                 }
                 .classement{
-                    font-size: 12px;
-                    margin: 15px 0px;
-                    font-family: 'robotoLight';
+                    margin: 20px 0px;
                     a{
                         background-color: $red;
                         color: white;
@@ -247,49 +242,39 @@ $red : #f0816c;
                     }
                 }
                 .inscription_date{
-                    font-family: 'robotoLight';
-                    font-size: 11px;
                     background-color: $red;
-                    padding: 3px;
+                    padding: 5px;
                 }
             }
         }
         .stats{
-            margin: 20px 10px;
+            margin: 30px 10px;
             @include flex_trinity(row, space-between);
             flex-wrap: wrap;
             div{
-                font-family: 'robotoLight';
                 width: 49%;
                 height: 65px;
                 color: white;
-                font-size: 18px;
-                @include flex_trinity(column, space-around);
-                text-align: center;
+                line-height: 65px;
+                font-size: 12px;
                 span{
-                    margin-top: 5px;
-                }
-                .little{
-                    font-size: 10px;
-                    margin-top: 0px;
-                    margin-bottom: 10px;
+                    font-size: 25px;
+                    margin: 0px 10px 0px 20px;
                 }
             }
             .recycled{
                 background: linear-gradient(to bottom, #4b4b4b 50%, #3e3e3e 50%);
-                text-transform: uppercase;
             }
             .points{
-                background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
-                text-transform: uppercase;
+                  background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
             }
             .fun_stats{
                 @extend .recycled;
-                font-size: 12px;
+                font-size: 14px;
                 width: 100%;
-                height: 25px;
-                margin-top: 5px;
-                line-height: 25px;
+                height: 30px;
+                margin-top: 10px;
+                line-height: 30px;
                 text-align: center;
             }
         }
@@ -300,15 +285,10 @@ $red : #f0816c;
                 .tabs{
                     width: 30%;
                     border-radius: 5px 5px 0px 0px;
-                    height: 40px;
+                    height: 30px;
                     background-color: #333333;
                     border-bottom: 1px solid transparent;
                     box-shadow: 0px -2px 10px black inset;
-                    @include flex_trinity(row, center);
-                    align-items: center;
-                    img{
-                        width: 30px;
-                    }
                 }
                 .active{
                    box-shadow: none;
@@ -319,9 +299,6 @@ $red : #f0816c;
                 .changing_content{
                     text-align: center;
                     background-color: #333333;
-                    .title{
-                        padding: 10px 0px;
-                    }
                 }
                 .available_reductions{
                     color: #ed6147;
@@ -355,45 +332,12 @@ $red : #f0816c;
                             &:nth-child(even){
                                 margin: 10px 0px;
                             }
-                            .other_info{
-                                display: none;
-                            }
                         }
                         
                     }
                 }
                 .sondage{
                     display: none;
-                }
-            }
-        }
-
-        #modale{
-            height: 100vh;
-            width: 100%;
-            position: absolute;
-            z-index: 1;
-            background-color: rgba(0,0,0,0.4);
-            display: none;
-            .modale_available_deal{
-                margin-left: 20%;
-                margin-top: 15%;
-                opacity: 1;
-                background-color: white;
-                width: 60%;
-                height: 70%;
-                border-radius: 15px;
-                .deal_info{
-                    .img_modale{
-                        width: 150px;
-                    }
-                }
-                .action{
-                    .buy_deal{
-                        .id{
-                            display: none;
-                        }
-                    }
                 }
             }
         }

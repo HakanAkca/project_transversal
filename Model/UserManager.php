@@ -2,6 +2,7 @@
 
 namespace Model;
 
+
 class UserManager
 {
     private $DBManager;
@@ -50,16 +51,8 @@ class UserManager
         $errors = array();
         $res = array();
         $isFormGood = true;
-        if(isset($_FILES['image']['name']) && !empty($_FILES['image']['name'])){
-            $data['image'] = 'upoads/'.$data['username'].'/'.$_FILES['image']['name'];
-            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
-        }else{
-            $data['image'] = 'web/img/avatar.png';
-        }
-        if(isset($_FILES['image']['name']) && empty($_FILES)){
-            $data['image'] = 'web/img/avatar.png';
-        }
 
+        $data['image'] = 'web/img/avatar.gif';
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
             $isFormGood = false;
@@ -250,6 +243,12 @@ class UserManager
         if(!isset($data['cost']) | empty($data['cost'])){
             $isFormGood = false;
         }
+        if(!isset($data['expirationDate']) | empty($data['expirationDate'])){
+            $isFormGood = false;
+        }
+        /*if(isset($data['expirationDate']) && !empty($data['expirationDate'])){
+            if()
+        }*/
 
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
@@ -347,6 +346,34 @@ class UserManager
 
 
 
+    public function checkExpirationDate($date){
+        $day = (int)substr($date,0,2);
+        $month = (int)substr($date,3,2);
+        $year = (int)substr($date,6,4);
+        $bool = true;
+        if(substr($date,2,1) != '/' || substr($date,5,1) != '/'){
+            $bool = false;
+        }else{
+            /*if(checkdate($month,$day,$year)){
+                $currentDate = date('d/m/Y',strtotime($this->getDatetimeNow()));
+                echo "Current date : ".$currentDate."<br>";
+                echo "expiration date : ".$date."<br>";
+                echo $date."<br>";
+                echo "expiration date : ".date('Y/m/d',strtotime($date))."<br>";
+
+                $datetime1 = date_create($currentDate);
+                $datetime2 = date_create($date);
+                var_dump($datetime1);
+                echo "<br>";
+                var_dump($datetime2);
+
+                //echo $interval->format('%R%a days');
+            }else{
+                $bool = false;
+            }*/
+        }
+        return $bool;
+    }
 
 
     public function getUserBarcodes(){

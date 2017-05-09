@@ -129,6 +129,7 @@
             <h3>Réductions disponibles</h3>
             {% for deal in allDeals %}
                 <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points </p>
+
             {% endfor %}
         </div>
 

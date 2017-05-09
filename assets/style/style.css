@@ -46,7 +46,7 @@
     justify-content: flex-start;
   }
   header .left_side_mobile .burger {
-    height: 22px;
+    height: 19px;
     width: 20px;
     margin: 5px;
     display: flex;
@@ -225,17 +225,18 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
   }
   .user_page .user_info .profil_img {
     margin: 10px 0px;
-    width: 35%;
+    width: 25%;
     border-radius: 50%;
+    border: 10px solid #8e8e8e;
   }
   .user_page .user_info .line {
     width: 60%;
-    height: 3px;
-    background-color: black;
+    height: 2px;
+    background-color: #6a6a6a;
   }
   .user_page .user_info .specific_info {
     margin: 10px 0px;
@@ -246,12 +247,14 @@
     width: 60%;
   }
   .user_page .user_info .specific_info .username_lvl {
+    font-family: 'robotoBold';
     font-size: 18px;
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+    color: #4b4b4b;
   }
   .user_page .user_info .specific_info .username_lvl .params {
     width: 20px;
@@ -263,7 +266,9 @@
     font-weight: bold;
   }
   .user_page .user_info .specific_info .classement {
-    margin: 20px 0px;
+    font-size: 12px;
+    margin: 15px 0px;
+    font-family: 'robotoLight';
   }
   .user_page .user_info .specific_info .classement a {
     background-color: #f0816c;
@@ -271,39 +276,51 @@
     padding: 5px 10px;
   }
   .user_page .user_info .specific_info .inscription_date {
+    font-family: 'robotoLight';
+    font-size: 11px;
     background-color: #f0816c;
-    padding: 5px;
+    padding: 3px;
   }
   .user_page .stats {
-    margin: 30px 10px;
+    margin: 20px 10px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
   }
   .user_page .stats div {
+    font-family: 'robotoLight';
     width: 49%;
     height: 65px;
     color: white;
-    line-height: 65px;
-    font-size: 12px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
   }
   .user_page .stats div span {
-    font-size: 25px;
-    margin: 0px 10px 0px 20px;
+    margin-top: 5px;
+  }
+  .user_page .stats div .little {
+    font-size: 10px;
+    margin-top: 0px;
+    margin-bottom: 10px;
   }
   .user_page .stats .recycled, .user_page .stats .fun_stats {
     background: linear-gradient(to bottom, #4b4b4b 50%, #3e3e3e 50%);
+    text-transform: uppercase;
   }
   .user_page .stats .points {
     background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
+    text-transform: uppercase;
   }
   .user_page .stats .fun_stats {
-    font-size: 14px;
+    font-size: 12px;
     width: 100%;
-    height: 30px;
-    margin-top: 10px;
-    line-height: 30px;
+    height: 25px;
+    margin-top: 5px;
+    line-height: 25px;
     text-align: center;
   }
   .user_page .box {
@@ -317,10 +334,17 @@
   .user_page .box ul .tabs {
     width: 30%;
     border-radius: 5px 5px 0px 0px;
-    height: 30px;
+    height: 40px;
     background-color: #333333;
     border-bottom: 1px solid transparent;
     box-shadow: 0px -2px 10px black inset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .user_page .box ul .tabs img {
+    width: 30px;
   }
   .user_page .box ul .active {
     box-shadow: none;
@@ -331,6 +355,9 @@
   .user_page .box .all_changing_contents .changing_content {
     text-align: center;
     background-color: #333333;
+  }
+  .user_page .box .all_changing_contents .changing_content .title {
+    padding: 10px 0px;
   }
   .user_page .box .all_changing_contents .available_reductions {
     color: #ed6147;
@@ -375,7 +402,33 @@
   .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal:nth-child(even) {
     margin: 10px 0px;
   }
+  .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal .other_info {
+    display: none;
+  }
   .user_page .box .all_changing_contents .sondage {
+    display: none;
+  }
+  .user_page #modale {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+  }
+  .user_page #modale .modale_available_deal {
+    margin-left: 20%;
+    margin-top: 15%;
+    opacity: 1;
+    background-color: white;
+    width: 60%;
+    height: 70%;
+    border-radius: 15px;
+  }
+  .user_page #modale .modale_available_deal .deal_info .img_modale {
+    width: 150px;
+  }
+  .user_page #modale .modale_available_deal .action .buy_deal .id {
     display: none;
   }
 

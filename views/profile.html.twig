@@ -36,30 +36,30 @@
                     <span>Niv. <span class="lvl">{{user.level}}</span></span>
                 </div>
                 <div class="classement"><a href="#">Voir le Classement</a></div>
-                <div><span class="inscription_date">Inscrit depuis le {{user.date | date("m/d/Y")}}</span></div>
+                <div><span class="inscription_date">INSCRIT DEPUIS LE {{user.date | date("m/d/Y")}}</span></div>
             </div>
         </div>
         <div class="stats">
-            <div class="recycled"><span>{{user.bottlesNumber}}</span> objets recylés</div>
-            <div class="points"><span>{{user.costs}}</span> points</div>
+            <div class="recycled"><span>{{user.bottlesNumber}}</span><span class="little">objets recylés</span></div>
+            <div class="points"><span>{{user.costs}}</span><span class="little">points</span></div>
             <div class="fun_stats">statistiques : 19 bottles/week 4eme</div>
         </div>
 
         <div class="box">
             <ul>
-                <li class="tabs active" id="profile_user_reductions">1</li>
-                <li class="tabs" id="profile_availables_reductions">2</li>
+                <li class="tabs active" id="profile_user_reductions"><img class="tabs_img" src="assets/img/tabs_my_reduc.png"></img></li>
+                <li class="tabs" id="profile_availables_reductions"><img class="tabs_img" src="assets/img/tabs_available_reduc.png"></img></li>
                 <li class="tabs" id="profile_sondage">3</li>
             </ul>
             <div class="all_changing_contents">
                 <div class="changing_content my_reductions">
-                    <p>Mes réductions</p>
+                    <p class="title">Mes réductions</p>
                     <div class="all_reducs">
                     
                     </div>
                 </div>
                 <div class="changing_content available_reductions">
-                    <p>Réductions disponibles</p>
+                    <p class="title">Réductions disponibles</p>
                     <div class="all_available_deal">
                         {% for deal in userDeals %}
                         <div class="available_deal">
@@ -69,6 +69,11 @@
                                 <span>{{ deal['deal'] | raw }}</span>
                             </div>
                             <div class="deal_cost"><span>{{ deal['cost'] }}</span><span> points</span></div>
+                            <div class="other_info">
+                                <span>{{deal.city}}</span>
+                                <span class="id">{{deal.id}}</span>
+                                <span>{{deal.expiration}}</span>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
@@ -76,6 +81,29 @@
                 <div class="changing_content sondage">Le sondage du mois</div>
             </div>
         </div>
+
+        <div id="modale">
+            <div class="modale_available_deal">
+                <div class="deal_info">
+                    <img class="img_modale" src=""></img>
+                    <p class="partner_modale"></p>
+                    <p class="city_modale"></p>
+                    <p class="expiration_modale"></p>
+                    <div class="cost">
+                        <div class="price"></div>
+                        <div class="reduc"></div>
+                    </div>
+                </div>
+                <div class="action">
+                    <form class="buy_deal" action="?action=profile" method="POST">
+                        <input class="id" type="text" value="">
+                        <input type="submit" value="acheter l'offre">
+                    </form>
+                    <a class="close_modale">Non merci</a>
+                </div>
+            </div>
+        </div>
+
         <div>
             <h3>Entrez un code</h3>
             <form action="?action=profile" method="POST">
@@ -97,15 +125,10 @@
         </div>
         <hr>
         <div>
-<<<<<<< HEAD
-            <h3>Offres disponibles à {{ user.city }}</h3>
-            {% for deal in dealByCity %}
-                <p>{{ deal.partner }} - {{ deal.deal | raw }}  - {{ deal.cost }} points</p>
-=======
+
             <h3>Réductions disponibles</h3>
             {% for deal in allDeals %}
                 <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points </p>
->>>>>>> 371204987f6749b65e4b42bfc65fb7aea2ae4b12
             {% endfor %}
         </div>
 

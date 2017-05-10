@@ -55,26 +55,26 @@
                 <div class="changing_content my_reductions">
                     <p class="title">Mes réductions</p>
                     <div class="all_reducs">
-                    
+
                     </div>
                 </div>
                 <div class="changing_content available_reductions">
                     <p class="title">Réductions disponibles</p>
                     <div class="all_available_deal">
                         {% for deal in userDeals %}
-                        <div class="available_deal">
-                            <img class="partner_img" src="{{deal.image}}"></img>
-                            <div class="deal_info">
-                                <span>{{deal.partner}}</span>
-                                <span>{{ deal['deal'] | raw }}</span>
+                            <div class="available_deal">
+                                <img class="partner_img" src="{{deal.image}}"></img>
+                                <div class="deal_info">
+                                    <span>{{deal.partner}}</span>
+                                    <span>{{ deal['deal'] | raw }}</span>
+                                </div>
+                                <div class="deal_cost"><span>{{ deal['cost'] }}</span><span> points</span></div>
+                                <div class="other_info">
+                                    <span>{{deal.city}}</span>
+                                    <span class="id">{{deal.id}}</span>
+                                    <span>{{deal.expiration}}</span>
+                                </div>
                             </div>
-                            <div class="deal_cost"><span>{{ deal['cost'] }}</span><span> points</span></div>
-                            <div class="other_info">
-                                <span>{{deal.city}}</span>
-                                <span class="id">{{deal.id}}</span>
-                                <span>{{deal.expiration}}</span>
-                            </div>
-                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -115,3 +115,4 @@
         </div>
     </main>
 {% endblock %}
+

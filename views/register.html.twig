@@ -34,13 +34,12 @@
             {% endfor %}
             <h2 class="title">Inscription</h2>
             <div class="form-container-2 form-container form" id="example-2">
-                <form id="myRegister" method="POST" action="?action=register"  enctype="multipart/form-data">
+                <form id="myRegister" method="POST" action="?action=register">
                     <input id="username" type="text" name="username" placeholder="Pseudo*">
                     <input id="email" type="email" name="email" placeholder="Mail*">
                     <input id="password" type="password" name="password" placeholder="Mot de Passe*">
                     <input id="verifpassword" type="password" name="verifpassword" placeholder="Confirmation Mot de Passe*">
                     <input id="city" type="text" name="city" placeholder="Ville*">
-                    <input type="file" name="image">
                     <button type="submit" id="button">Créer mon compte</button>
                 </form>
             </div>

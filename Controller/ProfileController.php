@@ -13,7 +13,12 @@ use Model\UserManager;
 class ProfileController extends BaseController
 {
     public function profileAction(){
-        if(!empty($_SESSION['user_id'])){
+
+
+
+
+
+if(!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             $user_id = $_SESSION['user_id'];

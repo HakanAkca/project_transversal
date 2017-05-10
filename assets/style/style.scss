@@ -394,7 +394,7 @@ $red : #f0816c;
                 opacity: 1;
                 background-color: #e5e5e5;
                 width: 60%;
-                height: 70%;
+                height: 80%;
                 border-radius: 15px;
                 .deal_info{
                     @include flex_trinity(column, flex-start);
@@ -489,18 +489,15 @@ $red : #f0816c;
                         text-align: center;
                     }
                     .buttons{
-                        @include flex_trinity(row, space-around);
+                        @include flex_trinity(row, space-between);
                         align-items: center;
                         text-align: center;
                         .costs{
                             background-color: $red;
-                            height: 50px;
-                            width: 50px;
                             color: white;
+                            padding: 5px 10px;
                         }
                         .more{
-                            height: 50px;
-                            width: 50px;
                             background-color: $red;
                             @include flex_trinity(row, center);
                             align-items: center;

@@ -67,7 +67,7 @@
                                 <div class="other_info">
                                     <span>{{reduc.city}}</span>
                                     <span class="id">{{reduc.id}}</span>
-                                    <span>{{reduc.expiration}}</span>
+                                    <span>{{reduc.expirationDate | date("m/d/Y")}}</span>
                                 </div>
                             </div>
                         {% endfor %}
@@ -87,7 +87,7 @@
                                 <div class="other_info">
                                     <span>{{deal.city}}</span>
                                     <span class="id">{{deal.id}}</span>
-                                    <span>{{deal.expiration}}</span>
+                                    <span>{{deal.expirationDate | date("m/d/Y")}}</span>
                                 </div>
                             </div>
                         {% endfor %}

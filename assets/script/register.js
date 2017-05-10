@@ -46,7 +46,7 @@ $(function() {
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.img_modale').attr("src", $(this).parent().children(".partner_img").attr("src"));
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.partner_modale').children('span:last').html($(this).parent().children(".deal_info").children('span:first').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.city_modale').children('span:last').html($(this).parent().children(".other_info").children('span:first').html());
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html('slt');
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().children(".other_info").children('span:last').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().children(".deal_cost").children('span:first').html() + ' points');
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().children(".deal_info").children('span:last').html());
 

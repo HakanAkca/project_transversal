@@ -433,7 +433,7 @@
     opacity: 1;
     background-color: #e5e5e5;
     width: 60%;
-    height: 70%;
+    height: 80%;
     border-radius: 15px;
   }
   .user_page #modale .modale_available_deal .deal_info {
@@ -542,19 +542,16 @@
   .offer_page .all_offers .offer .info .buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
   }
   .offer_page .all_offers .offer .info .buttons .costs {
     background-color: #f0816c;
-    height: 50px;
-    width: 50px;
     color: white;
+    padding: 5px 10px;
   }
   .offer_page .all_offers .offer .info .buttons .more {
-    height: 50px;
-    width: 50px;
     background-color: #f0816c;
     display: flex;
     flex-direction: row;

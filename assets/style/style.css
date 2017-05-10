@@ -325,6 +325,7 @@
   }
   .user_page .box {
     margin: 0px 10px;
+    margin-bottom: 30px;
   }
   .user_page .box ul {
     display: flex;
@@ -364,9 +365,8 @@
     display: none;
   }
   .user_page .box .all_changing_contents .available_reductions .all_available_deal {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    overflow: scroll;
+    max-height: 200px;
   }
   .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal {
     display: flex;
@@ -408,6 +408,17 @@
   .user_page .box .all_changing_contents .sondage {
     display: none;
   }
+  .user_page .box .all_offers_link {
+    display: none;
+    background-color: #f0816c;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+  }
   .user_page #modale {
     height: 100vh;
     width: 100%;
@@ -420,16 +431,85 @@
     margin-left: 20%;
     margin-top: 15%;
     opacity: 1;
-    background-color: white;
+    background-color: #e5e5e5;
     width: 60%;
     height: 70%;
     border-radius: 15px;
   }
+  .user_page #modale .modale_available_deal .deal_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 16px;
+  }
   .user_page #modale .modale_available_deal .deal_info .img_modale {
-    width: 150px;
+    width: 65%;
+    height: 120px;
+  }
+  .user_page #modale .modale_available_deal .deal_info .info {
+    border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    width: 85%;
+    margin-top: 20px;
+    box-shadow: inset 0px 0px 25px 5px #ddd7d7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+    background-color: #fff;
+  }
+  .user_page #modale .modale_available_deal .deal_info .info .title {
+    text-align: center;
+    font-size: 18px;
+  }
+  .user_page #modale .modale_available_deal .deal_info .info .info_deal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+  }
+  .user_page #modale .modale_available_deal .deal_info .info .important {
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .user_page #modale .modale_available_deal .deal_info .info .important .big {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .user_page #modale .modale_available_deal .action {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .user_page #modale .modale_available_deal .action .buy_deal {
+    width: 50%;
   }
   .user_page #modale .modale_available_deal .action .buy_deal .id {
     display: none;
+  }
+  .user_page #modale .modale_available_deal .action .buy_deal .buy {
+    color: #FFFFFF;
+    background: #2b90d9;
+    border: none;
+    margin: 10px 0px;
+    width: 100%;
+    padding: 7px 0px;
+    border-radius: 5px;
+  }
+  .user_page #modale .modale_available_deal .action .close_modale {
+    color: #FFFFFF;
+    background: #F32C52;
+    width: 50%;
+    text-align: center;
+    padding: 5px 0px;
+    border-radius: 5px;
   }
 
   footer {

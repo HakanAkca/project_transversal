@@ -80,58 +80,38 @@
                 </div>
                 <div class="changing_content sondage">Le sondage du mois</div>
             </div>
+            <a class="all_offers_link" href="?action=offers">Voir toutes les offres !</a>
         </div>
 
         <div id="modale">
             <div class="modale_available_deal">
                 <div class="deal_info">
                     <img class="img_modale" src=""></img>
-                    <p class="partner_modale"></p>
-                    <p class="city_modale"></p>
-                    <p class="expiration_modale"></p>
-                    <div class="cost">
-                        <div class="price"></div>
-                        <div class="reduc"></div>
+                    <div class="info">
+                        <p class="title">INFO</p>
+                        <p class="partner_modale info_deal"><span>Partenaire</span><span></span></p>
+                        <p class="city_modale info_deal"><span>Ville</span><span></span></p>
+                        <p class="expiration_modale info_deal"><span>Date d'expiration</span><span></span></p>
+                        <div class="important">
+                            <div class="price big">
+                                <span>Coût</span>
+                                <span></span>
+                            </div>
+                            <div class="reduc big">
+                                <span>Réduction</span>
+                                <span></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="action">
                     <form class="buy_deal" action="?action=profile" method="POST">
                         <input class="id" type="text" value="">
-                        <input type="submit" value="acheter l'offre">
+                        <input class="buy" type="submit" value="acheter l'offre">
                     </form>
                     <a class="close_modale">Non merci</a>
                 </div>
             </div>
         </div>
-
-        <div>
-            <h3>Entrez un code</h3>
-            <form action="?action=profile" method="POST">
-                <input type="text" placeholder="code barre" name="barcode">
-                <input type="submit" name="submitBarcode" value="Valider">
-            </form>
-        </div>
-        <hr>
-        <div>
-            <h3>Notre poubelle</h3>
-            <form action="?action=profile" method="POST">
-                <input type="text" placeholder="vos bouteilles ici" name="bottlesNumber">
-                <input type="submit" name="submitBottles" value="Valider">
-            </form>
-        </div>
-        <hr>
-        <div>
-            <h3>Mes réductions</h3>
-        </div>
-        <hr>
-        <div>
-
-            <h3>Réductions disponibles</h3>
-            {% for deal in allDeals %}
-                <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points </p>
-
-            {% endfor %}
-        </div>
-
     </main>
 {% endblock %}

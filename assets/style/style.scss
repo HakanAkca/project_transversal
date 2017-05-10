@@ -295,6 +295,7 @@ $red : #f0816c;
         }
         .box{
             margin: 0px 10px;
+            margin-bottom: 30px;
             ul{
                 @include flex_trinity(row, space-between);
                 .tabs{
@@ -327,7 +328,8 @@ $red : #f0816c;
                     color: #ed6147;
                     display: none;
                     .all_available_deal{
-                        @include flex_trinity(column, flex-start);
+                        overflow: scroll;
+                        max-height: 200px;
                         .available_deal{
                             @include flex_trinity(row, flex-start);
                             height: 60px;
@@ -366,6 +368,17 @@ $red : #f0816c;
                     display: none;
                 }
             }
+            .all_offers_link{
+                display: none;
+                background-color: #f0816c;
+                text-align: center;
+                width: 50%;
+                margin: auto;
+                margin-top: 20px;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;
+            }
         }
 
         #modale{
@@ -379,20 +392,71 @@ $red : #f0816c;
                 margin-left: 20%;
                 margin-top: 15%;
                 opacity: 1;
-                background-color: white;
+                background-color: #e5e5e5;
                 width: 60%;
                 height: 70%;
                 border-radius: 15px;
                 .deal_info{
+                    @include flex_trinity(column, flex-start);
+                    align-items: center;
+                    margin-top: 20px;
+                    font-size: 16px;
                     .img_modale{
-                        width: 150px;
+                        width: 65%;
+                        height: 120px;
+                    }
+                    .info{
+                        border: 1px solid #e6e6e6;
+                        border-radius: 10px;
+                        width: 85%;
+                        margin-top: 20px;
+                        box-shadow: inset 0px 0px 25px 5px #ddd7d7;
+                        @include flex_trinity(column, space-around);
+                        height: 200px;
+                        background-color: #fff;
+                        .title{
+                            text-align: center;
+                            font-size: 18px;
+                        }
+                        .info_deal{
+                            @include flex_trinity(row, space-between);
+                            margin: 5px;
+                        }
+                        .important{
+                            font-size: 18px;
+                            @include flex_trinity(row, space-around);
+                            .big{
+                                @include flex_trinity(column, flex-start);
+                                align-items : center;
+                            }
+                        }
                     }
                 }
                 .action{
+                    @include flex_trinity(column, flex-start);
+                    align-items: center;
                     .buy_deal{
+                        width: 50%;
                         .id{
                             display: none;
                         }
+                        .buy{
+                            color: #FFFFFF;
+                            background: #2b90d9;
+                            border: none;
+                            margin:10px 0px;
+                            width: 100%;
+                            padding: 7px 0px;
+                            border-radius: 5px;
+                        }
+                    }
+                    .close_modale{
+                        color: #FFFFFF;
+                        background: #F32C52;
+                        width: 50%;
+                        text-align: center;
+                        padding: 5px 0px;
+                        border-radius: 5px;
                     }
                 }
             }

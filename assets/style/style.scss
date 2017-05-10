@@ -463,6 +463,61 @@ $red : #f0816c;
         }
     }
 
+    .offer_page{
+        .head_img{
+            background-image: url('../img/mobile_offers.png');
+            background-size: cover;
+            height: 60px;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+            font-weight: bold;
+            font-family: 'PoppinsMedium';
+        }
+        .all_offers{
+            @include flex_trinity(row, space-around);
+            flex-wrap: wrap;
+            .offer{
+                width: 40%;
+                margin-bottom: 20px;
+                img{
+                    width: 100%;
+                    height: 100px;
+                }
+                .info{
+                    .title{
+                        text-align: center;
+                    }
+                    .buttons{
+                        @include flex_trinity(row, space-around);
+                        align-items: center;
+                        text-align: center;
+                        .costs{
+                            background-color: $red;
+                            height: 50px;
+                            width: 50px;
+                            color: white;
+                        }
+                        .more{
+                            height: 50px;
+                            width: 50px;
+                            background-color: $red;
+                            @include flex_trinity(row, center);
+                            align-items: center;
+                            .circle{
+                                background-color: white;
+                                border-radius: 25px;
+                                width: 25px;
+                                line-height: 25px;
+                                height: 25px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     footer{
         background-color: $neutralColor;
         padding: 20px;

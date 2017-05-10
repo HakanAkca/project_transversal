@@ -1,11 +1,56 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    {%  if user is empty %}
-        {{ user['pseudo'] }}
-    {% endif %}
-    <p>Nos offres</p>
-    {% for deal in allDeals %}
-        <p>{{ deal['partner'] }} - {{ deal['deal'] | raw }}  - {{ deal['cost'] }} points - URL IMAGE {{ deal['image'] }}</p>
-    {% endfor %}
+    <header>
+        <div class="left_side_mobile">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+            </div>
+            <ul class="mobile_dropdown">
+                <li><a href="?action=home">Accueil</a></li>
+                <li><a href="?action=profil">Profil</a></li>
+                <li><a href="?action=about">Nous</a></li>
+                <li><a href="?action=partner">Devenir Partenaires</a></li>
+            </ul>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+        </div>
+        <div class="stats">
+            <span>{{bottlesRecycled}}</span>
+            <p>objets recylés !</p>
+        </div>
+        <ul class="menu_desktop">
+            <li><a href="?action=home">Accueil</a></li>
+            <li><a href="?action=profil">Profil</a></li>
+            <li><a href="?action=about">Nous</a></li>
+            <li><a href="?action=partner">Devenir Partenaires</a></li>
+        </ul>
+        <div class="current"><a href="#">{{user.pseudo}}</a></div>
+    </header>
+
+    <main class="offer_page">
+        <div class="head_img">Mes Offres</div>
+        <div class="all_offers">
+            {% for deal in allDeals %}
+                <div class="offer">
+                    <img src="{{ deal['image'] }}"/>
+                    <div class="info">
+                        <p class="title">{{deal.partner}}</p>
+                        <p>Description :</p>
+                        <p class="description">{{deal.description}}</p>
+                        <div class="buttons">
+                            <div class="costs">
+                                <p>{{deal.cost}}</p>
+                                <p>Points</p>
+                            </div>
+                            <div class="more">
+                                <div class="circle">+</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
 {% endblock %}

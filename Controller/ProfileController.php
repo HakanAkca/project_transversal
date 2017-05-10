@@ -14,11 +14,50 @@ class ProfileController extends BaseController
 {
     public function profileAction(){
 
+            if(!empty($_SESSION['user_id'])){
+                $manager = UserManager::getInstance();
+                $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+                $user_id = $_SESSION['user_id'];
+                $user = $manager->getUserById($user_id);
+                $dealByCity = $manager->getDealsByCity($user['city']);
+                $userDeals = $manager->getAvailableDeals();
+
+                $costs = 0;
+                $errorBarcode = '';
+                $yourBarcode = '';
+                $userBarcode = $manager->getUserBarcodes();
 
 
+                $myDeals = $manager->getAvailableUserDeals();
+
+                if(isset($_POST['submitBuyDeal'])){
+                    if($manager->chechBuyDeal($_POST['IDdeal'])){
+                        $manager->buyDeal($_POST['IDdeal']);
+                        header('Location:?action=profile');
+                        $manager->getAvailableUserDeals();
+                    }
+                }
+                echo $this->renderView('profile.html.twig',
+                                        [
+                                            'user' => $user,
+                                            'userDeals' => $userDeals,
+                                            'dealByCity' => $dealByCity,
+                                            'costs' => $costs,
+                                            'bottlesRecycled' => $bottlesRecycled,
+                                            'errorBarcode' => $errorBarcode,
+                                            'yourBarcode' => $yourBarcode,
+                                            'userBarcode' => $userBarcode,
+                                            'myDeals' => $myDeals
+                                        ]);
+            }else{
+                $this->redirect('home');
+            }
 
 
-if(!empty($_SESSION['user_id'])){
+    }
+    public function dumpAction(){
+
+        if(!empty($_SESSION['user_id'])){
             $manager = UserManager::getInstance();
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             $user_id = $_SESSION['user_id'];
@@ -29,6 +68,7 @@ if(!empty($_SESSION['user_id'])){
             $errorBarcode = '';
             $yourBarcode = '';
             $userBarcode = $manager->getUserBarcodes();
+
             if(isset($_POST['submitBottles'])) {
                 if ($manager->checkDump($_POST)) {
                     $manager->addBarcode($_POST);
@@ -42,22 +82,22 @@ if(!empty($_SESSION['user_id'])){
                     $manager->setUserCostsNumber($barcode['cost']);
                     $manager->updateLevel();
                     $manager->barcodeUsed($_POST['barcode']);
-                    header('Location:?action=profile');
+                    header('Location:?action=dump');
                 }else{
                     $errorBarcode = "Veillez saisir un code barre valide";
                 }
             }
-            echo $this->renderView('profile.html.twig',
-                                    [
-                                        'user' => $user,
-                                        'userDeals' => $userDeals,
-                                        'dealByCity' => $dealByCity,
-                                        'costs' => $costs,
-                                        'bottlesRecycled' => $bottlesRecycled,
-                                        'errorBarcode' => $errorBarcode,
-                                        'yourBarcode' => $yourBarcode,
-                                        'userBarcode' => $userBarcode,
-                                    ]);
+            echo $this->renderView('dump.html.twig',
+                [
+                    'user' => $user,
+                    'userDeals' => $userDeals,
+                    'dealByCity' => $dealByCity,
+                    'costs' => $costs,
+                    'bottlesRecycled' => $bottlesRecycled,
+                    'errorBarcode' => $errorBarcode,
+                    'yourBarcode' => $yourBarcode,
+                    'userBarcode' => $userBarcode,
+                ]);
         }else{
             $this->redirect('home');
         }
@@ -70,6 +110,7 @@ if(!empty($_SESSION['user_id'])){
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
             $errors = array();
+            $manager->getAllDeals();
             if(isset($_POST['submitCatalog'])){
                 $res = $manager->checkCatalog($_POST);
                 if($res['isFormGood']){

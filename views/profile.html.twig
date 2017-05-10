@@ -55,7 +55,22 @@
                 <div class="changing_content my_reductions">
                     <p class="title">Mes réductions</p>
                     <div class="all_reducs">
-
+                        {% for reduc in myDeals %}
+                            <div class="reducs">
+                                <img class="reduc_img" src="{{reduc.image}}"></img>
+                                <div class="reduc_info">
+                                    <span>{{reduc.partner}}</span>
+                                    <span>{{ reduc['deal'] | raw }}</span>
+                                    <span>{{ reduc['description'] | raw }}</span>
+                                </div>
+                                <div class="reduc_cost"><span>{{ reduc['cost'] }}</span><span> points</span></div>
+                                <div class="other_info">
+                                    <span>{{reduc.city}}</span>
+                                    <span class="id">{{reduc.id}}</span>
+                                    <span>{{reduc.expiration}}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="changing_content available_reductions">
@@ -106,8 +121,8 @@
                 </div>
                 <div class="action">
                     <form class="buy_deal" action="?action=profile" method="POST">
-                        <input class="id" type="text" value="">
-                        <input class="buy" type="submit" value="acheter l'offre">
+                        <input class="id" name="IDdeal" type="text" value="">
+                        <input class="buy" name="submitBuyDeal" type="submit" value="acheter l'offre">
                     </form>
                     <a class="close_modale">Non merci</a>
                 </div>

@@ -44,6 +44,15 @@ class UserManager
             ]);
         return $data;
     }
+    public function getDealById($d)
+    {
+        $id = (int)$d;
+        $data = $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE id = :id",
+            [
+                'id' => $id,
+            ]);
+        return $data;
+    }
 
 
     public function userCheckRegister($data)
@@ -243,12 +252,21 @@ class UserManager
         if(!isset($data['cost']) | empty($data['cost'])){
             $isFormGood = false;
         }
+        if(!isset($data['description']) | empty($data['description'])){
+            $isFormGood = false;
+        }
         if(!isset($data['expirationDate']) | empty($data['expirationDate'])){
             $isFormGood = false;
         }
-        /*if(isset($data['expirationDate']) && !empty($data['expirationDate'])){
-            if()
-        }*/
+        if(isset($data['expirationDate']) && !empty($data['expirationDate'])){
+            if(!$this->checkExpirationDate($data['expirationDate'])){
+                $isFormGood = false;
+            }else{
+                $strToDate=  strtotime($data['expirationDate']);
+                $expirationDate = date('Y/m/d H:i:s', $strToDate);
+                $data['expirationDate'] = $expirationDate;
+            }
+        }
 
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
@@ -259,33 +277,98 @@ class UserManager
         $url = 'uploads/'.$data['image'];;
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = ucwords($data['city']);
-        $catalog['deal'] = $data['deal']."&euro;";
+        $catalog['deal'] = $data['deal']."%";
         $catalog['cost'] = $data['cost'];
+        $catalog['description'] = $data['description'];
         $catalog['image'] = $url;
         $catalog['date'] = $this->getDatetimeNow();
-
+        $day = (int)substr($data['expirationDate'],0,2);
+        $month = (int)substr($data['expirationDate'],3,2);
+        $year = (int)substr($data['expirationDate'],6,4);
+        $tmpDate = $month.'/'.$day.'/'.$year;
+        $expirationDate =  strtotime($tmpDate);
+        $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
         move_uploaded_file($filetmpname,$url);
     }
 
     public function getAllDeals(){
-        return $this->DBManager->findAllSecure("SELECT * FROM catalogs ORDER BY date DESC");
+        $cur = strtotime($this->getDatetimeNow());
+        $currentDate = date('Y/m/d H:i:s', $cur);
+        $res = array();
+        $data = $this->DBManager->findAllSecure("SELECT * FROM catalogs ORDER BY date DESC");
+
+        foreach ($data as $value) {
+            $exp = strtotime($value['expirationDate']);
+            $expirationDate =  date('Y/m/d H:i:s', $exp);
+
+            $date1=date_create($currentDate);
+            $date2=date_create($expirationDate);
+            $diff=date_diff($date1,$date2);
+            $interval =  (int)$diff->format("%R%a");
+            if($interval >= 0){
+                $res[] = $value;
+            }
+        }
+        return $res;
     }
 
     public function getDealsByCity($data){
         $city = ucwords($data);
-        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE city =:city ORDER BY date DESC",
+        $cur = strtotime($this->getDatetimeNow());
+        $currentDate = date('Y/m/d H:i:s', $cur);
+        $res = array();
+        $data2 = $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE city =:city ORDER BY date DESC",
                                                 ['city' => $city]);
+        foreach ($data2 as $value) {
+            $exp = strtotime($value['expirationDate']);
+            $expirationDate =  date('Y/m/d H:i:s', $exp);
+
+            $date1=date_create($currentDate);
+            $date2=date_create($expirationDate);
+            $diff=date_diff($date1,$date2);
+            $interval =  (int)$diff->format("%R%a");
+            if($interval >= 0){
+                $res[] = $value;
+            }
+        }
+        return $res;
     }
     public function getAvailableDeals(){
         $cost = $this->getUserCostsNumber();
         $user = $this->getUserById($_SESSION['user_id']);
         $city = $user['city'];
-        return $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost AND city =:city ORDER BY date DESC",
+        $cur = strtotime($this->getDatetimeNow());
+        $currentDate = date('Y/m/d H:i:s', $cur);
+        $res = array();
+        $data = $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost AND city =:city ORDER BY date DESC",
                                                 [
                                                     'cost' => $cost,
                                                     'city' => $city,
                                                 ]);
+        foreach ($data as $value) {
+            $exp = strtotime($value['expirationDate']);
+            $expirationDate =  date('Y/m/d H:i:s', $exp);
+
+            $date1=date_create($currentDate);
+            $date2=date_create($expirationDate);
+            $diff=date_diff($date1,$date2);
+            $interval =  (int)$diff->format("%R%a");
+            if($interval >= 0){
+                $res[] = $value;
+            }
+        }
+        return $res;
+    }
+    public function getAvailableUserDeals(){
+        $res = array();
+        $user_id = (string)$_SESSION['user_id'];
+        $data = $this->DBManager->findAllSecure("SELECT * FROM deals WHERE user_id =:user_id",
+                                                    ['user_id' => $user_id]);
+        foreach ($data as $catalog){
+            $res[] = $this->getDealById($catalog['catalog_id']);
+        }
+        return $res;
     }
 
     public function checkDump($data)
@@ -326,6 +409,28 @@ class UserManager
                 'barcodeUsed' => $barcodeUsed,
             ]);
     }
+    public function chechBuyDeal($id){
+        $user_id = $_SESSION['user_id'];
+        $deal = $this->getDealById($id);
+        $user = $this->getUserById($user_id);
+        $userCosts = (int)$user['costs'];
+        $dealCosts = (int)$deal['cost'];
+        return ($userCosts >= $dealCosts);
+    }
+    public function buyDeal($id){
+        $user_id = $_SESSION['user_id'];
+        $deal = $this->getDealById($id);
+        $userDeal['user_id'] = $user_id;
+        $userDeal['catalog_id'] = (int)$deal['id'];
+        $userDeal['date'] = $this->getDatetimeNow();
+        $this->setUserCostsNumber(-((int)$deal['cost']));
+        $this->DBManager->insert('deals', $userDeal);
+    }
+
+
+
+
+
 
 
 
@@ -354,23 +459,21 @@ class UserManager
         if(substr($date,2,1) != '/' || substr($date,5,1) != '/'){
             $bool = false;
         }else{
-            /*if(checkdate($month,$day,$year)){
-                $currentDate = date('d/m/Y',strtotime($this->getDatetimeNow()));
-                echo "Current date : ".$currentDate."<br>";
-                echo "expiration date : ".$date."<br>";
-                echo $date."<br>";
-                echo "expiration date : ".date('Y/m/d',strtotime($date))."<br>";
-
-                $datetime1 = date_create($currentDate);
-                $datetime2 = date_create($date);
-                var_dump($datetime1);
-                echo "<br>";
-                var_dump($datetime2);
-
-                //echo $interval->format('%R%a days');
+            if(checkdate($month,$day,$year)){
+               $currentDate = $this->getDatetimeNow();
+               $date = $month.'/'.$day.'/'.$year;
+               $strToDate=  strtotime($date);
+               $expirationDate = date('Y/m/d H:i:s', $strToDate);
+               $date1=date_create($currentDate);
+                $date2=date_create($expirationDate);
+                $diff=date_diff($date1,$date2);
+                $interval =  (int)$diff->format("%R%a");
+                if($interval < 0){
+                    $bool = false;
+                }
             }else{
                 $bool = false;
-            }*/
+            }
         }
         return $bool;
     }
@@ -457,7 +560,7 @@ class UserManager
     }
     public function setUserCostsNumber($data){
         $user_id = $_SESSION['user_id'];
-        $costs = (int)$data+$this->getUserCostsNumber();
+        $costs = (int)($data+$this->getUserCostsNumber());
         return $this->DBManager->findOneSecure("UPDATE users SET costs = :costs WHERE id=:user_id",
                                                 [
                                                     'user_id' => $user_id,
@@ -482,7 +585,7 @@ class UserManager
     }
     public function getDatetimeNow() {
         date_default_timezone_set('Europe/Paris');
-        return date("Y-m-d H:i:s");
+        return date("Y/m/d H:i:s");
     }
     public function generateBarcode()
     {

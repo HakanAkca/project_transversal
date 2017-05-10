@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <h3>Vos bouteilles ici</h3>
+    <form action="?action=dump" method="post">
+        <input type="text" name="bottlesNumber" placeholder="vos bouteilles">
+        <input type="submit" name="submitBottles" value="Valider">
+    </form>
+    <br>
+    <br>
+    <br>
+    <h3>code barre</h3>
+    <form action="?action=dump" method="post">
+        <input type="text"  name="barcode" placeholder="vos bouteilles">
+        <input type="submit" name="submitBarcode" value="Valider">
+    </form>
+{% endblock %}

@@ -5,13 +5,15 @@ $(function() {
 
     $('.burger').click(function(){
         if($('.mobile_dropdown').is(':visible')){
-            $('.mobile_dropdown').animate({'left' :"-100%"}, 1000, function(){
+            $('.mobile_dropdown').animate({'left' :"-100%"}, 500, function(){
                 $('.mobile_dropdown').css({'display': 'none', 'left':'-100%'});
+                $('body').css('overflow', 'initial');
             })
         }
         else{
             $('.mobile_dropdown').css({'display': 'flex', 'left':'-100%'});
-            $('.mobile_dropdown').animate({'left' :"0"}, 1000 )
+            $('.mobile_dropdown').animate({'left' :"0"}, 500 )
+            $('body').css('overflow', 'hidden');
         }
     })
 
@@ -36,7 +38,7 @@ $(function() {
         switch_tab($('#profile_sondage'), $('.sondage'))
         $('.all_offers_link').css('display', 'none');
     });
-    
+
     $('.deal_cost').click(function(){
         $('#modale').css('display', 'flex');
         $('body').css('overflow', 'hidden');
@@ -55,4 +57,5 @@ $(function() {
         $('#modale').css('display', 'none');
         $('body').css('overflow', 'initial');        
     })
+
 });

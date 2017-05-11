@@ -34,7 +34,7 @@
         <div class="all_offers">
             {% for deal in allDeals %}
                 <div class="offer">
-                    <img src="{{ deal['image'] }}"/>
+                    <img class="deal_img" src="{{ deal['image'] }}"/>
                     <div class="info">
                         <p class="title">{{deal.partner}}</p>
                         <p>Description :</p>
@@ -44,7 +44,7 @@
                                 <p>{{deal.cost}} Points</p>
                             </div>
                             <div class="more">
-                                <div class="circle">+</div>
+                                <img src="assets/img/expand-arrows.png"></img>
                             </div>
                         </div>
                         <div class="more_info">

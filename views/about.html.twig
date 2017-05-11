@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+        
+    <header>    
+        <div class="left_side_mobile">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+            </div>
+            <ul class="mobile_dropdown">
+                <li><a href="?action=about">Nous</a></li>
+                <li><a href="?action=partner">Devenir Partenaires</a></li>
+                {% if user.pseudo is defined %}
+                    <li><a href="?action=profile">Profil</a></li>
+                {% else %}
+                    <li><a href="?action=register">Inscription</a></li>
+                {% endif %}
+            </ul>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+        </div>
+        <div class="stats">
+            <span>{{bottlesRecycled}}</span>
+            <p>objets recylés !</p>
+        </div>
+        <ul class="menu_desktop">
+            <li><a href="?action=about">Nous</a></li>
+            <li><a href="?action=partner">Devenir Partenaires</a></li>
+            {% if user.pseudo is defined %}
+                <li><a href="?action=profile">Profil</a></li>
+            {% else %}
+                <li><a href="?action=register">Inscription</a></li>
+            {% endif %}
+        </ul>
+        <div class="current"><a href="#">Accueil</a></div>
+    </header>
+
+{% endblock %}

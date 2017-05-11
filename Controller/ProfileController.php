@@ -28,7 +28,7 @@ class ProfileController extends BaseController
                 $userBarcode = $manager->getUserBarcodes();
 
 
-                $myDeals = $manager->getAvailableUserDeals();
+                $myDeals = $manager->getUserDeals();
 
                 if(isset($_POST['submitBuyDeal'])){
                     if($manager->chechBuyDeal($_POST['IDdeal'])){

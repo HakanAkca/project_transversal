@@ -78,4 +78,8 @@ class DefaultController extends BaseController
                                     ]);
         }
     }
+
+    public function aboutAction(){
+        echo $this->renderView('about.html.twig');
+    }
 }

@@ -596,4 +596,43 @@ class UserManager
         }
         return $barcode;
     }
+
+    public function newsletterCheck($data){
+        $errors = array();
+        $res = array();
+        $isFormGood = true;
+
+        if(!$this->emailValid($data['newsletter'])){
+            $errors['lol'] = "email non valide";
+            $isFormGood = false;
+        }
+
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        $res['data'] = $data;
+        return $res;
+    }
+
+    public function newslettersSend()
+    {
+        $email = $_POST['newsletter'];
+
+        echo $email;
+
+        $objet = 'Newsletter du ';
+        $contenu = '
+                <html>
+                <head>
+                <title>Vous avez réservé sur notre site ...</title>
+                </head>
+                <body>
+                <p>blablablabla</p>
+                </body>
+                </html>';
+        $entetes = 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: tritus@fundation.tld' . "\r\n" . 'Reply-To: hakanakca10@gmail.com' . "\r\n" .
+            'X-Mailer: PHP/' . phpversion();
+
+        mail($email, $objet, $contenu, $entetes);
+    }
+
 }

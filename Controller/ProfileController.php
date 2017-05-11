@@ -12,52 +12,61 @@ use Model\UserManager;
 
 class ProfileController extends BaseController
 {
-    public function profileAction(){
+    public function profileAction()
+    {
 
-            if(!empty($_SESSION['user_id'])){
-                $manager = UserManager::getInstance();
-                $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-                $user_id = $_SESSION['user_id'];
-                $user = $manager->getUserById($user_id);
-                $dealByCity = $manager->getDealsByCity($user['city']);
-                $userDeals = $manager->getAvailableDeals();
+        if (!empty($_SESSION['user_id'])) {
+            $manager = UserManager::getInstance();
+            $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+            $user_id = $_SESSION['user_id'];
+            $user = $manager->getUserById($user_id);
+            $dealByCity = $manager->getDealsByCity($user['city']);
+            $userDeals = $manager->getAvailableDeals();
+            $pageActuel = $_GET['action'];
 
-                $costs = 0;
-                $errorBarcode = '';
-                $yourBarcode = '';
-                $userBarcode = $manager->getUserBarcodes();
+            $costs = 0;
+            $errorBarcode = '';
+            $yourBarcode = '';
+            $userBarcode = $manager->getUserBarcodes();
+            $myDeals = $manager->getAvailableUserDeals();
 
-
-                $myDeals = $manager->getAvailableUserDeals();
-
-                if(isset($_POST['submitBuyDeal'])){
-                    if($manager->chechBuyDeal($_POST['IDdeal'])){
-                        $manager->buyDeal($_POST['IDdeal']);
-                        header('Location:?action=profile');
-                        $manager->getAvailableUserDeals();
-                    }
+            if (isset($_POST['newsletter'])) {
+                if($manager->newsletterCheck($_POST['newsletter'])){
+                    $manager->newslettersSend();
                 }
-                echo $this->renderView('profile.html.twig',
-                                        [
-                                            'user' => $user,
-                                            'userDeals' => $userDeals,
-                                            'dealByCity' => $dealByCity,
-                                            'costs' => $costs,
-                                            'bottlesRecycled' => $bottlesRecycled,
-                                            'errorBarcode' => $errorBarcode,
-                                            'yourBarcode' => $yourBarcode,
-                                            'userBarcode' => $userBarcode,
-                                            'myDeals' => $myDeals
-                                        ]);
-            }else{
-                $this->redirect('home');
             }
+
+            if (isset($_POST['submitBuyDeal'])) {
+                if ($manager->chechBuyDeal($_POST['IDdeal'])) {
+                    $manager->buyDeal($_POST['IDdeal']);
+                    header('Location:?action=profile');
+                    $manager->getAvailableUserDeals();
+                }
+            }
+            echo $this->renderView('profile.html.twig',
+                [
+                    'user' => $user,
+                    'userDeals' => $userDeals,
+                    'dealByCity' => $dealByCity,
+                    'costs' => $costs,
+                    'bottlesRecycled' => $bottlesRecycled,
+                    'errorBarcode' => $errorBarcode,
+                    'yourBarcode' => $yourBarcode,
+                    'userBarcode' => $userBarcode,
+                    'myDeals' => $myDeals,
+                    'pageActuel' => $pageActuel
+                ]);
+        } else {
+            $this->redirect('home');
+        }
 
 
     }
-    public function dumpAction(){
 
-        if(!empty($_SESSION['user_id'])){
+    public function dumpAction()
+    {
+
+        if (!empty($_SESSION['user_id'])) {
             $manager = UserManager::getInstance();
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
             $user_id = $_SESSION['user_id'];
@@ -69,13 +78,13 @@ class ProfileController extends BaseController
             $yourBarcode = '';
             $userBarcode = $manager->getUserBarcodes();
 
-            if(isset($_POST['submitBottles'])) {
+            if (isset($_POST['submitBottles'])) {
                 if ($manager->checkDump($_POST)) {
                     $manager->addBarcode($_POST);
                 }
             }
-            if(isset($_POST['submitBarcode'])) {
-                if($manager->checkUserBarcode($_POST)) {
+            if (isset($_POST['submitBarcode'])) {
+                if ($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();
                     $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
                     $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
@@ -83,7 +92,7 @@ class ProfileController extends BaseController
                     $manager->updateLevel();
                     $manager->barcodeUsed($_POST['barcode']);
                     header('Location:?action=dump');
-                }else{
+                } else {
                     $errorBarcode = "Veillez saisir un code barre valide";
                 }
             }
@@ -98,38 +107,39 @@ class ProfileController extends BaseController
                     'yourBarcode' => $yourBarcode,
                     'userBarcode' => $userBarcode,
                 ]);
-        }else{
+        } else {
             $this->redirect('home');
         }
 
     }
 
-    public function adminAction(){
-        if(!empty($_SESSION['user_username'] == 'adminOmar')){
+    public function adminAction()
+    {
+        if (!empty($_SESSION['user_username'] == 'adminOmar')) {
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
             $errors = array();
             $manager->getAllDeals();
-            if(isset($_POST['submitCatalog'])){
+            if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
-                if($res['isFormGood']){
+                if ($res['isFormGood']) {
                     $manager->addCatalog($res['data']);
-                }else{
+                } else {
                     $errors = $res['errors'];
                 }
             }
-            if(isset($_POST['submitAccount'])){
-                if($manager->checkRemoveAccount($_POST)){
+            if (isset($_POST['submitAccount'])) {
+                if ($manager->checkRemoveAccount($_POST)) {
                     $manager->deleteAccount($_POST);
                 }
             }
             echo $this->renderView('admin.html.twig',
-                                    [
-                                        'user' => $user,
-                                        'errors' => $errors,
-                                    ]);
-        }else{
+                [
+                    'user' => $user,
+                    'errors' => $errors,
+                ]);
+        } else {
             $this->redirect('home');
         }
     }

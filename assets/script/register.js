@@ -53,9 +53,25 @@ $(function() {
         $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().children(".other_info").children('.id').html());
     })
 
+    $('.more').click(function(){
+        $('#modale').css('display', 'flex');
+        $('body').css('overflow', 'hidden');
+
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.img_modale').attr("src", $(this).parent().parent().parent().children("img").attr("src"));
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.partner_modale').children('span:last').html($(this).parent().parent().children(".title").html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.city_modale').children('span:last').html($(this).parent().parent().children(".more_info").children('span:first').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().parent().children(".more_info").children('span:last').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().children(".costs").html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().parent().children(".more_info").children('p:first').html());
+
+        $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().parent().children(".more_info").children('.id').html());
+    })
+
     $('.close_modale').click(function(){
         $('#modale').css('display', 'none');
         $('body').css('overflow', 'initial');        
     })
+
+
 
 });

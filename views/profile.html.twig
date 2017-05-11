@@ -57,13 +57,12 @@
                     <div class="all_reducs">
                         {% for reduc in myDeals %}
                             <div class="reducs">
-                                <img class="reduc_img" src="{{reduc.image}}"></img>
-                                <div class="reduc_info">
+                                <img class="partner_img" src="{{reduc.image}}"></img>
+                                <div class="deal_info">
                                     <span>{{reduc.partner}}</span>
                                     <span>{{ reduc['deal'] | raw }}</span>
-                                    <span>{{ reduc['description'] | raw }}</span>
                                 </div>
-                                <div class="reduc_cost"><span>{{ reduc['cost'] }}</span><span> points</span></div>
+                                <div class="print"><img src="assets/img/printer.png"></img></div>
                                 <div class="other_info">
                                     <span>{{reduc.city}}</span>
                                     <span class="id">{{reduc.id}}</span>

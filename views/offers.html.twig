@@ -47,9 +47,47 @@
                                 <div class="circle">+</div>
                             </div>
                         </div>
+                        <div class="more_info">
+                            <span>{{deal.city}}</span>
+                            <span class="id">{{deal.id}}</span>
+                            <span>{{deal.expirationDate | date("m/d/Y")}}</span>
+                            <p>{{deal.deal}}</p>
+                        </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
+
+        <div id="modale">
+            <div class="modale_available_deal">
+                <div class="deal_info">
+                    <img class="img_modale" src=""></img>
+                    <div class="info">
+                        <p class="title">INFO</p>
+                        <p class="partner_modale info_deal"><span>Partenaire</span><span></span></p>
+                        <p class="city_modale info_deal"><span>Ville</span><span></span></p>
+                        <p class="expiration_modale info_deal"><span>Date d'expiration</span><span></span></p>
+                        <div class="important">
+                            <div class="price big">
+                                <span>Coût</span>
+                                <span></span>
+                            </div>
+                            <div class="reduc big">
+                                <span>Réduction</span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action">
+                    <form class="buy_deal" action="?action=offers" method="POST">
+                        <input class="id" name="IDdeal" type="text" value="">
+                        <input class="buy" name="submitBuyDeal" type="submit" value="acheter l'offre">
+                    </form>
+                    <a class="close_modale">Non merci</a>
+                </div>
+            </div>
+        </div>
+
     </main>
 {% endblock %}

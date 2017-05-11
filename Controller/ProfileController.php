@@ -28,7 +28,7 @@ class ProfileController extends BaseController
             $errorBarcode = '';
             $yourBarcode = '';
             $userBarcode = $manager->getUserBarcodes();
-            $myDeals = $manager->getAvailableUserDeals();
+            $myDeals = $manager->getUserDeals();
 
             if (isset($_POST['newsletter'])) {
                 if($manager->newsletterCheck($_POST['newsletter'])){

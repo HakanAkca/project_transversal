@@ -35,6 +35,7 @@ class ProfileController extends BaseController
                     $manager->newslettersSend();
                 }
             }
+                $myDeals = $manager->getUserDeals();
 
             if (isset($_POST['submitBuyDeal'])) {
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {

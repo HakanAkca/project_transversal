@@ -250,16 +250,20 @@ class UserManager
             $isFormGood = false;
         }
         if(!isset($data['cost']) | empty($data['cost'])){
+            $errors['cost'] = "Veillez choisir un cost";
             $isFormGood = false;
         }
         if(!isset($data['description']) | empty($data['description'])){
             $isFormGood = false;
+            $errors['description'] = "Veillez remplir le champ description";
         }
         if(!isset($data['expirationDate']) | empty($data['expirationDate'])){
+            $errors['expirationDate'] = "Veillez mettre une date d'expiration valide";
             $isFormGood = false;
         }
         if(isset($data['expirationDate']) && !empty($data['expirationDate'])){
             if(!$this->checkExpirationDate($data['expirationDate'])){
+                $errors['expirationDate'] = "Veillez mettre une date d'expiration valide";
                 $isFormGood = false;
             }else{
                 $strToDate=  strtotime($data['expirationDate']);
@@ -360,10 +364,10 @@ class UserManager
         }
         return $res;
     }
-    public function getAvailableUserDeals(){
+    public function getUserDeals(){
         $res = array();
         $user_id = (string)$_SESSION['user_id'];
-        $data = $this->DBManager->findAllSecure("SELECT * FROM deals WHERE user_id =:user_id",
+        $data = $this->DBManager->findAllSecure("SELECT * FROM deals WHERE user_id =:user_id ORDER BY date DESC",
                                                     ['user_id' => $user_id]);
         foreach ($data as $catalog){
             $res[] = $this->getDealById($catalog['catalog_id']);

@@ -40,6 +40,13 @@ class DefaultController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
         }
         $allDeals = $manager->getAllDeals();
+        if(isset($_POST['submitBuyDeal'])){
+            if($manager->chechBuyDeal($_POST['IDdeal'])){
+                $manager->buyDeal($_POST['IDdeal']);
+                header('Location:?action=offers');
+                $manager->getAvailableUserDeals();
+            }
+        }
         echo $this->renderView('offers.html.twig',
                                 [
                                     'user' => $user,

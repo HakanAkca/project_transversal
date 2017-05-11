@@ -30,9 +30,12 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
-            if (isset($_POST['newsletter'])) {
-                if($manager->newsletterCheck($_POST['newsletter'])){
-                    $manager->newslettersSend();
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+
+                if($res['isFormGood']){
+                    var_dump($res['isFormGood']);
+                    //$manager->newslettersSend($res['data']);
                 }
             }
                 $myDeals = $manager->getUserDeals();
@@ -41,7 +44,7 @@ class ProfileController extends BaseController
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {
                     $manager->buyDeal($_POST['IDdeal']);
                     header('Location:?action=profile');
-                    $manager->getAvailableUserDeals();
+                    $manager->getUserDeals();
                 }
             }
             echo $this->renderView('profile.html.twig',

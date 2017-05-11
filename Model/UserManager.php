@@ -617,9 +617,9 @@ class UserManager
         return $res;
     }
 
-    public function newslettersSend()
+    public function newslettersSend($d)
     {
-        $email = $_POST['newsletter'];
+        $email = $d;
 
         echo $email;
 

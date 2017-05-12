@@ -102,59 +102,22 @@
   }
   header .menu_desktop a:hover {
     color: #f0816c;
-  }
-}
-@media screen and (min-width: 1026px) {
-  header .menu_desktop {
-    display: flex;
-  }
-}
-@media screen {
-  header .stats {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-right: 5px;
-    font-family: 'robotoBold';
-    color: white;
-    font-size: 14px;
-  }
-}
-@media screen and (min-width: 1026px) {
-  header .stats {
-    flex-direction: row;
-    margin-left: 20px;
-  }
-}
-@media screen {
-  header .stats span {
-    color: #f0816c;
-    letter-spacing: 4px;
-    font-weight: bold;
-    font-size: 18px;
-  }
-  header .current {
-    display: none;
-    height: 40px;
-    background-color: #f0816c;
     margin-right: 40px;
     margin-left: 20%;
     padding: 0px 10px;
   }
-  header .current a {
+  header .menu_desktop a:hover a {
     padding-top: 9px;
     color: white;
   }
 }
 @media screen and (min-width: 1026px) {
-  header .current {
+  header .menu_desktop a:hover {
     display: flex;
   }
 }
-
 @media screen {
-  .allForm {
+  header .menu_desktop .allForm {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -162,52 +125,33 @@
     height: 400px;
     padding-bottom: 15px;
   }
-  .allForm .container_form {
+  header .menu_desktop .allForm .container_form {
     text-align: center;
   }
 }
 @media screen and (min-width: 1026px) {
-  .allForm .container_form {
+  header .menu_desktop .allForm .container_form {
     background-color: white;
     padding: 20px 5%;
   }
 }
 @media screen {
-  .allForm .title {
+  header .menu_desktop .allForm .title {
     font-family: 'PoppinsMedium';
     color: #f0816c;
-  }
-  .allForm .form-container #myRegister {
-    text-align: center;
-  }
-  .allForm .form-container #myRegister .form-item-block span {
-    color: #f0816c;
-    padding-bottom: 4px;
-    font-size: 12px;
-  }
-}
-@media screen and (min-width: 1026px) {
-  .allForm .form-container #myRegister .form-item-block {
-    width: 250px;
-  }
-}
-@media screen {
-  .allForm .form-container #myRegister button {
-    border: none;
-    background-color: #f0816c;
     color: white;
     box-shadow: 0px 5px 1px #d47260;
   }
-  .allForm .form-container #myRegister button:hover {
+  header .menu_desktop .allForm .title:hover {
     box-shadow: 0px 2px 1px #d47260;
   }
-  .allForm .form-container #myRegister .error {
+  header .menu_desktop .allForm .error {
     color: red;
     margin: 10px;
   }
 }
 @media screen and (min-width: 1026px) {
-  .allForm {
+  header {
     background-image: url("../img/inscription.png");
     height: 600px;
   }
@@ -324,8 +268,7 @@
     text-align: center;
   }
   .user_page .box {
-    margin: 0px 10px;
-    margin-bottom: 30px;
+    margin: 30px 10px;
   }
   .user_page .box ul {
     display: flex;
@@ -455,10 +398,43 @@
     text-align: center;
     width: 50%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     border-radius: 5px;
     padding: 5px;
     color: white;
+  }
+  .user_page .insert {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+  .user_page .insert .insert_code {
+    background-color: #f0816c;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+  }
+  .user_page .insert .form_code {
+    display: none;
+  }
+  .user_page .insert .form_code .code_input {
+    width: 50%;
+  }
+  .user_page .insert .form_code .button {
+    background-color: #ed6147;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   #modale {
@@ -597,7 +573,7 @@
     text-align: center;
   }
   .offer_page .all_offers .offer .info .buttons .costs {
-    background-color: #f0816c;
+    background-color: #ed6147;
     color: white;
     padding: 5px 10px;
   }

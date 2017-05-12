@@ -127,6 +127,15 @@
                 </div>
             </div>
         </div>
+
+        <div class="insert">
+            <a class="insert_code">Insérer un code !</a>
+            <form class="form_code" action="?action=profile" method="POST">
+                <input type="number" name="barcode" class="code_form" class="code_input" placeholder="ex : 784589"/>
+                <input type="submit" class="button" value="Valider le code"/>
+            </form>
+        </div>
+
     </main>
 {% endblock %}
 

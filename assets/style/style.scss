@@ -1,5 +1,6 @@
 $neutralColor : #4b4b4b; // nav || footer
-$red : #f0816c;
+$orange : #f0816c;
+$red: #ed6147;
 
 @font-face {
     src: url('../fonts/Roboto-Bold.ttf');
@@ -102,35 +103,7 @@ $red : #f0816c;
                 color: white;
                 padding: 0px 20px;
                 &:hover{
-                    color:$red;
-                }
-            }
-            @media(min-width:1026px){
-                display: flex;
-            }
-        }
-        .stats{
-            @include flex_trinity(column, flex-start);
-            align-items: center;
-            margin-right: 5px;
-            font-family: 'robotoBold';
-            color:white;
-            font-size: 14px;
-            @media(min-width:1026px){
-                flex-direction: row;
-                margin-left: 20px;
-            }
-            span{
-                color:$red;
-                letter-spacing: 4px;
-                font-weight: bold;
-                font-size: 18px;
-            }
-        }
-        .current{
-            display: none;
-            height: 40px;
-            background-color: $red;
+                    color:$orange;
             a{
                 padding-top: 9px;
                 color: white;
@@ -160,24 +133,7 @@ $red : #f0816c;
         }
         .title{
             font-family: 'PoppinsMedium';
-            color:$red;
-        }
-        .form-container{
-            #myRegister{
-                text-align: center;
-                .form-item-block{
-                    span{
-                        color :$red;
-                        padding-bottom: 4px;
-                        font-size: 12px;
-                    }
-                    @media(min-width:1026px){
-                        width: 250px;
-                    }
-                }
-                button{
-                    border : none;
-                    background-color: $red;
+            color:$orange;
                     color:white;
                     box-shadow: 0px 5px 1px #d47260;
                     &:hover{
@@ -231,7 +187,7 @@ $red : #f0816c;
                         margin-left: 10px;
                     }
                     .lvl{
-                        color : $red;
+                        color : $orange;
                         font-size: 20px;
                         font-weight: bold;
                     }
@@ -241,7 +197,7 @@ $red : #f0816c;
                     margin: 15px 0px;
                     font-family: 'robotoLight';
                     a{
-                        background-color: $red;
+                        background-color: $orange;
                         color: white;
                         padding: 5px 10px;
                     }
@@ -249,7 +205,7 @@ $red : #f0816c;
                 .inscription_date{
                     font-family: 'robotoLight';
                     font-size: 11px;
-                    background-color: $red;
+                    background-color: $orange;
                     padding: 3px;
                 }
             }
@@ -294,8 +250,7 @@ $red : #f0816c;
             }
         }
         .box{
-            margin: 0px 10px;
-            margin-bottom: 30px;
+            margin: 30px 10px;
             ul{
                 @include flex_trinity(row, space-between);
                 .tabs{
@@ -344,7 +299,7 @@ $red : #f0816c;
                                 }
                                 .print{
                                     width: 25%;
-                                    background-color: $red;
+                                    background-color: $orange;
                                     @include flex_trinity(row, center);
                                     img{
                                         width: 30px;
@@ -383,7 +338,7 @@ $red : #f0816c;
                             }
                             .deal_cost{
                                 width: 30%;
-                                background-color: $red;
+                                background-color: $orange;
                                 @include flex_trinity(column, center);
                                 color: white;
                                 span:nth-child(2){
@@ -411,12 +366,44 @@ $red : #f0816c;
                 text-align: center;
                 width: 50%;
                 margin: auto;
-                margin-top: 20px;
+                margin-top: 30px;
                 border-radius: 5px;
                 padding: 5px;
                 color: white;
             }
         }
+        .insert{
+            @include flex_trinity(column, flex-start);
+            align-items: center;
+            padding: 5px;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 15px;
+            .insert_code{
+                background-color: #f0816c;
+                text-align: center;
+                width: 50%;
+                margin: auto;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;        
+            }
+            .form_code{
+                display:none;
+                .code_input{
+                    width: 50%;
+                }
+                .button{
+                    background-color: $red;
+                    border: none;
+                    color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
     }
 
     #modale{

@@ -90,6 +90,11 @@ class DefaultController extends BaseController
     }
 
     public function aboutAction(){
-        echo $this->renderView('about.html.twig');
+        if(!empty($_SESSION['user_id'])){
+            echo $this->renderView('about.html.twig', ['isConnected' => true]);
+        }
+        else{
+            echo $this->renderView('about.html.twig');
+        }
     }
 }

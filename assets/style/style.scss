@@ -584,6 +584,63 @@ $red: #ed6147;
         }
     }
 
+    .us{
+        background-color: #f4f4f4;
+        .header_img{
+            height: 80px;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+            font-weight: bold;
+            font-family: 'PoppinsMedium';
+            background-image: url('../img/head_us.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .content{
+            padding: 0px 20px;
+            .txt{
+                margin-top: 30px;
+                color: #989898;
+                font-family: 'PoppinsMedium';
+                .how_it_works{
+                    padding: 0px 15px;
+                    .title{
+                        @include flex_trinity(row, space-between);
+                        font-size: 21px;
+                        img{
+                            height: 70px;
+                        }
+                    }
+                }
+                p{
+                    font-size: 14px;
+                    text-align: justify;
+                }
+                .middle_p{
+                    margin: 15px 0px;
+                }
+                .our_goal{
+                    margin-top: 25px;
+                    padding: 0px 15px;
+                    padding-top: 30px;
+                    background-color: #ffb4a6;
+                    color: white;
+                    margin-bottom: 30px;
+                    @include flex_trinity(column, space-around);
+                    .title{
+                        text-align: center;
+                        font-size: 21px;
+                    }
+                    img{
+                        height: 70px;
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
+    }
+
     footer{
         background-color: $neutralColor;
         padding: 20px;
@@ -597,6 +654,13 @@ $red: #ed6147;
         div:nth-child(1){
             @media(min-width:1026px){
                 width: 30%;
+            }
+        }
+        .social{
+            @include flex_trinity(row, space-around);
+            img{
+                width: 45px;
+                height: 45px;
             }
         }
         .newsletter{

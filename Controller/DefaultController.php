@@ -10,8 +10,10 @@ class DefaultController extends BaseController
     {
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+        $pageActuel = $_GET['action'];
         $user = array();
         $errors = '';
+
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
@@ -27,6 +29,7 @@ class DefaultController extends BaseController
                                 'user' => $user,
                                 'bottlesRecycled' => $bottlesRecycled,
                                 'errors' => $errors,
+                                'pageActuel' => $pageActuel
                                 ]);
     }
     public function offersAction(){
@@ -37,6 +40,13 @@ class DefaultController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
         }
         $allDeals = $manager->getAllDeals();
+        if(isset($_POST['submitBuyDeal'])){
+            if($manager->chechBuyDeal($_POST['IDdeal'])){
+                $manager->buyDeal($_POST['IDdeal']);
+                header('Location:?action=offers');
+                $manager->getAvailableUserDeals();
+            }
+        }
         echo $this->renderView('offers.html.twig',
                                 [
                                     'user' => $user,

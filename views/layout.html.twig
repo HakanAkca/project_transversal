@@ -9,6 +9,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="assets/script/foxholder.js"></script>
         <script src="assets/script/register.js"></script>
+        <script src="assets/script/map.js"></script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuqXaN9VFB9Ofv_t5NUY4xOpSWSIC7RZo&callback=initMap"></script>
     </head>
     <body>
         {% block content %}{% endblock %}
@@ -19,10 +22,10 @@
             </div>
             <div class="newsletter">
                 <p>Inscrivez vous a la Newsletter</p>
-                <form method="POST">
-                    <input id="newsletter" type="email" name="newsletter"/>
+                <form method="POST" action="?action={{ pageActuel }}">
+                    <input id="newsletter" type="text" name="newsletter"/>
                     <label for="buttonNewsletter"></label>
-                    <input type="submit" id="buttonNewsletter"/>
+                    <input type="submit" name="submitNewsletter" id="buttonNewsletter"/>
                 </form>
             </div>
             <div class="nav">

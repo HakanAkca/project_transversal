@@ -32,6 +32,8 @@
             {% for error in errors %}
                 <p>{{ error }}</p>
             {% endfor %}
+            <div id="successBlock"></div>
+            <div id="errorBlock"></div>
             <h2 class="title">Inscription</h2>
             <div class="form-container-2 form-container form" id="example-2">
                 <form id="myRegister" method="POST" action="?action=register">
@@ -45,4 +47,5 @@
             </div>
         </div>
     </main>
+    <script src="assets/script/registerCheck.js"></script>
 {% endblock %}

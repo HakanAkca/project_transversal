@@ -138,6 +138,17 @@ class ProfileController extends BaseController
                     $manager->deleteAccount($_POST);
                 }
             }
+
+            if (isset($_POST['deletteOffers'])) {
+                if ($manager->checkRemoveOffers($_POST)) {
+                    $manager->deleteOffers($_POST);
+                }
+            }
+            /*if (isset($_POST['updateOffers'])) {
+                if ($manager->checkUpdateOffers($_POST)) {
+                    $manager->updateOffers($_POST);
+                }
+            }*/
             echo $this->renderView('admin.html.twig',
                 [
                     'user' => $user,

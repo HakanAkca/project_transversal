@@ -31,4 +31,30 @@
             <input type="submit" name="submitAccount" value="Supprimer">
         </form>
     </div>
+    <hr>
+    <div>
+        <h3>Supprimer une offre</h3>
+        <form method="post" action="?action=admin">
+            offre
+            <input type="text" name="offers" placeholder="nom de l'offre">
+            <input type="submit" name="deletteOffers" value="Supprimer">
+        </form>
+    </div>
+    <hr>
+    <div>
+        <h3>Mettre a jour l'offre</h3>
+        <form method="post" action="?action=admin">
+            offre
+            <input type="text" name="offers" placeholder="nom de l'offre"><br>
+            modification a apporter<br>
+            <input type="text" name="update-partner" placeholder="Partenaire"><br>
+            <input type="text" name="update-city" placeholder="Secteur"><br>
+            <input type="text" name="update-deal" placeholder="Réduction"><br>
+            <input type="text" name="update-cost" placeholder="Coût"><br>
+            <input type="text" name="update-description" placeholder="Description"><br>
+            <input type="text" name="update-expirationDate" placeholder="jj/mm/année">
+            <input type="file" name="update-image"><br>
+            <input type="submit" name="updateOffers" value="Supprimer">
+        </form>
+    </div>
 {% endblock %}

@@ -63,7 +63,7 @@ class UserManager
 
         $data['image'] = 'web/img/avatar.gif';
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
-            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $errors['username'] = 'Pseudo de 6 caractères minimum';
             $isFormGood = false;
         }
         $data2 = $this->getUserByUsername($data['username']);
@@ -71,18 +71,35 @@ class UserManager
             $errors['username'] = 'Le pseudo existe déjà';
             $isFormGood = false;
         }
-        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
-            $errors['password'] = "Veiller saisir un mot de passe valide ";
-            $isFormGood = false;
-        }
-        if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
-            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
-            $isFormGood = false;
-        }
+
         if(!$this->emailValid($data['email'])){
             $errors['email'] = "email non valide";
             $isFormGood = false;
         }
+
+        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+            $errors['password'] = "Veiller saisir un mot de passe valide ";
+            $isFormGood = false;
+        }
+        /*if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
+            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
+            $isFormGood = false;
+        }*/
+
+
+        if (!isset($data['city']) || !$this->cityValid($data['city'])){
+            $errors['city'] = 'Merci de saissir une ville';
+            $isFormGood = false;
+        }
+
+        if ($isFormGood) {
+            echo(json_encode(array('success' => true, 'user' => $_POST)));
+        } else {
+            http_response_code(400);
+            echo(json_encode(array('success' => false, 'errors' => $errors)));
+            exit(0);
+        }
+
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
         $res['data'] = $data;
@@ -96,6 +113,9 @@ class UserManager
     }
     private function usernameValid($username){
         return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
+    }
+    private function cityValid($city){
+        return preg_match('`^([a-zA-Z0-9-_]{1,15})$`', $city);
     }
     //Minimum : 8 caractères avec au moins une lettre majuscule et un nombre
     private function passwordValid($password){
@@ -134,7 +154,8 @@ class UserManager
 
     public function userCheckLogin($data)
     {
-        if (empty($data['username']) OR empty($data['password']))
+
+        /*if (empty($data['username']) OR empty($data['password']))
             return false;
         $user = $this->getUserByUsername($data['username']);
         if ($user === false) {
@@ -150,7 +171,23 @@ class UserManager
             $this->DBManager->watch_action_log('access.log', $write);
             return false;
         }
-        return true;
+        return true;*/
+        $isFormGood = true;
+        $errors = array();
+        $user = $this->getUserByUsername($data['username']);
+        $hash = $this->userHash($data['password']);
+        if (empty($data['username']) OR empty($user) OR empty($data['password']) OR empty($hash)) {
+            $errors['Connexion field'] = 'Login ou mdp incorrect';
+            $isFormGood = false;
+        }
+        if ($isFormGood) {
+            echo(json_encode(array('success' => true, 'user' => $_POST)));
+        } else {
+            http_response_code(400);
+            echo(json_encode(array('success' => false, 'errors' => $errors)));
+            exit(0);
+        }
+        return $isFormGood;
     }
 
     public function userLogin($username)
@@ -638,5 +675,41 @@ class UserManager
 
         mail($email, $objet, $contenu, $entetes);
     }
+
+    public function checkRemoveOffers($data)
+    {
+        if (empty($data['offers']))
+            return false;
+        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
+        if ($offers === false)
+            return false;
+        return true;
+    }
+
+    public function deleteOffers($data){
+        $offers = $data['offers'];
+        return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
+            ['partner' => $offers]);
+    }
+
+    /*public function checkUpdateOffers($data)
+    {
+        if (empty($data['offers']))
+            return false;
+        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
+        if ($offers === false)
+            return false;
+        return true;
+    }
+
+    public function updateOffers($data){
+
+        $offers = $data['offers'];
+        $new_partner = $data['update-partner'];
+        return $this->DBManager->findOneSecure("UPDATE catalogs SET partner='$new_partner' WHERE id=:offers",
+            [
+                'id' => $offers
+        ]);
+    }*/
 
 }

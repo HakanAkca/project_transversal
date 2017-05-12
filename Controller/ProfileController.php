@@ -30,6 +30,10 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
+            //Classement !!!
+            $average = $manager->getAverages();
+            $ranking = $manager->ranking();
+
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -48,6 +52,19 @@ class ProfileController extends BaseController
                     $manager->getUserDeals();
                 }
             }
+            if (isset($_POST['submitBarcode'])) {
+                if ($manager->checkUserBarcode($_POST)) {
+                    $costs = $manager->getUserCostsNumber();
+                    $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
+                    $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
+                    $manager->setUserCostsNumber($barcode['cost']);
+                    $manager->updateLevel();
+                    $manager->barcodeUsed($_POST['barcode']);
+                    header('Location:?action=profile');
+                } else {
+                    $errorBarcode = "Veillez saisir un code barre valide";
+                }
+            }
             echo $this->renderView('profile.html.twig',
                 [
                     'user' => $user,
@@ -59,7 +76,9 @@ class ProfileController extends BaseController
                     'yourBarcode' => $yourBarcode,
                     'userBarcode' => $userBarcode,
                     'myDeals' => $myDeals,
-                    'pageActuel' => $pageActuel
+                    'pageActuel' => $pageActuel,
+                    'ranking' => $ranking,
+                    'average' => $average,
                 ]);
         } else {
             $this->redirect('home');
@@ -88,19 +107,7 @@ class ProfileController extends BaseController
                     $manager->addBarcode($_POST);
                 }
             }
-            if (isset($_POST['submitBarcode'])) {
-                if ($manager->checkUserBarcode($_POST)) {
-                    $costs = $manager->getUserCostsNumber();
-                    $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
-                    $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
-                    $manager->setUserCostsNumber($barcode['cost']);
-                    $manager->updateLevel();
-                    $manager->barcodeUsed($_POST['barcode']);
-                    header('Location:?action=dump');
-                } else {
-                    $errorBarcode = "Veillez saisir un code barre valide";
-                }
-            }
+
             echo $this->renderView('dump.html.twig',
                 [
                     'user' => $user,

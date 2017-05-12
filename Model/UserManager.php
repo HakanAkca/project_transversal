@@ -30,6 +30,10 @@ class UserManager
             ['username' => $username]);
         return $data;
     }
+    public function allUsers()
+    {
+        return $this->DBManager->findAllSecure("SELECT * FROM users");
+    }
     public function getPartnerByName($name)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM partners WHERE name = :name",
@@ -468,8 +472,42 @@ class UserManager
         $this->DBManager->insert('deals', $userDeal);
     }
 
+    public function getAverages(){
+        $users = $this->allUsers();
+        $currentDate=date_create($this->getDatetimeNow());
+        $average = array();
+        foreach ($users as $user){
+            $id = $user['id'];
+            $bottlesNumber = $user['bottlesNumber'];
+            $registerDate = $user['date'];
+            $strToDate=  strtotime($registerDate);
+            $registerDate = date('Y/m/d H:i:s', $strToDate);
+            $date1=date_create($registerDate);
+            $diff=date_diff($date1,$currentDate);
+            $interval =  (int)$diff->format("%R%d");
+            $week = (float)$interval/7;
+            if($week == 0){
+                $week = 1;
+            }
+            $average[$id] = round(($bottlesNumber)/$week);
+        }
+        return $average;
+    }
 
-
+    public function ranking(){
+        $res = array();
+        $averages = $this->getAverages();
+        $r_averages = $averages;
+        rsort($r_averages);
+        $newAverage = array();
+        foreach ($averages as $key => $value){
+           $newAverage[$value] = $key;
+        }
+        foreach ($r_averages as $key => $value){
+            $res[$newAverage[$value]] = $key+1;
+        }
+        return $res;
+    }
 
 
 
@@ -577,9 +615,8 @@ class UserManager
         return $res;
     }
 
-    public function getUserBottlesRecycled()
+    public function getUserBottlesRecycled($id)
     {
-        $id = $_SESSION['user_id'];
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users WHERE  id =:id",
             [
@@ -592,7 +629,7 @@ class UserManager
     }
     public function setUserBottlesRecycled($data){
         $user_id = $_SESSION['user_id'];
-        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled();
+        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled($user_id);
         return $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
             [
                 'user_id' => $user_id,
@@ -659,8 +696,7 @@ class UserManager
         $res = array();
         $email = $d;
         $object = 'Inscription au newsletter';
-        $content = '
-                <html>
+        $content = '<html>
                 <head>
                 <title>Vous avez réservé sur notre site ...</title>
                 </head>
@@ -671,23 +707,7 @@ class UserManager
         $res['email'] = $email;
         $res['object'] = $object;
         $res['content'] = $content;
-
         return $res;
-
-
-
-
-
-        /*$entetes = 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: tritus@fundation.tld' . "\r\n" . 'Reply-To: cheikhomar60@gmail.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-        if(mail($email, $objet, $contenu, $entetes)){
-            echo "Ok";
-        }else{
-
-            echo "Mail pas envoyé";
-        }*/
-
     }
 
     public function checkRemoveOffers($data)
@@ -700,11 +720,11 @@ class UserManager
         return true;
     }
 
-    public function deleteOffers($data){
+    /*public function deleteOffers($data){
         $offers = $data['offers'];
         return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
             ['partner' => $offers]);
-    }
+    }*/
 
     /*public function checkUpdateOffers($data)
     {

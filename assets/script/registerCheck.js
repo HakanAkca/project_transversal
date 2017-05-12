@@ -20,7 +20,7 @@ window.onload = function(){
             if(http.readyState == 4 && http.status == 200) {
                 successBlock.innerHTML = 'Inscription réussi vous aller être rediriger';
                 window.setTimeout(function(){
-                    window.location.href = 'http://localhost:8888/project_transversal/?action=home<'
+                    document.location.href = "?action=home";
                 }, 5000);
             } else {
                 var errors = JSON.parse(http.responseText);

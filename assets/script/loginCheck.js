@@ -17,7 +17,7 @@ window.onload = function(){
 
         http.onload = function() {
             if(http.readyState == 4 && http.status == 200) {
-                window.location.href = 'http://localhost:8888/project_transversal/?action=home'
+                document.location.href = "?action=home";
             } else {
                 var errors = JSON.parse(http.responseText);
                 for (var error in errors['errors']) {

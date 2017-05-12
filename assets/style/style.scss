@@ -1,5 +1,6 @@
 $neutralColor : #4b4b4b; // nav || footer
-$red : #f0816c;
+$orange : #f0816c;
+$red: #ed6147;
 
 @font-face {
     src: url('../fonts/Roboto-Bold.ttf');
@@ -102,7 +103,7 @@ $red : #f0816c;
                 color: white;
                 padding: 0px 20px;
                 &:hover{
-                    color:$red;
+                    color:$orange;
                 }
             }
             @media(min-width:1026px){
@@ -121,7 +122,7 @@ $red : #f0816c;
                 margin-left: 20px;
             }
             span{
-                color:$red;
+                color:$orange;
                 letter-spacing: 4px;
                 font-weight: bold;
                 font-size: 18px;
@@ -130,7 +131,7 @@ $red : #f0816c;
         .current{
             display: none;
             height: 40px;
-            background-color: $red;
+            background-color: $orange;
             a{
                 padding-top: 9px;
                 color: white;
@@ -149,7 +150,7 @@ $red : #f0816c;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 400px;
+        height: 450px;
         padding-bottom: 15px;
         .container_form{
             text-align: center;
@@ -160,14 +161,14 @@ $red : #f0816c;
         }
         .title{
             font-family: 'PoppinsMedium';
-            color:$red;
+            color:$orange;
         }
         .form-container{
             #myRegister{
                 text-align: center;
                 .form-item-block{
                     span{
-                        color :$red;
+                        color :$orange;
                         padding-bottom: 4px;
                         font-size: 12px;
                     }
@@ -177,7 +178,7 @@ $red : #f0816c;
                 }
                 button{
                     border : none;
-                    background-color: $red;
+                    background-color: $orange;
                     color:white;
                     box-shadow: 0px 5px 1px #d47260;
                     &:hover{
@@ -231,7 +232,7 @@ $red : #f0816c;
                         margin-left: 10px;
                     }
                     .lvl{
-                        color : $red;
+                        color : $orange;
                         font-size: 20px;
                         font-weight: bold;
                     }
@@ -241,7 +242,7 @@ $red : #f0816c;
                     margin: 15px 0px;
                     font-family: 'robotoLight';
                     a{
-                        background-color: $red;
+                        background-color: $orange;
                         color: white;
                         padding: 5px 10px;
                     }
@@ -249,7 +250,7 @@ $red : #f0816c;
                 .inscription_date{
                     font-family: 'robotoLight';
                     font-size: 11px;
-                    background-color: $red;
+                    background-color: $orange;
                     padding: 3px;
                 }
             }
@@ -294,8 +295,7 @@ $red : #f0816c;
             }
         }
         .box{
-            margin: 0px 10px;
-            margin-bottom: 30px;
+            margin: 30px 10px;
             ul{
                 @include flex_trinity(row, space-between);
                 .tabs{
@@ -344,7 +344,7 @@ $red : #f0816c;
                                 }
                                 .print{
                                     width: 25%;
-                                    background-color: $red;
+                                    background-color: $orange;
                                     @include flex_trinity(row, center);
                                     img{
                                         width: 30px;
@@ -383,7 +383,7 @@ $red : #f0816c;
                             }
                             .deal_cost{
                                 width: 30%;
-                                background-color: $red;
+                                background-color: $orange;
                                 @include flex_trinity(column, center);
                                 color: white;
                                 span:nth-child(2){
@@ -411,12 +411,44 @@ $red : #f0816c;
                 text-align: center;
                 width: 50%;
                 margin: auto;
-                margin-top: 20px;
+                margin-top: 30px;
                 border-radius: 5px;
                 padding: 5px;
                 color: white;
             }
         }
+        .insert{
+            @include flex_trinity(column, flex-start);
+            align-items: center;
+            padding: 5px;
+            width: 80%;
+            margin: auto;
+            margin-bottom: 15px;
+            .insert_code{
+                background-color: #f0816c;
+                text-align: center;
+                width: 50%;
+                margin: auto;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                padding: 5px;
+                color: white;        
+            }
+            .form_code{
+                display:none;
+                .code_input{
+                    width: 50%;
+                }
+                .button{
+                    background-color: $red;
+                    border: none;
+                    color: white;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
     }
 
     #modale{
@@ -552,6 +584,63 @@ $red : #f0816c;
         }
     }
 
+    .us{
+        background-color: #f4f4f4;
+        .header_img{
+            height: 80px;
+            color: white;
+            text-align: center;
+            line-height: 80px;
+            font-weight: bold;
+            font-family: 'PoppinsMedium';
+            background-image: url('../img/head_us.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .content{
+            padding: 0px 20px;
+            .txt{
+                margin-top: 30px;
+                color: #989898;
+                font-family: 'PoppinsMedium';
+                .how_it_works{
+                    padding: 0px 15px;
+                    .title{
+                        @include flex_trinity(row, space-between);
+                        font-size: 21px;
+                        img{
+                            height: 70px;
+                        }
+                    }
+                }
+                p{
+                    font-size: 14px;
+                    text-align: justify;
+                }
+                .middle_p{
+                    margin: 15px 0px;
+                }
+                .our_goal{
+                    margin-top: 25px;
+                    padding: 0px 15px;
+                    padding-top: 30px;
+                    background-color: #ffb4a6;
+                    color: white;
+                    margin-bottom: 30px;
+                    @include flex_trinity(column, space-around);
+                    .title{
+                        text-align: center;
+                        font-size: 21px;
+                    }
+                    img{
+                        height: 70px;
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
+    }
+
     footer{
         background-color: $neutralColor;
         padding: 20px;
@@ -565,6 +654,13 @@ $red : #f0816c;
         div:nth-child(1){
             @media(min-width:1026px){
                 width: 30%;
+            }
+        }
+        .social{
+            @include flex_trinity(row, space-around);
+            img{
+                width: 45px;
+                height: 45px;
             }
         }
         .newsletter{

@@ -32,13 +32,14 @@ class ProfileController extends BaseController
 
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
-
                 if($res['isFormGood']){
-                    var_dump($res['isFormGood']);
-                    //$manager->newslettersSend($res['data']);
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
                 }
             }
-                $myDeals = $manager->getUserDeals();
 
             if (isset($_POST['submitBuyDeal'])) {
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {

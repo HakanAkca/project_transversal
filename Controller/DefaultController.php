@@ -25,6 +25,16 @@ class DefaultController extends BaseController
                 $errors = "Veillez saisir un pseudo et un mot de passe valide";
             }
         }
+        if (isset($_POST['submitNewsletter'])) {
+            $res = $manager->newsletterCheck($_POST['newsletter']);
+            if($res['isFormGood']){
+                $res = $manager->newslettersSend($res['data']);
+                $email = $res['email'];
+                $object = $res['object'];
+                $content = $res['content'];
+                $this->sendMail($email,$object,$content,'...');
+            }
+        }
         echo $this->renderView('home.html.twig',[
                                 'user' => $user,
                                 'bottlesRecycled' => $bottlesRecycled,
@@ -45,6 +55,16 @@ class DefaultController extends BaseController
                 $manager->buyDeal($_POST['IDdeal']);
                 header('Location:?action=offers');
                 $manager->getAvailableUserDeals();
+            }
+        }
+        if (isset($_POST['submitNewsletter'])) {
+            $res = $manager->newsletterCheck($_POST['newsletter']);
+            if($res['isFormGood']){
+                $res = $manager->newslettersSend($res['data']);
+                $email = $res['email'];
+                $object = $res['object'];
+                $content = $res['content'];
+                $this->sendMail($email,$object,$content,'...');
             }
         }
         echo $this->renderView('offers.html.twig',
@@ -71,6 +91,16 @@ class DefaultController extends BaseController
                     $errors = $res['errors'];
                 }
             }
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+                if($res['isFormGood']){
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
+                }
+            }
             echo $this->renderView('partner.html.twig',
                                     [
                                         'user' => $user,
@@ -80,6 +110,16 @@ class DefaultController extends BaseController
                                     ]);
         }
         else{
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+                if($res['isFormGood']){
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
+                }
+            }
             $message = "Connecter vous avant tout";
             echo $this->renderView('partner.html.twig',
                                     [
@@ -87,9 +127,21 @@ class DefaultController extends BaseController
                                         
                                     ]);
         }
+
+
     }
 
     public function aboutAction(){
+        if (isset($_POST['submitNewsletter'])) {
+            $res = $manager->newsletterCheck($_POST['newsletter']);
+            if($res['isFormGood']){
+                $res = $manager->newslettersSend($res['data']);
+                $email = $res['email'];
+                $object = $res['object'];
+                $content = $res['content'];
+                $this->sendMail($email,$object,$content,'...');
+            }
+        }
         echo $this->renderView('about.html.twig');
     }
 }

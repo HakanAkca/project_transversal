@@ -104,6 +104,34 @@ $red: #ed6147;
                 padding: 0px 20px;
                 &:hover{
                     color:$orange;
+                }
+            }
+            @media(min-width:1026px){
+                display: flex;
+            }
+        }
+        .stats{
+            @include flex_trinity(column, flex-start);
+            align-items: center;
+            margin-right: 5px;
+            font-family: 'robotoBold';
+            color:white;
+            font-size: 14px;
+            @media(min-width:1026px){
+                flex-direction: row;
+                margin-left: 20px;
+            }
+            span{
+                color:$orange;
+                letter-spacing: 4px;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+        .current{
+            display: none;
+            height: 40px;
+            background-color: $orange;
             a{
                 padding-top: 9px;
                 color: white;
@@ -122,7 +150,7 @@ $red: #ed6147;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 400px;
+        height: 450px;
         padding-bottom: 15px;
         .container_form{
             text-align: center;
@@ -134,6 +162,23 @@ $red: #ed6147;
         .title{
             font-family: 'PoppinsMedium';
             color:$orange;
+        }
+        .form-container{
+            #myRegister{
+                text-align: center;
+                .form-item-block{
+                    span{
+                        color :$orange;
+                        padding-bottom: 4px;
+                        font-size: 12px;
+                    }
+                    @media(min-width:1026px){
+                        width: 250px;
+                    }
+                }
+                button{
+                    border : none;
+                    background-color: $orange;
                     color:white;
                     box-shadow: 0px 5px 1px #d47260;
                     &:hover{

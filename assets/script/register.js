@@ -72,6 +72,9 @@ $(function() {
         $('body').css('overflow', 'initial');        
     })
 
-
+    $('.insert_code').click(function(){
+        $('.form_code').css('display', 'block');
+        $('.insert').css('background-color', 'rgba(0,0,0,0.4)');
+    })
 
 });

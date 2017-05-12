@@ -159,7 +159,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 400px;
+    height: 450px;
     padding-bottom: 15px;
   }
   .allForm .container_form {
@@ -324,8 +324,7 @@
     text-align: center;
   }
   .user_page .box {
-    margin: 0px 10px;
-    margin-bottom: 30px;
+    margin: 30px 10px;
   }
   .user_page .box ul {
     display: flex;
@@ -455,10 +454,43 @@
     text-align: center;
     width: 50%;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 30px;
     border-radius: 5px;
     padding: 5px;
     color: white;
+  }
+  .user_page .insert {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+  .user_page .insert .insert_code {
+    background-color: #f0816c;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+  }
+  .user_page .insert .form_code {
+    display: none;
+  }
+  .user_page .insert .form_code .code_input {
+    width: 50%;
+  }
+  .user_page .insert .form_code .button {
+    background-color: #ed6147;
+    border: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   #modale {
@@ -597,7 +629,7 @@
     text-align: center;
   }
   .offer_page .all_offers .offer .info .buttons .costs {
-    background-color: #f0816c;
+    background-color: #ed6147;
     color: white;
     padding: 5px 10px;
   }
@@ -612,6 +644,67 @@
   }
   .offer_page #modale {
     top: 0;
+  }
+
+  .us {
+    background-color: #f4f4f4;
+  }
+  .us .header_img {
+    height: 80px;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    font-weight: bold;
+    font-family: 'PoppinsMedium';
+    background-image: url("../img/head_us.png");
+    background-size: cover;
+    background-position: center;
+  }
+  .us .content {
+    padding: 0px 20px;
+  }
+  .us .content .txt {
+    margin-top: 30px;
+    color: #989898;
+    font-family: 'PoppinsMedium';
+  }
+  .us .content .txt .how_it_works {
+    padding: 0px 15px;
+  }
+  .us .content .txt .how_it_works .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 21px;
+  }
+  .us .content .txt .how_it_works .title img {
+    height: 70px;
+  }
+  .us .content .txt p {
+    font-size: 14px;
+    text-align: justify;
+  }
+  .us .content .txt .middle_p {
+    margin: 15px 0px;
+  }
+  .us .content .txt .our_goal {
+    margin-top: 25px;
+    padding: 0px 15px;
+    padding-top: 30px;
+    background-color: #ffb4a6;
+    color: white;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .us .content .txt .our_goal .title {
+    text-align: center;
+    font-size: 21px;
+  }
+  .us .content .txt .our_goal img {
+    height: 70px;
+    align-self: flex-end;
   }
 
   footer {
@@ -636,6 +729,15 @@
   }
 }
 @media screen {
+  footer .social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  footer .social img {
+    width: 45px;
+    height: 45px;
+  }
   footer .newsletter {
     color: white;
     display: flex;

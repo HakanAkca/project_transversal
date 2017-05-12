@@ -643,7 +643,7 @@ class UserManager
         $res = array();
         $isFormGood = true;
 
-        if(!$this->emailValid($data['newsletter'])){
+        if(!$this->emailValid($data)){
             $errors['lol'] = "email non valide";
             $isFormGood = false;
         }
@@ -656,24 +656,38 @@ class UserManager
 
     public function newslettersSend($d)
     {
+        $res = array();
         $email = $d;
-
-        echo $email;
-
-        $objet = 'Newsletter du ';
-        $contenu = '
+        $object = 'Inscription au newsletter';
+        $content = '
                 <html>
                 <head>
                 <title>Vous avez réservé sur notre site ...</title>
                 </head>
                 <body>
-                <p>blablablabla</p>
+                <p>Vous êtes inscript au newsletter. Merci</p>
                 </body>
                 </html>';
-        $entetes = 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: tritus@fundation.tld' . "\r\n" . 'Reply-To: hakanakca10@gmail.com' . "\r\n" .
+        $res['email'] = $email;
+        $res['object'] = $object;
+        $res['content'] = $content;
+
+        return $res;
+
+
+
+
+
+        /*$entetes = 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: tritus@fundation.tld' . "\r\n" . 'Reply-To: cheikhomar60@gmail.com' . "\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
-        mail($email, $objet, $contenu, $entetes);
+        if(mail($email, $objet, $contenu, $entetes)){
+            echo "Ok";
+        }else{
+
+            echo "Mail pas envoyé";
+        }*/
+
     }
 
     public function checkRemoveOffers($data)

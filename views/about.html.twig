@@ -10,9 +10,9 @@
                 <div class="burger_line"></div>
             </div>
             <ul class="mobile_dropdown">
-                <li><a href="?action=about">Nous</a></li>
+                <li><a href="?action=home">Accueil</a></li>
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
-                {% if user.pseudo is defined %}
+                {% if isConnected is defined %}
                     <li><a href="?action=profile">Profil</a></li>
                 {% else %}
                     <li><a href="?action=register">Inscription</a></li>
@@ -25,9 +25,9 @@
             <p>objets recylés !</p>
         </div>
         <ul class="menu_desktop">
-            <li><a href="?action=about">Nous</a></li>
+            <li><a href="?action=home">Accueil</a></li>
             <li><a href="?action=partner">Devenir Partenaires</a></li>
-            {% if user.pseudo is defined %}
+            {% if isConnected is defined %}
                 <li><a href="?action=profile">Profil</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
@@ -35,5 +35,37 @@
         </ul>
         <div class="current"><a href="#">Accueil</a></div>
     </header>
+
+    <main class="us">
+        <div class="header_img">Nous</div>
+        <div class="content">
+            <div class="txt">
+                <div class="how_it_works">
+                    <p class="title">Comment <br>ça a commencé ? <img src="assets/img/aside_girl_us.png"></img></p>
+                    <div class="works_content">
+                        <p>Une bande de pote ayant pour intérêt principal l’écologie, voilà ce qui nous caractérise. Nous avons 
+                        décidé d'alier nos compétences et nous lancer dans le projet de notre vie.</p>
+                        <p class="middle_p"> Voilà maintenant deux ans que nous avons lancé notre projet et nous sommes fier et heureux de pouvoir 
+                        vous transmettre toute notre passion à travers nos poubelles.</p>
+                        <p>Nous vous remercions car sans vous, cette aventure ne pourrait continuer et nous nous efforçons au 
+                        quotidien à répondre à toutes vos attentes et à toujours améliorer notre produit.</p>
+                    </div>
+                </div>
+                <div class="our_goal">
+                    <div>
+                        <p class="title">Notre but</p>
+                        <div class="goal_content">
+                            <p>Nous voulons à travers nos poubelles favorisé bien évidemment l’écologie mais aussi dans le même temps l’économie des 
+                            commerces du coin. </p>
+                            <p>En plus de sauvé au quotidien notre planète vous pouvez vous faire plaisir chez vos commerçants favoris. What else ?</p>                       
+                        </div>  
+                    </div>
+                    <img src="assets/img/us_flower.png"></img>         
+                </div>
+            </div>
+            <div class="img_aside">
+            </div>
+        </div>
+    </main>
 
 {% endblock %}

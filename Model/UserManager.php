@@ -70,6 +70,82 @@ class UserManager
 
     }
 
+    public function checkProfile($data){
+        $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($_FILES['userfile']['name']) && !empty($_FILES)){
+            $data['userfile'] = $_FILES['userfile']['name'];
+            $data['file_tmp_name'] = $_FILES['userfile']['tmp_name'];
+            $res['data'] = $data;
+        }
+        else{
+            $errors['userfile'] = 'Veillez choisir une image';
+            $isFormGood = false;
+        }
+        if (!isset($data['editUsername']) || !$this->usernameValid($data['editUsername'])) {
+            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $isFormGood = false;
+        }
+        if($data['editUsername'] !== $_SESSION['user_username']){
+            $data2 = $this->getUserByUsername($data['editUsername']);
+            if($data2 !== false){
+                $errors['username'] = 'Le pseudo existe déjà';
+                $isFormGood = false;
+            }
+        }
+        if (!isset($data['editMail']) || !$this->emailValid($data['editMail'])) {
+            $errors['username'] = 'Adresse email non valide';
+            $isFormGood = false;
+        }
+        if (!isset($data['editCity']) || empty($data['editCity'])) {
+            $errors['username'] = 'Adresse email non valide';
+            $isFormGood = false;
+        }
+        $res['errors'] = $errors;
+        $res['isFormGood'] = $isFormGood;
+        return $res;
+    }
+
+    public function editProfile($data){
+        $pseudo = $data['editUsername'];
+        $email = $data['editMail'];
+        $city = $data['editCity'];
+        $file = '';
+        $file_tmp_name = '';
+        $id = $_SESSION['user_id'];
+        $username = $_SESSION['user_username'];
+
+        if (!empty($data['userfile']) && !empty($data['file_tmp_name'])) {
+            $file = $data['userfile'];
+            $file_tmp_name = $data['file_tmp_name'];
+        }
+        if (!empty($file) && !empty($file_tmp_name)) {
+            $new_file_url = 'uploads/' . $pseudo . '/' . $file;
+            rename('uploads/'.$username,'uploads/'.$pseudo);
+            move_uploaded_file($file_tmp_name, $new_file_url);
+            return $this->DBManager->findOneSecure(
+                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city, image =:new_file_url  WHERE id=:id",
+                [
+                    'pseudo' => $pseudo,
+                    'email' => $email,
+                    'city' => $city,
+                    'new_file_url' => $new_file_url,
+                    'id' => $id,
+                ]);
+        } else {
+            rename('uploads/'.$username,'uploads/'.$pseudo);
+            return $this->DBManager->findOneSecure(
+                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city WHERE id=:id",
+                [
+                    'pseudo' => $pseudo,
+                    'email' => $email,
+                    'city' => $city,
+                    'id' => $id,
+                ]);
+        }
+    }
+
 
     public function userCheckRegister($data)
     {

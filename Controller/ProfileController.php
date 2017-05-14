@@ -52,6 +52,14 @@ class ProfileController extends BaseController
                     $manager->getUserDeals();
                 }
             }
+            if (isset($_POST['submitEditProfile'])) {
+                $res = $manager->checkProfile($_POST);
+                if($res['isFormGood']){
+                    $manager->editProfile($res['data']);
+                }else{
+                    var_dump($res['errors']);
+                }
+            }
             if (isset($_POST['submitBarcode'])) {
                 if ($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();

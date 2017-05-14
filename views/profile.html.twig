@@ -28,7 +28,7 @@
 
     <main class="user_page">
         <div class="user_info">
-            <img class="profil_img" src="http://www.cipb.bj/wp-content/uploads/2017/01/no-profile-img-1024x1024-e1484312573323.gif"></img>
+            <img class="profil_img" src="{{ user.image }}"></img>
             <div class="line"></div>
             <div class="specific_info">
                 <div class="username_lvl">
@@ -159,6 +159,7 @@
                     <p>Photo de profil :</p>
                     <input class="input_img" type="file" name="userfile"/>
                 </div>
+                <input type="submit" name="submitEditProfile" value="Editer">
             </form>
         </div>
     </aside>

@@ -451,6 +451,25 @@ $red: #ed6147;
 
     }
 
+    .user_edit{
+        display: none;
+        background-color: #b5f4f2;
+        padding-bottom: 20px;
+        .area_edit{
+            background-color: rgba(0,0,0,0.4);
+            width: 80%;
+            padding: 5%;
+            margin: auto;
+            .content_edit{
+                @include flex_trinity(row, space-between);
+                .input_img{
+                    align-self: flex-end;
+                }
+            }
+        }
+
+    }
+
     #modale{
         height: 100vh;
         width: 100%;

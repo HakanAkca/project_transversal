@@ -59,7 +59,7 @@
     width: 100%;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   header .left_side_mobile .burger {
     display: none;
   }
@@ -104,7 +104,7 @@
     color: #f0816c;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   header .menu_desktop {
     display: flex;
   }
@@ -121,7 +121,7 @@
     font-size: 14px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   header .stats {
     flex-direction: row;
     margin-left: 20px;
@@ -147,7 +147,7 @@
     color: white;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   header .current {
     display: flex;
   }
@@ -166,7 +166,7 @@
     text-align: center;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   .allForm .container_form {
     background-color: white;
     padding: 20px 5%;
@@ -186,7 +186,7 @@
     font-size: 12px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   .allForm .form-container #myRegister .form-item-block {
     width: 250px;
   }
@@ -206,7 +206,7 @@
     margin: 10px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   .allForm {
     background-image: url("../img/inscription.png");
     height: 600px;
@@ -616,6 +616,18 @@
     font-weight: bold;
     font-family: 'PoppinsMedium';
   }
+}
+@media screen and (min-width: 768px) {
+  .offer_page .head_img {
+    height: 100px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .offer_page .head_img {
+    height: 130px;
+  }
+}
+@media screen {
   .offer_page .all_offers {
     display: flex;
     flex-direction: row;
@@ -629,10 +641,35 @@
     width: 40%;
     margin-bottom: 20px;
   }
+}
+@media screen and (min-width: 768px) {
+  .offer_page .all_offers .offer {
+    width: 30%;
+    margin: 10px 0px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .offer_page .all_offers .offer {
+    width: 21%;
+  }
+}
+@media screen {
   .offer_page .all_offers .offer .deal_img {
     width: 100%;
     height: 100px;
   }
+}
+@media screen and (min-width: 768px) {
+  .offer_page .all_offers .offer .deal_img {
+    height: 180px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .offer_page .all_offers .offer .deal_img {
+    height: 220px;
+  }
+}
+@media screen {
   .offer_page .all_offers .offer .info {
     display: flex;
     flex-direction: column;
@@ -737,13 +774,13 @@
     align-items: center;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer {
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer div:nth-child(1) {
     width: 30%;
   }
@@ -767,7 +804,7 @@
     align-items: center;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer .newsletter {
     width: 30%;
   }
@@ -780,7 +817,7 @@
     margin: 20px 0px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer .nav {
     width: 20%;
     margin-left: 10%;
@@ -794,12 +831,12 @@
     margin-left: 28px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer .nav div:nth-child(2) {
     margin-left: 0px;
   }
 }
-@media screen and (min-width: 1026px) {
+@media screen and (min-width: 1024px) {
   footer .nav div {
     display: flex;
     flex-direction: column;

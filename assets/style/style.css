@@ -493,6 +493,26 @@
     border-radius: 5px;
   }
 
+  .user_edit {
+    display: none;
+    background-color: #b5f4f2;
+    padding-bottom: 20px;
+  }
+  .user_edit .area_edit {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 80%;
+    padding: 5%;
+    margin: auto;
+  }
+  .user_edit .area_edit .content_edit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .user_edit .area_edit .content_edit .input_img {
+    align-self: flex-end;
+  }
+
   #modale {
     height: 100vh;
     width: 100%;

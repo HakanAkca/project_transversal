@@ -77,4 +77,11 @@ $(function() {
         $('.insert').css('background-color', 'rgba(0,0,0,0.4)');
     })
 
+    $('.params').click(function(){
+        $('.stats').css('display', 'none');
+        $('.box').css('display', 'none');
+        $('.insert').css('display', 'none');
+        $('.user_edit').css('display', 'block');
+    })
+
 });

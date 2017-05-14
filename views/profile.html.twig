@@ -138,5 +138,29 @@
         </div>
 
     </main>
+
+    <aside class="user_edit">
+        <div class="area_edit">
+            <p class="title">Editez vos informations :</p>
+            <form enctype="multipart/form-data" action="?action=profile" method="POST"/>
+                <div class="content_edit">
+                    <p>Pseudo :</p>
+                    <input type="txt" name="editUsername" value="{{user.pseudo}}"/>
+                </div>
+                <div class="content_edit">
+                    <p>Email :</p>
+                    <input type="txt" name="editMail" value="{{user.email}}"/>
+                </div>
+                <div class="content_edit">
+                    <p>City :</p>
+                    <input type="txt" name="editCity" value="{{user.city}}"/>
+                </div>
+                <div class="content_edit">
+                    <p>Photo de profil :</p>
+                    <input class="input_img" type="file" name="userfile"/>
+                </div>
+            </form>
+        </div>
+    </aside>
 {% endblock %}
 

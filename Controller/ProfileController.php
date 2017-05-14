@@ -30,21 +30,39 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
+            //Classement !!!
+            $average = $manager->getAverages();
+            $ranking = $manager->ranking();
+
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
-
                 if($res['isFormGood']){
-                    var_dump($res['isFormGood']);
-                    //$manager->newslettersSend($res['data']);
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
                 }
             }
-                $myDeals = $manager->getUserDeals();
 
             if (isset($_POST['submitBuyDeal'])) {
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {
                     $manager->buyDeal($_POST['IDdeal']);
                     header('Location:?action=profile');
                     $manager->getUserDeals();
+                }
+            }
+            if (isset($_POST['submitBarcode'])) {
+                if ($manager->checkUserBarcode($_POST)) {
+                    $costs = $manager->getUserCostsNumber();
+                    $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
+                    $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
+                    $manager->setUserCostsNumber($barcode['cost']);
+                    $manager->updateLevel();
+                    $manager->barcodeUsed($_POST['barcode']);
+                    header('Location:?action=profile');
+                } else {
+                    $errorBarcode = "Veillez saisir un code barre valide";
                 }
             }
             echo $this->renderView('profile.html.twig',
@@ -58,7 +76,9 @@ class ProfileController extends BaseController
                     'yourBarcode' => $yourBarcode,
                     'userBarcode' => $userBarcode,
                     'myDeals' => $myDeals,
-                    'pageActuel' => $pageActuel
+                    'pageActuel' => $pageActuel,
+                    'ranking' => $ranking,
+                    'average' => $average,
                 ]);
         } else {
             $this->redirect('home');
@@ -87,19 +107,7 @@ class ProfileController extends BaseController
                     $manager->addBarcode($_POST);
                 }
             }
-            if (isset($_POST['submitBarcode'])) {
-                if ($manager->checkUserBarcode($_POST)) {
-                    $costs = $manager->getUserCostsNumber();
-                    $barcode = $manager->getBarcodeByBarcode($_POST['barcode']);
-                    $manager->setUserBottlesRecycled($barcode['bottlesNumber']);
-                    $manager->setUserCostsNumber($barcode['cost']);
-                    $manager->updateLevel();
-                    $manager->barcodeUsed($_POST['barcode']);
-                    header('Location:?action=dump');
-                } else {
-                    $errorBarcode = "Veillez saisir un code barre valide";
-                }
-            }
+
             echo $this->renderView('dump.html.twig',
                 [
                     'user' => $user,
@@ -138,6 +146,17 @@ class ProfileController extends BaseController
                     $manager->deleteAccount($_POST);
                 }
             }
+
+            if (isset($_POST['deletteOffers'])) {
+                if ($manager->checkRemoveOffers($_POST)) {
+                    $manager->deleteOffers($_POST);
+                }
+            }
+            /*if (isset($_POST['updateOffers'])) {
+                if ($manager->checkUpdateOffers($_POST)) {
+                    $manager->updateOffers($_POST);
+                }
+            }*/
             echo $this->renderView('admin.html.twig',
                 [
                     'user' => $user,

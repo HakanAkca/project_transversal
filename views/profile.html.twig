@@ -42,7 +42,7 @@
         <div class="stats">
             <div class="recycled"><span>{{user.bottlesNumber}}</span><span class="little">objets recylés</span></div>
             <div class="points"><span>{{user.costs}}</span><span class="little">points</span></div>
-            <div class="fun_stats">statistiques : 19 bottles/week 4eme</div>
+            <div class="fun_stats">statistiques : {{ average[user.id] }} bottles/week {{ ranking[user.id] }}EME</div>
         </div>
 
         <div class="box">
@@ -131,8 +131,8 @@
         <div class="insert">
             <a class="insert_code">Insérer un code !</a>
             <form class="form_code" action="?action=profile" method="POST">
-                <input type="number" name="barcode" class="code_form" class="code_input" placeholder="ex : 784589"/>
-                <input type="submit" class="button" value="Valider le code"/>
+                <input type="text" name="barcode" class="code_form" class="code_input" placeholder="ex : 784589"/>
+                <input type="submit" name="submitBarcode" class="button" value="Valider le code"/>
             </form>
         </div>
 

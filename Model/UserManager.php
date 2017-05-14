@@ -30,6 +30,10 @@ class UserManager
             ['username' => $username]);
         return $data;
     }
+    public function allUsers()
+    {
+        return $this->DBManager->findAllSecure("SELECT * FROM users");
+    }
     public function getPartnerByName($name)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM partners WHERE name = :name",
@@ -63,7 +67,7 @@ class UserManager
 
         $data['image'] = 'web/img/avatar.gif';
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
-            $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
+            $errors['username'] = 'Pseudo de 6 caractères minimum';
             $isFormGood = false;
         }
         $data2 = $this->getUserByUsername($data['username']);
@@ -71,18 +75,35 @@ class UserManager
             $errors['username'] = 'Le pseudo existe déjà';
             $isFormGood = false;
         }
-        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
-            $errors['password'] = "Veiller saisir un mot de passe valide ";
-            $isFormGood = false;
-        }
-        if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
-            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
-            $isFormGood = false;
-        }
+
         if(!$this->emailValid($data['email'])){
             $errors['email'] = "email non valide";
             $isFormGood = false;
         }
+
+        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+            $errors['password'] = "Veiller saisir un mot de passe valide ";
+            $isFormGood = false;
+        }
+        /*if($this->passwordValid($data['password']) && $data['password'] !== $data['verifpassword']){
+            $errors['password'] = "Les deux mot de passe ne sont pas identiques";
+            $isFormGood = false;
+        }*/
+
+
+        if (!isset($data['city']) || !$this->cityValid($data['city'])){
+            $errors['city'] = 'Merci de saissir une ville';
+            $isFormGood = false;
+        }
+
+        if ($isFormGood) {
+            echo(json_encode(array('success' => true, 'user' => $_POST)));
+        } else {
+            http_response_code(400);
+            echo(json_encode(array('success' => false, 'errors' => $errors)));
+            exit(0);
+        }
+
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
         $res['data'] = $data;
@@ -96,6 +117,9 @@ class UserManager
     }
     private function usernameValid($username){
         return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
+    }
+    private function cityValid($city){
+        return preg_match('`^([a-zA-Z0-9-_]{1,15})$`', $city);
     }
     //Minimum : 8 caractères avec au moins une lettre majuscule et un nombre
     private function passwordValid($password){
@@ -134,7 +158,8 @@ class UserManager
 
     public function userCheckLogin($data)
     {
-        if (empty($data['username']) OR empty($data['password']))
+
+        /*if (empty($data['username']) OR empty($data['password']))
             return false;
         $user = $this->getUserByUsername($data['username']);
         if ($user === false) {
@@ -150,7 +175,23 @@ class UserManager
             $this->DBManager->watch_action_log('access.log', $write);
             return false;
         }
-        return true;
+        return true;*/
+        $isFormGood = true;
+        $errors = array();
+        $user = $this->getUserByUsername($data['username']);
+        $hash = $this->userHash($data['password']);
+        if (empty($data['username']) OR empty($user) OR empty($data['password']) OR empty($hash)) {
+            $errors['Connexion field'] = 'Login ou mdp incorrect';
+            $isFormGood = false;
+        }
+        if ($isFormGood) {
+            echo(json_encode(array('success' => true, 'user' => $_POST)));
+        } else {
+            http_response_code(400);
+            echo(json_encode(array('success' => false, 'errors' => $errors)));
+            exit(0);
+        }
+        return $isFormGood;
     }
 
     public function userLogin($username)
@@ -431,8 +472,42 @@ class UserManager
         $this->DBManager->insert('deals', $userDeal);
     }
 
+    public function getAverages(){
+        $users = $this->allUsers();
+        $currentDate=date_create($this->getDatetimeNow());
+        $average = array();
+        foreach ($users as $user){
+            $id = $user['id'];
+            $bottlesNumber = $user['bottlesNumber'];
+            $registerDate = $user['date'];
+            $strToDate=  strtotime($registerDate);
+            $registerDate = date('Y/m/d H:i:s', $strToDate);
+            $date1=date_create($registerDate);
+            $diff=date_diff($date1,$currentDate);
+            $interval =  (int)$diff->format("%R%d");
+            $week = (float)$interval/7;
+            if($week == 0){
+                $week = 1;
+            }
+            $average[$id] = round(($bottlesNumber)/$week);
+        }
+        return $average;
+    }
 
-
+    public function ranking(){
+        $res = array();
+        $averages = $this->getAverages();
+        $r_averages = $averages;
+        rsort($r_averages);
+        $newAverage = array();
+        foreach ($averages as $key => $value){
+           $newAverage[$value] = $key;
+        }
+        foreach ($r_averages as $key => $value){
+            $res[$newAverage[$value]] = $key+1;
+        }
+        return $res;
+    }
 
 
 
@@ -540,9 +615,8 @@ class UserManager
         return $res;
     }
 
-    public function getUserBottlesRecycled()
+    public function getUserBottlesRecycled($id)
     {
-        $id = $_SESSION['user_id'];
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM users WHERE  id =:id",
             [
@@ -555,7 +629,7 @@ class UserManager
     }
     public function setUserBottlesRecycled($data){
         $user_id = $_SESSION['user_id'];
-        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled();
+        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled($user_id);
         return $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
             [
                 'user_id' => $user_id,
@@ -606,7 +680,7 @@ class UserManager
         $res = array();
         $isFormGood = true;
 
-        if(!$this->emailValid($data['newsletter'])){
+        if(!$this->emailValid($data)){
             $errors['lol'] = "email non valide";
             $isFormGood = false;
         }
@@ -619,24 +693,57 @@ class UserManager
 
     public function newslettersSend($d)
     {
+        $res = array();
         $email = $d;
-
-        echo $email;
-
-        $objet = 'Newsletter du ';
-        $contenu = '
-                <html>
+        $object = 'Inscription au newsletter';
+        $content = '<html>
                 <head>
                 <title>Vous avez réservé sur notre site ...</title>
                 </head>
                 <body>
-                <p>blablablabla</p>
+                <p>Vous êtes inscript au newsletter. Merci</p>
                 </body>
                 </html>';
-        $entetes = 'Content-type: text/html; charset=utf-8' . "\r\n" . 'From: tritus@fundation.tld' . "\r\n" . 'Reply-To: hakanakca10@gmail.com' . "\r\n" .
-            'X-Mailer: PHP/' . phpversion();
-
-        mail($email, $objet, $contenu, $entetes);
+        $res['email'] = $email;
+        $res['object'] = $object;
+        $res['content'] = $content;
+        return $res;
     }
+
+    public function checkRemoveOffers($data)
+    {
+        if (empty($data['offers']))
+            return false;
+        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
+        if ($offers === false)
+            return false;
+        return true;
+    }
+
+    /*public function deleteOffers($data){
+        $offers = $data['offers'];
+        return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
+            ['partner' => $offers]);
+    }*/
+
+    /*public function checkUpdateOffers($data)
+    {
+        if (empty($data['offers']))
+            return false;
+        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
+        if ($offers === false)
+            return false;
+        return true;
+    }
+
+    public function updateOffers($data){
+
+        $offers = $data['offers'];
+        $new_partner = $data['update-partner'];
+        return $this->DBManager->findOneSecure("UPDATE catalogs SET partner='$new_partner' WHERE id=:offers",
+            [
+                'id' => $offers
+        ]);
+    }*/
 
 }

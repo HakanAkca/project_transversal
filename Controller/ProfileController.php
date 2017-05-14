@@ -65,6 +65,7 @@ class ProfileController extends BaseController
                     $errorBarcode = "Veillez saisir un code barre valide";
                 }
             }
+
             echo $this->renderView('profile.html.twig',
                 [
                     'user' => $user,

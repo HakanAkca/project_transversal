@@ -58,6 +58,18 @@ class UserManager
         return $data;
     }
 
+    public function printDeal($d)
+    {
+        $id = (int)$d;
+        $data = $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE id = :id",
+            [
+                'id' => $id,
+            ]);
+        $barcode = $_SESSION['user_id'].$this->generateBarcode();
+        var_dump($barcode);
+
+    }
+
 
     public function userCheckRegister($data)
     {
@@ -467,6 +479,7 @@ class UserManager
         $deal = $this->getDealById($id);
         $userDeal['user_id'] = $user_id;
         $userDeal['catalog_id'] = (int)$deal['id'];
+        //$userDeal['barcode'] =  $user_id.$this->generateBarcode();
         $userDeal['date'] = $this->getDatetimeNow();
         $this->setUserCostsNumber(-((int)$deal['cost']));
         $this->DBManager->insert('deals', $userDeal);
@@ -484,7 +497,7 @@ class UserManager
             $registerDate = date('Y/m/d H:i:s', $strToDate);
             $date1=date_create($registerDate);
             $diff=date_diff($date1,$currentDate);
-            $interval =  (int)$diff->format("%R%d");
+            $interval =  $diff->format("%R%d");
             $week = (float)$interval/7;
             if($week == 0){
                 $week = 1;

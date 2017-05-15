@@ -33,6 +33,7 @@ class ProfileController extends BaseController
             //Classement !!!
             $average = $manager->getAverages();
             $ranking = $manager->ranking();
+            $errors = array();
 
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
@@ -57,7 +58,7 @@ class ProfileController extends BaseController
                 if($res['isFormGood']){
                     $manager->editProfile($res['data']);
                 }else{
-                    var_dump($res['errors']);
+                   $errors = $res['errors'];
                 }
             }
             if (isset($_POST['submitBarcode'])) {
@@ -88,6 +89,7 @@ class ProfileController extends BaseController
                     'pageActuel' => $pageActuel,
                     'ranking' => $ranking,
                     'average' => $average,
+                    'errors' => $errors,
                 ]);
         } else {
             $this->redirect('home');
@@ -161,15 +163,24 @@ class ProfileController extends BaseController
                     $manager->deleteOffers($_POST);
                 }
             }
-            /*if (isset($_POST['updateOffers'])) {
-                if ($manager->checkUpdateOffers($_POST)) {
-                    $manager->updateOffers($_POST);
+
+            $dealToUpdate = array();
+            if (isset($_POST['submitChoiceOffer'])) {
+                $dealToUpdate = $manager->getDealByTitle($_POST['listOffer']);
+            }
+            if (isset($_POST['submitUpdateOffer'])) {
+                $res = $manager->checkUpdateOffer($_POST);
+                if($res['isFormGood']){
+                    $manager->updateOffer($res['data']);
                 }
-            }*/
+            }
+            $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [
                     'user' => $user,
                     'errors' => $errors,
+                    'deals' => $deals,
+                    'dealToUpdate' => $dealToUpdate,
                 ]);
         } else {
             $this->redirect('home');

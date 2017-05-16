@@ -14,6 +14,7 @@
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
                 {% if isConnected is defined %}
                     <li><a href="?action=profile">Profil</a></li>
+                    <li><a href="?action=logout">Déconnexion</a></li>
                 {% else %}
                     <li><a href="?action=register">Inscription</a></li>
                 {% endif %}
@@ -29,6 +30,7 @@
             <li><a href="?action=partner">Devenir Partenaires</a></li>
             {% if isConnected is defined %}
                 <li><a href="?action=profile">Profil</a></li>
+                <li><a href="?action=logout">Déconnexion</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}

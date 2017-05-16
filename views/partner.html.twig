@@ -13,6 +13,7 @@
                 <li><a href="?action=about">Nous</a></li>
                 {% if user.pseudo is defined %}
                     <li><a href="?action=profile">Profil</a></li>
+                    <li><a href="?action=logout">Déconnexion</a></li>
                 {% else %}
                     <li><a href="?action=register">Inscription</a></li>
                 {% endif %}
@@ -28,6 +29,7 @@
             <li><a href="?action=about">Nous</a></li>
             {% if user.pseudo is defined %}
                 <li><a href="?action=profile">Profil</a></li>
+                <li><a href="?action=logout">Déconnexion</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}

@@ -634,13 +634,23 @@ $red: #ed6147;
             background-image: url('../img/head_us.png');
             background-size: cover;
             background-position: center;
+            @media(min-width:768px){
+                 height: 100px;
+            }
         }
         .content{
             padding: 0px 20px;
+            padding-bottom: 20px;
+            @media(min-width:768px){
+                @include flex_trinity(row, center);
+            }
             .txt{
                 margin-top: 30px;
                 color: #989898;
                 font-family: 'PoppinsMedium';
+                @media(min-width:768px){
+                    width: 70%;
+                }
                 .how_it_works{
                     padding: 0px 15px;
                     .title{
@@ -648,6 +658,9 @@ $red: #ed6147;
                         font-size: 21px;
                         img{
                             height: 70px;
+                            @media(min-width: 768px){
+                                display: none;
+                            }
                         }
                     }
                 }
@@ -664,7 +677,6 @@ $red: #ed6147;
                     padding-top: 30px;
                     background-color: #ffb4a6;
                     color: white;
-                    margin-bottom: 30px;
                     @include flex_trinity(column, space-around);
                     .title{
                         text-align: center;
@@ -674,6 +686,13 @@ $red: #ed6147;
                         height: 70px;
                         align-self: flex-end;
                     }
+                }
+            }
+            .img_aside{
+                @include flex_trinity(row, center);
+                align-items: center;
+                img{
+                    width: 250px;
                 }
             }
         }
@@ -708,6 +727,19 @@ $red: #ed6147;
             align-items: center;
             @media(min-width:1024px){
                 width: 30%;
+            }
+            form{
+                @include flex_trinity(row, flex-start);
+                #buttonNewsletter{
+                    display: none;
+                }
+                input{
+                    height: 22px;
+                    border: none;
+                }
+                img{
+                    height: 24px;
+                }
             }
         }
         .nav{

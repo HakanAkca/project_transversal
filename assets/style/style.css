@@ -717,14 +717,38 @@
     background-size: cover;
     background-position: center;
   }
+}
+@media screen and (min-width: 768px) {
+  .us .header_img {
+    height: 100px;
+  }
+}
+@media screen {
   .us .content {
     padding: 0px 20px;
+    padding-bottom: 20px;
   }
+}
+@media screen and (min-width: 768px) {
+  .us .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+@media screen {
   .us .content .txt {
     margin-top: 30px;
     color: #989898;
     font-family: 'PoppinsMedium';
   }
+}
+@media screen and (min-width: 768px) {
+  .us .content .txt {
+    width: 70%;
+  }
+}
+@media screen {
   .us .content .txt .how_it_works {
     padding: 0px 15px;
   }
@@ -737,6 +761,13 @@
   .us .content .txt .how_it_works .title img {
     height: 70px;
   }
+}
+@media screen and (min-width: 768px) {
+  .us .content .txt .how_it_works .title img {
+    display: none;
+  }
+}
+@media screen {
   .us .content .txt p {
     font-size: 14px;
     text-align: justify;
@@ -750,7 +781,6 @@
     padding-top: 30px;
     background-color: #ffb4a6;
     color: white;
-    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -762,6 +792,15 @@
   .us .content .txt .our_goal img {
     height: 70px;
     align-self: flex-end;
+  }
+  .us .content .img_aside {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .us .content .img_aside img {
+    width: 250px;
   }
 
   footer {
@@ -810,6 +849,21 @@
   }
 }
 @media screen {
+  footer .newsletter form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  footer .newsletter form #buttonNewsletter {
+    display: none;
+  }
+  footer .newsletter form input {
+    height: 22px;
+    border: none;
+  }
+  footer .newsletter form img {
+    height: 24px;
+  }
   footer .nav {
     display: flex;
     flex-direction: row;

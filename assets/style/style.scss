@@ -102,6 +102,7 @@ $red: #ed6147;
             a{
                 color: white;
                 padding: 0px 20px;
+                white-space: nowrap;
                 &:hover{
                     color:$orange;
                 }
@@ -200,10 +201,18 @@ $red: #ed6147;
     .user_page{
         background-color: #b5f4f2;
         @include flex_trinity(column, space-around);
+        @media(min-width:1024px){
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
         .user_info{
             @include flex_trinity(column, space-between);
             align-items: center;
             margin-top: 10px;
+            @media(min-width:1024px){
+                flex-direction: row;
+                width: 50%;
+            }
             .profil_img{
                 margin: 10px 0px;
                 width: 25%;
@@ -214,6 +223,10 @@ $red: #ed6147;
                 width: 60%;
                 height: 2px;
                 background-color: #6a6a6a;
+                @media(min-width:1024px){
+                    height: 60%;
+                    width: 2px;
+                }
             }
             .specific_info{
                 margin: 10px 0px;
@@ -227,6 +240,9 @@ $red: #ed6147;
                     @include flex_trinity(row, space-between);
                     align-items: baseline;
                     color: #4b4b4b;
+                    @media(min-width:1024px){
+                        flex-direction: column;
+                    }
                     .params{
                         width: 20px;
                         margin-left: 10px;
@@ -296,6 +312,9 @@ $red: #ed6147;
         }
         .box{
             margin: 30px 10px;
+            @media(min-width:1024px){
+                width: 100%;
+            }
             ul{
                 @include flex_trinity(row, space-between);
                 .tabs{
@@ -314,9 +333,16 @@ $red: #ed6147;
                 .active{
                    box-shadow: none;
                 }
+                @media(min-width:1024px){
+                    display: none;
+                }
             }
             .all_changing_contents{
                 color: white;
+                @media(min-width:1024px){
+                    @include flex_trinity(row, space-around);
+                    flex-wrap: wrap;
+                }
                 .changing_content{
                     text-align: center;
                     background-color: #333333;
@@ -325,9 +351,12 @@ $red: #ed6147;
                     }
                 }
                 .my_reductions{
+                    @media(min-width:1024px){
+                        width: 40%;
+                    }
+                    .all_reducs{
                     overflow: scroll;
                     max-height: 200px;
-                    .all_reducs{
                             .reducs{
                                 @include flex_trinity(row, flex-start);
                                 height: 60px;
@@ -364,6 +393,11 @@ $red: #ed6147;
                 .available_reductions{
                     color: #ed6147;
                     display: none;
+                    @media(min-width:1024px){
+                        display: flex;
+                        width: 40%;
+                        flex-direction: column;
+                    }
                     .all_available_deal{
                         overflow: scroll;
                         max-height: 200px;
@@ -403,19 +437,23 @@ $red: #ed6147;
                 }
                 .sondage{
                     display: none;
+                    @media(min-width:1024px){
+                        display: flex;
+                        width: 90%;
+                        margin-top: 50px;
+                    }
                 }
             }
-            .all_offers_link{
-                display: none;
-                background-color: #f0816c;
-                text-align: center;
-                width: 50%;
-                margin: auto;
-                margin-top: 30px;
-                border-radius: 5px;
-                padding: 5px;
-                color: white;
-            }
+        }
+        .all_offers_link{
+            background-color: #f0816c;
+            text-align: center;
+            width: 40%;
+            margin: auto;
+            margin-top: 30px;
+            border-radius: 5px;
+            padding: 5px;
+            color: white;
         }
         .insert{
             @include flex_trinity(column, flex-start);
@@ -691,6 +729,10 @@ $red: #ed6147;
             .img_aside{
                 @include flex_trinity(row, center);
                 align-items: center;
+                display: none;
+                @media(min-width: 768px){
+                    display: flex;
+                }
                 img{
                     width: 250px;
                 }

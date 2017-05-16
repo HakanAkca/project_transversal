@@ -26,17 +26,14 @@ $(function() {
 
     $('#profile_user_reductions').click(function(){
         switch_tab($('#profile_user_reductions'), $('.my_reductions'))
-        $('.all_offers_link').css('display', 'none');
     });
 
     $('#profile_availables_reductions').click(function(){
         switch_tab($('#profile_availables_reductions'), $('.available_reductions'))
-        $('.all_offers_link').css('display', 'block');
     });
 
     $('#profile_sondage').click(function(){
         switch_tab($('#profile_sondage'), $('.sondage'))
-        $('.all_offers_link').css('display', 'none');
     });
 
     $('.deal_cost').click(function(){

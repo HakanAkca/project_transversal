@@ -247,23 +247,7 @@ class UserManager
     public function userCheckLogin($data)
     {
 
-        /*if (empty($data['username']) OR empty($data['password']))
-            return false;
-        $user = $this->getUserByUsername($data['username']);
-        if ($user === false) {
-            $date = $this->DBManager->take_date();
-            $write = $date . ' -- ' . $data['username'] .' not correct user try to connected' . "\n";
-            $this->DBManager->watch_action_log('access.log', $write);
-            return false;
-        }
-        $hash = $this->userHash($data['password']);
-        if ($hash !== $user['password']) {
-            $date = $this->DBManager->take_date();
-            $write = $date . ' -- ' . $data['password']  . ' not correct password' . "\n";
-            $this->DBManager->watch_action_log('access.log', $write);
-            return false;
-        }
-        return true;*/
+
         $isFormGood = true;
         $errors = array();
         $user = $this->getUserByUsername($data['username']);
@@ -340,12 +324,27 @@ class UserManager
     }
     public function checkRemoveAccount($data)
     {
-        if (empty($data['pseudo']))
-            return false;
+        $isFormGood = true;
+        $errors = array();
+        if (empty($data['pseudo'])){
+            $errors['user'] = 'Le champs pseudo est vide';
+            $isFormGood = false;
+        }
+
         $user = $this->getUserByUsername($data['pseudo']);
-        if ($user === false)
-            return false;
-        return true;
+        if ($user === false){
+            $errors['user'] = 'Le pseudo existe déjà';
+            $isFormGood = false;
+        }
+        if ($isFormGood) {
+            echo(json_encode(array('success' => true, 'user' => $_POST)));
+        } else {
+            http_response_code(400);
+            echo(json_encode(array('success' => false, 'errors' => $errors)));
+            exit(0);
+            return $isFormGood;
+        }
+        return $isFormGood;
     }
     public function deleteAccount($data){
         $pseudo = $data['pseudo'];
@@ -872,10 +871,11 @@ class UserManager
         return true;
     }
 
-    /*public function deleteOffers($data){
-        $offers = $data['offers'];
+    public function removeOffer($data)
+    {
+        $partner = $data;
         return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
-            ['partner' => $offers]);
-        */
+            ['partner' => $partner]);
+    }
 
 }

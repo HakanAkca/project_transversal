@@ -174,6 +174,9 @@ class ProfileController extends BaseController
                     $manager->updateOffer($res['data']);
                 }
             }
+            if (isset($_POST['submitRemoveOffer'])) {
+                $manager->removeOffer($_POST['partner']);
+            }
             $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [

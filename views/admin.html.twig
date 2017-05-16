@@ -25,7 +25,8 @@
     <hr>
     <div>
         <h3>Supprimer un compte indisérable</h3>
-        <form method="post" action="?action=admin">
+        <div id="errorBlockRemoveAccount"></div>
+        <form method="post" id="removeAccountForm" action="?action=admin">
             pseudo
             <input type="text" name="pseudo" placeholder="pseudo">
             <input type="submit" name="submitAccount" value="Supprimer">
@@ -59,8 +60,11 @@
                 <input type="file" name="fileOffer">
                 <input type="text" name="description" value="{{ dealToUpdate.description }}">
                 <input type="text" name="id" value="{{ dealToUpdate.id }}">
-                <input type="submit" name="submitUpdateOffer">
+                <input type="submit" name="submitUpdateOffer" value="Modifier">
+                <input type="submit" name="submitRemoveOffer" value="Supprimer">
             </form>
         {% endif %}
     </div>
+    <script src="assets/script/removeAccount.js"></script>
+
 {% endblock %}

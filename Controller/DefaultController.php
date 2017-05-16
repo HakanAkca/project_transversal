@@ -10,14 +10,18 @@ class DefaultController extends BaseController
     {
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-        $pageActuel = $_GET['action'];
+        if(isset($_GET['action'])){
+            $pageActuel = $_GET['action'];
+        }else{
+            $pageActuel = 'home';
+        }
         $user = array();
         $errors = '';
 
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if(isset($_POST['submitLogin'])){
             if($manager->userCheckLogin($_POST)){
                 $manager->userLogin($_POST['username']);
                 echo $this->redirect('profile');

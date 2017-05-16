@@ -366,6 +366,12 @@ class UserManager
             $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
+
+        $data2 = $this->getDealByTitle($data['partner']);
+        if($data2 !== false){
+            $errors['partner'] = "Veillez un autre titre";
+            $isFormGood = false;
+        }
         if(!isset($data['partner']) | empty($data['partner'])){
             $errors['partner'] = "Veillez choisir un partenaire";
             $isFormGood = false;
@@ -466,6 +472,63 @@ class UserManager
             }
         }
         return $res;
+    }
+    public function getDealByTitle($t){
+        $partner = $t;
+        return $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE partner =:partner",['partner' => $partner]);
+    }
+    public function checkUpdateOffer($data){
+        $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($_FILES['fileOffer']['name']) && !empty($_FILES)){
+            $data['fileOffer'] = $_FILES['fileOffer']['name'];
+            $data['fileOffer_tmp_name'] = $_FILES['fileOffer']['tmp_name'];
+            $res['data'] = $data;
+        }
+        else{
+            $errors['fileOffer'] = 'Veillez choisir une image';
+            $isFormGood = false;
+        }
+
+        $data2 = $this->getDealByTitle($data['partner']);
+        if($data2 !== false && $data2['id'] !== $data['id']){
+            $errors['partner'] = "Veillez un autre titre";
+            $isFormGood = false;
+        }
+        if(!isset($data['description']) | empty($data['description'])){
+            $isFormGood = false;
+            $errors['description'] = "Veillez remplir le champ description";
+        }
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+
+        return $res;
+    }
+    public function updateOffer($data){
+        $partner = $data['partner'];
+        $description = $data['description'];
+        $id = (int)$data['id'];
+        if (!empty($file) && !empty($file_tmp_name)) {
+            return $this->DBManager->findOneSecure("UPDATE catalogs SET partner = :partner, description =:description WHERE id=:id",
+                [
+                    'id' => $id,
+                    'partner' => $partner,
+                    'description' => $description,
+                ]);
+        }else{
+            $image = 'uploads/'.$data['fileOffer'];
+            $image_tmp_name = $data['fileOffer_tmp_name'];
+            move_uploaded_file($image_tmp_name,$image);
+            return $this->DBManager->findOneSecure("UPDATE catalogs SET partner = :partner, description =:description, image =:image WHERE id=:id",
+                [
+                    'id' => $id,
+                    'partner' => $partner,
+                    'description' => $description,
+                    'image' => $image,
+                ]);
+        }
+
     }
     public function getAvailableDeals(){
         $cost = $this->getUserCostsNumber();
@@ -813,26 +876,6 @@ class UserManager
         $offers = $data['offers'];
         return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
             ['partner' => $offers]);
-    }*/
-
-    /*public function checkUpdateOffers($data)
-    {
-        if (empty($data['offers']))
-            return false;
-        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
-        if ($offers === false)
-            return false;
-        return true;
-    }
-
-    public function updateOffers($data){
-
-        $offers = $data['offers'];
-        $new_partner = $data['update-partner'];
-        return $this->DBManager->findOneSecure("UPDATE catalogs SET partner='$new_partner' WHERE id=:offers",
-            [
-                'id' => $offers
-        ]);
-    }*/
+        */
 
 }

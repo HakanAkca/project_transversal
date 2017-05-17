@@ -8,6 +8,18 @@
         {% set bottlesNumber = user['bottlesNumber'] %}
         {% set level = user['level'] %}
     {% endif %}
+    <p>Résultat sondage</p>
+        {% set cpt = 0 %}
+        {% for survey in surveys %}
+            {% set average = (survey.vote/allVotes)*100 %}
+            Offre {{ cpt }} ---
+            Titre : {{ survey.partner }}
+            Nombre de vote :{{ survey.vote }}
+            Pourcentage : {{ average|round(1, 'floor')}}<br>
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+        {% set cpt = 0 %}
+    <hr>
     <p>Ajouter des offres</p>
     {% for error in errors %}
         <p>{{ error }}</p>h

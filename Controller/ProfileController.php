@@ -159,6 +159,9 @@ class ProfileController extends BaseController
             $user = $manager->getUserById($user_id);
             $errors = array();
             $manager->getAllDeals();
+            $surveys = $manager->getSurvey();
+            $allVotes = $manager->allVotes();  //for average
+
             if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
                 if ($res['isFormGood']) {
@@ -207,6 +210,8 @@ class ProfileController extends BaseController
                     'errors' => $errors,
                     'deals' => $deals,
                     'dealToUpdate' => $dealToUpdate,
+                    'surveys' => $surveys,
+                    'allVotes' => $allVotes,
                 ]);
         } else {
             $this->redirect('home');

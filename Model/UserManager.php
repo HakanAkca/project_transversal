@@ -541,6 +541,14 @@ class UserManager
                 'numbersVotes' => $numbersVotes,
             ]);
     }
+    public function allVotes(){
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT vote FROM surveys");
+        foreach ($data as $vote){
+            $res += (int)$vote['vote'];
+        }
+        return $res;
+    }
 
     public function getAllDeals(){
         $cur = strtotime($this->getDatetimeNow());

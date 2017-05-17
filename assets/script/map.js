@@ -25,6 +25,7 @@ function initMap() {
         handleLocationError(false, infoWindow, map.getCenter());
     }
 
+
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -84,8 +85,24 @@ function initMap() {
         var icon = type.icon;
         var div = document.createElement('div');
         div.innerHTML = '<img src="' + icon + '"> ' + name;
-        legend.appendChild(div);
     }
 
+
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+}
+
+function findAdress() {
+    var geocoder = new google.maps.Geocoder();
+    var adresse = document.getElementById('adresse').value;
+    geocoder.geocode( { 'address': adresse}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+                map: map,
+                position: results[0].geometry.location
+            });
+        } else {
+            alert('Adresse introuvable: ' + status);
+        }
+    });
 }

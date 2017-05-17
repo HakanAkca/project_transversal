@@ -37,17 +37,18 @@
 
     <p>on a acces a tt les infos du user s'il est connecté ...</p>
     {%  if user is empty %}
-        {% if errors != '' %}
-            <p>{{ errors }}</p>
-        {% endif %}
         <form action="?action=home" method="POST" id="myLogin">
-            Login : <input type="text" name="username"><br>
-            Password : <input type="password" name="password"><br>
+            Login : <input id="username" type="text" name="username"><br>
+            Password : <input id="password" type="password" name="password"><br>
             <input type="submit" name="submitLogin">
         </form>
     {% endif %}
     <div id="successBlock"></div>
     <div id="errorBlock"></div>
+    <input type="text" id="adresse">
+    <input type="submit" value="Trouvez selon votre possition une poubelle" onclick="findAdress();">
     <div id="map" style="height: 400px; width: 100%"></div>
-    <!--<script src="assets/script/loginCheck.js"></script>-->
+    <script src="assets/script/map.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
 {% endblock %}

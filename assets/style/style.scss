@@ -506,10 +506,12 @@ $red: #ed6147;
                                 width: 30%;
                                 background-color: $orange;
                                 @include flex_trinity(column, center);
-                                color: white;
-                                span:nth-child(2){
-                                    color: #464646;
-                                    font-weight: bold;
+                                a{
+                                    color: white;
+                                    span:nth-child(2){
+                                        color: #464646;
+                                        font-weight: bold;
+                                    }
                                 }
                             }
                             &:nth-child(even){

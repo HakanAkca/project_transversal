@@ -601,9 +601,11 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal .deal_cost a {
     color: white;
   }
-  .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal .deal_cost span:nth-child(2) {
+  .user_page .box .all_changing_contents .available_reductions .all_available_deal .available_deal .deal_cost a span:nth-child(2) {
     color: #464646;
     font-weight: bold;
   }

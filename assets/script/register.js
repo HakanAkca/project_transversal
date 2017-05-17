@@ -36,16 +36,16 @@ $(function() {
         switch_tab($('#profile_sondage'), $('.sondage'))
     });
 
-    $('.deal_cost').click(function(){
+    $('.open_md').click(function(){
         $('#modale').css('display', 'flex');
         $('body').css('overflow', 'hidden');
        
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.img_modale').attr("src", $(this).parent().children(".partner_img").attr("src"));
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.partner_modale').children('span:last').html($(this).parent().children(".deal_info").children('span:first').html());
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.city_modale').children('span:last').html($(this).parent().children(".other_info").children('span:first').html());
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().children(".other_info").children('span:last').html());
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().children(".deal_cost").children('span:first').html() + ' points');
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().children(".deal_info").children('span:last').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.img_modale').attr("src", $(this).parent().parent().children(".partner_img").attr("src"));
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.partner_modale').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:first').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.city_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:first').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:last').html());
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().parent().children(".deal_cost").children('span:first').html() + ' points');
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:last').html());
 
         $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().children(".other_info").children('.id').html());
     })

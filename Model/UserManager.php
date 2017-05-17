@@ -184,14 +184,6 @@ class UserManager
             $isFormGood = false;
         }
 
-        /*if ($isFormGood) {
-            echo(json_encode(array('success' => true, 'user' => $_POST)));
-        } else {
-            http_response_code(400);
-            echo(json_encode(array('success' => false, 'errors' => $errors)));
-            exit(0);
-        }*/
-
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
         $res['data'] = $data;
@@ -247,8 +239,6 @@ class UserManager
 
     public function userCheckLogin($data)
     {
-
-
         $isFormGood = true;
         $errors = array();
         $user = $this->getUserByUsername($data['username']);
@@ -257,13 +247,14 @@ class UserManager
             $errors['Connexion field'] = 'Login ou mdp incorrect';
             $isFormGood = false;
         }
-        /*if ($isFormGood) {
+
+        if ($isFormGood) {
             echo(json_encode(array('success' => true, 'user' => $_POST)));
         } else {
             http_response_code(400);
             echo(json_encode(array('success' => false, 'errors' => $errors)));
             exit(0);
-        }*/
+        }
         return $isFormGood;
     }
 
@@ -309,6 +300,7 @@ class UserManager
             $errors['status'] = 'Veuillez saisir une status valide';
             $isFormGood = false;
         }
+
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
         $res['data'] = $data;
@@ -343,7 +335,6 @@ class UserManager
             http_response_code(400);
             echo(json_encode(array('success' => false, 'errors' => $errors)));
             exit(0);
-            return $isFormGood;
         }
         return $isFormGood;
     }

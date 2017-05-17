@@ -155,6 +155,102 @@
 }
 
 @media screen {
+  .home_page .illus_sect {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-image: url("../img/acceuil_bg.png");
+    width: 100%;
+    height: 50vh;
+    background-size: cover;
+    background-position: 30%;
+  }
+  .home_page .illus_sect .bold, .home_page .illus_sect .descrip {
+    font-family: "robotoBold";
+    color: #4c4c4c;
+    font-size: 20px;
+    text-align: center;
+  }
+  .home_page .illus_sect .descrip {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: "robotoRegular";
+  }
+  .home_page .concept {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #b5f4f2;
+    padding-top: 50px;
+    align-items: center;
+    width: 90%;
+    height: 600px;
+    padding: 0% 5%;
+  }
+  .home_page .concept .redirect_link {
+    text-align: center;
+    color: white;
+    background-color: #f0816c;
+    border-radius: 2px;
+    padding: 15px;
+    width: 80%;
+    box-shadow: 0px 2px 1px #d47260;
+    font-family: "robotoLight";
+    font-size: 18px;
+  }
+  .home_page .concept .redirect_link:hover {
+    box-shadow: 0px 2px 1px #d47260;
+  }
+  .home_page .concept .discover_concept {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .home_page .concept #tuto {
+    height: 400px;
+    width: 80%;
+    border: 1px solid red;
+  }
+  .home_page .map_area {
+    background-color: #b5f4f2;
+    width: 90%;
+    padding: 0% 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .home_page .map_area .find_city {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 200px;
+  }
+  .home_page .map_area .find_city .title {
+    font-weight: bold;
+    border-left: 3px #ed6147 solid;
+    padding-left: 30px;
+    width: 70%;
+  }
+  .home_page .map_area .find_city form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .home_page .map_area .find_city form input {
+    margin-bottom: 10px;
+    border: none;
+    padding: 10px 0px;
+  }
+  .home_page .map_area .find_city form .city_input {
+    background-color: #e6e6e6;
+  }
+  .home_page .map_area .find_city form .submit_input {
+    background-color: #37d074;
+    color: white;
+  }
+
   .allForm {
     display: flex;
     flex-direction: column;
@@ -901,15 +997,18 @@
     align-items: center;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer {
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer div:nth-child(1) {
     width: 30%;
+  }
+  footer div:nth-child(1) p {
+    text-align: center;
   }
 }
 @media screen {
@@ -931,7 +1030,7 @@
     align-items: center;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer .newsletter {
     width: 30%;
   }
@@ -959,7 +1058,7 @@
     margin: 20px 0px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer .nav {
     width: 20%;
     margin-left: 10%;
@@ -973,12 +1072,12 @@
     margin-left: 28px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer .nav div:nth-child(2) {
     margin-left: 0px;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 768px) {
   footer .nav div {
     display: flex;
     flex-direction: column;

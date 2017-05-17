@@ -35,20 +35,31 @@
         <div class="current"><a href="#">Accueil</a></div>
     </header>
 
-    <p>on a acces a tt les infos du user s'il est connecté ...</p>
-    {%  if user is empty %}
-        <form action="?action=home" method="POST" id="myLogin">
-            Login : <input id="username" type="text" name="username"><br>
-            Password : <input id="password" type="password" name="password"><br>
-            <input type="submit" name="submitLogin">
-        </form>
-    {% endif %}
-    <div id="successBlock"></div>
-    <div id="errorBlock"></div>
-    <input type="text" id="adresse">
-    <input type="submit" value="Trouvez selon votre possition une poubelle" onclick="findAdress();">
-    <div id="map" style="height: 400px; width: 100%"></div>
-    <script src="assets/script/map.js"></script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
+    <main class="home_page">
+        <div class="illus_sect">
+            <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
+            <p class="descrip">Venez recycler dans nos super poubelleset faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
+        </div>
+        <div class="concept">
+            <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
+            <div class="discover_concept">
+                <p>Découvrez le concept</p>
+                <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
+            </div>
+            <div id="tuto">
+            </div>
+        </div>
+        <div class="map_area">
+            <div class="find_city">
+                <p class="title">Trouvez le Tritus le plus proche de chez vous !</p>
+                <p class="enter_name">Entre le nom de votre ville pour commencer :</p>
+                <form>
+                    <input class="city_input" type="text" name="city" placeholder="ex: Paris">
+                    <input class="submit_input" type="submit" value="GO !">
+                </form>
+            </div>
+            <div id="map" style="height: 400px; width: 100%"></div>
+        </div>
+    </main>
+    <!--<script src="assets/script/loginCheck.js"></script>-->
 {% endblock %}

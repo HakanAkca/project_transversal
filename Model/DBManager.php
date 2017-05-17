@@ -50,7 +50,7 @@ class DBManager
     public function insert($table, $data = [])
     {
         $dbh = $this->getDbh();
-        $query = 'INSERT INTO `' . $table . '` VALUES (NULL,';
+        $query = 'INSERT INTO `' . $table . '` VALUES ("",';
         $first = true;
         foreach ($data AS $k => $value) {
             if (!$first)

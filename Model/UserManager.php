@@ -184,13 +184,13 @@ class UserManager
             $isFormGood = false;
         }
 
-        if ($isFormGood) {
+        /*if ($isFormGood) {
             echo(json_encode(array('success' => true, 'user' => $_POST)));
         } else {
             http_response_code(400);
             echo(json_encode(array('success' => false, 'errors' => $errors)));
             exit(0);
-        }
+        }*/
 
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
@@ -234,11 +234,12 @@ class UserManager
         $user['email'] = $data['email'];
         $user['city'] = ucwords($data['city']);
         $user['password'] = $this->userHash($data['password']);
-        $user['points'] = 0;
+        $user['costs'] = 0;
         $user['bottlesNumber'] = 0;
         $user['level'] = 1;
         $user['date'] = $this->getDatetimeNow();
         $user['image'] = $data['image'];
+        $user['vote'] = 0;
 
         $this->DBManager->insert('users', $user);
         mkdir("uploads/". $user['pseudo']);
@@ -256,13 +257,13 @@ class UserManager
             $errors['Connexion field'] = 'Login ou mdp incorrect';
             $isFormGood = false;
         }
-        if ($isFormGood) {
+        /*if ($isFormGood) {
             echo(json_encode(array('success' => true, 'user' => $_POST)));
         } else {
             http_response_code(400);
             echo(json_encode(array('success' => false, 'errors' => $errors)));
             exit(0);
-        }
+        }*/
         return $isFormGood;
     }
 
@@ -428,6 +429,117 @@ class UserManager
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
         move_uploaded_file($filetmpname,$url);
+    }
+    public function checkSurvey($data){
+        $isFormGood = true;
+        $errors = array();
+        $res = array();
+        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+            $data['image'] = $_FILES['image']['name'];
+            $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
+            $res['data'] = $data;
+        }
+        else{
+            $errors['image'] = 'Veillez choisir une image';
+            $isFormGood = false;
+        }
+
+        if(!isset($data['partner']) | empty($data['partner'])){
+            $errors['partner'] = "Veillez choisir un partenaire";
+            $isFormGood = false;
+        }
+        if(!isset($data['description']) | empty($data['description'])){
+            $isFormGood = false;
+            $errors['description'] = "Veillez remplir le champ description";
+        }
+
+        $res['isFormGood'] = $isFormGood;
+        $res['errors'] = $errors;
+        return $res;
+    }
+    public function addSurvey($data){
+        $filetmpname = $data['image_tmp_name'];
+        $url = 'uploads/'.$data['image'];
+        $cur = strtotime($this->getDatetimeNow());
+        $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
+        $survey['partner'] = $data['partner'];
+        $survey['description'] = $data['description'];
+        $survey['image'] = $url;
+        $survey['expirationDate'] = $expirationDate;
+        $survey['vote'] = 0;
+        $this->DBManager->insert('surveys', $survey);
+        move_uploaded_file($filetmpname,$url);
+    }
+    public function getSurvey(){
+        $cur = strtotime($this->getDatetimeNow());
+        $currentDate = date('Y/m/d H:i:s', $cur);
+        $res = array();
+        $data = $this->DBManager->findAllSecure("SELECT * FROM surveys ORDER BY expirationDate DESC");
+
+        foreach ($data as $value) {
+            $exp = strtotime($value['expirationDate']);
+            $expirationDate =  date('Y/m/d H:i:s', $exp);
+
+            $date1=date_create($currentDate);
+            $date2=date_create($expirationDate);
+            $diff=date_diff($date1,$date2);
+            $interval =  (int)$diff->format("%R%a");
+            if($interval >= 0){
+                $res[] = $value;
+            }
+        }
+        return $res;
+    }
+    public function updateSurvey(){
+        $data = $this->getSurvey();
+        if(empty($data)){
+            $vote = 0;
+            $this->DBManager->findOneSecure("UPDATE users SET vote = :vote",
+                [
+                    'vote' => $vote,
+                ]);
+        }
+    }
+    public function checkVote($id){
+        $vote = 0;
+        return $this->DBManager->findOneSecure("SELECT * FROM users WHERE id =:id AND vote =:vote",
+                                                        [
+                                                            'vote' => $vote,
+                                                            'id' => $id
+                                                        ]);
+    }
+    public function userVote($data){
+        $user_id = (int)$data['userID'];
+        $survey_id = (int)$data['surveyID'];
+        $currentNumbersVotes = $this->getSurveysVotes($survey_id)+1;
+        $vote = 1;
+
+        $this->setSurveysVotes($survey_id,$currentNumbersVotes);
+
+        $this->DBManager->findOneSecure("UPDATE users SET vote = :vote WHERE id=:user_id",
+            [
+                'user_id' => $user_id,
+                'vote' => $vote,
+            ]);
+    }
+    public function getSurveysVotes($id)
+    {
+        $res = 0;
+        $data = $this->DBManager->findAllSecure("SELECT vote FROM surveys WHERE  id =:id",
+            [
+                'id' => $id,
+            ]);
+        foreach ($data as $vote){
+            $res += (int)$vote['vote'];
+        }
+        return $res;
+    }
+    public function setSurveysVotes($id, $numbersVotes){
+        return $this->DBManager->findOneSecure("UPDATE surveys SET vote = :numbersVotes WHERE id=:id",
+            [
+                'id' => $id,
+                'numbersVotes' => $numbersVotes,
+            ]);
     }
 
     public function getAllDeals(){

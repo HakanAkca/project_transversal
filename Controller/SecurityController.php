@@ -21,7 +21,7 @@ class SecurityController extends BaseController
             $errors = array();
             $manager = UserManager::getInstance();
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            if (isset($_POST['submitRegister']))
             {
                 $res = $manager->userCheckRegister($_POST);
                 if($res['isFormGood']){

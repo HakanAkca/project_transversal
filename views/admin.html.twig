@@ -23,6 +23,14 @@
         <button type="submit" name="submitCatalog" >Ajouter Offre</button>
     </form>
     <hr>
+    <p>Ajouter sondage</p>
+    <form method="POST" action="?action=admin" enctype="multipart/form-data">
+        <input type="text" name="partner" placeholder="Titre"><br>
+        <input type="text" name="description" placeholder="Description"><br>
+        <input type="file" name="image"><br>
+        <button type="submit" name="submitAddSurvey" >Ajouter</button>
+    </form>
+    <hr>
     <div>
         <h3>Supprimer un compte indisérable</h3>
         <div id="errorBlockRemoveAccount"></div>

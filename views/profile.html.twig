@@ -138,8 +138,29 @@
             </form>
         </div>
 
-    </main>
 
+    </main>
+    <div>
+        {% for survey in surveys %}
+            <div class="offer">
+                <img class="deal_img" src="{{ survey['image'] }}"/>
+                <div class="info">
+                    <p class="title">{{survey.id}}</p>
+                    <p class="title">{{survey.partner}}</p>
+                    <p>Description :</p>
+                    <p class="description">{{survey.description}}</p>
+                    <div class="more_info">
+                        <span>{{survey.expirationDate | date("d/m/Y")}}</span>
+                    </div>
+                    <form action="?action=profile" method="POST">
+                        <input type="text" name="surveyID" value="{{survey.id}}">
+                        <input type="text" name="userID" value="{{user.id}}">
+                        <input type="submit" name="userVote" value="Je vote">
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
     <aside class="user_edit">
         <div class="area_edit">
             <p class="title">Editez vos informations :</p>

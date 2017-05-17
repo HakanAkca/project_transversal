@@ -35,6 +35,10 @@ class ProfileController extends BaseController
             $ranking = $manager->ranking();
             $errors = array();
 
+            //survey (SONDAGE)
+            $surveys = $manager->getSurvey();
+
+
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -45,6 +49,7 @@ class ProfileController extends BaseController
                     $this->sendMail($email,$object,$content,'...');
                 }
             }
+
 
             if (isset($_POST['submitBuyDeal'])) {
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {
@@ -74,6 +79,15 @@ class ProfileController extends BaseController
                     $errorBarcode = "Veillez saisir un code barre valide";
                 }
             }
+            if (isset($_POST['userVote'])) {
+                if ($manager->checkVote((int)$_POST['userID'])) {
+                    $manager->userVote($_POST);
+                } else {
+                    echo "Déjà Voté"; //
+                }
+            }
+            //Update permission to vote
+            $manager->updateSurvey();
 
             echo $this->renderView('profile.html.twig',
                 [
@@ -90,6 +104,7 @@ class ProfileController extends BaseController
                     'ranking' => $ranking,
                     'average' => $average,
                     'errors' => $errors,
+                    'surveys' => $surveys,
                 ]);
         } else {
             $this->redirect('home');
@@ -148,6 +163,14 @@ class ProfileController extends BaseController
                 $res = $manager->checkCatalog($_POST);
                 if ($res['isFormGood']) {
                     $manager->addCatalog($res['data']);
+                } else {
+                    $errors = $res['errors'];
+                }
+            }
+            if (isset($_POST['submitAddSurvey'])) {
+                $res = $manager->checkSurvey($_POST);
+                if ($res['isFormGood']) {
+                    $manager->addSurvey($res['data']);
                 } else {
                     $errors = $res['errors'];
                 }

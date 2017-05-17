@@ -35,19 +35,31 @@
         <div class="current"><a href="#">Accueil</a></div>
     </header>
 
-    <p>on a acces a tt les infos du user s'il est connecté ...</p>
-    {%  if user is empty %}
-        {% if errors != '' %}
-            <p>{{ errors }}</p>
-        {% endif %}
-        <form action="?action=home" method="POST" id="myLogin">
-            Login : <input type="text" name="username"><br>
-            Password : <input type="password" name="password"><br>
-            <input type="submit" name="submitLogin">
-        </form>
-    {% endif %}
-    <div id="successBlock"></div>
-    <div id="errorBlock"></div>
-    <div id="map" style="height: 400px; width: 100%"></div>
+    <main class="home_page">
+        <div class="illus_sect">
+            <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
+            <p class="descrip">Venez recycler dans nos super poubelleset faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
+        </div>
+        <div class="concept">
+            <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
+            <div class="discover_concept">
+                <p>Découvrez le concept</p>
+                <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
+            </div>
+            <div id="tuto">
+            </div>
+        </div>
+        <div class="map_area">
+            <div class="find_city">
+                <p class="title">Trouvez le Tritus le plus proche de chez vous !</p>
+                <p class="enter_name">Entre le nom de votre ville pour commencer :</p>
+                <form>
+                    <input class="city_input" type="text" name="city" placeholder="ex: Paris">
+                    <input class="submit_input" type="submit" value="GO !">
+                </form>
+            </div>
+            <div id="map" style="height: 400px; width: 100%"></div>
+        </div>
+    </main>
     <!--<script src="assets/script/loginCheck.js"></script>-->
 {% endblock %}

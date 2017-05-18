@@ -77,5 +77,10 @@
         <input name="password" type="password" value="">
         <input name="submitLogin" type="submit" value="connexion">
     </form>
-    <!--<script src="assets/script/loginCheck.js"></script>-->
+    <input type="text" id="adresse">
+    <input type="submit" value="Trouvez selon votre possition une poubelle" onclick="findAdress();">
+    <div id="map" style="height: 400px; width: 100%"></div>
+    <script src="assets/script/map.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
 {% endblock %}

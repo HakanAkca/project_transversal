@@ -14,6 +14,56 @@
   src: url("../fonts/Poppins-Medium.ttf");
   font-family: 'PoppinsMedium';
 }
+@keyframes throw_bottle {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 150px;
+    margin-left: 150px;
+  }
+}
+@keyframes throw_bottle_tablet {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 395px;
+  }
+}
+@keyframes throw_bottle_desktop {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 575px;
+  }
+}
+@keyframes move_to_trash_tablet {
+  0% {
+    margin-top: 140px;
+    margin-left: 25px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 295px;
+  }
+}
+@keyframes move_to_trash_desktop {
+  0% {
+    margin-top: 140px;
+    margin-left: 25px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 475px;
+  }
+}
 @media screen {
   body {
     margin: 0px;
@@ -165,6 +215,13 @@
     background-size: cover;
     background-position: 30%;
   }
+}
+@media screen and (min-width: 768px) {
+  .home_page .illus_sect {
+    height: 68vh;
+  }
+}
+@media screen {
   .home_page .illus_sect .bold, .home_page .illus_sect .descrip {
     font-family: "robotoBold";
     color: #4c4c4c;
@@ -196,10 +253,11 @@
     width: 80%;
     box-shadow: 0px 2px 1px #d47260;
     font-family: "robotoLight";
-    font-size: 18px;
+    font-size: 17px;
   }
   .home_page .concept .redirect_link:hover {
-    box-shadow: 0px 2px 1px #d47260;
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
   }
   .home_page .concept .discover_concept {
     display: flex;
@@ -208,9 +266,118 @@
     align-items: center;
   }
   .home_page .concept #tuto {
-    height: 400px;
     width: 80%;
     border: 1px solid red;
+  }
+  .home_page .concept #tuto .info_steps {
+    height: 110px;
+    background-color: #bbfdff;
+  }
+}
+@media screen and (min-width: 768px) {
+  .home_page .concept #tuto .info_steps {
+    text-align: center;
+    height: 130px;
+  }
+}
+@media screen {
+  .home_page .concept #tuto .info_steps img {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .home_page .concept #tuto .info_steps img {
+    width: auto;
+    height: 160px;
+  }
+}
+@media screen {
+  .home_page .concept #tuto .info_steps .step_two {
+    display: none;
+  }
+  .home_page .concept #tuto .tuto_area {
+    background-image: url("../img/img_tuto/bg_tuto.png");
+    height: 290px;
+    background-size: cover;
+    background-position: 75%;
+  }
+  .home_page .concept #tuto .tuto_area .girl_bottle {
+    height: 130px;
+    margin-top: 140px;
+  }
+}
+@media screen and (min-width: 425px) {
+  .home_page .concept #tuto .tuto_area .girl_bottle {
+    height: 150px;
+    margin-top: 140px;
+    margin-left: 25px;
+    margin-right: 10px;
+  }
+}
+@media screen {
+  .home_page .concept #tuto .tuto_area .girl_phone {
+    height: 120px;
+    margin-top: 140px;
+    margin-right: 10px;
+    display: none;
+    margin-right: 0px;
+    animation-duration: 1s;
+  }
+}
+@media screen and (min-width: 425px) {
+  .home_page .concept #tuto .tuto_area .girl_phone {
+    height: 150px;
+    margin-left: 25px;
+  }
+}
+@media screen {
+  .home_page .concept #tuto .tuto_area .trash {
+    width: 127px;
+    margin-top: 130px;
+    float: right;
+  }
+}
+@media screen and (min-width: 425px) {
+  .home_page .concept #tuto .tuto_area .trash {
+    width: 160px;
+    margin-top: 105px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home_page .concept #tuto .tuto_area .trash {
+    margin-right: 0px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .trash {
+    margin-right: 300px;
+  }
+}
+@media screen {
+  .home_page .concept #tuto .tuto_area .bottle {
+    display: none;
+    position: absolute;
+    width: 30px;
+    margin-top: 180px;
+    margin-left: 90px;
+    animation-duration: 1s;
+  }
+  .home_page .concept .next_2, .home_page .concept .next_3, .home_page .concept .next_1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 30px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .home_page .concept .next_2, .home_page .concept .next_3, .home_page .concept .next_1 {
+    margin-top: 15px;
+  }
+}
+@media screen {
+  .home_page .concept .next_2 p, .home_page .concept .next_3 p, .home_page .concept .next_1 p {
+    line-height: 30px;
+    margin: 0px 15px;
   }
   .home_page .map_area {
     background-color: #b5f4f2;
@@ -249,6 +416,9 @@
   .home_page .map_area .find_city form .submit_input {
     background-color: #37d074;
     color: white;
+  }
+  .home_page .map_area .find_city form .submit_input:hover {
+    background-color: #43ff8e;
   }
 
   .allForm {
@@ -293,10 +463,11 @@
     border: none;
     background-color: #f0816c;
     color: white;
-    box-shadow: 0px 5px 1px #d47260;
+    box-shadow: 0px 2px 1px #d47260;
   }
   .allForm .form-container #myRegister button:hover {
-    box-shadow: 0px 2px 1px #d47260;
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
   }
   .allForm .form-container #myRegister .error {
     color: red;
@@ -312,7 +483,7 @@
 
 @media screen {
   .user_page {
-    background-color: #b5f4f2;
+    background-color: #FBF8F2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -416,6 +587,13 @@
     justify-content: space-between;
     flex-wrap: wrap;
   }
+}
+@media screen and (min-width: 1024px) {
+  .user_page .stats {
+    align-items: center;
+  }
+}
+@media screen {
   .user_page .stats div {
     font-family: 'robotoLight';
     width: 49%;
@@ -451,6 +629,13 @@
     line-height: 25px;
     text-align: center;
   }
+}
+@media screen and (min-width: 1024px) {
+  .user_page .stats .fun_stats {
+    margin-top: -12%;
+  }
+}
+@media screen {
   .user_page .box {
     margin: 30px 10px;
   }
@@ -631,12 +816,23 @@
     background-color: #f0816c;
     text-align: center;
     width: 40%;
-    margin: auto;
-    margin-top: 30px;
+    margin: 30px auto;
     border-radius: 5px;
     padding: 5px;
     color: white;
+    box-shadow: 0px 2px 1px #FFAB9B;
   }
+  .user_page .all_offers_link:hover {
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .user_page .all_offers_link {
+    margin: 30px;
+  }
+}
+@media screen {
   .user_page .insert {
     display: flex;
     flex-direction: column;
@@ -656,6 +852,11 @@
     border-radius: 5px;
     padding: 5px;
     color: white;
+    box-shadow: 0px 2px 1px #FFAB9B;
+  }
+  .user_page .insert .insert_code:hover {
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
   }
   .user_page .insert .form_code {
     display: none;
@@ -682,13 +883,30 @@
     padding: 5%;
     margin: auto;
   }
-  .user_edit .area_edit .content_edit {
+  .user_edit .area_edit form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .user_edit .area_edit form .content_edit {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  .user_edit .area_edit .content_edit .input_img {
+  .user_edit .area_edit form .content_edit .input_img {
     align-self: flex-end;
+  }
+  .user_edit .area_edit form .button_edit {
+    border: none;
+    background-color: #f0816c;
+    margin-top: 15px;
+    text-align: center;
+    width: 40%;
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    box-shadow: 0px 2px 1px #f0816c;
+    align-self: center;
   }
 
   #modale {
@@ -708,6 +926,15 @@
     height: 80%;
     border-radius: 15px;
   }
+}
+@media screen and (min-width: 1024px) {
+  #modale .modale_available_deal {
+    margin-left: 33%;
+    margin-top: 3%;
+    width: 33%;
+  }
+}
+@media screen {
   #modale .modale_available_deal .deal_info {
     display: flex;
     flex-direction: column;
@@ -768,7 +995,7 @@
   }
   #modale .modale_available_deal .action .buy_deal .buy {
     color: #FFFFFF;
-    background: #2b90d9;
+    background: #f0816c;
     border: none;
     margin: 10px 0px;
     width: 100%;
@@ -777,7 +1004,7 @@
   }
   #modale .modale_available_deal .action .close_modale {
     color: #FFFFFF;
-    background: #F32C52;
+    background: #766b6d;
     width: 50%;
     text-align: center;
     padding: 5px 0px;
@@ -1023,6 +1250,18 @@
     width: 45px;
     height: 45px;
   }
+  footer .social img:hover {
+    transition: 1s;
+    transform: rotate(360deg);
+  }
+}
+@media screen and (min-width: 1024px) {
+  footer .social {
+    width: 70%;
+    margin: auto;
+  }
+}
+@media screen {
   footer .newsletter {
     color: white;
     display: flex;
@@ -1052,6 +1291,9 @@
   }
   footer .newsletter form img {
     height: 24px;
+  }
+  footer .newsletter form img:hover {
+    opacity: 0.6;
   }
   footer .nav {
     display: flex;

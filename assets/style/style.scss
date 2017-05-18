@@ -1,5 +1,6 @@
 $neutralColor : #4b4b4b; // nav || footer
 $orange : #f0816c;
+$orangeHover : #FFAB9B;
 $red: #ed6147;
 
 @font-face {
@@ -26,6 +27,31 @@ $red: #ed6147;
     display: flex;
     flex-direction: $direction;
     justify-content: $content;
+}
+
+@keyframes throw_bottle{
+    0%   { margin-top: 180px; margin-left: 90px;}
+    100% { margin-top: 150px; margin-left: 150px;}
+}
+
+@keyframes throw_bottle_tablet{
+    0%   { margin-top: 180px; margin-left: 90px;}
+    100% { margin-top: 140px; margin-left: 395px;}
+}
+
+@keyframes throw_bottle_desktop{
+    0%   { margin-top: 180px; margin-left: 90px;}
+    100% { margin-top: 140px; margin-left: 575px;}   
+}
+
+@keyframes move_to_trash_tablet{
+    0% {margin-top: 140px; margin-left: 25px;}
+    100%{margin-top: 125px; margin-left: 295px;}
+}
+
+@keyframes move_to_trash_desktop{
+    0% {margin-top: 140px; margin-left: 25px;}
+    100%{margin-top: 125px; margin-left: 475px;}   
 }
 
 @media screen{
@@ -154,6 +180,9 @@ $red: #ed6147;
             height: 50vh;
             background-size: cover;
             background-position: 30%;
+            @media(min-width:768px){
+                height: 68vh;
+            }
             .bold{
                 font-family: "robotoBold";
                 color : #4c4c4c;
@@ -184,9 +213,10 @@ $red: #ed6147;
                 width: 80%;
                 box-shadow: 0px 2px 1px #d47260;
                 font-family: "robotoLight";
-                font-size: 18px;
+                font-size: 17px;
                 &:hover{
-                    box-shadow: 0px 2px 1px #d47260;
+                    background-color: $orangeHover;
+                    box-shadow: 0px 2px 1px $orangeHover;
                 }
             }
             .discover_concept{
@@ -194,9 +224,88 @@ $red: #ed6147;
                 align-items: center;
             }
             #tuto{
-                height: 400px;
                 width: 80%;
                 border: 1px solid red;
+                .info_steps{
+                    height: 110px;
+                    background-color: #bbfdff;
+                    @media(min-width:768px){
+                        text-align: center;
+                        height: 130px;
+                    }
+                    img{
+                        width: 100%;
+                        @media(min-width:768px){
+                            width: auto;
+                            height: 160px;
+                        }
+                    }
+                    .step_two{
+                        display: none;
+                    }
+                }
+                .tuto_area{
+                    background-image: url("../img/img_tuto/bg_tuto.png");
+                    height: 290px;
+                    background-size: cover;
+                    background-position: 75%;
+                    .girl_bottle{
+                        height: 130px;
+                        margin-top: 140px;  
+                        @media(min-width:425px){
+                            height: 150px;
+                            margin-top: 140px;
+                            margin-left: 25px;
+                            margin-right: 10px;
+                        }
+                    }
+                    .girl_phone{
+                        height: 120px;
+                        margin-top: 140px;
+                        margin-right: 10px;
+                        display: none;
+                        margin-right: 0px;
+                        animation-duration: 1s;
+                       @media(min-width:425px){
+                            height: 150px;
+                            margin-left: 25px;
+                        }
+                    }
+                    .trash{
+                        width: 127px;
+                        margin-top: 130px;
+                        float: right;
+                        @media(min-width:425px){
+                            width: 160px;
+                            margin-top: 105px;
+                        }
+                        @media(min-width:1024px){
+                            margin-right: 0px;
+                        }              
+                        @media(min-width:1440px){
+                            margin-right: 300px;
+                        }
+                    }
+                    .bottle{
+                        display: none;
+                        position: absolute;
+                        width: 30px;
+                        margin-top: 180px;
+                        margin-left: 90px;
+                        animation-duration: 1s;
+                    }
+                }
+            }
+            .next_2, .next_3, .next_1{
+                @include flex_trinity(row, flex-start);
+                height: 30px;
+                @media (min-width:768px){
+                    margin-top: 15px;
+                }
+                p{
+                    line-height: 30px;
+                    margin: 0px 15px;
+                }
             }
         }
         .map_area{
@@ -227,6 +336,9 @@ $red: #ed6147;
                     .submit_input{
                         background-color: #37d074;
                         color: white;
+                        &:hover{
+                            background-color: #43ff8e;
+                        }
                     }
                 }
             }
@@ -268,9 +380,10 @@ $red: #ed6147;
                     border : none;
                     background-color: $orange;
                     color:white;
-                    box-shadow: 0px 5px 1px #d47260;
+                    box-shadow: 0px 2px 1px #d47260;
                     &:hover{
-                        box-shadow: 0px 2px 1px #d47260;
+                        background-color: $orangeHover;
+                        box-shadow: 0px 2px 1px $orangeHover;
                     }
                 }
                 .error{
@@ -286,7 +399,7 @@ $red: #ed6147;
     }
 
     .user_page{
-        background-color: #b5f4f2;
+        background-color: #FBF8F2;
         @include flex_trinity(column, space-around);
         @media(min-width:1024px){
             flex-direction: row;
@@ -362,6 +475,9 @@ $red: #ed6147;
             margin: 20px 10px;
             @include flex_trinity(row, space-between);
             flex-wrap: wrap;
+            @media(min-width:1024px){
+                align-items: center;
+            }
             div{
                 font-family: 'robotoLight';
                 width: 49%;
@@ -395,6 +511,9 @@ $red: #ed6147;
                 margin-top: 5px;
                 line-height: 25px;
                 text-align: center;
+                @media (min-width:1024px){
+                    margin-top: -12%;
+                }
             }
         }
         .box{
@@ -538,11 +657,18 @@ $red: #ed6147;
             background-color: #f0816c;
             text-align: center;
             width: 40%;
-            margin: auto;
-            margin-top: 30px;
+            margin: 30px auto;
             border-radius: 5px;
             padding: 5px;
             color: white;
+            box-shadow: 0px 2px 1px $orangeHover;
+            &:hover{
+                background-color: $orangeHover;
+                box-shadow: 0px 2px 1px $orangeHover;
+            }
+            @media(min-width : 1024px){
+                margin: 30px;
+            }
         }
         .insert{
             @include flex_trinity(column, flex-start);
@@ -559,7 +685,15 @@ $red: #ed6147;
                 margin-bottom: 20px;
                 border-radius: 5px;
                 padding: 5px;
-                color: white;        
+                color: white;      
+                box-shadow: 0px 2px 1px $orangeHover;
+                @media(min-width : 1024px){
+
+                }
+                &:hover{
+                    background-color: $orangeHover;
+                    box-shadow: 0px 2px 1px $orangeHover;
+                }
             }
             .form_code{
                 display:none;
@@ -587,10 +721,25 @@ $red: #ed6147;
             width: 80%;
             padding: 5%;
             margin: auto;
-            .content_edit{
-                @include flex_trinity(row, space-between);
-                .input_img{
-                    align-self: flex-end;
+            form{
+                @include flex_trinity(column, flex-start);
+                .content_edit{
+                    @include flex_trinity(row, space-between);
+                    .input_img{
+                        align-self: flex-end;
+                    }
+                }
+                .button_edit{
+                    border: none;
+                    background-color: $orange;
+                    margin-top: 15px;
+                    text-align: center;
+                    width: 40%;
+                    border-radius: 5px;
+                    padding: 5px;
+                    color: white;
+                    box-shadow: 0px 2px 1px $orange;
+                    align-self: center;
                 }
             }
         }
@@ -612,6 +761,11 @@ $red: #ed6147;
             width: 60%;
             height: 80%;
             border-radius: 15px;
+            @media(min-width:1024px){
+                margin-left: 33%;
+                margin-top: 3%;
+                width: 33%;
+            }
             .deal_info{
                 @include flex_trinity(column, flex-start);
                 align-items: center;
@@ -658,7 +812,7 @@ $red: #ed6147;
                     }
                     .buy{
                         color: #FFFFFF;
-                        background: #2b90d9;
+                        background: $orange;
                         border: none;
                         margin:10px 0px;
                         width: 100%;
@@ -668,7 +822,7 @@ $red: #ed6147;
                 }
                 .close_modale{
                     color: #FFFFFF;
-                    background: #F32C52;
+                    background: #766b6d;
                     width: 50%;
                     text-align: center;
                     padding: 5px 0px;
@@ -852,6 +1006,14 @@ $red: #ed6147;
             img{
                 width: 45px;
                 height: 45px;
+                &:hover{
+                    transition: 1s;
+                    transform: rotate(360deg);
+                }
+            }
+            @media(min-width:1024px){
+                width: 70%;
+                margin: auto;
             }
         }
         .newsletter{
@@ -873,6 +1035,9 @@ $red: #ed6147;
                 }
                 img{
                     height: 24px;
+                    &:hover{
+                        opacity: 0.6;
+                    }
                 }
             }
         }

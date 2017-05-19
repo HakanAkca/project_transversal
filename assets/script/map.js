@@ -1,9 +1,7 @@
-var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: new google.maps.LatLng(-33.91722, 151.23064),
-        mapTypeId: 'roadmap'
+        zoom: 13,
+        center: new google.maps.LatLng(48.8511618571692, 2.35382080078125),
     });
 
     var infoWindow = new google.maps.InfoWindow({map: map});
@@ -16,7 +14,7 @@ function initMap() {
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
+            infoWindow.setContent('Vous êtes ici !');
             map.setCenter(pos);
         }, function () {
             handleLocationError(true, infoWindow, map.getCenter());
@@ -41,60 +39,80 @@ function initMap() {
         },
     };
 
+
+    var features = [
+        {
+            position: new google.maps.LatLng(48.9566504, 2.475228300000026),
+            type: 'parking'
+
+        }, {
+            position: new google.maps.LatLng(48.94870299999999, 2.526532999999972),
+            type: 'parking'
+        }, {
+            position: new google.maps.LatLng(48.75662899999999, 2.371992999999975),
+            type: 'parking'
+        }, {
+            position: new google.maps.LatLng(48.6287077, 2.427366900000038),
+            type: 'parking'
+        }, {
+            position: new google.maps.LatLng(48.9358918898151, 2.3577475547790527),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.7797306, 2.4574149000000034),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(49.040924, 2.339091999999937),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.9254954, 2.3287100999999666),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.8819401, 2.4706525000000283),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.83030290000001, 2.355218700000023),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.75558229999999, 2.330474900000013),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.8665239, 2.2832627999999886),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.8951286, 2.251735999999937),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.9274620030687, 2.4904632568359375),
+            type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.919707506163014, 2.4514102935791016),
+            type: 'parking',
+        }
+    ];
+
+
+
+    for (var i = 0, feature; feature = features[i]; i++) {
+        addMarker(feature);
+    }
+
     function addMarker(feature) {
         var marker = new google.maps.Marker({
             position: feature.position,
             icon: icons[feature.type].icon,
             map: map
         });
+        marker.addListener('click', function() {
+            map.setZoom(18);
+            map.setCenter(marker.getPosition());
+        });
     }
-
-    var features = [
-        {
-            position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-            type: 'parking'
-        }, {
-            position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-            type: 'parking'
-        }
-    ];
-
-    for (var i = 0, feature; feature = features[i]; i++) {
-        addMarker(feature);
-    }
-
-    var legend = document.getElementById('legend');
-    for (var key in icons) {
-        var type = icons[key];
-        var name = type.name;
-        var icon = type.icon;
-        var div = document.createElement('div');
-        div.innerHTML = '<img src="' + icon + '"> ' + name;
-    }
-
-
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
 
 function findAdress() {
     var geocoder = new google.maps.Geocoder();
     var adresse = document.getElementById('adresse').value;
-    geocoder.geocode( { 'address': adresse}, function(results, status) {
+    geocoder.geocode({'address': adresse}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({

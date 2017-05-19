@@ -17,6 +17,16 @@ $(function() {
         }
     })
 
+    $('.open_login_md').click(function(){
+        $('.modale_login').css('display', 'block');
+        $('body').css('overflow', 'hidden');
+    })
+
+    $('.close_login_md').click(function(){
+        $('.modale_login').css('display', 'none');
+        $('body').css('overflow', 'initial');
+    })
+
     $(document).on('click','.next_2',function(){
         $('.bottle').css('display', 'block');
         if( $(window).width() < 768){

@@ -37,6 +37,7 @@ class ProfileController extends BaseController
 
             //survey (SONDAGE)
             $surveys = $manager->getSurvey();
+            $allVotes = $manager->allVotes();  //for average
 
 
             if (isset($_POST['submitNewsletter'])) {
@@ -49,8 +50,6 @@ class ProfileController extends BaseController
                     $this->sendMail($email,$object,$content,'...');
                 }
             }
-
-
             if (isset($_POST['submitBuyDeal'])) {
                 if ($manager->chechBuyDeal($_POST['IDdeal'])) {
                     $manager->buyDeal($_POST['IDdeal']);
@@ -63,7 +62,7 @@ class ProfileController extends BaseController
                 if($res['isFormGood']){
                     $manager->editProfile($res['data']);
                 }else{
-                   $errors = $res['errors'];
+                    $errors = $res['errors'];
                 }
             }
             if (isset($_POST['submitBarcode'])) {
@@ -105,6 +104,7 @@ class ProfileController extends BaseController
                     'average' => $average,
                     'errors' => $errors,
                     'surveys' => $surveys,
+                    'allVotes' => $allVotes,
                 ]);
         } else {
             $this->redirect('home');

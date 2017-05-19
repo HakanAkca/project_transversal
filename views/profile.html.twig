@@ -162,6 +162,19 @@
                 </div>
             </div>
         {% endfor %}
+        <br>
+        <p>Résultat sondage</p>
+        {% set cpt = 0 %}
+        {% for survey in surveys %}
+            {% set average = (survey.vote/allVotes)*100 %}
+            Offre {{ cpt }} ---
+            Titre : {{ survey.partner }}
+            Nombre de vote :{{ survey.vote }}
+            Pourcentage : {{ average|round(1, 'floor')}}<br>
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+        {% set cpt = 0 %}
+        <hr>
     </div>
     <aside class="user_edit">
         <div class="area_edit">

@@ -248,13 +248,13 @@ class UserManager
             $isFormGood = false;
         }
 
-        if ($isFormGood) {
+        /*if ($isFormGood) {
             echo(json_encode(array('success' => true, 'user' => $_POST)));
         } else {
             http_response_code(400);
             echo(json_encode(array('success' => false, 'errors' => $errors)));
             exit(0);
-        }
+        }*/
         return $isFormGood;
     }
 

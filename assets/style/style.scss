@@ -175,13 +175,14 @@ $red: #ed6147;
     .home_page{
         .illus_sect{
             @include flex_trinity(column, flex-end);
-            background-image: url('../img/acceuil_bg.png');
+            align-items: center;
+            background: url('../img/bg_home_noadds.png') center 0 no-repeat fixed;
             width: 100%;
             height: 50vh;
             background-size: cover;
             background-position: 30%;
             @media(min-width:768px){
-                height: 68vh;
+                height: 90vh;
             }
             .bold{
                 font-family: "robotoBold";
@@ -195,16 +196,9 @@ $red: #ed6147;
                 font-size: 14px;
                 font-family: "robotoRegular";
             }
-        }
-        .concept{
-            @include flex_trinity(column, space-around);
-            background-color: #b5f4f2;
-            padding-top: 50px;
-            align-items: center;
-            width: 90%;
-            height: 700px;
-            padding: 0% 5%;
             .redirect_link{
+                margin-top: 15px;
+                z-index: 2;
                 text-align: center;
                 color: white;
                 background-color: $orange;
@@ -222,6 +216,32 @@ $red: #ed6147;
                     width: 50%;
                 }
             }
+        }
+        #couche2{
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            height: 100vh;
+            background: url('../img/hot_air_balloon.png') center 0 no-repeat fixed;
+            background-size: cover;
+        }
+        #couche3{
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            height: 100vh;
+            background: url('../img/cloud.png') center 0 no-repeat fixed;
+            background-size: cover;
+        }
+
+        .concept{
+            @include flex_trinity(column, space-around);
+            background-color: #b5f4f2;
+            padding-top: 50px;
+            align-items: center;
+            width: 90%;
+            height: 700px;
+            padding: 0% 5%;
             .discover_concept{
                 @include flex_trinity(column, space-around);
                 align-items: center;
@@ -352,7 +372,7 @@ $red: #ed6147;
         display: none;
         position: absolute;
         top: 0;
-        z-index: 1;
+        z-index: 3;
         height: 100vh;
         width: 100%;
         background-color: rgba(0,0,0,0.4);
@@ -371,7 +391,7 @@ $red: #ed6147;
             @media(min-width:1024px){
                 width: 40%;
             }
-            .close_login_mdc{
+            .close_login_md{
                 align-self: flex-end;
                 img{
                     height: 15px;

@@ -38,7 +38,7 @@
     </header>
 
     <main class="home_page">
-        <div class="illus_sect">
+        <div id="couche1" class="illus_sect">
             {% if user is empty %}
             <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
             <p class="descrip">Venez recycler dans nos super poubelleset faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
@@ -46,15 +46,17 @@
             <p class="bold">Bonjour {{user.pseudo}} !</p>
             <p class="descrip">Tu as déja recyclé {{user.bottlesNumber}} bouteilles !</p>
             {% endif %}
-        </div>
-        <div class="concept">
             {% if user is empty %}
                 <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
                 <a class="redirect_link open_login_md" href="#">Connectez vous</a>
             {% else %}
-                <a class="redirect_link" href="?action=offers">Mes offres </a>
+                <a class="redirect_link" href="?action=offers">Voir les offres</a>
                 <a class="redirect_link" href="?action=profile">Mon Profil</a>
             {% endif %}
+        </div>
+        <div id="couche2"></div>
+        <div id="couche3"></div>
+        <div class="concept">
             <div class="discover_concept">
                 <p>Découvrez le concept</p>
                 <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
@@ -101,5 +103,13 @@
     <script src="assets/script/map.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
+    <script type="text/javascript" src="assets/script/pluginParallax/scripts/jquery.parallax-1.1.3.js"></script>
+    <script>
+        $(document).ready(function(){		
+            $('#couche1').parallax("center", 0.5, true);
+            $('#couche2').parallax("center", 1.2, true);
+            $('#couche3').parallax("center", 0.3, true);
+	    })
+    </script>
 
 {% endblock %}

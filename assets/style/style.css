@@ -209,7 +209,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    background-image: url("../img/acceuil_bg.png");
+    align-items: center;
+    background: url("../img/bg_home_noadds.png") center 0 no-repeat fixed;
     width: 100%;
     height: 50vh;
     background-size: cover;
@@ -218,7 +219,7 @@
 }
 @media screen and (min-width: 768px) {
   .home_page .illus_sect {
-    height: 68vh;
+    height: 90vh;
   }
 }
 @media screen {
@@ -233,6 +234,46 @@
     font-size: 14px;
     font-family: "robotoRegular";
   }
+  .home_page .illus_sect .redirect_link {
+    margin-top: 15px;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    background-color: #f0816c;
+    border-radius: 2px;
+    padding: 15px;
+    width: 80%;
+    box-shadow: 0px 2px 1px #d47260;
+    font-family: "robotoLight";
+    font-size: 17px;
+  }
+  .home_page .illus_sect .redirect_link:hover {
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home_page .illus_sect .redirect_link {
+    width: 50%;
+  }
+}
+@media screen {
+  .home_page #couche2 {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    height: 100vh;
+    background: url("../img/hot_air_balloon.png") center 0 no-repeat fixed;
+    background-size: cover;
+  }
+  .home_page #couche3 {
+    position: absolute;
+    width: 100%;
+    top: 60px;
+    height: 100vh;
+    background: url("../img/cloud.png") center 0 no-repeat fixed;
+    background-size: cover;
+  }
   .home_page .concept {
     display: flex;
     flex-direction: column;
@@ -244,28 +285,6 @@
     height: 700px;
     padding: 0% 5%;
   }
-  .home_page .concept .redirect_link {
-    text-align: center;
-    color: white;
-    background-color: #f0816c;
-    border-radius: 2px;
-    padding: 15px;
-    width: 80%;
-    box-shadow: 0px 2px 1px #d47260;
-    font-family: "robotoLight";
-    font-size: 17px;
-  }
-  .home_page .concept .redirect_link:hover {
-    background-color: #FFAB9B;
-    box-shadow: 0px 2px 1px #FFAB9B;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .home_page .concept .redirect_link {
-    width: 50%;
-  }
-}
-@media screen {
   .home_page .concept .discover_concept {
     display: flex;
     flex-direction: column;
@@ -432,7 +451,7 @@
     display: none;
     position: absolute;
     top: 0;
-    z-index: 1;
+    z-index: 3;
     height: 100vh;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.4);
@@ -461,10 +480,10 @@
   }
 }
 @media screen {
-  .modale_login .container_form .close_login_mdc {
+  .modale_login .container_form .close_login_md {
     align-self: flex-end;
   }
-  .modale_login .container_form .close_login_mdc img {
+  .modale_login .container_form .close_login_md img {
     height: 15px;
   }
   .modale_login .container_form form {

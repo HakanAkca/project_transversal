@@ -13,6 +13,7 @@
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
                 {% if user.pseudo is defined %}
                     <li><a href="?action=profile">Profil</a></li>
+                    <li><a href="?action=logout">Deconnexion</a></li>
                 {% else %}
                     <li><a href="?action=register">Inscription</a></li>
                 {% endif %}
@@ -28,6 +29,7 @@
             <li><a href="?action=partner">Devenir Partenaires</a></li>
             {% if user.pseudo is defined %}
                 <li><a href="?action=profile">Profil</a></li>
+                <li><a href="?action=logout">Deconnexion</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}
@@ -37,11 +39,22 @@
 
     <main class="home_page">
         <div class="illus_sect">
+            {% if user is empty %}
             <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
             <p class="descrip">Venez recycler dans nos super poubelleset faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
+            {% else %}
+            <p class="bold">Bonjour {{user.pseudo}} !</p>
+            <p class="descrip">Tu as déja recyclé {{user.bottlesNumber}} bouteilles !</p>
+            {% endif %}
         </div>
         <div class="concept">
-            <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
+            {% if user is empty %}
+                <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
+                <a class="redirect_link open_login_md" href="#">Connectez vous</a>
+            {% else %}
+                <a class="redirect_link" href="?action=offers">Mes offres </a>
+                <a class="redirect_link" href="?action=profile">Mon Profil</a>
+            {% endif %}
             <div class="discover_concept">
                 <p>Découvrez le concept</p>
                 <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
@@ -64,23 +77,29 @@
             <div class="find_city">
                 <p class="title">Trouvez le Tritus le plus proche de chez vous !</p>
                 <p class="enter_name">Entre le nom de votre ville pour commencer :</p>
-                <form>
-                    <input class="city_input" type="text" name="city" placeholder="ex: Paris">
-                    <input class="submit_input" type="submit" value="GO !">
-                </form>
+                <div>
+                    <input id="adresse" class="city_input" type="text" name="city" placeholder="ex: Paris">
+                    <input class="submit_input" type="submit" value="GO !" onclick="findAdress();">
+                </div>
             </div>
+
             <div id="map" style="height: 400px; width: 100%"></div>
         </div>
+
     </main>
-    <form action="?action=home" method="POST">
-        <input name="username" type="text" value="">
-        <input name="password" type="password" value="">
-        <input name="submitLogin" type="submit" value="connexion">
-    </form>
-    <input type="text" id="adresse">
-    <input type="submit" value="Trouvez selon votre possition une poubelle" onclick="findAdress();">
-    <div id="map" style="height: 400px; width: 100%"></div>
+    <div class="modale_login">
+        <div class="container_form">
+            <div class="close_login_md"><img src="assets/img/cancel.png"></img></div>
+            <form action="?action=home" method="POST">
+                <div class="login_form" ><p>Nom d'utilisateur : </p><input name="username" type="text" value=""></div>
+                <div class="login_form" ><p>Mot de passe : </p><input name="password" type="password" value=""></div>
+                <input class="login_button" name="submitLogin" type="submit" value="connexion">
+            </form>
+        </div>
+    </div>
+    <!--<script src="assets/script/loginCheck.js"></script>-->
     <script src="assets/script/map.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
+
 {% endblock %}

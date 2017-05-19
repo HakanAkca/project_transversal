@@ -241,7 +241,7 @@
     padding-top: 50px;
     align-items: center;
     width: 90%;
-    height: 600px;
+    height: 700px;
     padding: 0% 5%;
   }
   .home_page .concept .redirect_link {
@@ -259,6 +259,13 @@
     background-color: #FFAB9B;
     box-shadow: 0px 2px 1px #FFAB9B;
   }
+}
+@media screen and (min-width: 1024px) {
+  .home_page .concept .redirect_link {
+    width: 50%;
+  }
+}
+@media screen {
   .home_page .concept .discover_concept {
     display: flex;
     flex-direction: column;
@@ -400,25 +407,107 @@
     padding-left: 30px;
     width: 70%;
   }
-  .home_page .map_area .find_city form {
+  .home_page .map_area .find_city div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
   }
-  .home_page .map_area .find_city form input {
+  .home_page .map_area .find_city div input {
     margin-bottom: 10px;
     border: none;
     padding: 10px 0px;
   }
-  .home_page .map_area .find_city form .city_input {
+  .home_page .map_area .find_city div .city_input {
     background-color: #e6e6e6;
   }
-  .home_page .map_area .find_city form .submit_input {
+  .home_page .map_area .find_city div .submit_input {
     background-color: #37d074;
     color: white;
   }
-  .home_page .map_area .find_city form .submit_input:hover {
+  .home_page .map_area .find_city div .submit_input:hover {
     background-color: #43ff8e;
+  }
+
+  .modale_login {
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modale_login .container_form {
+    width: 80%;
+    margin: auto;
+    margin-top: 20%;
+    background-color: white;
+    border-radius: 5px;
+    height: 30%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
+@media screen and (min-width: 768px) {
+  .modale_login .container_form {
+    width: 60%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modale_login .container_form {
+    width: 40%;
+  }
+}
+@media screen {
+  .modale_login .container_form .close_login_mdc {
+    align-self: flex-end;
+  }
+  .modale_login .container_form .close_login_mdc img {
+    height: 15px;
+  }
+  .modale_login .container_form form {
+    width: 80%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modale_login .container_form form {
+    align-items: center;
+  }
+}
+@media screen {
+  .modale_login .container_form form .login_form {
+    width: 60%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .modale_login .container_form form .login_form {
+    width: 60%;
+  }
+}
+@media screen {
+  .modale_login .container_form form .login_button {
+    border: none;
+    background-color: #f0816c;
+    border-radius: 2px;
+    box-shadow: 0px 2px 1px #d47260;
+    padding: 10px;
+    width: 60%;
+  }
+  .modale_login .container_form form .login_button:hover {
+    background-color: #FFAB9B;
+    box-shadow: 0px 2px 1px #FFAB9B;
   }
 
   .allForm {
@@ -568,6 +657,7 @@
     font-size: 12px;
     margin: 15px 0px;
     font-family: 'robotoLight';
+    visibility: hidden;
   }
   .user_page .user_info .specific_info .classement a {
     background-color: #f0816c;
@@ -690,6 +780,7 @@
 }
 @media screen {
   .user_page .box .all_changing_contents .changing_content {
+    border-radius: 5px;
     text-align: center;
     background-color: #333333;
   }

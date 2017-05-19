@@ -134,6 +134,13 @@ $(function() {
     $('.insert_code').click(function(){
         $('.form_code').css('display', 'block');
         $('.insert').css('background-color', 'rgba(0,0,0,0.4)');
+        $('.close_insert_code').css('display', 'block');
+    })
+
+    $('.close_insert_code').click(function(){
+        $('.form_code').css('display', 'none');
+        $('.insert').css('background-color', 'transparent');
+        $('.close_insert_code').css('display', 'none');      
     })
 
     $('.params').click(function(){
@@ -142,6 +149,14 @@ $(function() {
         $('.insert').css('display', 'none');
         $('.user_edit').css('display', 'block');
         $('.all_offers_link').css('display', 'none');
+    })
+
+    $('.close_user_edit').click(function(){
+        $('.stats').css('display', 'flex');
+        $('.box').css('display', 'block');
+        $('.insert').css('display', 'block');
+        $('.user_edit').css('display', 'none');
+        $('.all_offers_link').css('display', 'block');       
     })
 
 });

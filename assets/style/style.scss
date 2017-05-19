@@ -155,19 +155,34 @@ $red: #ed6147;
                 font-size: 18px;
             }
         }
-        .current{
-            display: none;
-            height: 40px;
-            background-color: $orange;
-            a{
-                padding-top: 9px;
-                color: white;
+        .end_header{
+            display: flex;
+            width: 30%;
+            justify-content: flex-end;
+            .current{
+                display: none;
+                height: 40px;
+                background-color: $orange;
+                a{
+                    color: white;
+                }
+                margin-right: 40px;
+                margin-left: 20%;
+                padding: 0px 10px;
+                @media(min-width:1024px){
+                    display: flex;
+                }
             }
-            margin-right: 40px;
-            margin-left: 20%;
-            padding: 0px 10px;
-            @media(min-width:1024px){
-                display: flex;
+            a{
+                align-self: center;
+                margin-right: 5px;
+                img{
+                    transform: rotate(90deg);
+                    &:hover{
+                        transform: rotate(270deg);
+                        transition: 1s;
+                    }
+                }
             }
         }
     }
@@ -175,36 +190,32 @@ $red: #ed6147;
     .home_page{
         .illus_sect{
             @include flex_trinity(column, flex-end);
-            background-image: url('../img/acceuil_bg.png');
+            align-items: center;
+            background: url('../img/bg_home_noadds.png') center 0 no-repeat fixed;
             width: 100%;
-            height: 50vh;
+            height: 70vh;
             background-size: cover;
             background-position: 30%;
             @media(min-width:768px){
-                height: 68vh;
+                height: 90vh;
             }
             .bold{
                 font-family: "robotoBold";
                 color : #4c4c4c;
                 font-size: 20px;
                 text-align: center;
+                z-index: 2;
             }
             .descrip{
                 @extend .bold;
                 margin-top: 10px;
                 font-size: 14px;
                 font-family: "robotoRegular";
+                z-index: 2;
             }
-        }
-        .concept{
-            @include flex_trinity(column, space-around);
-            background-color: #b5f4f2;
-            padding-top: 50px;
-            align-items: center;
-            width: 90%;
-            height: 700px;
-            padding: 0% 5%;
             .redirect_link{
+                margin-top: 15px;
+                z-index: 2;
                 text-align: center;
                 color: white;
                 background-color: $orange;
@@ -222,7 +233,39 @@ $red: #ed6147;
                     width: 50%;
                 }
             }
+            .last_button{
+                @media(min-width: 768px){
+                    margin-bottom: 140px;
+                }
+            }
+        }
+        #couche2{
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            height: 100vh;
+            background: url('../img/hot_air_balloon.png') center 0 no-repeat fixed;
+            background-size: cover;
+        }
+        #couche3{
+            position: absolute;
+            width: 100%;
+            top: 60px;
+            height: 100vh;
+            background: url('../img/cloud.png') center 0 no-repeat fixed;
+            background-size: cover;
+        }
+
+        .concept{
+            @include flex_trinity(column, space-around);
+            background-color: #b5f4f2;
+            padding-top: 50px;
+            align-items: center;
+            width: 90%;
+            height: 700px;
+            padding: 0% 5%;
             .discover_concept{
+                z-index: 2; 
                 @include flex_trinity(column, space-around);
                 align-items: center;
             }
@@ -315,6 +358,7 @@ $red: #ed6147;
             background-color: #b5f4f2;
             width: 90%;
             padding: 0% 5%;
+            padding-bottom: 5%;
             @include flex_trinity(column, space-around);
             align-items: center;
             .find_city{
@@ -352,7 +396,7 @@ $red: #ed6147;
         display: none;
         position: absolute;
         top: 0;
-        z-index: 1;
+        z-index: 3;
         height: 100vh;
         width: 100%;
         background-color: rgba(0,0,0,0.4);
@@ -371,7 +415,7 @@ $red: #ed6147;
             @media(min-width:1024px){
                 width: 40%;
             }
-            .close_login_mdc{
+            .close_login_md{
                 align-self: flex-end;
                 img{
                     height: 15px;
@@ -744,22 +788,30 @@ $red: #ed6147;
             width: 80%;
             margin: auto;
             margin-bottom: 15px;
-            .insert_code{
-                background-color: #f0816c;
-                text-align: center;
-                width: 50%;
-                margin: auto;
-                margin-bottom: 20px;
-                border-radius: 5px;
-                padding: 5px;
-                color: white;      
-                box-shadow: 0px 2px 1px $orangeHover;
-                @media(min-width : 1024px){
-
-                }
-                &:hover{
-                    background-color: $orangeHover;
+            div{
+                display: flex;
+                width: 100%;
+                .insert_code{
+                    background-color: #f0816c;
+                    text-align: center;
+                    width: 50%;
+                    margin: auto;
+                    margin-bottom: 20px;
+                    border-radius: 5px;
+                    padding: 5px;
+                    color: white;      
                     box-shadow: 0px 2px 1px $orangeHover;
+                    @media(min-width : 1024px){
+
+                    }
+                    &:hover{
+                        background-color: $orangeHover;
+                        box-shadow: 0px 2px 1px $orangeHover;
+                    }
+                }
+                .close_insert_code{
+                    height: 15px;
+                    display: none;
                 }
             }
             .form_code{
@@ -781,9 +833,10 @@ $red: #ed6147;
 
     .user_edit{
         display: none;
-        background-color: #b5f4f2;
+        background-color: #FBF8F2;
         padding-bottom: 20px;
         .area_edit{
+            color: white;
             background-color: rgba(0,0,0,0.4);
             width: 80%;
             padding: 5%;
@@ -807,6 +860,9 @@ $red: #ed6147;
                     color: white;
                     box-shadow: 0px 2px 1px $orange;
                     align-self: center;
+                }
+                .close_user_edit{
+                    width: 35%;
                 }
             }
         }

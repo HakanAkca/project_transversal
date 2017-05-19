@@ -23,9 +23,11 @@
             <li><a href="?action=home">Accueil</a></li>
             <li><a href="?action=about">Nous</a></li>
             <li><a href="?action=partner">Devenir Partenaires</a></li>
-            <li><a href="?action=logout">Déconnexion</a></li>
         </ul>
-        <div class="current"><a href="#">{{user.pseudo}}</a></div>
+        <div class="end_header">
+            <div class="current"><a href="#">{{user.pseudo}}</a></div>
+            <a href="?action=logout"><img src="assets/img/logout.png"></img></a>
+        </div>
     </header>
 
     <main class="user_page">
@@ -131,7 +133,7 @@
         </div>
         <a class="all_offers_link" href="?action=offers">Voir toutes les offres !</a>
         <div class="insert">
-            <a class="insert_code">Insérer un code !</a>
+            <div><a class="insert_code">Insérer un code !</a><img class="close_insert_code" src="assets/img/cancel.png"></img></div>
             <form class="form_code" action="?action=profile" method="POST">
                 <input type="text" name="barcode" class="code_form" class="code_input" placeholder="ex : 784589"/>
                 <input type="submit" name="submitBarcode" class="button" value="Valider le code"/>
@@ -182,7 +184,9 @@
                     <input class="input_img" type="file" name="userfile"/>
                 </div>
                 <input class="button_edit" type="submit" name="submitEditProfile" value="Editer">
+                <a class="button_edit close_user_edit">Retour sans sauvegarder !</a>
             </form>
+
         </div>
     </aside>
 {% endblock %}

@@ -1167,10 +1167,12 @@ $red: #ed6147;
         .nav{
             @include flex_trinity(row, space-between);
             margin: 20px 0px;
+            display: none;
             @media(min-width:768px){
                 width: 20%;
                 margin-left: 10%;
                 @include flex_trinity(column, space-between);
+                display: none;
             }
             div:nth-child(2){
                 margin-left: 28px;
@@ -1188,6 +1190,17 @@ $red: #ed6147;
                 white-space: nowrap;
                 font-size: 14px;
             }
+        }
+        .footer_logo{
+            @media(min-width:768px){
+                width: 30%
+            }
+            img{
+                width: 100%;
+                @media(min-width:768px){
+                    width: 80%;
+                }
+            }    
         }
         .copy{
             margin-top: 20px;

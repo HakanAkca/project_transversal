@@ -1446,6 +1446,7 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 20px 0px;
+    display: none;
   }
 }
 @media screen and (min-width: 768px) {
@@ -1455,6 +1456,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    display: none;
   }
 }
 @media screen {
@@ -1480,6 +1482,23 @@
     white-space: nowrap;
     font-size: 14px;
   }
+}
+@media screen and (min-width: 768px) {
+  footer .footer_logo {
+    width: 30%;
+  }
+}
+@media screen {
+  footer .footer_logo img {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 768px) {
+  footer .footer_logo img {
+    width: 80%;
+  }
+}
+@media screen {
   footer .copy {
     margin-top: 20px;
     font-size: 12px;

@@ -326,7 +326,7 @@ $red: #ed6147;
                     padding-left: 30px;
                     width: 70%;
                 }
-                form{
+                div{
                     @include flex_trinity(column, flex-start);
                     input{
                         margin-bottom: 10px;

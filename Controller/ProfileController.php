@@ -79,7 +79,7 @@ class ProfileController extends BaseController
                 }
             }
             if (isset($_POST['userVote'])) {
-                if ($manager->checkVote((int)$_POST['userID'])) {
+                if ($manager->checkVote((int)$_SESSION['user_id'])) {
                     $manager->userVote($_POST);
                 } else {
                     echo "Déjà Voté"; //

@@ -500,7 +500,7 @@ class UserManager
                                                         ]);
     }
     public function userVote($data){
-        $user_id = (int)$data['userID'];
+        $user_id = $_SESSION['user_id'];
         $survey_id = (int)$data['surveyID'];
         $currentNumbersVotes = $this->getSurveysVotes($survey_id)+1;
         $vote = 1;

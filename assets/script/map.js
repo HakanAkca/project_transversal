@@ -87,6 +87,9 @@ function initMap() {
         }, {
             position: new google.maps.LatLng(48.919707506163014, 2.4514102935791016),
             type: 'parking',
+        }, {
+            position: new google.maps.LatLng(48.86550475890616, 2.37414245326363),
+            type: 'parking',
         }
     ];
 
@@ -115,10 +118,6 @@ function findAdress() {
     geocoder.geocode({'address': adresse}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-            });
         } else {
             alert('Adresse introuvable: ' + status);
         }

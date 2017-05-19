@@ -78,12 +78,14 @@
                 <p class="title">Trouvez le Tritus le plus proche de chez vous !</p>
                 <p class="enter_name">Entre le nom de votre ville pour commencer :</p>
                 <form>
-                    <input class="city_input" type="text" name="city" placeholder="ex: Paris">
-                    <input class="submit_input" type="submit" value="GO !">
+                    <input id="adresse" class="city_input" type="text" name="city" placeholder="ex: Paris">
+                    <input class="submit_input" type="submit" value="GO !" onclick="findAdress();">
                 </form>
             </div>
+
             <div id="map" style="height: 400px; width: 100%"></div>
         </div>
+
     </main>
     <div class="modale_login">
         <div class="container_form">
@@ -96,4 +98,8 @@
         </div>
     </div>
     <!--<script src="assets/script/loginCheck.js"></script>-->
+    <script src="assets/script/map.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
+
 {% endblock %}

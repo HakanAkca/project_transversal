@@ -657,6 +657,7 @@
     font-size: 12px;
     margin: 15px 0px;
     font-family: 'robotoLight';
+    visibility: hidden;
   }
   .user_page .user_info .specific_info .classement a {
     background-color: #f0816c;

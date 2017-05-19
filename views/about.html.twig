@@ -30,12 +30,19 @@
             <li><a href="?action=partner">Devenir Partenaires</a></li>
             {% if isConnected is defined %}
                 <li><a href="?action=profile">Profil</a></li>
-                <li><a href="?action=logout">Déconnexion</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}
         </ul>
-        <div class="current"><a href="#">Accueil</a></div>
+        <div class="end_header">
+            {% if isConnected is defined %}
+                <div class="current"><a href="#">{{user.pseudo}}</a></div>
+                <a href="?action=logout"><img src="assets/img/logout.png"></img></a>
+            {% else %}
+                <div class="current"><a href="#">About us</a></div>
+            {% endif %}
+
+        </div>
     </header>
 
     <main class="us">

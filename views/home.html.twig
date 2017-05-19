@@ -29,29 +29,35 @@
             <li><a href="?action=partner">Devenir Partenaires</a></li>
             {% if user.pseudo is defined %}
                 <li><a href="?action=profile">Profil</a></li>
-                <li><a href="?action=logout">Deconnexion</a></li>
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}
         </ul>
-        <div class="current"><a href="#">Accueil</a></div>
+        <div class="end_header">
+            {% if user.pseudo is defined %}
+                <div class="current"><a href="#">{{user.pseudo}}</a></div>
+                <a href="?action=logout"><img src="assets/img/logout.png"></img></a>
+            {% else %}
+                <div class="current"><a href="#">Accueil</a></div>
+            {% endif %}
+        </div>
     </header>
 
     <main class="home_page">
         <div id="couche1" class="illus_sect">
             {% if user is empty %}
             <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
-            <p class="descrip">Venez recycler dans nos super poubelleset faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
+            <p class="descrip">Venez recycler dans nos super poubelles et faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
             {% else %}
             <p class="bold">Bonjour {{user.pseudo}} !</p>
             <p class="descrip">Tu as déja recyclé {{user.bottlesNumber}} bouteilles !</p>
             {% endif %}
             {% if user is empty %}
                 <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
-                <a class="redirect_link open_login_md" href="#">Connectez vous</a>
+                <a class="redirect_link last_button open_login_md" href="#">Connectez vous</a>
             {% else %}
                 <a class="redirect_link" href="?action=offers">Voir les offres</a>
-                <a class="redirect_link" href="?action=profile">Mon Profil</a>
+                <a class="redirect_link last_button" href="?action=profile">Mon Profil</a>
             {% endif %}
         </div>
         <div id="couche2"></div>

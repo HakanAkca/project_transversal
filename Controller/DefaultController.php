@@ -128,7 +128,7 @@ class DefaultController extends BaseController
             echo $this->renderView('partner.html.twig',
                                     [
                                         'message' => $message,
-                                        
+                                        'bottlesRecycled' => $bottlesRecycled,
                                     ]);
         }
 
@@ -138,6 +138,7 @@ class DefaultController extends BaseController
     public function aboutAction(){
 
         $manager = UserManager::getInstance();
+        $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
@@ -149,10 +150,10 @@ class DefaultController extends BaseController
             }
         }
         if(!empty($_SESSION['user_id'])){
-            echo $this->renderView('about.html.twig', ['isConnected' => true]);
+            echo $this->renderView('about.html.twig', ['isConnected' => true, 'bottlesRecycled' => $bottlesRecycled]);
         }
         else{
-            echo $this->renderView('about.html.twig');
+            echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled]);
         }
     }
 }

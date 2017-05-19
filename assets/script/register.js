@@ -17,6 +17,58 @@ $(function() {
         }
     })
 
+    $(document).on('click','.next_2',function(){
+        $('.bottle').css('display', 'block');
+        if( $(window).width() < 768){
+            $('.bottle').css('animation-name', "throw_bottle");
+        }
+        else if( $(window).width() < 1024 ){
+            $('.bottle').css('animation-name', "throw_bottle_tablet");
+        }else{
+            $('.bottle').css('animation-name', "throw_bottle_desktop");
+        }
+        $('.girl_phone').css({"margin-top": "140px", "margin-left": "25px"});
+        $('.girl_bottle').css('display', 'none');
+        $('.girl_phone').css('display', 'inline');
+        setTimeout(function(){
+            $('.bottle').css('display', 'none');
+        }, 1000);
+        $(this).removeClass('next_2');
+        $(this).addClass('next_3');
+        $('.how_many_steps').html('2/3');
+    });
+
+    $(document).on('click','.next_3',function(){
+        if( $(window).width() < 1024 &&  $(window).width() > 767){
+            $('.girl_phone').css('animation-name', "move_to_trash_tablet")
+            setTimeout(function(){
+                $('.girl_phone').css({"margin-top": "125px", "margin-left": "295px"});
+            }, 1000);
+        }
+        if ($(window).width() > 1023){
+            $('.girl_phone').css('animation-name', "move_to_trash_desktop")
+            $('.girl_phone').css({"margin-top": "125px", "margin-left": "475px"});
+        }
+        $('.step_one').fadeOut(500, function(){
+             $('.step_two').fadeIn(500);
+        });
+        $(this).removeClass('next_3');
+        $(this).addClass('next_1');
+        $('.how_many_steps').html('3/3');
+    })
+
+    $(document).on('click', '.next_1', function(){
+         $('.girl_phone').css('animation-name', "");
+        $('.step_two').fadeOut(500, function(){
+             $('.step_one').fadeIn(500);
+        });
+        $('.girl_bottle').css('display', 'inline');
+        $('.girl_phone').css('display', 'none');
+        $(this).removeClass('next_1');
+        $(this).addClass('next_2');
+        $('.how_many_steps').html('1/3');
+    })
+
     function switch_tab($tabs, $content){
         $('.changing_content').css('display', 'none');
         $content.css('display', 'block');
@@ -44,7 +96,7 @@ $(function() {
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.partner_modale').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:first').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.city_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:first').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:last').html());
-        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().parent().children(".deal_cost").children('span:first').html() + ' points');
+        $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().parent().children(".deal_cost").children('.open_md').children('span:first').html() + ' points');
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:last').html());
 
         $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().children(".other_info").children('.id').html());
@@ -79,6 +131,7 @@ $(function() {
         $('.box').css('display', 'none');
         $('.insert').css('display', 'none');
         $('.user_edit').css('display', 'block');
+        $('.all_offers_link').css('display', 'none');
     })
 
 });

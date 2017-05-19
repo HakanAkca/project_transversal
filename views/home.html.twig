@@ -47,7 +47,18 @@
                 <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
             </div>
             <div id="tuto">
+                <div class="info_steps">
+                    <img class="step_one" src="assets/img/img_tuto/step_one.png"/>
+                    <img class="step_two" src="assets/img/img_tuto/step_two.png"/>
+                </div>
+                <div class="tuto_area">
+                    <img class="bottle" src="assets/img/img_tuto/bottle.png"/>
+                    <img class="girl_bottle" src="assets/img/img_tuto/girl_bottle.png"/>
+                    <img class="girl_phone" src="assets/img/img_tuto/girl_phone.png"/>
+                    <img class="trash" src="assets/img/img_tuto/trash.png"/>
+                </div>
             </div>
+             <div class="next_2"><p class="how_many_steps">1/3</p><img src="assets/img/img_tuto/next.png"/><p>Cliquez pour avancer </p></div>
         </div>
         <div class="map_area">
             <div class="find_city">
@@ -61,5 +72,15 @@
             <div id="map" style="height: 400px; width: 100%"></div>
         </div>
     </main>
-    <!--<script src="assets/script/loginCheck.js"></script>-->
+    <form action="?action=home" method="POST">
+        <input name="username" type="text" value="">
+        <input name="password" type="password" value="">
+        <input name="submitLogin" type="submit" value="connexion">
+    </form>
+    <input type="text" id="adresse">
+    <input type="submit" value="Trouvez selon votre possition une poubelle" onclick="findAdress();">
+    <div id="map" style="height: 400px; width: 100%"></div>
+    <script src="assets/script/map.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>
 {% endblock %}

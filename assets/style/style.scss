@@ -663,9 +663,13 @@ $red: #ed6147;
                     flex-wrap: wrap;
                 }
                 .changing_content{
-                    border-radius: 5px;
                     text-align: center;
                     background-color: #333333;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                    @media(min-width:1024px){
+                        border-radius: 5px;
+                    }
                     .title{
                         padding: 10px 0px;
                     }
@@ -760,7 +764,7 @@ $red: #ed6147;
                 .sondage{
                     display: none;
                     @media(min-width:1024px){
-                        display: flex;
+                        @include flex_trinity(column, space-around);
                         width: 90%;
                         margin-top: 50px;
                     }
@@ -773,11 +777,19 @@ $red: #ed6147;
                     }
                     .all_survey_offer{
                         @include flex_trinity(column, flex-start);
+                        @media(min-width:1024px){
+                            flex-direction: row;
+                            justify-content: space-around;
+                        }
                         .survey_offer{
                             padding: 0% 5%;
                             margin-bottom: 30px;
+                            @media(min-width: 1024px){
+                                padding: 0%;
+                                width: 30%;
+                            }
                             .header_offer{
-                                background-color: #aeb3b4;
+                                background-color: #afada9;
                                 @include flex_trinity(row, flex-start);
                                 align-items: center;
                                 height: 60px;
@@ -789,10 +801,11 @@ $red: #ed6147;
                                 }
                             }
                             .content_offer{
-                                background-color:#d0cece;
+                                background-color:#dadada;
                                 @include flex_trinity(column, space-around);
                                 height: 250px;
                                 align-items: center;
+                                color: black;
                                 .survey_content_separator{
                                     height: 1px;
                                     width: 80%;

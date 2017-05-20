@@ -50,6 +50,7 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $user = array();
+        $pageActuel = $_GET['action'];
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
@@ -76,6 +77,7 @@ class DefaultController extends BaseController
                                     'user' => $user,
                                     'allDeals' => $allDeals,
                                     'bottlesRecycled' => $bottlesRecycled,
+                                    'pageActuel' => $pageActuel,
                                 ]);
     }
 
@@ -85,6 +87,7 @@ class DefaultController extends BaseController
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $allDeals = $manager->getAllDeals();
         $errors = array();
+        $pageActuel = $_GET['action'];
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -111,6 +114,7 @@ class DefaultController extends BaseController
                                         'allDeals' => $allDeals,
                                         'bottlesRecycled' => $bottlesRecycled,
                                         'errors' => $errors,
+                                        'pageActuel' => $pageActuel,
                                     ]);
         }
         else{
@@ -129,6 +133,7 @@ class DefaultController extends BaseController
                                     [
                                         'message' => $message,
                                         'bottlesRecycled' => $bottlesRecycled,
+                                        'pageActuel' => $pageActuel,
                                     ]);
         }
 
@@ -140,6 +145,7 @@ class DefaultController extends BaseController
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $user = array();
+        $pageActuel = $_GET['action'];
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
@@ -155,10 +161,10 @@ class DefaultController extends BaseController
         }
         if(!empty($_SESSION['user_id'])){
             echo $this->renderView('about.html.twig', ['isConnected' => true, 'bottlesRecycled' => $bottlesRecycled,
-                'user' => $user]);
+                'user' => $user,'pageActuel' => $pageActuel,]);
         }
         else{
-            echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled]);
+            echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled,'pageActuel' => $pageActuel,]);
         }
     }
 }

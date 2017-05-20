@@ -88,56 +88,41 @@ class DefaultController extends BaseController
         $allDeals = $manager->getAllDeals();
         $errors = array();
         $pageActuel = $_GET['action'];
-        if(!empty($_SESSION['user_id'])){
-            $user = $manager->getUserById($_SESSION['user_id']);
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $res = $manager->checkPartner($_POST);
-                if ($res['isFormGood']) {
-                    $manager->bePartner($res['data']);
-                } else {
-                    $errors = $res['errors'];
-                }
+        //if(!empty($_SESSION['user_id'])){
+        $user = $manager->getUserById($_SESSION['user_id']);
+        if (isset($_POST['sumbitPartner'])) {
+            $res = $manager->checkPartner($_POST);
+            if ($res['isFormGood']) {
+                //$manager->bePartner($res['data']);
+                $data = $res['data'];
+                $email = $data['email'];
+                $object = "Tritus - Devenir partenaire";
+                $content = "On a bien reçu votre message. On vous contactera des que votre demande sera analysée";
+                $infoUser = "Nom : ".$data['name']."<br>Email : ".$data['email']."<br>Ville : ".$data['city']."<br>Téléphone : ".$data['phone']."<br>Statut : ".$data['status']."<br>Message ".$data['message'];
+                $this->sendMail($email,$object,$content,'...');
+                $this->sendMailBis($object, $infoUser, $altContent = null);
+            } else {
+                $errors = $res['errors'];
             }
-            if (isset($_POST['submitNewsletter'])) {
-                $res = $manager->newsletterCheck($_POST['newsletter']);
-                if($res['isFormGood']){
-                    $res = $manager->newslettersSend($res['data']);
-                    $email = $res['email'];
-                    $object = $res['object'];
-                    $content = $res['content'];
-                    $this->sendMail($email,$object,$content,'...');
-                }
-            }
-            echo $this->renderView('partner.html.twig',
-                                    [
-                                        'user' => $user,
-                                        'allDeals' => $allDeals,
-                                        'bottlesRecycled' => $bottlesRecycled,
-                                        'errors' => $errors,
-                                        'pageActuel' => $pageActuel,
-                                    ]);
         }
-        else{
-            if (isset($_POST['submitNewsletter'])) {
-                $res = $manager->newsletterCheck($_POST['newsletter']);
-                if($res['isFormGood']){
-                    $res = $manager->newslettersSend($res['data']);
-                    $email = $res['email'];
-                    $object = $res['object'];
-                    $content = $res['content'];
-                    $this->sendMail($email,$object,$content,'...');
-                }
+        if (isset($_POST['submitNewsletter'])) {
+            $res = $manager->newsletterCheck($_POST['newsletter']);
+            if($res['isFormGood']){
+                $res = $manager->newslettersSend($res['data']);
+                $email = $res['email'];
+                $object = $res['object'];
+                $content = $res['content'];
+                $this->sendMail($email,$object,$content,'...');
             }
-            $message = "Connecter vous avant tout";
-            echo $this->renderView('partner.html.twig',
-                                    [
-                                        'message' => $message,
-                                        'bottlesRecycled' => $bottlesRecycled,
-                                        'pageActuel' => $pageActuel,
-                                    ]);
         }
-
-
+        echo $this->renderView('partner.html.twig',
+                                [
+                                    'user' => $user,
+                                    'allDeals' => $allDeals,
+                                    'bottlesRecycled' => $bottlesRecycled,
+                                    'errors' => $errors,
+                                    'pageActuel' => $pageActuel,
+                                ]);
     }
 
     public function aboutAction(){

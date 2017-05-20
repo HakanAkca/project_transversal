@@ -175,24 +175,21 @@ class ProfileController extends BaseController
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
-                    $manager->reArrayFiles($res['data']);
-                    //$manager->addSurvey($res['data']);
+                    //$manager->reArrayFiles($res['data']);
+                    $manager->addSurvey($res['data']);
+                    var_dump($surveys);
                 } else {
                     $errors = $res['errors'];
                 }
             }
 
-            $a = array();
-            $b = array();
-            $c = array();
+
+
             if (isset($_POST['submitAddSurveyBis'])) {
                 echo "<pre>";
                 var_dump($_POST);
                 echo "</pre>";
             }
-            var_dump($a);
-            echo "---";
-            var_dump($b);
 
 
 

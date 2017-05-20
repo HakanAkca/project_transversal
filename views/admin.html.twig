@@ -45,14 +45,7 @@
     </form>
     SONDAGE BIS (je taf dessus pour l'instant)
     <form method="POST" action="?action=admin" enctype="multipart/form-data">
-        <input type="text" name="item[0][name]" />
-        <input type="text" name="item[0][email]" />
-
-        <input type="text" name="item[1][name]" />
-        <input type="text" name="item[1][email]" />
-
-        <input type="text" name="item[2][name]" />
-        <input type="text" name="item[2][email]" />
+        <input type="text" name="name" />
         <button type="submit" name="submitAddSurveyBis" >Ajouter</button>
     </form>
 
@@ -99,6 +92,4 @@
             </form>
         {% endif %}
     </div>
-    <!--<script src="assets/script/removeAccount.js"></script>-->
-
 {% endblock %}

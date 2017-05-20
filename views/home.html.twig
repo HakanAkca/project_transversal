@@ -45,6 +45,9 @@
 
     <main class="home_page">
         <div id="couche1" class="illus_sect">
+            {% for error in errors %}
+                {{ error }}<br>
+            {% endfor %}
             {% if user is empty %}
             <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
             <p class="descrip">Venez recycler dans nos super poubelles et faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
@@ -105,7 +108,6 @@
             </form>
         </div>
     </div>
-    <!--<script src="assets/script/loginCheck.js"></script>-->
     <script src="assets/script/map.js"></script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUtSZwxtPJnfgYwb8HJxUfZEuZWvKOjSc&callback=initMap"></script>

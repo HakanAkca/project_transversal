@@ -30,7 +30,11 @@
     <main class="allForm">
         <div class="container_form">
             <div id="successBlock"></div>
-            <div id="errorBlock"></div>
+            <div id="errorBlock">
+                {% for error in errors %}
+                    {{ error }}<br>
+                {% endfor %}
+            </div>
             <h2 class="title">Inscription</h2>
             <div class="form-container-2 form-container form" id="example-2">
                 <form id="myRegister" method="POST" action="?action=register">
@@ -44,6 +48,4 @@
             </div>
         </div>
     </main>
-    <script src="assets/script/ajax-register.js"></script>
-
 {% endblock %}

@@ -482,6 +482,7 @@ class UserManager
         $survey['image'] = $url;
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
+        var_dump($survey);
         $this->DBManager->insert('surveys', $survey);
         move_uploaded_file($filetmpname,$url);
     }

@@ -273,8 +273,14 @@ $red: #ed6147;
                 align-items: center;
             }
             #tuto{
-                width: 80%;
+                width: 309px;
                 border: 1px solid red;
+                @media(min-width:768px){
+                    width: 555px;
+                }
+                @media(min-width:1024px){
+                    width: 733px;
+                }
                 .info_steps{
                     height: 110px;
                     background-color: #bbfdff;
@@ -291,6 +297,9 @@ $red: #ed6147;
                     }
                     .step_two{
                         display: none;
+                        @media(min-width:768px){
+                            height: 190px;
+                        }
                     }
                 }
                 .tuto_area{
@@ -699,6 +708,10 @@ $red: #ed6147;
                                     width: 25%;
                                     background-color: $orange;
                                     @include flex_trinity(row, center);
+                                    align-items: center;
+                                    .submit_form{
+                                        display: none;
+                                    }
                                     img{
                                         width: 30px;
                                         align-self: center;

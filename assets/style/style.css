@@ -322,9 +322,21 @@
     align-items: center;
   }
   .home_page .concept #tuto {
-    width: 80%;
+    width: 309px;
     border: 1px solid red;
   }
+}
+@media screen and (min-width: 768px) {
+  .home_page .concept #tuto {
+    width: 555px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home_page .concept #tuto {
+    width: 733px;
+  }
+}
+@media screen {
   .home_page .concept #tuto .info_steps {
     height: 110px;
     background-color: #bbfdff;
@@ -351,6 +363,13 @@
   .home_page .concept #tuto .info_steps .step_two {
     display: none;
   }
+}
+@media screen and (min-width: 768px) {
+  .home_page .concept #tuto .info_steps .step_two {
+    height: 190px;
+  }
+}
+@media screen {
   .home_page .concept #tuto .tuto_area {
     background-image: url("../img/img_tuto/bg_tuto.png");
     height: 290px;
@@ -881,6 +900,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+  }
+  .user_page .box .all_changing_contents .my_reductions .all_reducs .reducs .print .submit_form {
+    display: none;
   }
   .user_page .box .all_changing_contents .my_reductions .all_reducs .reducs .print img {
     width: 30px;

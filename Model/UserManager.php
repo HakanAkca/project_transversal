@@ -761,14 +761,14 @@ class UserManager
     }
     public function chechBuyDeal($id){
         $user_id = $_SESSION['user_id'];
-        $deal = $this->getDealById((int)$id);
+        $deal = $this->getDealById($id);
         $user = $this->getUserById($user_id);
         $userCosts = (int)$user['costs'];
         $dealCosts = (int)$deal['cost'];
         return ($userCosts >= $dealCosts);
     }
     public function buyDeal($id){
-        $user_id = (int)$_SESSION['user_id'];
+        $user_id = $_SESSION['user_id'];
         $deal = $this->getDealById($id);
         $userDeal['user_id'] = $user_id;
         $userDeal['catalog_id'] = (int)$deal['id'];
@@ -1032,5 +1032,11 @@ class UserManager
         return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
             ['partner' => $partner]);
     }
+    public function addMail($data)
+    {
+        $user['email'] = $data['newsletter'];
 
+        var_dump($user);
+        $this->DBManager->insert('newsletter', $user);
+    }
 }

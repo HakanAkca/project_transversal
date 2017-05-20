@@ -32,6 +32,7 @@ class DefaultController extends BaseController
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
+                $manager->addMail($_POST);
                 $res = $manager->newslettersSend($res['data']);
                 $email = $res['email'];
                 $object = $res['object'];
@@ -65,6 +66,7 @@ class DefaultController extends BaseController
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
+                $manager->addMail($_POST);
                 $res = $manager->newslettersSend($res['data']);
                 $email = $res['email'];
                 $object = $res['object'];
@@ -101,6 +103,7 @@ class DefaultController extends BaseController
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
+                    $manager->addMail($_POST);
                     $res = $manager->newslettersSend($res['data']);
                     $email = $res['email'];
                     $object = $res['object'];
@@ -121,6 +124,7 @@ class DefaultController extends BaseController
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
+                    $manager->addMail($_POST);
                     $res = $manager->newslettersSend($res['data']);
                     $email = $res['email'];
                     $object = $res['object'];
@@ -152,6 +156,7 @@ class DefaultController extends BaseController
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
+                $manager->addMail($_POST);
                 $res = $manager->newslettersSend($res['data']);
                 $email = $res['email'];
                 $object = $res['object'];

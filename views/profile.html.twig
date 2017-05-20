@@ -97,7 +97,45 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="changing_content sondage">Le sondage du mois</div>
+                <div class="changing_content sondage">
+                    <div class="sondage_title">
+                        <p class="huge_title">A découvrir ensuite</p>
+                        <p class="little_description">Votez pour votre partenare préféré !</p>
+                    </div>
+                    <div class="all_survey_offer">
+                        {% for survey in surveys %}
+                            <div class="survey_offer">
+                                <div class="header_offer">
+                                    <img src="{{survey.image}}"></img>
+                                    <p>{{survey.partner}}</p>
+                                </div>
+                                <div class="content_offer">
+                                    <div class="little_describe">{{survey.description}}</div>
+                                    <div class="survey_content_separator"></div>
+                                    <div class="survey_deal">{{survey.deal}}INCOMING DEAL</div>
+                                </div>
+                                <div class="vote_result_area">
+                                            {% if user.vote == "1" %}
+                                                <div class="vote_area">
+                                                    <form action="?action=profile" method="POST">
+                                                        <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
+                                                        <label for="submit_user_vote"><img src="assets/img/vote.png"></img></label>
+                                                        <input class="form_vote" id="submit_user_vote" type="submit" name="userVote" value="Je vote">
+                                                    </form>
+                                                </div>
+                                            {% else %}
+                                            {% set average = (survey.vote/allVotes)*100 %}
+                                                <div class="stat_area">
+                                                    <div class="progress_bar">
+                                                        <div class="progress" style="width:{{ average|round(1, 'floor')}}%">{{ average|round(1, 'floor')}}%</div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -156,9 +156,12 @@ $red: #ed6147;
             }
         }
         .end_header{
-            display: flex;
             width: 30%;
             justify-content: flex-end;
+            display: none;
+            @media(min-width:1024px){
+                display: flex;
+            }
             .current{
                 display: none;
                 height: 40px;
@@ -760,6 +763,75 @@ $red: #ed6147;
                         display: flex;
                         width: 90%;
                         margin-top: 50px;
+                    }
+                    .sondage_title{
+                        @include flex_trinity(row, center);
+                        padding: 10px 0px;
+                        .little_description{
+                            display: none;
+                        }
+                    }
+                    .all_survey_offer{
+                        @include flex_trinity(column, flex-start);
+                        .survey_offer{
+                            padding: 0% 5%;
+                            margin-bottom: 30px;
+                            .header_offer{
+                                background-color: #aeb3b4;
+                                @include flex_trinity(row, flex-start);
+                                align-items: center;
+                                height: 60px;
+                                img{
+                                    height: 60px;
+                                }
+                                p{
+                                    margin-left: 20px;
+                                }
+                            }
+                            .content_offer{
+                                background-color:#d0cece;
+                                @include flex_trinity(column, space-around);
+                                height: 250px;
+                                align-items: center;
+                                .survey_content_separator{
+                                    height: 1px;
+                                    width: 80%;
+                                    background-color: black;
+                                }
+                            }
+                            .vote_result_area{
+                                background-color: $red;
+                                .vote_area{
+                                    height: 60px;
+                                    @include flex_trinity(row, center);
+                                    align-items: center;
+                                    form{
+                                        .form_vote{
+                                            display: none;
+                                        }
+                                        label img{
+                                            height: 40px;
+                                        }
+                                    }
+                                }
+                                .stat_area{
+                                    @include flex_trinity(row, center);
+                                    align-items: center;
+                                    height: 60px;
+                                    .progress_bar{
+                                        width: 90%;
+                                        height:30px;
+                                        background-color: grey;
+                                        .progress{
+                                            text-align: center;
+                                            height: 30px;
+                                            line-height: 30px;
+                                            background-color: #37d074;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

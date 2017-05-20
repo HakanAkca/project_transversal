@@ -114,43 +114,6 @@ class ProfileController extends BaseController
 
     }
 
-    public function dumpAction()
-    {
-
-        if (!empty($_SESSION['user_id'])) {
-            $manager = UserManager::getInstance();
-            $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-            $user_id = $_SESSION['user_id'];
-            $user = $manager->getUserById($user_id);
-            $dealByCity = $manager->getDealsByCity($user['city']);
-            $userDeals = $manager->getAvailableDeals();
-            $costs = 0;
-            $errorBarcode = '';
-            $yourBarcode = '';
-            $userBarcode = $manager->getUserBarcodes();
-
-            if (isset($_POST['submitBottles'])) {
-                if ($manager->checkDump($_POST)) {
-                    $manager->addBarcode($_POST);
-                }
-            }
-
-            echo $this->renderView('dump.html.twig',
-                [
-                    'user' => $user,
-                    'userDeals' => $userDeals,
-                    'dealByCity' => $dealByCity,
-                    'costs' => $costs,
-                    'bottlesRecycled' => $bottlesRecycled,
-                    'errorBarcode' => $errorBarcode,
-                    'yourBarcode' => $yourBarcode,
-                    'userBarcode' => $userBarcode,
-                ]);
-        } else {
-            $this->redirect('home');
-        }
-
-    }
 
     public function adminAction()
     {
@@ -163,6 +126,7 @@ class ProfileController extends BaseController
             $manager->getAllDeals();
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
+            $pageActuel = $_GET['action'];
 
 
             if (isset($_POST['submitCatalog'])) {
@@ -187,22 +151,21 @@ class ProfileController extends BaseController
                             $manager->removeSurveyTmp();
                         }
                     }
-                    $res_tmp = $manager->surveyNumber();
-                    if(is_array($res_tmp)){
-                        $offers[] = $res_tmp[0];
-                        if(isset($res_tmp[1])){
-                            $offers[] = $res_tmp[1];
-                        }
-                        if(isset($res_tmp[2])){
-                            $offers[] = $res_tmp[2];
-                        }
-                    }
                 } else {
                     $errors = $res['errors'];
                 }
             }
 
-
+            $res_tmp = $manager->surveyNumber();
+            if(is_array($res_tmp)){
+                $offers[] = $res_tmp[0];
+                if(isset($res_tmp[1])){
+                    $offers[] = $res_tmp[1];
+                }
+                if(isset($res_tmp[2])){
+                    $offers[] = $res_tmp[2];
+                }
+            }
 
 
             if (isset($_POST['submitAccount'])) {
@@ -230,6 +193,12 @@ class ProfileController extends BaseController
             if (isset($_POST['submitRemoveOffer'])) {
                 $manager->removeOffer($_POST['partner']);
             }
+
+            if (isset($_POST['submitBottles'])) {
+                if ($manager->checkDump($_POST)) {
+                    $manager->addBarcode($_POST);
+                }
+            }
             $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [
@@ -240,6 +209,7 @@ class ProfileController extends BaseController
                     'surveys' => $surveys,
                     'allVotes' => $allVotes,
                     'offers' => $offers,
+                    'pageActuel' => $pageActuel,
                 ]);
         } else {
             $this->redirect('home');

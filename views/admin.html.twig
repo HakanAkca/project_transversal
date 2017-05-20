@@ -96,4 +96,10 @@
             </form>
         {% endif %}
     </div>
+    <hr>
+    <h3>Vos bouteilles ici</h3>
+    <form action="?action=admin" method="post">
+        <input type="text" name="bottlesNumber" placeholder="vos bouteilles">
+        <input type="submit" name="submitBottles" value="Valider">
+    </form>
 {% endblock %}

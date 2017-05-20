@@ -154,6 +154,7 @@ class ProfileController extends BaseController
 
     public function adminAction()
     {
+        $offers = array();
         if (!empty($_SESSION['user_username'] == 'adminOmar')) {
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
@@ -186,19 +187,21 @@ class ProfileController extends BaseController
                             $manager->removeSurveyTmp();
                         }
                     }
-                    $res = $manager->surveyNumber();
+                    $res_tmp = $manager->surveyNumber();
+                    if(is_array($res_tmp)){
+                        $offers[] = $res_tmp[0];
+                        if(isset($res_tmp[1])){
+                            $offers[] = $res_tmp[1];
+                        }
+                        if(isset($res_tmp[2])){
+                            $offers[] = $res_tmp[2];
+                        }
+                    }
                 } else {
                     $errors = $res['errors'];
                 }
             }
 
-
-
-            if (isset($_POST['submitAddSurveyBis'])) {
-                echo "<pre>";
-                var_dump($_POST);
-                echo "</pre>";
-            }
 
 
 
@@ -236,6 +239,7 @@ class ProfileController extends BaseController
                     'dealToUpdate' => $dealToUpdate,
                     'surveys' => $surveys,
                     'allVotes' => $allVotes,
+                    'offers' => $offers,
                 ]);
         } else {
             $this->redirect('home');

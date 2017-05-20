@@ -43,7 +43,16 @@
         <input type="file" name="image"><br>
         <button type="submit" name="submitAddSurvey" >Ajouter</button>
     </form>
-    <p>Ici on va affiché les offres (parmi les 3) déjà choisi .</p>
+    <p>Cool</p>
+
+    {% if offers is not empty %}
+        {% set cpt = 1 %}
+        {% for offer in offers %}
+            offer {{ cpt }} DONE
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+        {% set cpt = 0 %}
+    {% endif %}
     <hr>
     <div>
         <h3>Supprimer un compte indisérable</h3>

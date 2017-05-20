@@ -473,7 +473,7 @@ class UserManager
     }
     public function addSurvey($data){
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['image'];
+        $url = 'uploads/surveys/'.$data['image'];
         $cur = strtotime($this->getDatetimeNow());
         $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
         $survey['partner'] = $data['partner'];

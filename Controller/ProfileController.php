@@ -114,46 +114,10 @@ class ProfileController extends BaseController
 
     }
 
-    public function dumpAction()
-    {
-
-        if (!empty($_SESSION['user_id'])) {
-            $manager = UserManager::getInstance();
-            $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
-            $user_id = $_SESSION['user_id'];
-            $user = $manager->getUserById($user_id);
-            $dealByCity = $manager->getDealsByCity($user['city']);
-            $userDeals = $manager->getAvailableDeals();
-            $costs = 0;
-            $errorBarcode = '';
-            $yourBarcode = '';
-            $userBarcode = $manager->getUserBarcodes();
-
-            if (isset($_POST['submitBottles'])) {
-                if ($manager->checkDump($_POST)) {
-                    $manager->addBarcode($_POST);
-                }
-            }
-
-            echo $this->renderView('dump.html.twig',
-                [
-                    'user' => $user,
-                    'userDeals' => $userDeals,
-                    'dealByCity' => $dealByCity,
-                    'costs' => $costs,
-                    'bottlesRecycled' => $bottlesRecycled,
-                    'errorBarcode' => $errorBarcode,
-                    'yourBarcode' => $yourBarcode,
-                    'userBarcode' => $userBarcode,
-                ]);
-        } else {
-            $this->redirect('home');
-        }
-
-    }
 
     public function adminAction()
     {
+        $offers = array();
         if (!empty($_SESSION['user_username'] == 'adminOmar')) {
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
@@ -162,6 +126,8 @@ class ProfileController extends BaseController
             $manager->getAllDeals();
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
+            $pageActuel = $_GET['action'];
+
 
             if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
@@ -171,26 +137,35 @@ class ProfileController extends BaseController
                     $errors = $res['errors'];
                 }
             }
-            $table = array();
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
-                    //$manager->reArrayFiles($res['data']);
-                    $manager->addSurvey($res['data']);
-                    var_dump($surveys);
+                    $manager->addSurveyTmp($res['data']);
+                    $data = $manager->countSurveyTmp();
+                    foreach ($data as $value){
+                        if((int)$value['COUNT(*)'] == 3){
+                            $surveysTmp = $manager->getSurveyTmp();
+                            foreach ($surveysTmp as $value){
+                                $manager->addSurvey($value);
+                            }
+                            $manager->removeSurveyTmp();
+                        }
+                    }
                 } else {
                     $errors = $res['errors'];
                 }
             }
 
-
-
-            if (isset($_POST['submitAddSurveyBis'])) {
-                echo "<pre>";
-                var_dump($_POST);
-                echo "</pre>";
+            $res_tmp = $manager->surveyNumber();
+            if(is_array($res_tmp)){
+                $offers[] = $res_tmp[0];
+                if(isset($res_tmp[1])){
+                    $offers[] = $res_tmp[1];
+                }
+                if(isset($res_tmp[2])){
+                    $offers[] = $res_tmp[2];
+                }
             }
-
 
 
             if (isset($_POST['submitAccount'])) {
@@ -218,6 +193,12 @@ class ProfileController extends BaseController
             if (isset($_POST['submitRemoveOffer'])) {
                 $manager->removeOffer($_POST['partner']);
             }
+
+            if (isset($_POST['submitBottles'])) {
+                if ($manager->checkDump($_POST)) {
+                    $manager->addBarcode($_POST);
+                }
+            }
             $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [
@@ -227,6 +208,8 @@ class ProfileController extends BaseController
                     'dealToUpdate' => $dealToUpdate,
                     'surveys' => $surveys,
                     'allVotes' => $allVotes,
+                    'offers' => $offers,
+                    'pageActuel' => $pageActuel,
                 ]);
         } else {
             $this->redirect('home');

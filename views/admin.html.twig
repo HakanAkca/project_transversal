@@ -43,12 +43,16 @@
         <input type="file" name="image"><br>
         <button type="submit" name="submitAddSurvey" >Ajouter</button>
     </form>
-    SONDAGE BIS (je taf dessus pour l'instant)
-    <form method="POST" action="?action=admin" enctype="multipart/form-data">
-        <input type="text" name="name" />
-        <button type="submit" name="submitAddSurveyBis" >Ajouter</button>
-    </form>
+    <p>Cool</p>
 
+    {% if offers is not empty %}
+        {% set cpt = 1 %}
+        {% for offer in offers %}
+            offer {{ cpt }} DONE
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+        {% set cpt = 0 %}
+    {% endif %}
     <hr>
     <div>
         <h3>Supprimer un compte indisérable</h3>
@@ -92,4 +96,10 @@
             </form>
         {% endif %}
     </div>
+    <hr>
+    <h3>Vos bouteilles ici</h3>
+    <form action="?action=admin" method="post">
+        <input type="text" name="bottlesNumber" placeholder="vos bouteilles">
+        <input type="submit" name="submitBottles" value="Valider">
+    </form>
 {% endblock %}

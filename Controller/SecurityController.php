@@ -21,6 +21,7 @@ class SecurityController extends BaseController
             $errors = array();
             $manager = UserManager::getInstance();
             $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+            $pageActuel = $_GET['action'];
             if (isset($_POST['submitRegister']))
             {
                 $res = $manager->userCheckRegister($_POST);
@@ -45,6 +46,7 @@ class SecurityController extends BaseController
                                          [
                                              'errors' => $errors,
                                              'bottlesRecycled' => $bottlesRecycled,
+                                             'pageActuel' => $pageActuel,
                                          ]);
         }
     }

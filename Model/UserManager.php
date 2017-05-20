@@ -216,7 +216,7 @@ class UserManager
 
     private function userHash($pass)
     {
-        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
 
@@ -236,27 +236,22 @@ class UserManager
         $this->DBManager->insert('users', $user);
         mkdir("uploads/". $user['pseudo']);
     }
-
     public function userCheckLogin($data)
     {
         $isFormGood = true;
         $errors = array();
         $user = $this->getUserByUsername($data['username']);
-        $hash = $this->userHash($data['password']);
-        if (empty($data['username']) OR empty($user) OR empty($data['password']) OR empty($hash)) {
-            $errors['Connexion field'] = 'Login ou mdp incorrect';
+        if (empty($data['username']) OR empty($data['password'])) {
+            $errors['Connexion field'] = 'Missing fields';
             $isFormGood = false;
         }
-
-        /*if ($isFormGood) {
-            echo(json_encode(array('success' => true, 'user' => $_POST)));
-        } else {
-            http_response_code(400);
-            echo(json_encode(array('success' => false, 'errors' => $errors)));
-            exit(0);
-        }*/
+        if(!password_verify($data['password'], $user['password'])){
+            $errors['matchingPassword'] = 'Login ou mdp incorrect';
+            $isFormGood = false;
+        }
         return $isFormGood;
     }
+
 
     public function userLogin($username)
     {
@@ -452,26 +447,11 @@ class UserManager
         $res['errors'] = $errors;
         return $res;
     }
-    public function reArrayFiles(&$file_post) {
 
-        $file_ary = array();
-        $file_count = count($file_post);
-        $file_keys = array_keys($file_post);
-
-        echo "<pre>";
-        var_dump($file_count);
-        echo "</pre>";
-
-        for ($i=0; $i<$file_count; $i++) {
-            foreach ($file_keys as $key) {
-                $file_ary[$i][$key] = $file_post[$key][$i];
-            }
-        }
+    public function countSurveyTmp(){
+        return $this->DBManager->findAllSecure("SELECT COUNT(*) FROM surveys_tmp");
     }
-    public function countSurvey($data){
-        var_dump(count($data));
-    }
-    public function addSurvey($data){
+    public function addSurveyTmp($data){
         $filetmpname = $data['image_tmp_name'];
         $url = 'uploads/'.$data['image'];
         $cur = strtotime($this->getDatetimeNow());
@@ -482,7 +462,26 @@ class UserManager
         $survey['image'] = $url;
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
-        var_dump($survey);
+        $this->DBManager->insert('surveys_tmp', $survey);
+        move_uploaded_file($filetmpname,$url);
+    }
+    public function removeSurveyTmp(){
+        return $this->DBManager->findOneSecure("DELETE FROM surveys_tmp");
+    }
+    public function surveyNumber(){
+        return $this->DBManager->findAllSecure("SELECT * FROM surveys_tmp ORDER BY expirationDate DESC");
+    }
+    public function addSurvey($data){
+        $filetmpname = $data['image_tmp_name'];
+        $url = 'uploads/surveys/'.$data['image'];
+        $cur = strtotime($this->getDatetimeNow());
+        $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
+        $survey['partner'] = $data['partner'];
+        $survey['description'] = $data['description'];
+        $survey['deal'] = $data['deal'];
+        $survey['image'] = $url;
+        $survey['expirationDate'] = $expirationDate;
+        $survey['vote'] = 0;
         $this->DBManager->insert('surveys', $survey);
         move_uploaded_file($filetmpname,$url);
     }
@@ -506,11 +505,31 @@ class UserManager
         }
         return $res;
     }
+    public function getSurveyTmp(){
+        $cur = strtotime($this->getDatetimeNow());
+        $currentDate = date('Y/m/d H:i:s', $cur);
+        $res = array();
+        $data = $this->DBManager->findAllSecure("SELECT * FROM surveys_tmp ORDER BY expirationDate DESC");
+
+        foreach ($data as $value) {
+            $exp = strtotime($value['expirationDate']);
+            $expirationDate =  date('Y/m/d H:i:s', $exp);
+
+            $date1=date_create($currentDate);
+            $date2=date_create($expirationDate);
+            $diff=date_diff($date1,$date2);
+            $interval =  (int)$diff->format("%R%a");
+            if($interval >= 0){
+                $res[] = $value;
+            }
+        }
+        return $res;
+    }
     public function updateSurvey(){
         $data = $this->getSurvey();
         if(empty($data)){
             $vote = 0;
-            $this->DBManager->findOneSecure("UPDATE users SET vote = :vote",
+            $this->DBManager->findAllSecure("UPDATE users SET vote = :vote",
                 [
                     'vote' => $vote,
                 ]);

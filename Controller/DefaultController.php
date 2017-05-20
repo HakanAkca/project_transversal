@@ -16,7 +16,7 @@ class DefaultController extends BaseController
             $pageActuel = 'home';
         }
         $user = array();
-        $errors = '';
+        $errors = array();
 
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
@@ -26,7 +26,7 @@ class DefaultController extends BaseController
                 $manager->userLogin($_POST['username']);
                 echo $this->redirect('profile');
             }else{
-                $errors = "Veillez saisir un pseudo et un mot de passe valide";
+                $errors[] = "Veillez saisir un pseudo et un mot de passe valide";
             }
         }
         if (isset($_POST['submitNewsletter'])) {
@@ -139,6 +139,10 @@ class DefaultController extends BaseController
 
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
+        $user = array();
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
@@ -150,7 +154,8 @@ class DefaultController extends BaseController
             }
         }
         if(!empty($_SESSION['user_id'])){
-            echo $this->renderView('about.html.twig', ['isConnected' => true, 'bottlesRecycled' => $bottlesRecycled]);
+            echo $this->renderView('about.html.twig', ['isConnected' => true, 'bottlesRecycled' => $bottlesRecycled,
+                'user' => $user]);
         }
         else{
             echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled]);

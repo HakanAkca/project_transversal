@@ -39,9 +39,16 @@
     <form method="POST" action="?action=admin" enctype="multipart/form-data">
         <input type="text" name="partner" placeholder="Titre"><br>
         <input type="text" name="description" placeholder="Description"><br>
+        <input type="text" name="deal" placeholder="Deal"><br>
         <input type="file" name="image"><br>
         <button type="submit" name="submitAddSurvey" >Ajouter</button>
     </form>
+    SONDAGE BIS (je taf dessus pour l'instant)
+    <form method="POST" action="?action=admin" enctype="multipart/form-data">
+        <input type="text" name="name" />
+        <button type="submit" name="submitAddSurveyBis" >Ajouter</button>
+    </form>
+
     <hr>
     <div>
         <h3>Supprimer un compte indisérable</h3>
@@ -85,6 +92,4 @@
             </form>
         {% endif %}
     </div>
-    <!--<script src="assets/script/removeAccount.js"></script>-->
-
 {% endblock %}

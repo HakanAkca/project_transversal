@@ -443,10 +443,33 @@ class UserManager
             $isFormGood = false;
             $errors['description'] = "Veillez remplir le champ description";
         }
+        if(!isset($data['deal']) | empty($data['deal'])){
+            $isFormGood = false;
+            $errors['deal'] = "Veillez remplir le champ deal";
+        }
 
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
         return $res;
+    }
+    public function reArrayFiles(&$file_post) {
+
+        $file_ary = array();
+        $file_count = count($file_post);
+        $file_keys = array_keys($file_post);
+
+        echo "<pre>";
+        var_dump($file_count);
+        echo "</pre>";
+
+        for ($i=0; $i<$file_count; $i++) {
+            foreach ($file_keys as $key) {
+                $file_ary[$i][$key] = $file_post[$key][$i];
+            }
+        }
+    }
+    public function countSurvey($data){
+        var_dump(count($data));
     }
     public function addSurvey($data){
         $filetmpname = $data['image_tmp_name'];
@@ -455,9 +478,11 @@ class UserManager
         $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
         $survey['partner'] = $data['partner'];
         $survey['description'] = $data['description'];
+        $survey['deal'] = $data['deal'];
         $survey['image'] = $url;
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
+        var_dump($survey);
         $this->DBManager->insert('surveys', $survey);
         move_uploaded_file($filetmpname,$url);
     }
@@ -500,7 +525,7 @@ class UserManager
                                                         ]);
     }
     public function userVote($data){
-        $user_id = (int)$data['userID'];
+        $user_id = $_SESSION['user_id'];
         $survey_id = (int)$data['surveyID'];
         $currentNumbersVotes = $this->getSurveysVotes($survey_id)+1;
         $vote = 1;

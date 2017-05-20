@@ -23,6 +23,7 @@ class ProfileController extends BaseController
             $dealByCity = $manager->getDealsByCity($user['city']);
             $userDeals = $manager->getAvailableDeals();
             $pageActuel = $_GET['action'];
+            $errors = array();
 
             $costs = 0;
             $errorBarcode = '';
@@ -79,10 +80,10 @@ class ProfileController extends BaseController
                 }
             }
             if (isset($_POST['userVote'])) {
-                if ($manager->checkVote((int)$_POST['userID'])) {
+                if ($manager->checkVote((int)$_SESSION['user_id'])) {
                     $manager->userVote($_POST);
                 } else {
-                    echo "Déjà Voté"; //
+                    $errors[] = 'Vous avez déjà voté'; //
                 }
             }
             //Update permission to vote
@@ -170,14 +171,28 @@ class ProfileController extends BaseController
                     $errors = $res['errors'];
                 }
             }
+            $table = array();
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
+                    //$manager->reArrayFiles($res['data']);
                     $manager->addSurvey($res['data']);
+                    var_dump($surveys);
                 } else {
                     $errors = $res['errors'];
                 }
             }
+
+
+
+            if (isset($_POST['submitAddSurveyBis'])) {
+                echo "<pre>";
+                var_dump($_POST);
+                echo "</pre>";
+            }
+
+
+
             if (isset($_POST['submitAccount'])) {
                 if ($manager->checkRemoveAccount($_POST)) {
                     $manager->deleteAccount($_POST);

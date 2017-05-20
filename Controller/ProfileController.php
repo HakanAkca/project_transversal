@@ -235,6 +235,15 @@ MERCI !!!
                     $manager->addBarcode($_POST);
                 }
             }
+
+            if(isset($_POST['submitNewsletter'])){
+                $res = $manager->sendNews($_POST);
+                $email = $res['email'];
+                $object = $res['object'];
+                $content = $res['content'];
+                $this->sendMail($email,$object,$content,'...');
+            }
+
             $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [

@@ -295,10 +295,6 @@ class UserManager
             $errors['status'] = 'Veuillez saisir une status valide';
             $isFormGood = false;
         }
-        if (!isset($data['message']) || empty($data['message'])) {
-            $errors['message'] = 'Veuillez ecrire un message';
-            $isFormGood = false;
-        }
 
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
@@ -311,7 +307,6 @@ class UserManager
         $partner['city'] = ucwords($data['city']);
         $partner['phone'] = $data['phone'];
         $partner['status'] = $data['status'];
-        $partner['message'] = $data['message'];
 
         $this->DBManager->insert('partners', $partner);
     }
@@ -1041,7 +1036,33 @@ class UserManager
     {
         $user['email'] = $data['newsletter'];
 
-        var_dump($user);
         $this->DBManager->insert('newsletter', $user);
+    }
+
+    public function sendNews($data)
+    {
+        $res = array();
+
+        $email = $this->DBManager->findAllSecure("SELECT email FROM newsletter");
+
+
+        $object = $data['titreNewsletter'];
+        $content = "<html>
+                <head>
+                <title>Vous avez réservé sur notre site ...</title>
+                </head>
+                <body>
+                <p>" . $data['newsletterContent'] . "</p>
+                <p>Cordialement</p>
+                <p>La fondation Tritus</p>
+                <p>Contact: tritusfundation@gmail.com</p>
+                </body>
+                </html>";
+
+
+        $res['email'] = $email;
+        $res['object'] = $object;
+        $res['content'] = $content;
+        return $res;
     }
 }

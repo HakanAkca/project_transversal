@@ -53,7 +53,7 @@
             <ul>
                 <li class="tabs active" id="profile_user_reductions"><img class="tabs_img" src="assets/img/tabs_my_reduc.png"></img></li>
                 <li class="tabs" id="profile_availables_reductions"><img class="tabs_img" src="assets/img/tabs_available_reduc.png"></img></li>
-                <li class="tabs" id="profile_sondage">3</li>
+                <li class="tabs" id="profile_sondage"><img class="tabs_img" src="assets/img/tabs_sondage.png"></img></li>
             </ul>
             <div class="all_changing_contents">
                 <div class="changing_content my_reductions">
@@ -112,29 +112,30 @@
                                 <div class="content_offer">
                                     <div class="little_describe">{{survey.description}}</div>
                                     <div class="survey_content_separator"></div>
-                                    <div class="survey_deal">{{survey.deal}}INCOMING DEAL</div>
+                                    <div class="survey_deal">{{survey.deal}}</div>
                                 </div>
                                 <div class="vote_result_area">
-                                            {% if user.vote == "1" %}
-                                                <div class="vote_area">
-                                                    <form action="?action=profile" method="POST">
-                                                        <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
-                                                        <label for="submit_user_vote"><img src="assets/img/vote.png"></img></label>
-                                                        <input class="form_vote" id="submit_user_vote" type="submit" name="userVote" value="Je vote">
-                                                    </form>
-                                                </div>
-                                            {% else %}
-                                            {% set average = (survey.vote/allVotes)*100 %}
-                                                <div class="stat_area">
-                                                    <div class="progress_bar">
-                                                        <div class="progress" style="width:{{ average|round(1, 'floor')}}%">{{ average|round(1, 'floor')}}%</div>
-                                                    </div>
-                                                </div>
-                                            {% endif %}
+                                    {% if user.vote == "0" %}
+                                        <div class="vote_area">
+                                            <form action="?action=profile" method="POST">
+                                                <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
+                                                <label for="submit_user_vote"><img src="assets/img/vote.png"></img></label>
+                                                <input class="form_vote" id="submit_user_vote" type="submit" name="userVote" value="Je vote">
+                                            </form>
+                                        </div>
+                                    {% else %}
+                                    {% set average = (survey.vote/allVotes)*100 %}
+                                        <div class="stat_area">
+                                            <div class="progress_bar">
+                                                <div class="progress" style="width:{{ average|round(1, 'floor')}}%">{{ average|round(1, 'floor')}}%</div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endfor %}
                     </div>
+                    <div>{{allVotes}} utilisateurs ont déja votés pour leur offre préférée !</div>
                 </div>
             </div>
         </div>
@@ -177,41 +178,7 @@
                 <input type="submit" name="submitBarcode" class="button" value="Valider le code"/>
             </form>
         </div>
-
-
     </main>
-    <div>
-        {% for survey in surveys %}
-            <div class="offer">
-                <img class="deal_img" src="{{ survey['image'] }}"/>
-                <div class="info">
-                    <p class="title">{{survey.partner}}</p>
-                    <p>Description :</p>
-                    <p class="description">{{survey.description}}</p>
-                    <div class="more_info">
-                        <span>{{survey.expirationDate | date("d/m/Y")}}</span>
-                    </div>
-                    <form action="?action=profile" method="POST">
-                        <input type="text" name="surveyID" value="{{survey.id}}">
-                        <input type="submit" name="userVote" value="Je vote">
-                    </form>
-                </div>
-            </div>
-        {% endfor %}
-        <br>
-        <p>Résultat sondage</p>
-        {% set cpt = 0 %}
-        {% for survey in surveys %}
-            {% set average = (survey.vote/allVotes)*100 %}
-            Offre {{ cpt }} ---
-            Titre : {{ survey.partner }}
-            Nombre de vote :{{ survey.vote }}
-            Pourcentage : {{ average|round(1, 'floor')}}<br>
-            {% set cpt = cpt + 1 %}
-        {% endfor %}
-        {% set cpt = 0 %}
-        <hr>
-    </div>
     <aside class="user_edit">
         <div class="area_edit">
             <p class="title">Editez vos informations :</p>

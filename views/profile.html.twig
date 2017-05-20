@@ -115,7 +115,7 @@
                                     <div class="survey_deal">{{survey.deal}}INCOMING DEAL</div>
                                 </div>
                                 <div class="vote_result_area">
-                                            {% if user.vote == "1" %}
+                                            {% if user.vote == "0" %}
                                                 <div class="vote_area">
                                                     <form action="?action=profile" method="POST">
                                                         <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">

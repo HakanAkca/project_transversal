@@ -163,6 +163,7 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
+
             if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
                 if ($res['isFormGood']) {
@@ -171,13 +172,21 @@ class ProfileController extends BaseController
                     $errors = $res['errors'];
                 }
             }
-            $table = array();
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
-                    //$manager->reArrayFiles($res['data']);
-                    $manager->addSurvey($res['data']);
-                    var_dump($surveys);
+                    $manager->addSurveyTmp($res['data']);
+                    $data = $manager->countSurveyTmp();
+                    foreach ($data as $value){
+                        if((int)$value['COUNT(*)'] == 3){
+                            $surveysTmp = $manager->getSurveyTmp();
+                            foreach ($surveysTmp as $value){
+                                $manager->addSurvey($value);
+                            }
+                            $manager->removeSurveyTmp();
+                        }
+                    }
+                    $res = $manager->surveyNumber();
                 } else {
                     $errors = $res['errors'];
                 }

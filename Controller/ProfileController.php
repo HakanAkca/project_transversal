@@ -7,6 +7,7 @@
  */
 
 namespace Controller;
+require('phpToPDF.php');
 
 use Model\UserManager;
 
@@ -66,6 +67,30 @@ class ProfileController extends BaseController
                     $errors = $res['errors'];
                 }
             }
+
+            if (isset($_POST['submitPrintOffer'])) {
+                $id = (int)$_POST['IDoffer'];
+                $deal = $manager->getDealById($id);
+                $barcode  = $manager->generateBarcode();
+                $my_html="
+                    <HTML>
+                            <h2>Tritus</h2><br><br>
+                             <div style=\"display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;\">
+                                ".$_SESSION['user_username']."<br>Code barre ".$barcode."<br>Offre :".$deal['partner']."<br> City : ".$deal['city']."<br>Deal ".$deal['deal']."
+                    
+</div><br><br>
+MERCI !!!
+</HTML>";
+                $pdf_options = array(
+                    "source_type" => 'html',
+                    "source" => $my_html,
+                    "action" => 'save',
+                    "save_directory" => 'uploads',
+                    "file_name" => 'html_01.pdf');
+
+                $this->phptopdf($pdf_options);
+
+            }
             if (isset($_POST['submitBarcode'])) {
                 if ($manager->checkUserBarcode($_POST)) {
                     $costs = $manager->getUserCostsNumber();
@@ -88,6 +113,16 @@ class ProfileController extends BaseController
             }
             //Update permission to vote
             $manager->updateSurvey();
+
+
+
+
+
+// CALL THE phpToPDF FUNCTION WITH THE OPTIONS SET ABOVE
+            //$this->phptopdf($pdf_options);
+
+// OPTIONAL - PUT A LINK TO DOWNLOAD THE PDF YOU JUST CREATED
+           // echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             echo $this->renderView('profile.html.twig',
                 [

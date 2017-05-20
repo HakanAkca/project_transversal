@@ -67,6 +67,10 @@
                                     <span>{{ reduc['deal'] | raw }}</span>
                                 </div>
                                 <div class="print"><img src="assets/img/printer.png"></img>
+                                    <form action="?action=profile" method="POST">
+                                        <input type="text" name="IDoffer" value="{{ reduc.id }}">
+                                        <input type="submit" name="submitPrintOffer" value="Imprimer">
+                                    </form>
                                 </div>
                                 <div class="other_info">
                                     <span>{{reduc.city}}</span>

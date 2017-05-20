@@ -108,7 +108,7 @@ $(function() {
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:last').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().parent().children(".deal_cost").children('.open_md').children('span:first').html() + ' points');
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:last').html());
-
+        console.log($(this).parent().parent().children(".other_info").children('.id').html(), "slt");
         $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().parent().children(".other_info").children('.id').html());
     })
 

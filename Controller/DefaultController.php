@@ -29,6 +29,8 @@ class DefaultController extends BaseController
                 $errors[] = "Veillez saisir un pseudo et un mot de passe valide";
             }
         }
+        $newsRegister = "";
+
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
@@ -38,13 +40,16 @@ class DefaultController extends BaseController
                 $object = $res['object'];
                 $content = $res['content'];
                 $this->sendMail($email,$object,$content,'...');
+                $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
             }
         }
         echo $this->renderView('home.html.twig',[
                                 'user' => $user,
                                 'bottlesRecycled' => $bottlesRecycled,
                                 'errors' => $errors,
-                                'pageActuel' => $pageActuel
+                                'pageActuel' => $pageActuel,
+                                'newsRegister' => $newsRegister,
                                 ]);
     }
     public function offersAction(){
@@ -63,6 +68,8 @@ class DefaultController extends BaseController
                 $manager->getAvailableUserDeals();
             }
         }
+        $newsRegister = "";
+
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
@@ -72,6 +79,8 @@ class DefaultController extends BaseController
                 $object = $res['object'];
                 $content = $res['content'];
                 $this->sendMail($email,$object,$content,'...');
+                $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
             }
         }
         echo $this->renderView('offers.html.twig',
@@ -80,6 +89,7 @@ class DefaultController extends BaseController
                                     'allDeals' => $allDeals,
                                     'bottlesRecycled' => $bottlesRecycled,
                                     'pageActuel' => $pageActuel,
+                                    'newsRegister' => $newsRegister,
                                 ]);
     }
 
@@ -120,7 +130,9 @@ L'équipe Tritus";
         }
 
 
-            if (isset($_POST['submitNewsletter'])) {
+        $newsRegister = "";
+
+        if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
                     $manager->addMail($_POST);
@@ -129,6 +141,8 @@ L'équipe Tritus";
                     $object = $res['object'];
                     $content = $res['content'];
                     $this->sendMail($email,$object,$content,'...');
+                    $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
                 }
             }
 
@@ -140,6 +154,7 @@ L'équipe Tritus";
                                     'bottlesRecycled' => $bottlesRecycled,
                                     'errors' => $errors,
                                     'pageActuel' => $pageActuel,
+                                    'newsRegister' => $newsRegister,
                                 ]);
     }
 
@@ -152,6 +167,8 @@ L'équipe Tritus";
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }
+        $newsRegister = "";
+
         if (isset($_POST['submitNewsletter'])) {
             $res = $manager->newsletterCheck($_POST['newsletter']);
             if($res['isFormGood']){
@@ -161,14 +178,18 @@ L'équipe Tritus";
                 $object = $res['object'];
                 $content = $res['content'];
                 $this->sendMail($email,$object,$content,'...');
+                $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
             }
         }
         if(!empty($_SESSION['user_id'])){
             echo $this->renderView('about.html.twig', ['isConnected' => true, 'bottlesRecycled' => $bottlesRecycled,
-                'user' => $user,'pageActuel' => $pageActuel,]);
+                'user' => $user,'pageActuel' => $pageActuel,
+                'newsRegister' => $newsRegister]);
         }
         else{
-            echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled,'pageActuel' => $pageActuel,]);
+            echo $this->renderView('about.html.twig', ['bottlesRecycled' => $bottlesRecycled,'pageActuel' => $pageActuel,
+                'newsRegister' => $newsRegister]);
         }
     }
 }

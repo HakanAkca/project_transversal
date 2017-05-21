@@ -35,7 +35,7 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
-
+            //echo $_SESSION['user_username'];
             //Classement !!!
             $average = $manager->getAverages();
             $ranking = $manager->ranking();
@@ -176,6 +176,7 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
             $pageActuel = $_GET['action'];
+            $newsRegister = '';
 
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
@@ -186,6 +187,8 @@ class ProfileController extends BaseController
                     $object = $res['object'];
                     $content = $res['content'];
                     $this->sendMail($email,$object,$content,'...');
+                    $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
                 }
             }
 
@@ -236,8 +239,8 @@ class ProfileController extends BaseController
             }
 
             if (isset($_POST['deletteOffers'])) {
-                if ($manager->checkRemoveOffers($_POST)) {
-                    $manager->deleteOffers($_POST);
+                if ($manager->checkRemoveOffers($_POST['offers'])) {
+                    $manager->removeOffer($_POST['offers']);
                 }
             }
 
@@ -296,6 +299,7 @@ class ProfileController extends BaseController
                     'allVotes' => $allVotes,
                     'offers' => $offers,
                     'pageActuel' => $pageActuel,
+                    'newsRegister' => $newsRegister,
                 ]);
         } else {
             $this->redirect('home');

@@ -81,7 +81,7 @@
             <div id="update_offers" class="inside-block-content">
                 <h3>Mettre a jour l'offre</h3>
                 <form method="post" action="?action=admin">
-                    <select name="listOffer"><
+                    <select name="listOffer">
                         {% for deal in deals %}
                             <option value="{{ deal.partner }}">
                                 {{ deal.partner }}

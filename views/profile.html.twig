@@ -122,7 +122,9 @@
                                 <div class="vote_result_area">
                                     {% if user.vote == "0" %}
                                         <div class="vote_area">
+
                                             <form action="?action=profile" method="POST">
+                                                {{survey.id}}
                                                 <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
                                                 <label for="submit_user_vote"><img src="assets/img/vote.png"></img></label>
                                                 <input class="form_vote" id="submit_user_vote" type="submit" name="userVote" value="Je vote">

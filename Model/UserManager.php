@@ -399,7 +399,7 @@ class UserManager
     }
     public function addCatalog($data){
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['image'];;
+        $url = 'uploads/'.$data['image'];
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = ucwords($data['city']);
         $catalog['deal'] = $data['deal']."%";
@@ -414,6 +414,7 @@ class UserManager
         $expirationDate =  strtotime($tmpDate);
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
+        var_dump($filetmpname);
         move_uploaded_file($filetmpname,$url);
     }
     public function checkSurvey($data){
@@ -570,6 +571,7 @@ class UserManager
         return $res;
     }
     public function setSurveysVotes($id, $numbersVotes){
+        var_dump($id);
         return $this->DBManager->findOneSecure("UPDATE surveys SET vote = :numbersVotes WHERE id=:id",
             [
                 'id' => $id,

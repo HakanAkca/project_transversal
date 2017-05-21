@@ -17,9 +17,12 @@ class DefaultController extends BaseController
         }
         $user = array();
         $errors = array();
-
+        $admin = false;
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
+            if($_SESSION['user_id'] == '1'){
+                $admin = true;
+            }
         }
         if(isset($_POST['submitLogin'])){
             if($manager->userCheckLogin($_POST)){
@@ -50,6 +53,7 @@ class DefaultController extends BaseController
                                 'errors' => $errors,
                                 'pageActuel' => $pageActuel,
                                 'newsRegister' => $newsRegister,
+                                'admin' => $admin,
                                 ]);
     }
     public function offersAction(){

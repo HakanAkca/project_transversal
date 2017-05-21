@@ -142,6 +142,10 @@ class UserManager
                 ]);
         } else {
             rename('uploads/' . $username, 'uploads/' . $pseudo);
+            $date = $this->DBManager->take_date();
+            $write = $date . ' -- ' . $_SESSION['user_username'] . ' à modifier certains infos par' . ' nom: '
+                . $data['editUsername'] . ' mail: ' . $data['editMail'] . ' ville: ' . $data['editCity'] .  "\n";
+            $this->DBManager->watch_action_log('access.log', $write);
             return $this->DBManager->findOneSecure(
                 "UPDATE users SET pseudo =:pseudo, email =:email, city =:city WHERE id=:id",
                 [
@@ -160,7 +164,7 @@ class UserManager
         $res = array();
         $isFormGood = true;
 
-        $data['image'] = 'web/img/avatar.gif';
+        $data['image'] = 'assets/img/defaultProfile.png';
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Pseudo de 6 caractères minimum';
             $isFormGood = false;
@@ -447,7 +451,7 @@ class UserManager
         $date = $this->DBManager->take_date();
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter une nouvelle offre  '
             . ' nom : ' . $data['partner'] . ' ' . 'ville : ' . $data['city'] . ' ' . 'deal : ' . $data['deal'] . '  ' . 'cout : ' . $data['cost']
-            . ' ' . 'description : ' . $data['description'] . ' ' . 'image : ' . $data['image'] . ' ' . 'date expiration : ' . $data['date'] . "\n";
+            . ' ' . 'description : ' . $data['description'] . ' ' . 'image : ' . $data['image'] . ' ' . 'date expiration : ' . $catalog['date'] . "\n";
         $this->DBManager->watch_action_log('admin.log', $write);
     }
 
@@ -723,6 +727,10 @@ class UserManager
         $res['isFormGood'] = $isFormGood;
         $res['errors'] = $errors;
 
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . ' L"offre ' . $data2['partner'] .  ' a était mise a jour par les infos suivantes '
+                                . $data['partner'] . ' ' . $data['description'] . "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
         return $res;
     }
 
@@ -806,9 +814,6 @@ class UserManager
         $barcode['barcodeUsed'] = 0;
         $this->DBManager->insert('barcodes', $barcode);
 
-        $date = $this->DBManager->take_date();
-        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter des nouvelle bouteils ' . "\n";
-        $this->DBManager->watch_action_log('admin.log', $write);
     }
 
     public function checkUserBarcode($data)
@@ -832,6 +837,9 @@ class UserManager
     {
         $barcode = $data;
         $barcodeUsed = 1;
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à utiliser le code bar suivant ' . $data . "\n";
+        $this->DBManager->watch_action_log('access.log', $write);
         return $this->DBManager->findOneSecure("UPDATE barcodes SET barcodeUsed =:barcodeUsed WHERE barcode =:barcode",
             [
                 'barcode' => $barcode,
@@ -859,6 +867,11 @@ class UserManager
         $userDeal['date'] = $this->getDatetimeNow();
         $this->setUserCostsNumber(-((int)$deal['cost']));
         $this->DBManager->insert('deals', $userDeal);
+
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à acheter l"offre ' . "\n";
+        $this->DBManager->watch_action_log('access.log', $write);
+
     }
 
     public function getAverages()
@@ -1095,6 +1108,10 @@ class UserManager
         $res['email'] = $email;
         $res['object'] = $object;
         $res['content'] = $content;
+
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . 'Email envoyée à ' . $email . "\n";
+        $this->DBManager->watch_action_log('email.log', $write);
         return $res;
 
     }
@@ -1125,8 +1142,8 @@ class UserManager
 
         $this->DBManager->insert('newsletter', $user);
         $date = $this->DBManager->take_date();
-        $write = $date . ' -- ' . ' Le mail suivant ' . $date['newsletter'] . ' viens de s"inscrire a la newsletter' . "\n";
-        $this->DBManager->watch_action_log('access.log', $write);
+        $write = $date . ' -- ' . ' Le mail suivant à ' . $data['newsletter'] . ' vient de s"inscrire a la newsletter' . "\n";
+        $this->DBManager->watch_action_log('email.log', $write);
     }
 
     public function getAllEmails()

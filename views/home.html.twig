@@ -11,12 +11,17 @@
             <ul class="mobile_dropdown">
                 <li><a href="?action=about">Nous</a></li>
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
+                {{admin}}
                 {% if user.pseudo is defined %}
                     <li><a href="?action=profile">Profil</a></li>
                     <li><a href="?action=logout">Deconnexion</a></li>
+                    {% if admin == true %}
+                        <li><a href="?action=admin">Admin</a></li>
+                    {% endif %}
                 {% else %}
                     <li><a href="?action=register">Inscription</a></li>
                 {% endif %}
+                
             </ul>
             <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
         </div>
@@ -29,6 +34,9 @@
             <li><a href="?action=partner">Devenir Partenaires</a></li>
             {% if user.pseudo is defined %}
                 <li><a href="?action=profile">Profil</a></li>
+                    {% if admin == true %}
+                        <li><a href="?action=admin">Admin</a></li>
+                    {% endif %}
             {% else %}
                 <li><a href="?action=register">Inscription</a></li>
             {% endif %}

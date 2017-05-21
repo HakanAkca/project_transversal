@@ -45,13 +45,6 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
-
-            //var_dump($r);
-
-
-
-
-
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -239,7 +232,6 @@ MERCI !!!'; // can aso be a url, starting with http..
             }
 
             if (isset($_POST['deletteOffers'])) {
-                var_dump($_POST);
                 if ($manager->checkRemoveOffers($_POST['offers'])) {
                     $manager->removeOffer($_POST['offers']);
                 }

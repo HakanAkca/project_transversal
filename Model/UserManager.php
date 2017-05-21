@@ -1098,6 +1098,10 @@ class UserManager
         $res['email'] = $email;
         $res['object'] = $object;
         $res['content'] = $content;
+
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . 'Email envoyée à ' . $email . "\n";
+        $this->DBManager->watch_action_log('access.log', $write);
         return $res;
 
     }

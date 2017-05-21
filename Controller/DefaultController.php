@@ -90,8 +90,9 @@ class DefaultController extends BaseController
         $allDeals = $manager->getAllDeals();
         $errors = array();
         $pageActuel = $_GET['action'];
-
-        $user = $manager->getUserById($_SESSION['user_id']);
+        if(!empty($_SESSION['user_id'])){
+            $user = $manager->getUserById($_SESSION['user_id']);
+        }
         if (isset($_POST['sumbitPartner'])) {
             $res = $manager->checkPartner($_POST);
             if ($res['isFormGood']) {
@@ -101,11 +102,9 @@ class DefaultController extends BaseController
                 $object = "Tritus - Devenir partenaire";
                 $content = "Bonjour ".$data['name']."<br>
 
-Nous avons reçu votre demande et nous sommes heureux de vous annoncer que l'on accepte cette dernière. <br>
+Nous avons recu votre demande et sommes acutellement en train de l'analyser, <br>
 
-Nous sommes très satisfaits de vous compter parmi nos partenaires et nous savons que notre collaboration sera bénéfique pour les deux partis. <br>
-
-Nos clients pourront dès ce soir voter pour votre entreprise afin qu'ils puissent bénéficier de bons de réductions dans votre enseigne le mois prochain. <br>
+Merci de l'attention que vous avez portez a notre Projet, <br>
 
 Nous restons à votre disposition pour toute demande d'information.<br>
 

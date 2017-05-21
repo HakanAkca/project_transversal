@@ -39,30 +39,12 @@ function initMap() {
         },
     };
 
-    var image = {
-        // Adresse de l'icône personnalisée
-        url: 'assets/img/map_icon.png',
-        // Taille de l'icône personnalisée
-        size: new google.maps.Size(25, 25),
-        // Origine de l'image, souvent (0, 0)
-        origin: new google.maps.Point(0,0),
-        // L'ancre de l'image. Correspond au point de l'image que l'on raccroche à la carte. Par exemple, si votre îcone est un drapeau, cela correspond à son mâts
-        anchor: new google.maps.Point(0, 0)
+    var icons = {
+        parking: {
+            name: 'Parking',
+            icon: 'assets/img/map_icon.png',
+        },
     };
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(48.858927, 2.294254),
-        map: map,
-        title:"Hello World !",
-        // On définit l'icône de ce marker comme étant l'image définie juste au-dessus
-        icon: image
-    });
-
-    var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(48.858927, 2.294254),
-        map: map,
-        title:"Hello World !"
-    });
 
     var features = [
         {
@@ -147,3 +129,4 @@ function findAdress() {
         }
     });
 }
+

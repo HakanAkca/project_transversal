@@ -109,4 +109,11 @@
         <input type="text" name="bottlesNumber" placeholder="vos bouteilles">
         <input type="submit" name="submitBottles" value="Valider">
     </form>
+    <hr>
+    <h3>Send la newsletter</h3>
+    <form action="?action=admin" method="post">
+        <input type="text" name="titreNewsletter" placeholder="contenu newsletter">
+        <input type="text" name="newsletterContent" placeholder="contenu newsletter">
+        <input type="submit" name="submitNewsletter" value="Valider">
+    </form>
 {% endblock %}

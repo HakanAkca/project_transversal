@@ -124,8 +124,8 @@
                                         <div class="vote_area">
                                             <form action="?action=profile" method="POST">
                                                 <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
-                                                <label for="submit_user_vote"><img src="assets/img/vote.png"></img></label>
-                                                <input class="form_vote" id="submit_user_vote" type="submit" name="userVote" value="Je vote">
+                                                <label for="{{survey.id}}"><img src="assets/img/vote.png"></img></label>
+                                                <input class="form_vote" id="{{survey.id}}" type="submit" name="userVote" value="Je vote">
                                             </form>
                                         </div>
                                     {% else %}
@@ -140,7 +140,7 @@
                             </div>
                         {% endfor %}
                     </div>
-                    <div>{{allVotes}} utilisateurs ont déja votés pour leur offre préférée !</div>
+                    <div class="how_many">{{allVotes}} utilisateurs ont déja votés pour leur offre préférée !</div>
                 </div>
             </div>
         </div>

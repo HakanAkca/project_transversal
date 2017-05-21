@@ -29,6 +29,9 @@
                     <label for="buttonNewsletter"><img src="assets/img/enveloppe.png"></img></label>
                     <input type="submit" name="submitNewsletter" id="buttonNewsletter"/>
                 </form>
+                {% if newsRegister is not empty %}
+                    {{ newsRegister }}
+                {% endif %}
             </div>
             <div class="nav">
                 <div>

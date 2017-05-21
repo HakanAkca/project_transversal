@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="42fbe5a3-a57e-4255-bb9e-d903f8f710eb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Controller/BarcodeGenerator.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Controller/BarcodeGeneratorHTML.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Controller/BarcodeGeneratorPNG.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Controller/phpToPDF.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Controller/pi_barcode.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/ProfileController.php" afterPath="$PROJECT_DIR$/Controller/ProfileController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/UserManager.php" afterPath="$PROJECT_DIR$/Model/UserManager.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.html.twig" afterPath="$PROJECT_DIR$/views/layout.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/profile.html.twig" afterPath="$PROJECT_DIR$/views/profile.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,64 +26,74 @@
       <file leaf-file-name="UserManager.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="573" column="22" lean-forward="false" selection-start-line="573" selection-start-column="22" selection-end-line="573" selection-end-column="22" />
+            <state relative-caret-position="400">
+              <caret line="420" column="23" lean-forward="true" selection-start-line="420" selection-start-column="23" selection-end-line="420" selection-end-column="23" />
               <folding>
-                <marker date="1495340449614" expanded="true" signature="489:520" ph="SELECT * FRO... users" />
-                <marker date="1495340449614" expanded="true" signature="663:707" ph="SELECT * FRO... users" />
-                <marker date="1495340449614" expanded="true" signature="863:882" ph="SELECT * FRO... users" />
-                <marker date="1495340449614" expanded="true" signature="991:1032" ph="SELECT * FRO... partners" />
-                <marker date="1495340449614" expanded="true" signature="1200:1247" ph="SELECT * FRO... barcodes" />
-                <marker date="1495340449614" expanded="true" signature="1461:1498" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="1701:1738" ph="SELECT * FRO... deals" />
-                <marker date="1495340449614" expanded="true" signature="4141:4237" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="4628:4701" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="11519:11558" ph="DELETE FROM " />
-                <marker date="1495340449614" expanded="true" signature="16095:16127" ph="SELECT COUNT... surveys_tmp" />
-                <marker date="1495340449614" expanded="true" signature="16849:16872" ph="DELETE FROM " />
-                <marker date="1495340449614" expanded="true" signature="16966:17020" ph="SELECT * FRO... surveys_tmp" />
-                <marker date="1495340449614" expanded="true" signature="17863:17913" ph="SELECT * FRO... surveys" />
-                <marker date="1495340449614" expanded="true" signature="18587:18641" ph="SELECT * FRO... surveys_tmp" />
-                <marker date="1495340449614" expanded="true" signature="19271:19300" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="19497:19546" ph="SELECT * FRO... users" />
-                <marker date="1495340449614" expanded="true" signature="20141:20188" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="20413:20452" ph="SELECT vote surveys" />
-                <marker date="1495340449614" expanded="true" signature="20753:20805" ph="UPDATE surve... " />
-                <marker date="1495340449614" expanded="true" signature="21021:21045" ph="SELECT vote surveys" />
-                <marker date="1495340449614" expanded="true" signature="21370:21411" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="22126:22185" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="22827:22873" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="24183:24261" ph="UPDATE catal... " />
-                <marker date="1495340449614" expanded="true" signature="24663:24756" ph="UPDATE catal... " />
-                <marker date="1495340449614" expanded="true" signature="25329:25405" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="26265:26327" ph="SELECT * FRO... deals" />
-                <marker date="1495340449614" expanded="true" signature="27585:27654" ph="UPDATE barco... " />
-                <marker date="1495340449614" expanded="true" signature="30871:30946" ph="SELECT * FRO... barcodes" />
-                <marker date="1495340449614" expanded="true" signature="31508:31557" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="31798:31847" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="32089:32138" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="32352:32401" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="32684:32750" ph="SELECT bottl... barcodes" />
-                <marker date="1495340449614" expanded="true" signature="33087:33133" ph="SELECT bottl... users" />
-                <marker date="1495340449614" expanded="true" signature="33538:33603" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="33927:33976" ph="UPDATE users... " />
-                <marker date="1495340449614" expanded="true" signature="34384:34426" ph="SELECT costs... users" />
-                <marker date="1495340449614" expanded="true" signature="35703:35952" ph="..." />
-                <marker date="1495340449614" expanded="true" signature="35726:35818" ph="..." />
-                <marker date="1495340449614" expanded="true" signature="35841:35928" ph="..." />
-                <marker date="1495340449614" expanded="true" signature="36250:36272" ph="SELECT * FRO... catalogs" />
-                <marker date="1495340449614" expanded="true" signature="36480:36525" ph="DELETE FROM " />
-                <marker date="1495340449614" expanded="true" signature="36806:36834" ph="SELECT email... newsletter" />
+                <marker date="1495378653340" expanded="true" signature="489:520" ph="SELECT * FRO... users" />
+                <marker date="1495378653340" expanded="true" signature="663:707" ph="SELECT * FRO... users" />
+                <marker date="1495378653340" expanded="true" signature="863:882" ph="SELECT * FRO... users" />
+                <marker date="1495378653340" expanded="true" signature="991:1032" ph="SELECT * FRO... partners" />
+                <marker date="1495378653340" expanded="true" signature="1200:1247" ph="SELECT * FRO... barcodes" />
+                <marker date="1495378653340" expanded="true" signature="1461:1498" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="1701:1738" ph="SELECT * FRO... deals" />
+                <marker date="1495378653340" expanded="true" signature="4113:4209" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="4600:4673" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="11491:11530" ph="DELETE FROM " />
+                <marker date="1495378653340" expanded="true" signature="16035:16067" ph="SELECT COUNT... surveys_tmp" />
+                <marker date="1495378653340" expanded="true" signature="16789:16812" ph="DELETE FROM " />
+                <marker date="1495378653340" expanded="true" signature="16906:16960" ph="SELECT * FRO... surveys_tmp" />
+                <marker date="1495378653340" expanded="true" signature="17803:17853" ph="SELECT * FRO... surveys" />
+                <marker date="1495378653340" expanded="true" signature="18527:18581" ph="SELECT * FRO... surveys_tmp" />
+                <marker date="1495378653340" expanded="true" signature="19211:19240" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="19437:19486" ph="SELECT * FRO... users" />
+                <marker date="1495378653340" expanded="true" signature="20081:20128" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="20353:20392" ph="SELECT vote surveys" />
+                <marker date="1495378653340" expanded="true" signature="20670:20722" ph="UPDATE surve... " />
+                <marker date="1495378653340" expanded="true" signature="20938:20962" ph="SELECT vote surveys" />
+                <marker date="1495378653340" expanded="true" signature="21287:21328" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="22043:22102" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="22744:22790" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="24100:24178" ph="UPDATE catal... " />
+                <marker date="1495378653340" expanded="true" signature="24580:24673" ph="UPDATE catal... " />
+                <marker date="1495378653340" expanded="true" signature="25246:25322" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="26182:26244" ph="SELECT * FRO... deals" />
+                <marker date="1495378653340" expanded="true" signature="27502:27571" ph="UPDATE barco... " />
+                <marker date="1495378653340" expanded="true" signature="30788:30863" ph="SELECT * FRO... barcodes" />
+                <marker date="1495378653340" expanded="true" signature="31425:31474" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="31715:31764" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="32006:32055" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="32269:32318" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="32601:32667" ph="SELECT bottl... barcodes" />
+                <marker date="1495378653340" expanded="true" signature="33004:33050" ph="SELECT bottl... users" />
+                <marker date="1495378653340" expanded="true" signature="33455:33520" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="33844:33893" ph="UPDATE users... " />
+                <marker date="1495378653340" expanded="true" signature="34301:34343" ph="SELECT costs... users" />
+                <marker date="1495378653340" expanded="true" signature="35620:35869" ph="..." />
+                <marker date="1495378653340" expanded="true" signature="35643:35735" ph="..." />
+                <marker date="1495378653340" expanded="true" signature="35758:35845" ph="..." />
+                <marker date="1495378653340" expanded="true" signature="36167:36189" ph="SELECT * FRO... catalogs" />
+                <marker date="1495378653340" expanded="true" signature="36397:36442" ph="DELETE FROM " />
+                <marker date="1495378653340" expanded="true" signature="36723:36751" ph="SELECT email... newsletter" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="profile.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="profile.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/profile.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="72" column="64" lean-forward="false" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
+            <state relative-caret-position="-2406">
+              <caret line="72" column="68" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/layout.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -108,20 +112,20 @@
       <file leaf-file-name="ProfileController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller/ProfileController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+            <state relative-caret-position="440">
+              <caret line="156" column="33" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="33" />
               <folding>
                 <element signature="e#107#135#0#PHP" expanded="true" />
-                <marker date="1495378180312" expanded="true" signature="3223:3321" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="3322:3356" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="3322:3397" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="3322:3429" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="3322:3455" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="3322:3499" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="9906:10288" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="9929:10021" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="10044:10075" ph="..." />
-                <marker date="1495378180312" expanded="true" signature="10044:10264" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3395:3493" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3494:3528" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3494:3569" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3494:3601" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3494:3627" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="3494:3671" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="10131:10513" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="10154:10246" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="10269:10300" ph="..." />
+                <marker date="1495379588579" expanded="true" signature="10269:10489" ph="..." />
               </folding>
             </state>
           </provider>
@@ -141,7 +145,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getUserDeals</find>
       <find>emailValid</find>
       <find>getUserBottlesRecycled</find>
       <find>getAllUsers</find>
@@ -171,6 +174,7 @@
       <find>userVote</find>
       <find>sur</find>
       <find>print</find>
+      <find>var_dump</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -202,7 +206,6 @@
         <option value="$PROJECT_DIR$/Model/.htaccess" />
         <option value="$PROJECT_DIR$/uploads/.htaccess" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/views/layout.html.twig" />
         <option value="$PROJECT_DIR$/assets/script/registerCheck.js" />
         <option value="$PROJECT_DIR$/assets/script/loginCheck.js" />
         <option value="$PROJECT_DIR$/logs/access.log" />
@@ -226,10 +229,11 @@
         <option value="$PROJECT_DIR$/Controller/BarcodeGeneratorPNG.php" />
         <option value="$PROJECT_DIR$/Controller/BarcodeGeneratorHTML.php" />
         <option value="$PROJECT_DIR$/views/offers.html.twig" />
-        <option value="$PROJECT_DIR$/Model/UserManager.php" />
         <option value="$PROJECT_DIR$/Controller/html2pdf.php" />
-        <option value="$PROJECT_DIR$/Controller/ProfileController.php" />
+        <option value="$PROJECT_DIR$/Model/UserManager.php" />
         <option value="$PROJECT_DIR$/views/profile.html.twig" />
+        <option value="$PROJECT_DIR$/Controller/ProfileController.php" />
+        <option value="$PROJECT_DIR$/views/layout.html.twig" />
       </list>
     </option>
   </component>
@@ -557,12 +561,12 @@
       <workItem from="1495189318038" duration="685000" />
       <workItem from="1495230633268" duration="16312000" />
       <workItem from="1495290007688" duration="41195000" />
-      <workItem from="1495372559081" duration="5836000" />
+      <workItem from="1495372559081" duration="7106000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="331194000" />
+    <option name="totallyTimeSpent" value="332464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1602" height="849" extended-state="6" />
@@ -776,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="45" column="53" lean-forward="true" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/style/style.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1423">
@@ -856,54 +853,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/UserManager.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="573" column="22" lean-forward="false" selection-start-line="573" selection-start-column="22" selection-end-line="573" selection-end-column="22" />
+        <state relative-caret-position="400">
+          <caret line="420" column="23" lean-forward="true" selection-start-line="420" selection-start-column="23" selection-end-line="420" selection-end-column="23" />
           <folding>
-            <marker date="1495340449614" expanded="true" signature="489:520" ph="SELECT * FRO... users" />
-            <marker date="1495340449614" expanded="true" signature="663:707" ph="SELECT * FRO... users" />
-            <marker date="1495340449614" expanded="true" signature="863:882" ph="SELECT * FRO... users" />
-            <marker date="1495340449614" expanded="true" signature="991:1032" ph="SELECT * FRO... partners" />
-            <marker date="1495340449614" expanded="true" signature="1200:1247" ph="SELECT * FRO... barcodes" />
-            <marker date="1495340449614" expanded="true" signature="1461:1498" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="1701:1738" ph="SELECT * FRO... deals" />
-            <marker date="1495340449614" expanded="true" signature="4141:4237" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="4628:4701" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="11519:11558" ph="DELETE FROM " />
-            <marker date="1495340449614" expanded="true" signature="16095:16127" ph="SELECT COUNT... surveys_tmp" />
-            <marker date="1495340449614" expanded="true" signature="16849:16872" ph="DELETE FROM " />
-            <marker date="1495340449614" expanded="true" signature="16966:17020" ph="SELECT * FRO... surveys_tmp" />
-            <marker date="1495340449614" expanded="true" signature="17863:17913" ph="SELECT * FRO... surveys" />
-            <marker date="1495340449614" expanded="true" signature="18587:18641" ph="SELECT * FRO... surveys_tmp" />
-            <marker date="1495340449614" expanded="true" signature="19271:19300" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="19497:19546" ph="SELECT * FRO... users" />
-            <marker date="1495340449614" expanded="true" signature="20141:20188" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="20413:20452" ph="SELECT vote surveys" />
-            <marker date="1495340449614" expanded="true" signature="20753:20805" ph="UPDATE surve... " />
-            <marker date="1495340449614" expanded="true" signature="21021:21045" ph="SELECT vote surveys" />
-            <marker date="1495340449614" expanded="true" signature="21370:21411" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="22126:22185" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="22827:22873" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="24183:24261" ph="UPDATE catal... " />
-            <marker date="1495340449614" expanded="true" signature="24663:24756" ph="UPDATE catal... " />
-            <marker date="1495340449614" expanded="true" signature="25329:25405" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="26265:26327" ph="SELECT * FRO... deals" />
-            <marker date="1495340449614" expanded="true" signature="27585:27654" ph="UPDATE barco... " />
-            <marker date="1495340449614" expanded="true" signature="30871:30946" ph="SELECT * FRO... barcodes" />
-            <marker date="1495340449614" expanded="true" signature="31508:31557" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="31798:31847" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="32089:32138" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="32352:32401" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="32684:32750" ph="SELECT bottl... barcodes" />
-            <marker date="1495340449614" expanded="true" signature="33087:33133" ph="SELECT bottl... users" />
-            <marker date="1495340449614" expanded="true" signature="33538:33603" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="33927:33976" ph="UPDATE users... " />
-            <marker date="1495340449614" expanded="true" signature="34384:34426" ph="SELECT costs... users" />
-            <marker date="1495340449614" expanded="true" signature="35703:35952" ph="..." />
-            <marker date="1495340449614" expanded="true" signature="35726:35818" ph="..." />
-            <marker date="1495340449614" expanded="true" signature="35841:35928" ph="..." />
-            <marker date="1495340449614" expanded="true" signature="36250:36272" ph="SELECT * FRO... catalogs" />
-            <marker date="1495340449614" expanded="true" signature="36480:36525" ph="DELETE FROM " />
-            <marker date="1495340449614" expanded="true" signature="36806:36834" ph="SELECT email... newsletter" />
+            <marker date="1495378653340" expanded="true" signature="489:520" ph="SELECT * FRO... users" />
+            <marker date="1495378653340" expanded="true" signature="663:707" ph="SELECT * FRO... users" />
+            <marker date="1495378653340" expanded="true" signature="863:882" ph="SELECT * FRO... users" />
+            <marker date="1495378653340" expanded="true" signature="991:1032" ph="SELECT * FRO... partners" />
+            <marker date="1495378653340" expanded="true" signature="1200:1247" ph="SELECT * FRO... barcodes" />
+            <marker date="1495378653340" expanded="true" signature="1461:1498" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="1701:1738" ph="SELECT * FRO... deals" />
+            <marker date="1495378653340" expanded="true" signature="4113:4209" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="4600:4673" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="11491:11530" ph="DELETE FROM " />
+            <marker date="1495378653340" expanded="true" signature="16035:16067" ph="SELECT COUNT... surveys_tmp" />
+            <marker date="1495378653340" expanded="true" signature="16789:16812" ph="DELETE FROM " />
+            <marker date="1495378653340" expanded="true" signature="16906:16960" ph="SELECT * FRO... surveys_tmp" />
+            <marker date="1495378653340" expanded="true" signature="17803:17853" ph="SELECT * FRO... surveys" />
+            <marker date="1495378653340" expanded="true" signature="18527:18581" ph="SELECT * FRO... surveys_tmp" />
+            <marker date="1495378653340" expanded="true" signature="19211:19240" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="19437:19486" ph="SELECT * FRO... users" />
+            <marker date="1495378653340" expanded="true" signature="20081:20128" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="20353:20392" ph="SELECT vote surveys" />
+            <marker date="1495378653340" expanded="true" signature="20670:20722" ph="UPDATE surve... " />
+            <marker date="1495378653340" expanded="true" signature="20938:20962" ph="SELECT vote surveys" />
+            <marker date="1495378653340" expanded="true" signature="21287:21328" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="22043:22102" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="22744:22790" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="24100:24178" ph="UPDATE catal... " />
+            <marker date="1495378653340" expanded="true" signature="24580:24673" ph="UPDATE catal... " />
+            <marker date="1495378653340" expanded="true" signature="25246:25322" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="26182:26244" ph="SELECT * FRO... deals" />
+            <marker date="1495378653340" expanded="true" signature="27502:27571" ph="UPDATE barco... " />
+            <marker date="1495378653340" expanded="true" signature="30788:30863" ph="SELECT * FRO... barcodes" />
+            <marker date="1495378653340" expanded="true" signature="31425:31474" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="31715:31764" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="32006:32055" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="32269:32318" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="32601:32667" ph="SELECT bottl... barcodes" />
+            <marker date="1495378653340" expanded="true" signature="33004:33050" ph="SELECT bottl... users" />
+            <marker date="1495378653340" expanded="true" signature="33455:33520" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="33844:33893" ph="UPDATE users... " />
+            <marker date="1495378653340" expanded="true" signature="34301:34343" ph="SELECT costs... users" />
+            <marker date="1495378653340" expanded="true" signature="35620:35869" ph="..." />
+            <marker date="1495378653340" expanded="true" signature="35643:35735" ph="..." />
+            <marker date="1495378653340" expanded="true" signature="35758:35845" ph="..." />
+            <marker date="1495378653340" expanded="true" signature="36167:36189" ph="SELECT * FRO... catalogs" />
+            <marker date="1495378653340" expanded="true" signature="36397:36442" ph="DELETE FROM " />
+            <marker date="1495378653340" expanded="true" signature="36723:36751" ph="SELECT email... newsletter" />
           </folding>
         </state>
       </provider>
@@ -916,30 +913,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/profile.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2406">
+          <caret line="72" column="68" lean-forward="false" selection-start-line="72" selection-start-column="41" selection-end-line="72" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/ProfileController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="100" column="38" lean-forward="false" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
+        <state relative-caret-position="440">
+          <caret line="156" column="33" lean-forward="true" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="33" />
           <folding>
             <element signature="e#107#135#0#PHP" expanded="true" />
-            <marker date="1495378180312" expanded="true" signature="3223:3321" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="3322:3356" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="3322:3397" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="3322:3429" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="3322:3455" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="3322:3499" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="9906:10288" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="9929:10021" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="10044:10075" ph="..." />
-            <marker date="1495378180312" expanded="true" signature="10044:10264" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3395:3493" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3494:3528" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3494:3569" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3494:3601" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3494:3627" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="3494:3671" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="10131:10513" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="10154:10246" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="10269:10300" ph="..." />
+            <marker date="1495379588579" expanded="true" signature="10269:10489" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/profile.html.twig">
+    <entry file="file://$PROJECT_DIR$/views/layout.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="72" column="64" lean-forward="false" selection-start-line="72" selection-start-column="64" selection-end-line="72" selection-end-column="64" />
+        <state relative-caret-position="365">
+          <caret line="32" column="35" lean-forward="false" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
           <folding />
         </state>
       </provider>

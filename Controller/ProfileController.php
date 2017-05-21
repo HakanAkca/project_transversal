@@ -27,6 +27,7 @@ class ProfileController extends BaseController
             $userDeals = $manager->getAvailableDeals();
             $pageActuel = $_GET['action'];
             $errors = array();
+            $newsRegister = '';
 
             $costs = 0;
             $errorBarcode = '';
@@ -60,6 +61,7 @@ class ProfileController extends BaseController
                     $object = $res['object'];
                     $content = $res['content'];
                     $this->sendMail($email,$object,$content,'...');
+                    $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
                 }
             }
             if (isset($_POST['submitBuyDeal'])) {
@@ -87,7 +89,7 @@ class ProfileController extends BaseController
 
                 // Set parameters
                 $apikey = '9b47ead4-9c49-4064-9818-5986d6c0b30a';
-                $value = '<title>Test PDF conversion</title>
+                $value = '<title>Print offer</title>
                             <h2>Tritus</h2><br><br>
                             <h3>Offre</h3><br><br>
                             '.$bareCodePNG.'
@@ -152,6 +154,7 @@ MERCI !!!'; // can aso be a url, starting with http..
                     'surveys' => $surveys,
                     'allVotes' => $allVotes,
                     'file' => $file,
+                    'newsRegister' => $newsRegister,
                 ]);
         } else {
             $this->redirect('home');

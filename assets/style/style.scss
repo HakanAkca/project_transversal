@@ -1105,8 +1105,11 @@ $grey: grey;
         margin-top: 20px;
         font-size: 16px;
         .img_modale {
-          width: 65%;
+          width: 50%;
           height: 120px;
+          @media(min-width:768px){
+            width:40%;
+          }
         }
         .info {
           border: 1px solid #e6e6e6;

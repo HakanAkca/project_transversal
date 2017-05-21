@@ -78,7 +78,7 @@
                     <input class="button-input" type="submit" name="deletteOffers" value="Supprimer">
                 </form>
             </div>
-            <div class="inside-block-content">
+            <div id="update_offers" class="inside-block-content">
                 <h3>Mettre a jour l'offre</h3>
                 <form method="post" action="?action=admin">
                     <select name="listOffer"><
@@ -91,7 +91,7 @@
                     <input class="button-input" type="submit" value="Choisir" name="submitChoiceOffer">
                 </form>
                 {% if dealToUpdate is not empty %}
-                    <form method="post" action="?action=admin" enctype="multipart/form-data">
+                    <form method="post" action="?action=admin#update_offers" enctype="multipart/form-data">
                         <input type="text" name="partner" value="{{ dealToUpdate.partner }}">
                         <input class="button-input" type="file" name="fileOffer">
                         <textarea name="description">{{ dealToUpdate.description }}</textarea>

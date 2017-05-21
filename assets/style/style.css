@@ -759,6 +759,7 @@
   .user_page .user_info {
     flex-direction: row;
     width: 50%;
+    height: 200px;
   }
 }
 @media screen {

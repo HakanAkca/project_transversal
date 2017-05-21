@@ -11,7 +11,6 @@
             <ul class="mobile_dropdown">
                 <li><a href="?action=about">Nous</a></li>
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
-                {{admin}}
                 {% if user.pseudo is defined %}
                     <li><a href="?action=profile">Profil</a></li>
                     <li><a href="?action=logout">Deconnexion</a></li>
@@ -23,7 +22,7 @@
                 {% endif %}
                 
             </ul>
-            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+            <img alt="mobile_logo" class="mobile_logo" src="assets/img/mobile_logo.png"/>
         </div>
         <div class="stats">
             <span>{{bottlesRecycled}}</span>
@@ -44,7 +43,7 @@
         <div class="end_header">
             {% if user.pseudo is defined %}
                 <div class="current"><a href="#">{{user.pseudo}}</a></div>
-                <a href="?action=logout"><img src="assets/img/logout.png"></img></a>
+                <a href="?action=logout"><img alt="logout" src="assets/img/logout.png"></a>
             {% else %}
                 <div class="current"><a href="#">Accueil</a></div>
             {% endif %}
@@ -78,24 +77,24 @@
         <div class="concept">
             <div class="discover_concept">
                 <p>Découvrez le concept</p>
-                <a href="#what_it_is"><img src="assets/img/concept_arrow.png"></img></a>
+                <a href="#what_it_is"><img alt="arrow_down" src="assets/img/concept_arrow.png"></a>
             </div>
             <div id="what_it_is">
                 Tritus, Comment ca marche ?
             </div>
             <div id="tuto">
                 <div class="info_steps">
-                    <img class="step_one" src="assets/img/img_tuto/step_one.png"/>
-                    <img class="step_two" src="assets/img/img_tuto/step_two.png"/>
+                    <img alt="step_one" class="step_one" src="assets/img/img_tuto/step_one.png">
+                    <img alt="step_two" class="step_two" src="assets/img/img_tuto/step_two.png">
                 </div>
                 <div class="tuto_area">
-                    <img class="bottle" src="assets/img/img_tuto/bottle.png"/>
-                    <img class="girl_bottle" src="assets/img/img_tuto/girl_bottle.png"/>
-                    <img class="girl_phone" src="assets/img/img_tuto/girl_phone.png"/>
-                    <img class="trash" src="assets/img/img_tuto/trash.png"/>
+                    <img alt="bottle" class="bottle" src="assets/img/img_tuto/bottle.png">
+                    <img alt="girl_bottle" class="girl_bottle" src="assets/img/img_tuto/girl_bottle.png">
+                    <img alt="girl_phone" class="girl_phone" src="assets/img/img_tuto/girl_phone.png">
+                    <img alt="trash" class="trash" src="assets/img/img_tuto/trash.png">
                 </div>
             </div>
-             <div class="next_2"><p class="how_many_steps">1/3</p><img src="assets/img/img_tuto/next.png"/><p>Cliquez pour avancer </p></div>
+             <div class="next_2"><p class="how_many_steps">1/3</p><img alt="next_step" src="assets/img/img_tuto/next.png"><p>Cliquez pour avancer </p></div>
         </div>
         <div class="map_area">
             <div class="find_city">
@@ -113,7 +112,7 @@
     </main>
     <div class="modale_login">
         <div class="container_form">
-            <div class="close_login_md"><img src="assets/img/cancel.png"></img></div>
+            <div class="close_login_md"><img alt="cancel" src="assets/img/cancel.png"></div>
             <form action="?action=home" method="POST">
                 <div class="login_form" ><p>Nom d'utilisateur : </p><input name="username" type="text" value=""></div>
                 <div class="login_form" ><p>Mot de passe : </p><input name="password" type="password" value=""></div>

@@ -70,6 +70,7 @@ class DefaultController extends BaseController
                 $manager->buyDeal($_POST['IDdeal']);
                 header('Location:?action=offers');
                 $manager->getAvailableUserDeals();
+                echo $this->redirect('profile');
             }
         }
         $newsRegister = "";

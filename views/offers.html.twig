@@ -15,7 +15,7 @@
                 <li><a href="?action=partner">Devenir Partenaires</a></li>
                 <li><a href="?action=logout">Déconnexion</a></li>
             </ul>
-            <img class="mobile_logo" src="assets/img/mobile_logo.png"/>
+            <img class="mobile_logo" src="assets/img/mobile_logo.png" alt="mobile_logo">
         </div>
         <div class="stats">
             <span>{{bottlesRecycled}}</span>
@@ -29,7 +29,7 @@
         </ul>
         <div class="end_header">
             <div class="current"><a href="#">{{user.pseudo}}</a></div>
-            <a href="?action=logout"><img src="assets/img/logout.png"></img></a>
+            <a href="?action=logout"><img src="assets/img/logout.png" alt="logout"></a>
         </div>
     </header>
 
@@ -38,7 +38,7 @@
         <div class="all_offers">
             {% for deal in allDeals %}
                 <div class="offer">
-                    <img class="deal_img" src="{{ deal['image'] }}"/>
+                    <img class="deal_img" src="{{ deal['image'] }}" alt="deal_img">
                     <div class="info">
                         <p class="title">{{deal.partner}}</p>
                         <p>Description :</p>
@@ -48,7 +48,7 @@
                                 <p>{{deal.cost}} Points</p>
                             </div>
                             <div class="more">
-                                <a href="#modale"><img src="assets/img/expand-arrows.png"></img></a>
+                                <a href="#modale"><img src="assets/img/expand-arrows.png" alt="expand"></a>
                             </div>
                         </div>
                         <div class="more_info">
@@ -65,7 +65,7 @@
         <div id="modale">
             <div class="modale_available_deal">
                 <div class="deal_info">
-                    <img class="img_modale" src=""></img>
+                    <img alt="modale_img" class="img_modale" src="">
                     <div class="info">
                         <p class="title">INFO</p>
                         <p class="partner_modale info_deal"><span>Partenaire</span><span></span></p>

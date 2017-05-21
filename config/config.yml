@@ -1,0 +1,17 @@
+routes:
+    home: 'Default:home'
+    partner: 'Default:partner'
+    logout: 'Security:logout'
+    register: 'Security:register'
+    profile: 'Profile:profile'
+    admin: 'Profile:admin'
+    offers: 'Default:offers'
+    about: 'Default:about'
+
+defaut_route: 'home'
+
+db_config:
+    name: 'transversal'
+    host: 'localhost'
+    user: 'root'
+    pass: ''

@@ -52,6 +52,16 @@
     margin-left: 575px;
   }
 }
+@keyframes throw_bottle_very_large {
+  0% {
+    margin-top: 180px;
+    margin-left: 240px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 720px;
+  }
+}
 @keyframes move_to_trash_tablet {
   0% {
     margin-top: 140px;
@@ -70,6 +80,16 @@
   100% {
     margin-top: 125px;
     margin-left: 475px;
+  }
+}
+@keyframes move_to_trash_very_large {
+  0% {
+    margin-top: 140px;
+    margin-left: 175px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 625px;
   }
 }
 @media screen {
@@ -431,6 +451,11 @@
     margin-right: 10px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .girl_bottle {
+    margin-left: 175px;
+  }
+}
 @media screen {
   .home_page .concept #tuto .tuto_area .girl_phone {
     height: 120px;
@@ -445,6 +470,11 @@
   .home_page .concept #tuto .tuto_area .girl_phone {
     height: 150px;
     margin-left: 25px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .girl_phone {
+    margin-left: 175px;
   }
 }
 @media screen {
@@ -467,7 +497,7 @@
 }
 @media screen and (min-width: 1440px) {
   .home_page .concept #tuto .tuto_area .trash {
-    margin-right: 300px;
+    margin-right: 150px;
   }
 }
 @media screen {
@@ -479,6 +509,13 @@
     margin-left: 90px;
     animation-duration: 1s;
   }
+}
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .bottle {
+    margin-left: 240px;
+  }
+}
+@media screen {
   .home_page .concept .next_2, .home_page .concept .next_3, .home_page .concept .next_1 {
     display: flex;
     flex-direction: row;

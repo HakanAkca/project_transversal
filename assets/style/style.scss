@@ -54,6 +54,11 @@ $red: #ed6147;
     100% { margin-top: 140px; margin-left: 575px;}   
 }
 
+@keyframes throw_bottle_very_large{
+    0%   { margin-top: 180px; margin-left: 240px;}
+    100% { margin-top: 140px; margin-left: 720px;}   
+}
+
 @keyframes move_to_trash_tablet{
     0% {margin-top: 140px; margin-left: 25px;}
     100%{margin-top: 125px; margin-left: 295px;}
@@ -62,6 +67,11 @@ $red: #ed6147;
 @keyframes move_to_trash_desktop{
     0% {margin-top: 140px; margin-left: 25px;}
     100%{margin-top: 125px; margin-left: 475px;}   
+}
+
+@keyframes move_to_trash_very_large{
+    0% {margin-top: 140px; margin-left: 175px;}
+    100%{margin-top: 125px; margin-left: 625px;}   
 }
 
 @media screen{
@@ -352,6 +362,9 @@ $red: #ed6147;
                             margin-left: 25px;
                             margin-right: 10px;
                         }
+                        @media(min-width:1440px){
+                            margin-left: 175px;
+                        }
                     }
                     .girl_phone{
                         height: 120px;
@@ -363,6 +376,9 @@ $red: #ed6147;
                        @media(min-width:425px){
                             height: 150px;
                             margin-left: 25px;
+                        }
+                        @media(min-width:1440px){
+                            margin-left: 175px;
                         }
                     }
                     .trash{
@@ -377,7 +393,7 @@ $red: #ed6147;
                             margin-right: 0px;
                         }              
                         @media(min-width:1440px){
-                            margin-right: 300px;
+                            margin-right: 150px;
                         }
                     }
                     .bottle{
@@ -387,6 +403,9 @@ $red: #ed6147;
                         margin-top: 180px;
                         margin-left: 90px;
                         animation-duration: 1s;
+                        @media(min-width:1440px){
+                            margin-left: 240px;
+                        }
                     }
                 }
             }

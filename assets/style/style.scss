@@ -665,11 +665,11 @@ $grey: grey;
             margin: 20px 10px;
             @include flex_trinity(row, space-between);
             flex-wrap: wrap;
+            font-family: "robotoRegular";
             @media(min-width:1024px){
                 align-items: center;
             }
             div{
-                font-family: 'robotoLight';
                 width: 49%;
                 height: 65px;
                 color: white;
@@ -749,6 +749,7 @@ $grey: grey;
                     }
                     .title{
                         padding: 10px 0px;
+                        font-family: "robotoLight";
                     }
                 }
                 .my_reductions{
@@ -853,6 +854,9 @@ $grey: grey;
                     .sondage_title{
                         @include flex_trinity(row, center);
                         padding: 10px 0px;
+                        .huge_title{
+                            font-family: "robotoLight";
+                        }
                         .little_description{
                             display: none;
                         }
@@ -928,6 +932,9 @@ $grey: grey;
                             }
                         }
                     }
+                    .how_many{
+                        font-family: "robotoLight";
+                    }
                 }
             }
         }
@@ -940,6 +947,7 @@ $grey: grey;
             padding: 5px;
             color: white;
             box-shadow: 0px 2px 1px $orangeHover;
+            font-family: "robotoLight";
             &:hover{
                 background-color: $orangeHover;
                 box-shadow: 0px 2px 1px $orangeHover;
@@ -959,6 +967,7 @@ $grey: grey;
                 display: flex;
                 width: 100%;
                 .insert_code{
+                    font-family: "robotoLight";
                     background-color: #f0816c;
                     text-align: center;
                     width: 50%;
@@ -1066,6 +1075,7 @@ $grey: grey;
                     height: 120px;
                 }
                 .info{
+                    padding: 5px;
                     border: 1px solid #e6e6e6;
                     border-radius: 10px;
                     width: 85%;
@@ -1075,10 +1085,12 @@ $grey: grey;
                     height: 200px;
                     background-color: #fff;
                     .title{
+                        font-family: "PoppinsMedium";
                         text-align: center;
                         font-size: 18px;
                     }
                     .info_deal{
+                        font-family: 'robotoRegular';
                         @include flex_trinity(row, space-between);
                         margin: 5px;
                     }
@@ -1142,6 +1154,7 @@ $grey: grey;
         .all_offers{
             @include flex_trinity(row, space-around);
             flex-wrap: wrap;
+            font-family: "robotoRegular";
             .offer{
                 @include flex_trinity(column, space-between);
                 width: 40%;
@@ -1167,6 +1180,7 @@ $grey: grey;
                     @include flex_trinity(column, space-between);
                     .title{
                         text-align: center;
+                        font-family: 'PoppinsMedium';
                     }
                     .buttons{
                         @include flex_trinity(row, space-between);

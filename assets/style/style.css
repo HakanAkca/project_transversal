@@ -838,6 +838,7 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    font-family: "robotoRegular";
   }
 }
 @media screen and (min-width: 1024px) {
@@ -847,7 +848,6 @@
 }
 @media screen {
   .user_page .stats div {
-    font-family: 'robotoLight';
     width: 49%;
     height: 65px;
     color: white;
@@ -956,6 +956,7 @@
 @media screen {
   .user_page .box .all_changing_contents .changing_content .title {
     padding: 10px 0px;
+    font-family: "robotoLight";
   }
 }
 @media screen and (min-width: 1024px) {
@@ -1086,6 +1087,9 @@
     justify-content: center;
     padding: 10px 0px;
   }
+  .user_page .box .all_changing_contents .sondage .sondage_title .huge_title {
+    font-family: "robotoLight";
+  }
   .user_page .box .all_changing_contents .sondage .sondage_title .little_description {
     display: none;
   }
@@ -1176,6 +1180,9 @@
     line-height: 30px;
     background-color: #37d074;
   }
+  .user_page .box .all_changing_contents .sondage .how_many {
+    font-family: "robotoLight";
+  }
   .user_page .all_offers_link {
     background-color: #f0816c;
     text-align: center;
@@ -1185,6 +1192,7 @@
     padding: 5px;
     color: white;
     box-shadow: 0px 2px 1px #FFAB9B;
+    font-family: "robotoLight";
   }
   .user_page .all_offers_link:hover {
     background-color: #FFAB9B;
@@ -1212,6 +1220,7 @@
     width: 100%;
   }
   .user_page .insert div .insert_code {
+    font-family: "robotoLight";
     background-color: #f0816c;
     text-align: center;
     width: 50%;
@@ -1324,6 +1333,7 @@
     height: 120px;
   }
   #modale .modale_available_deal .deal_info .info {
+    padding: 5px;
     border: 1px solid #e6e6e6;
     border-radius: 10px;
     width: 85%;
@@ -1336,10 +1346,12 @@
     background-color: #fff;
   }
   #modale .modale_available_deal .deal_info .info .title {
+    font-family: "PoppinsMedium";
     text-align: center;
     font-size: 18px;
   }
   #modale .modale_available_deal .deal_info .info .info_deal {
+    font-family: 'robotoRegular';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1414,6 +1426,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    font-family: "robotoRegular";
   }
   .offer_page .all_offers .offer {
     display: flex;
@@ -1458,6 +1471,7 @@
   }
   .offer_page .all_offers .offer .info .title {
     text-align: center;
+    font-family: 'PoppinsMedium';
   }
   .offer_page .all_offers .offer .info .buttons {
     display: flex;

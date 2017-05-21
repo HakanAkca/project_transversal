@@ -162,6 +162,17 @@ MERCI !!!
             $allVotes = $manager->allVotes();  //for average
             $pageActuel = $_GET['action'];
 
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+                if($res['isFormGood']){
+                    $manager->addMail($_POST);
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
+                }
+            }
 
             if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
@@ -172,9 +183,6 @@ MERCI !!!
                 }
             }
 
-            if (isset($_POST['submitSendGeneralMail'])) {
-                var_dump($_POST);
-            }
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
@@ -238,12 +246,31 @@ MERCI !!!
                 }
             }
 
-            if(isset($_POST['submitNewsletter'])){
-                $res = $manager->sendNews($_POST);
-                $email = $res['email'];
-                $object = $res['object'];
-                $content = $res['content'];
-                $this->sendMail($email,$object,$content,'...');
+
+            if(isset($_POST['submitSendGeneralMail'])){
+                $allMails = $manager->getAllEmails();
+                if($manager->checkSendNews($_POST)){
+                    foreach ($allMails as $value){
+                        $email = $value['email'];
+                        $object = $_POST['titreNewsletter'];
+                        $content = "<html>
+                <head>
+                <title>Vous avez réservé sur notre site ...</title>
+                </head>
+                <body>
+                <p>" . $_POST['newsletterContent'] . "</p>
+                <p>Cordialement</p>
+                <p>La fondation Tritus</p>
+                <p>Contact: tritusfundation@gmail.com</p>
+                </body>
+                </html>";
+
+                        $this->sendMail($email,$object,$content,'...');
+                    }
+                }else{
+                    echo "Nope";
+                    var_dump($_POST);
+                }
             }
 
             $deals = $manager->getAllDeals();

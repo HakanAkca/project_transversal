@@ -1040,30 +1040,22 @@ class UserManager
         $this->DBManager->insert('newsletter', $user);
     }
 
-    public function sendNews($data)
-    {
-        $res = array();
-
-        $email = $this->DBManager->findAllSecure("SELECT email FROM newsletter");
-
-
-        $object = $data['titreNewsletter'];
-        $content = "<html>
-                <head>
-                <title>Vous avez réservé sur notre site ...</title>
-                </head>
-                <body>
-                <p>" . $data['newsletterContent'] . "</p>
-                <p>Cordialement</p>
-                <p>La fondation Tritus</p>
-                <p>Contact: tritusfundation@gmail.com</p>
-                </body>
-                </html>";
-
-
-        $res['email'] = $email;
-        $res['object'] = $object;
-        $res['content'] = $content;
-        return $res;
+    public function getAllEmails(){
+        return $this->DBManager->findAllSecure("SELECT email FROM newsletter");
     }
+
+    public function checkSendNews($data){
+        $isFormGood = true;
+        if(!isset($data['titreNewsletter']) | empty($data['titreNewsletter'])){
+            $isFormGood = false;
+            $errors['titreNewsletter'] = "Veillez remplir le champ titreNewsletter";
+        }
+        if(!isset($data['newsletterContent']) | empty($data['newsletterContent'])){
+            $isFormGood = false;
+            $errors['newsletterConten'] = "Veillez remplir le champ newsletterContent";
+        }
+        return $isFormGood;
+    }
+
+
 }

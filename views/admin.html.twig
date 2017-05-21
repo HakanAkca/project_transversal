@@ -20,12 +20,7 @@
         {% endfor %}
         {% set cpt = 0 %}
     <hr>
-    <h3>Send la newsletter</h3>
-    <form action="?action=admin" method="post">
-        <input type="text" name="titreNewsletter" placeholder="contenu newsletter">
-        <textarea name="newsletterContent" placeholder="contenu newsletter"></textarea>
-        <input type="submit" name="submitSendGeneralMail" value="Envoyer">
-    </form>
+
     <hr>
     <p>Ajouter des offres</p>
     {% for error in errors %}
@@ -114,6 +109,6 @@
     <form action="?action=admin" method="post">
         <input type="text" name="titreNewsletter" placeholder="contenu newsletter">
         <input type="text" name="newsletterContent" placeholder="contenu newsletter">
-        <input type="submit" name="submitNewsletter" value="Valider">
+        <input type="submit" name="submitSendGeneralMail" value="Valider">
     </form>
 {% endblock %}

@@ -1378,7 +1378,7 @@ $grey: grey;
       border: 1px solid lightgrey;
     }
     textarea {
-      width: 300px;
+      width: 180px;
       height: 150px;
       border: 1px solid lightgrey;
     }
@@ -1423,10 +1423,73 @@ $grey: grey;
         padding: 5px;
         width: 245px;
       }
+      .button-input2 {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 245px;
+      }
       textarea {
         width: 250px;
         height: 150px;
         border: 1px solid lightgrey;
+      }
+      select {
+        font-size: 1.3em;
+      }
+    }
+    @media(min-width: 1024px) {
+      .block-content {
+        width: 80%;
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 5px;
+        padding-bottom: 20px;
+        -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+        -moz-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+        box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+      }
+      input {
+        margin: 10px;
+        width: 450px;
+        height: 40px;
+        border: 1px solid lightgrey;
+      }
+      .button-input {
+        background-color: $red;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 445px;
+      }
+      .button-input2 {
+        background-color: grey;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 445px;
+      }
+      button {
+        background-color: $red;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 455px;
+        height: 40px;
+      }
+      textarea {
+        width: 450px;
+        height: 150px;
+        border: 1px solid lightgrey;
+      }
+      h3 {
+        font-size: 1.6em;
+      }
+      select {
+        width: 450px;
+        font-size: 1.6em;
+        text-align: center;
       }
     }
   }

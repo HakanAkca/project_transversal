@@ -66,7 +66,6 @@ class UserManager
                 'id' => $id,
             ]);
         $barcode = $_SESSION['user_id'].$this->generateBarcode();
-        var_dump($barcode);
 
     }
 
@@ -414,7 +413,6 @@ class UserManager
         $expirationDate =  strtotime($tmpDate);
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
-        var_dump($filetmpname);
         move_uploaded_file($filetmpname,$url);
     }
     public function checkSurvey($data){
@@ -454,7 +452,7 @@ class UserManager
     }
     public function addSurveyTmp($data){
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['image'];
+        $url = 'uploads/surveys/'.$data['image'];
         $cur = strtotime($this->getDatetimeNow());
         $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
         $survey['partner'] = $data['partner'];
@@ -480,7 +478,7 @@ class UserManager
         $survey['partner'] = $data['partner'];
         $survey['description'] = $data['description'];
         $survey['deal'] = $data['deal'];
-        $survey['image'] = $url;
+        $survey['image'] = $data['image'];
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
         $this->DBManager->insert('surveys', $survey);
@@ -571,7 +569,6 @@ class UserManager
         return $res;
     }
     public function setSurveysVotes($id, $numbersVotes){
-        var_dump($id);
         return $this->DBManager->findOneSecure("UPDATE surveys SET vote = :numbersVotes WHERE id=:id",
             [
                 'id' => $id,

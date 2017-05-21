@@ -108,8 +108,7 @@ class BaseController
 
     public function phptopdf($pdf_options)
     {
-        define("API_KEY", "3af6715649e37a4801ea4ab6b8694f8dedc59e47");
-        //var_dump($pdf_options);
+        //define("API_KEY", "3af6715649e37a4801ea4ab6b8694f8dedc59e47");
         $pdf_options['api_key'] = API_KEY;
         $pdf_options['api_version'] = PHPTOPDF_API;
 
@@ -145,17 +144,15 @@ class BaseController
 
                 case 'save':
                     savePDF($result, $pdf_options['file_name'], $pdf_options['save_directory']);
-                    echo "SAVE";
                     break;
 
                 case 'download':
                     downloadPDF($result, $pdf_options['file_name']);
-                    echo "download";
                     break;
 
                 default:
                     header('Content-type: application/pdf');
-                    //echo $result;
+                    echo $result;
                     break;
             }
         } else {

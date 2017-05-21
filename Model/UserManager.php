@@ -841,6 +841,7 @@ class UserManager
 
 
 
+
     public function checkExpirationDate($date){
         $day = (int)substr($date,0,2);
         $month = (int)substr($date,3,2);

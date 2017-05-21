@@ -99,7 +99,18 @@ class DefaultController extends BaseController
                 $data = $res['data'];
                 $email = $data['email'];
                 $object = "Tritus - Devenir partenaire";
-                $content = "On a bien reçu votre message. On vous contactera des que votre demande sera analysée";
+                $content = "Bonjour ".$data['name']."<br>
+
+Nous avons reçu votre demande et nous sommes heureux de vous annoncer que l'on accepte cette dernière. <br>
+
+Nous sommes très satisfaits de vous compter parmi nos partenaires et nous savons que notre collaboration sera bénéfique pour les deux partis. <br>
+
+Nos clients pourront dès ce soir voter pour votre entreprise afin qu'ils puissent bénéficier de bons de réductions dans votre enseigne le mois prochain. <br>
+
+Nous restons à votre disposition pour toute demande d'information.<br>
+
+Cordialement,<br>
+L'équipe Tritus";
                 $infoUser = "Nom : " . $data['name'] . "<br>Email : " . $data['email'] . "<br>Ville : " . $data['city'] . "<br>Téléphone : " . $data['phone'] . "<br>Statut : " . $data['status'] . "<br>Message " . $data['message'];
                 $this->sendMail($email, $object, $content, '...');
                 $this->sendMailBis($object, $infoUser, $altContent = null);
@@ -120,7 +131,7 @@ class DefaultController extends BaseController
                     $this->sendMail($email,$object,$content,'...');
                 }
             }
-        
+
 
         echo $this->renderView('partner.html.twig',
                                 [

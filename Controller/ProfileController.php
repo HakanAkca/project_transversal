@@ -87,9 +87,11 @@ MERCI !!!
                     "source" => $my_html,
                     "action" => 'save',
                     "save_directory" => 'uploads',
-                    "file_name" => 'html_01.pdf');
+                    "file_name" => 'html_01.pdf'
+                    );
 
-                $this->phptopdf($pdf_options);
+                phptopdf($pdf_options);
+                echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             }
             if (isset($_POST['submitBarcode'])) {
@@ -119,11 +121,7 @@ MERCI !!!
 
 
 
-// CALL THE phpToPDF FUNCTION WITH THE OPTIONS SET ABOVE
-            //$this->phptopdf($pdf_options);
 
-// OPTIONAL - PUT A LINK TO DOWNLOAD THE PDF YOU JUST CREATED
-           // echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             echo $this->renderView('profile.html.twig',
                 [
@@ -172,6 +170,10 @@ MERCI !!!
                 } else {
                     $errors = $res['errors'];
                 }
+            }
+
+            if (isset($_POST['submitSendGeneralMail'])) {
+                var_dump($_POST);
             }
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);

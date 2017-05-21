@@ -59,6 +59,7 @@ function phptopdf($pdf_options)
 
             case 'save':
                 savePDF($result, $pdf_options['file_name'], $pdf_options['save_directory']);
+                echo $pdf_options['file_name'];
                 break;
 
             case 'download':

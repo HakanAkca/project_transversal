@@ -41,10 +41,11 @@ $(function() {
         else{
             $('.bottle').css('animation-name', "throw_bottle_very_large");
         }
-        if($(window) < 1440){
+        if($(window).width() < 1440){
             $('.girl_phone').css({"margin-top": "140px", "margin-left": "25px"});
         }
         else{
+            console.log('slt');
             $('.girl_phone').css({"margin-top": "140px", "margin-left": "175px"});
         }
         $('.girl_bottle').css('display', 'none');

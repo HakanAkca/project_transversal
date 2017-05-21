@@ -127,7 +127,7 @@
                                             <form action="?action=profile" method="POST">
                                                 {{survey.id}}
                                                 <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
-                                                <label for="{{survey.id}}"><img src="assets/img/vote.png"></img></label>
+                                                <label class="form_vote" for="{{survey.id}}"><img src="assets/img/vote.png"></img></label>
                                                 <input class="form_vote" id="{{survey.id}}" type="submit" name="userVote" value="Je vote">
                                             </form>
                                         </div>
@@ -193,15 +193,15 @@
             <form enctype="multipart/form-data" action="?action=profile" method="POST"/>
                 <div class="content_edit">
                     <p>Pseudo :</p>
-                    <input type="txt" name="editUsername" value="{{user.pseudo}}"/>
+                    <input type="text" name="editUsername" value="{{user.pseudo}}"/>
                 </div>
                 <div class="content_edit">
                     <p>Email :</p>
-                    <input type="txt" name="editMail" value="{{user.email}}"/>
+                    <input type="text" name="editMail" value="{{user.email}}"/>
                 </div>
                 <div class="content_edit">
                     <p>City :</p>
-                    <input type="txt" name="editCity" value="{{user.city}}"/>
+                    <input type="text" name="editCity" value="{{user.city}}"/>
                 </div>
                 <div class="content_edit">
                     <p>Photo de profil :</p>

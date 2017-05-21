@@ -32,6 +32,8 @@ class SecurityController extends BaseController
                     $errors = $res['errors'];
                 }
             }
+            $newsRegister = "";
+
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -41,6 +43,8 @@ class SecurityController extends BaseController
                     $object = $res['object'];
                     $content = $res['content'];
                     $this->sendMail($email,$object,$content,'...');
+                    $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
                 }
             }
             echo $this->renderView('register.html.twig',
@@ -48,6 +52,7 @@ class SecurityController extends BaseController
                                              'errors' => $errors,
                                              'bottlesRecycled' => $bottlesRecycled,
                                              'pageActuel' => $pageActuel,
+                                             'newsRegister' => $newsRegister,
                                          ]);
         }
     }

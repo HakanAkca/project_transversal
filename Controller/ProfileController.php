@@ -35,6 +35,7 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
+            //echo $_SESSION['user_username'];
 
             //Classement !!!
             $average = $manager->getAverages();
@@ -176,6 +177,7 @@ MERCI !!!'; // can aso be a url, starting with http..
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
             $pageActuel = $_GET['action'];
+            $newsRegister = '';
 
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
@@ -186,6 +188,8 @@ MERCI !!!'; // can aso be a url, starting with http..
                     $object = $res['object'];
                     $content = $res['content'];
                     $this->sendMail($email,$object,$content,'...');
+                    $newsRegister = "Merci de vous etre abonnés a la NewsLetter, nous vous avons envoyé un email afin de vérifier votre adresse !";
+
                 }
             }
 
@@ -296,6 +300,7 @@ MERCI !!!'; // can aso be a url, starting with http..
                     'allVotes' => $allVotes,
                     'offers' => $offers,
                     'pageActuel' => $pageActuel,
+                    'newsRegister' => $newsRegister,
                 ]);
         } else {
             $this->redirect('home');

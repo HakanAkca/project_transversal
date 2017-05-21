@@ -86,9 +86,9 @@ class UserManager
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
             $isFormGood = false;
         }
-        if($data['editUsername'] !== $_SESSION['user_username']){
-            $data2 = $this->getUserByUsername($data['editUsername']);
-            if($data2 !== false){
+        $data2 = $this->getUserByUsername($data['editUsername']);
+        if($data2 !== false){
+            if($_SESSION['user_id'] !== $data2['id']){
                 $errors['username'] = 'Le pseudo existe déjà';
                 $isFormGood = false;
             }
@@ -121,9 +121,8 @@ class UserManager
         }
         if (!empty($file) && !empty($file_tmp_name)) {
             $new_file_url = 'uploads/' . $pseudo . '/' . $file;
-            rename('uploads/'.$username,'uploads/'.$pseudo);
-            move_uploaded_file($file_tmp_name, $new_file_url);
-            return $this->DBManager->findOneSecure(
+
+            $this->DBManager->findOneSecure(
                 "UPDATE users SET pseudo =:pseudo, email =:email, city =:city, image =:new_file_url  WHERE id=:id",
                 [
                     'pseudo' => $pseudo,
@@ -132,9 +131,9 @@ class UserManager
                     'new_file_url' => $new_file_url,
                     'id' => $id,
                 ]);
+            move_uploaded_file($file_tmp_name, $new_file_url);
         } else {
-            rename('uploads/'.$username,'uploads/'.$pseudo);
-            return $this->DBManager->findOneSecure(
+            $this->DBManager->findOneSecure(
                 "UPDATE users SET pseudo =:pseudo, email =:email, city =:city WHERE id=:id",
                 [
                     'pseudo' => $pseudo,
@@ -142,7 +141,11 @@ class UserManager
                     'city' => $city,
                     'id' => $id,
                 ]);
+
         }
+        $_SESSION['user_username'] = $pseudo;
+        rename('uploads/'.$username,'uploads/'.$pseudo);
+
     }
 
 
@@ -414,6 +417,9 @@ class UserManager
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
         move_uploaded_file($filetmpname,$url);
+        $date = $this->DBManager->take_date();
+        $write = $date. ' Admin '.$_SESSION['user_username'] .' add catalogs'. "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
     }
     public function checkSurvey($data){
         $isFormGood = true;
@@ -483,6 +489,9 @@ class UserManager
         $survey['vote'] = 0;
         $this->DBManager->insert('surveys', $survey);
         move_uploaded_file($filetmpname,$url);
+        $date = $this->DBManager->take_date();
+        $write = $date. ' Admin '.$_SESSION['user_username'] .' add surveys'. "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
     }
     public function getSurvey(){
         $cur = strtotime($this->getDatetimeNow());
@@ -681,6 +690,9 @@ class UserManager
                     'image' => $image,
                 ]);
         }
+        $date = $this->DBManager->take_date();
+        $write = $date. ' Admin '.$_SESSION['user_username'] .' updated offer id= '.$id."\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
 
     }
     public function getAvailableDeals(){

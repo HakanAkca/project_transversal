@@ -14,6 +14,14 @@
   src: url("../fonts/Poppins-Medium.ttf");
   font-family: 'PoppinsMedium';
 }
+@font-face {
+  src: url("../fonts/Poppins-Regular.ttf");
+  font-family: 'PoppinsRegular';
+}
+@font-face {
+  src: url("../fonts/Poppins-Regular.ttf");
+  font-family: 'PoppinsSemiBold';
+}
 @keyframes throw_bottle {
   0% {
     margin-top: 180px;
@@ -134,6 +142,7 @@
     border-bottom: 1px solid white;
   }
   header .left_side_mobile .mobile_dropdown li a {
+    font-family: "robotoRegular";
     color: white;
   }
   header .left_side_mobile .mobile_logo {
@@ -147,6 +156,7 @@
     align-self: center;
   }
   header .menu_desktop a {
+    font-family: "robotoRegular";
     color: white;
     padding: 0px 20px;
     white-space: nowrap;
@@ -207,6 +217,7 @@
   }
   header .end_header .current a {
     color: white;
+    font-family: "robotoLight";
   }
 }
 @media screen and (min-width: 1024px) {
@@ -241,22 +252,41 @@
 }
 @media screen and (min-width: 768px) {
   .home_page .illus_sect {
-    height: 90vh;
+    height: 100vh;
   }
 }
 @media screen {
-  .home_page .illus_sect .bold, .home_page .illus_sect .descrip {
+  .home_page .illus_sect .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 80%;
+    align-items: center;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home_page .illus_sect .content {
+    width: 40%;
+  }
+}
+@media screen {
+  .home_page .illus_sect .content .bold, .home_page .illus_sect .content .descrip {
     font-family: "robotoBold";
-    color: #4c4c4c;
+    color: white;
     font-size: 20px;
     text-align: center;
     z-index: 2;
+    background-color: #3e3e3e;
+    padding: 10px;
+    width: 100%;
   }
-  .home_page .illus_sect .descrip {
-    margin-top: 10px;
+  .home_page .illus_sect .content .descrip {
     font-size: 14px;
+    background-color: rgba(137, 177, 176, 0.8);
     font-family: "robotoRegular";
     z-index: 2;
+    padding: 10px;
+    margin-bottom: 40px;
   }
   .home_page .illus_sect .redirect_link {
     margin-top: 15px;
@@ -278,12 +308,12 @@
 }
 @media screen and (min-width: 1024px) {
   .home_page .illus_sect .redirect_link {
-    width: 50%;
+    width: 40%;
   }
 }
 @media screen and (min-width: 768px) {
   .home_page .illus_sect .last_button {
-    margin-bottom: 140px;
+    margin-bottom: 100px;
   }
 }
 @media screen {
@@ -315,15 +345,22 @@
     padding: 0% 5%;
   }
   .home_page .concept .discover_concept {
+    font-family: "robotoRegular";
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
+  .home_page .concept #what_it_is {
+    font-weight: bold;
+    border-left: 3px #ed6147 solid;
+    padding-left: 30px;
+    font-family: "robotoRegular";
+  }
   .home_page .concept #tuto {
     width: 309px;
-    border: 1px solid red;
+    border: 1px solid #f0816c;
   }
 }
 @media screen and (min-width: 768px) {
@@ -469,6 +506,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 200px;
+    font-family: "robotoRegular";
   }
   .home_page .map_area .find_city .title {
     font-weight: bold;
@@ -495,6 +533,9 @@
   }
   .home_page .map_area .find_city div .submit_input:hover {
     background-color: #43ff8e;
+  }
+  .home_page .map_area #map {
+    border: solid 5px #f0816c;
   }
 
   .modale_login {
@@ -584,7 +625,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    height: 450px;
+    height: 550px;
     padding-bottom: 15px;
   }
   .allForm .container_form {
@@ -603,7 +644,11 @@
     color: #f0816c;
   }
   .allForm .form-container #myRegister {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     text-align: center;
+    font-family: "robotoRegular";
   }
   .allForm .form-container #myRegister .form-item-block span {
     color: #f0816c;
@@ -618,6 +663,7 @@
 }
 @media screen {
   .allForm .form-container #myRegister button {
+    font-family: "robotoRegular";
     border: none;
     background-color: #f0816c;
     color: white;
@@ -630,6 +676,11 @@
   .allForm .form-container #myRegister .error {
     color: red;
     margin: 10px;
+  }
+  .allForm .form-container #myRegister #message {
+    resize: none;
+    height: 80px;
+    margin-bottom: 20px;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -893,6 +944,7 @@
     width: 70%;
     line-height: 60px;
     color: black;
+    font-family: "robotoRegular";
   }
   .user_page .box .all_changing_contents .my_reductions .all_reducs .reducs .print {
     width: 25%;
@@ -1427,7 +1479,6 @@
   .us .content .txt {
     margin-top: 30px;
     color: #989898;
-    font-family: 'PoppinsMedium';
   }
 }
 @media screen and (min-width: 768px) {
@@ -1444,6 +1495,7 @@
     flex-direction: row;
     justify-content: space-between;
     font-size: 21px;
+    font-family: "PoppinMedium";
   }
   .us .content .txt .how_it_works .title img {
     height: 70px;
@@ -1455,6 +1507,9 @@
   }
 }
 @media screen {
+  .us .content .txt .how_it_works .works_content {
+    font-family: "robotoRegular";
+  }
   .us .content .txt p {
     font-size: 14px;
     text-align: justify;
@@ -1475,10 +1530,14 @@
   .us .content .txt .our_goal .title {
     text-align: center;
     font-size: 21px;
+    font-family: "";
   }
   .us .content .txt .our_goal img {
     height: 70px;
     align-self: flex-end;
+  }
+  .us .content .txt .our_goal .goal_content {
+    font-family: "robotoRegular";
   }
   .us .content .img_aside {
     display: flex;
@@ -1512,6 +1571,11 @@
   footer {
     flex-direction: row;
     flex-wrap: wrap;
+  }
+}
+@media screen {
+  footer div:nth-child(1) {
+    font-family: 'PoppinsRegular';
   }
 }
 @media screen and (min-width: 768px) {
@@ -1551,6 +1615,7 @@
     justify-content: space-around;
     height: 80px;
     align-items: center;
+    font-family: "PoppinsSemiBold";
   }
 }
 @media screen and (min-width: 768px) {
@@ -1640,6 +1705,7 @@
     font-size: 12px;
     width: 30%;
     text-align: center;
+    font-family: "PoppinsMedium";
   }
 }
 

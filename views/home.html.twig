@@ -48,13 +48,15 @@
             {% for error in errors %}
                 {{ error }}<br>
             {% endfor %}
-            {% if user is empty %}
-            <p class="bold">Recyclez<br> pour partir a l'aventure !</p>
-            <p class="descrip">Venez recycler dans nos super poubelles et faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
-            {% else %}
-            <p class="bold">Bonjour {{user.pseudo}} !</p>
-            <p class="descrip">Tu as déja recyclé {{user.bottlesNumber}} bouteilles !</p>
-            {% endif %}
+            <div class="content">
+                {% if user is empty %}
+                <p class="bold">Recyclez pour partir a l'aventure !</p>
+                <p class="descrip">Venez recycler dans nos super poubelles et faîtes un geste pour l'écologie, mais également pour votre porte-monnaie !</p>
+                {% else %}
+                <p class="bold">Bonjour {{user.pseudo}} !</p>
+                <p class="descrip">Tu as déja recyclé {{user.bottlesNumber}} bouteilles !</p>
+                {% endif %}
+            </div>
             {% if user is empty %}
                 <a class="redirect_link" href="?action=register">Inscrivez vous Dès Maintenant</a>
                 <a class="redirect_link last_button open_login_md" href="#">Connectez vous</a>
@@ -68,7 +70,10 @@
         <div class="concept">
             <div class="discover_concept">
                 <p>Découvrez le concept</p>
-                <a href="#tuto"><img src="assets/img/concept_arrow.png"></img></a>
+                <a href="#what_it_is"><img src="assets/img/concept_arrow.png"></img></a>
+            </div>
+            <div id="what_it_is">
+                Tritus, Comment ca marche ?
             </div>
             <div id="tuto">
                 <div class="info_steps">

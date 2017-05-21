@@ -2,7 +2,7 @@ $.fn.foxholder = function(number) {
   this.addClass("form-container").attr("id", "example-"+number.demo);
 
   //adding labels with placeholders content. Removing placeholders
-  this.find('form').find('input,textarea').each(function() {
+  this.find('form').find('input').each(function() {
     var placeholderText, formItemId, inputType; 
 
     //wrapping form elements in their oun <div> tags

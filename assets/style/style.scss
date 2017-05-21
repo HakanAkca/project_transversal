@@ -23,6 +23,16 @@ $red: #ed6147;
     font-family: 'PoppinsMedium';
 }
 
+@font-face {
+    src: url('../fonts/Poppins-Regular.ttf');
+    font-family: 'PoppinsRegular';
+}
+
+@font-face {
+    src: url('../fonts/Poppins-Regular.ttf');
+    font-family: 'PoppinsSemiBold';
+}
+
 @mixin flex_trinity($direction, $content) {
     display: flex;
     flex-direction: $direction;
@@ -111,6 +121,7 @@ $red: #ed6147;
                         border-bottom: 1px solid white;
                     }
                     a{
+                        font-family: "robotoRegular";
                         color:white;
                     }
                 }
@@ -126,6 +137,7 @@ $red: #ed6147;
             display: none;
             align-self: center;
             a{
+                font-family: "robotoRegular";
                 color: white;
                 padding: 0px 20px;
                 white-space: nowrap;
@@ -168,6 +180,7 @@ $red: #ed6147;
                 background-color: $orange;
                 a{
                     color: white;
+                    font-family: "robotoLight";
                 }
                 margin-right: 40px;
                 margin-left: 20%;
@@ -200,21 +213,34 @@ $red: #ed6147;
             background-size: cover;
             background-position: 30%;
             @media(min-width:768px){
-                height: 90vh;
+                height: 100vh;
             }
-            .bold{
-                font-family: "robotoBold";
-                color : #4c4c4c;
-                font-size: 20px;
-                text-align: center;
-                z-index: 2;
-            }
-            .descrip{
-                @extend .bold;
-                margin-top: 10px;
-                font-size: 14px;
-                font-family: "robotoRegular";
-                z-index: 2;
+            .content{
+                @include flex_trinity(column, flex-start);
+                    width: 80%;
+                    align-items: center;
+                    @media(min-width:1024px){
+                        width: 40%;
+                    }
+                .bold{
+                    font-family: "robotoBold";
+                    color : white;
+                    font-size: 20px;
+                    text-align: center;
+                    z-index: 2;
+                    background-color: #3e3e3e;
+                    padding: 10px;
+                    width: 100%;
+                }
+                .descrip{
+                    @extend .bold;
+                    font-size: 14px;
+                    background-color: rgba(137, 177, 176, 0.8);
+                    font-family: "robotoRegular";
+                    z-index: 2;
+                    padding: 10px;
+                    margin-bottom: 40px;
+                }
             }
             .redirect_link{
                 margin-top: 15px;
@@ -233,12 +259,12 @@ $red: #ed6147;
                     box-shadow: 0px 2px 1px $orangeHover;
                 }
                 @media(min-width:1024px){
-                    width: 50%;
+                    width: 40%;
                 }
             }
             .last_button{
                 @media(min-width: 768px){
-                    margin-bottom: 140px;
+                    margin-bottom: 100px;
                 }
             }
         }
@@ -268,13 +294,20 @@ $red: #ed6147;
             height: 700px;
             padding: 0% 5%;
             .discover_concept{
+                font-family: "robotoRegular";
                 z-index: 2; 
                 @include flex_trinity(column, space-around);
                 align-items: center;
             }
+            #what_it_is{
+                font-weight: bold;
+                border-left: 3px $red solid;
+                padding-left: 30px;
+                font-family: "robotoRegular";
+            }
             #tuto{
                 width: 309px;
-                border: 1px solid red;
+                border: 1px solid $orange;
                 @media(min-width:768px){
                     width: 555px;
                 }
@@ -376,6 +409,7 @@ $red: #ed6147;
             .find_city{
                 @include flex_trinity(column, space-around);
                 height: 200px;
+                font-family: "robotoRegular";
                 .title{
                     font-weight: bold;
                     border-left: 3px $red solid;
@@ -400,6 +434,9 @@ $red: #ed6147;
                         }
                     }
                 }
+            }
+            #map{
+                border: solid 5px $orange;
             }
         }
     }
@@ -471,7 +508,7 @@ $red: #ed6147;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
-        height: 450px;
+        height: 550px;
         padding-bottom: 15px;
         .container_form{
             text-align: center;
@@ -486,7 +523,9 @@ $red: #ed6147;
         }
         .form-container{
             #myRegister{
+                @include flex_trinity(column, flex-start);
                 text-align: center;
+                font-family: "robotoRegular";
                 .form-item-block{
                     span{
                         color :$orange;
@@ -498,6 +537,7 @@ $red: #ed6147;
                     }
                 }
                 button{
+                    font-family: "robotoRegular";
                     border : none;
                     background-color: $orange;
                     color:white;
@@ -510,6 +550,11 @@ $red: #ed6147;
                 .error{
                     color: red;
                     margin: 10px;
+                }
+                #message{
+                    resize: none;
+                    height: 80px;
+                    margin-bottom: 20px;
                 }
             }
         }
@@ -703,6 +748,7 @@ $red: #ed6147;
                                     width: 70%;
                                     line-height: 60px;
                                     color: black;
+                                    font-family: "robotoRegular";
                                 }
                                 .print{
                                     width: 25%;
@@ -1149,7 +1195,6 @@ $red: #ed6147;
             .txt{
                 margin-top: 30px;
                 color: #989898;
-                font-family: 'PoppinsMedium';
                 @media(min-width:768px){
                     width: 70%;
                 }
@@ -1158,12 +1203,16 @@ $red: #ed6147;
                     .title{
                         @include flex_trinity(row, space-between);
                         font-size: 21px;
+                        font-family: "PoppinMedium";
                         img{
                             height: 70px;
                             @media(min-width: 768px){
                                 display: none;
                             }
                         }
+                    }
+                    .works_content{
+                        font-family: "robotoRegular";
                     }
                 }
                 p{
@@ -1183,10 +1232,14 @@ $red: #ed6147;
                     .title{
                         text-align: center;
                         font-size: 21px;
+                        font-family: "";
                     }
                     img{
                         height: 70px;
                         align-self: flex-end;
+                    }
+                    .goal_content{
+                        font-family: "robotoRegular";
                     }
                 }
             }
@@ -1219,6 +1272,7 @@ $red: #ed6147;
             flex-wrap: wrap;
         }
         div:nth-child(1){
+            font-family: 'PoppinsRegular';
             @media(min-width:768px){
                 width: 30%;
                 p{
@@ -1246,6 +1300,7 @@ $red: #ed6147;
             @include flex_trinity(column, space-around);
             height: 80px;
             align-items: center;
+            font-family: "PoppinsSemiBold";
             @media(min-width:768px){
                 width: 30%;
             }
@@ -1309,6 +1364,7 @@ $red: #ed6147;
             font-size: 12px;
             width: 30%;
             text-align: center; 
+            font-family: "PoppinsMedium";
         }
     }
 

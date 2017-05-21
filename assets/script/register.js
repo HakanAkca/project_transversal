@@ -34,10 +34,20 @@ $(function() {
         }
         else if( $(window).width() < 1024 ){
             $('.bottle').css('animation-name', "throw_bottle_tablet");
-        }else{
+        }
+        else if ( $(window).width() < 1440 ){
             $('.bottle').css('animation-name', "throw_bottle_desktop");
         }
-        $('.girl_phone').css({"margin-top": "140px", "margin-left": "25px"});
+        else{
+            $('.bottle').css('animation-name', "throw_bottle_very_large");
+        }
+        if($(window).width() < 1440){
+            $('.girl_phone').css({"margin-top": "140px", "margin-left": "25px"});
+        }
+        else{
+            console.log('slt');
+            $('.girl_phone').css({"margin-top": "140px", "margin-left": "175px"});
+        }
         $('.girl_bottle').css('display', 'none');
         $('.girl_phone').css('display', 'inline');
         setTimeout(function(){
@@ -58,6 +68,10 @@ $(function() {
         if ($(window).width() > 1023){
             $('.girl_phone').css('animation-name', "move_to_trash_desktop")
             $('.girl_phone').css({"margin-top": "125px", "margin-left": "475px"});
+        }
+        if($(window).width() > 1439){
+            $('.girl_phone').css('animation-name', "move_to_trash_very_large")
+            $('.girl_phone').css({"margin-top": "125px", "margin-left" : "625px"});          
         }
         $('.step_one').fadeOut(500, function(){
              $('.step_two').fadeIn(500);
@@ -108,7 +122,6 @@ $(function() {
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.expiration_modale').children('span:last').html($(this).parent().parent().children(".other_info").children('span:last').html());
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.price').children('span:last').html($(this).parent().parent().children(".deal_cost").children('.open_md').children('span:first').html() + ' points');
         $('#modale').children('.modale_available_deal').children('.deal_info').children('.info').children('.important').children('.reduc').children('span:last').html($(this).parent().parent().children(".deal_info").children('span:last').html());
-        console.log($(this).parent().parent().children(".other_info").children('.id').html(), "slt");
         $('#modale').children('.modale_available_deal').children('.action').children('.buy_deal').children('input:first').attr('value', $(this).parent().parent().children(".other_info").children('.id').html());
     })
 

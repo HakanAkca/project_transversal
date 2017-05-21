@@ -52,6 +52,16 @@
     margin-left: 575px;
   }
 }
+@keyframes throw_bottle_very_large {
+  0% {
+    margin-top: 180px;
+    margin-left: 240px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 720px;
+  }
+}
 @keyframes move_to_trash_tablet {
   0% {
     margin-top: 140px;
@@ -70,6 +80,16 @@
   100% {
     margin-top: 125px;
     margin-left: 475px;
+  }
+}
+@keyframes move_to_trash_very_large {
+  0% {
+    margin-top: 140px;
+    margin-left: 175px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 625px;
   }
 }
 @media screen {
@@ -431,6 +451,11 @@
     margin-right: 10px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .girl_bottle {
+    margin-left: 175px;
+  }
+}
 @media screen {
   .home_page .concept #tuto .tuto_area .girl_phone {
     height: 120px;
@@ -445,6 +470,11 @@
   .home_page .concept #tuto .tuto_area .girl_phone {
     height: 150px;
     margin-left: 25px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .girl_phone {
+    margin-left: 175px;
   }
 }
 @media screen {
@@ -467,7 +497,7 @@
 }
 @media screen and (min-width: 1440px) {
   .home_page .concept #tuto .tuto_area .trash {
-    margin-right: 300px;
+    margin-right: 150px;
   }
 }
 @media screen {
@@ -479,6 +509,13 @@
     margin-left: 90px;
     animation-duration: 1s;
   }
+}
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto .tuto_area .bottle {
+    margin-left: 240px;
+  }
+}
+@media screen {
   .home_page .concept .next_2, .home_page .concept .next_3, .home_page .concept .next_1 {
     display: flex;
     flex-direction: row;
@@ -801,6 +838,7 @@
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    font-family: "robotoRegular";
   }
 }
 @media screen and (min-width: 1024px) {
@@ -810,7 +848,6 @@
 }
 @media screen {
   .user_page .stats div {
-    font-family: 'robotoLight';
     width: 49%;
     height: 65px;
     color: white;
@@ -919,6 +956,7 @@
 @media screen {
   .user_page .box .all_changing_contents .changing_content .title {
     padding: 10px 0px;
+    font-family: "robotoLight";
   }
 }
 @media screen and (min-width: 1024px) {
@@ -1049,6 +1087,9 @@
     justify-content: center;
     padding: 10px 0px;
   }
+  .user_page .box .all_changing_contents .sondage .sondage_title .huge_title {
+    font-family: "robotoLight";
+  }
   .user_page .box .all_changing_contents .sondage .sondage_title .little_description {
     display: none;
   }
@@ -1139,6 +1180,9 @@
     line-height: 30px;
     background-color: #37d074;
   }
+  .user_page .box .all_changing_contents .sondage .how_many {
+    font-family: "robotoLight";
+  }
   .user_page .all_offers_link {
     background-color: #f0816c;
     text-align: center;
@@ -1148,6 +1192,7 @@
     padding: 5px;
     color: white;
     box-shadow: 0px 2px 1px #FFAB9B;
+    font-family: "robotoLight";
   }
   .user_page .all_offers_link:hover {
     background-color: #FFAB9B;
@@ -1175,6 +1220,7 @@
     width: 100%;
   }
   .user_page .insert div .insert_code {
+    font-family: "robotoLight";
     background-color: #f0816c;
     text-align: center;
     width: 50%;
@@ -1287,6 +1333,7 @@
     height: 120px;
   }
   #modale .modale_available_deal .deal_info .info {
+    padding: 5px;
     border: 1px solid #e6e6e6;
     border-radius: 10px;
     width: 85%;
@@ -1299,10 +1346,12 @@
     background-color: #fff;
   }
   #modale .modale_available_deal .deal_info .info .title {
+    font-family: "PoppinsMedium";
     text-align: center;
     font-size: 18px;
   }
   #modale .modale_available_deal .deal_info .info .info_deal {
+    font-family: 'robotoRegular';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1377,6 +1426,7 @@
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
+    font-family: "robotoRegular";
   }
   .offer_page .all_offers .offer {
     display: flex;
@@ -1421,6 +1471,7 @@
   }
   .offer_page .all_offers .offer .info .title {
     text-align: center;
+    font-family: 'PoppinsMedium';
   }
   .offer_page .all_offers .offer .info .buttons {
     display: flex;
@@ -1563,18 +1614,21 @@
   }
 
   .admin_page {
-    width: 260px;
-    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-bottom: 20px;
+    align-items: center;
   }
   .admin_page .block-content {
+    width: 80%;
     text-align: center;
-    border: 1px solid #000000;
     margin-top: 50px;
+    padding-top: 5px;
     padding-bottom: 20px;
-    -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 30px -1.5px #c2bec2;
+    -moz-box-shadow: 0px 0px 30px -1.5px #c2bec2;
+    box-shadow: 0px 0px 30px -1.5px #c2bec2;
   }
   .admin_page p {
     margin-right: 110px;
@@ -1595,7 +1649,7 @@
     border: none;
     color: white;
     padding: 5px;
-    width: 120px;
+    width: 137px;
   }
   .admin_page .button-input2 {
     background-color: grey;
@@ -1606,6 +1660,18 @@
   }
   .admin_page input {
     margin: 7px;
+    border: 1px solid lightgrey;
+  }
+  .admin_page .container_basic_action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .admin_page .container_basic_action .inside-block-content {
+    width: 80%;
+    margin-bottom: 20px;
+    border: 1px solid red;
   }
 
   footer {

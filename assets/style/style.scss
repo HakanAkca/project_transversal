@@ -2,6 +2,7 @@ $neutralColor : #4b4b4b; // nav || footer
 $orange : #f0816c;
 $orangeHover : #FFAB9B;
 $red: #ed6147;
+$grey: grey;
 
 @font-face {
     src: url('../fonts/Roboto-Bold.ttf');
@@ -54,6 +55,11 @@ $red: #ed6147;
     100% { margin-top: 140px; margin-left: 575px;}   
 }
 
+@keyframes throw_bottle_very_large{
+    0%   { margin-top: 180px; margin-left: 240px;}
+    100% { margin-top: 140px; margin-left: 720px;}   
+}
+
 @keyframes move_to_trash_tablet{
     0% {margin-top: 140px; margin-left: 25px;}
     100%{margin-top: 125px; margin-left: 295px;}
@@ -62,6 +68,11 @@ $red: #ed6147;
 @keyframes move_to_trash_desktop{
     0% {margin-top: 140px; margin-left: 25px;}
     100%{margin-top: 125px; margin-left: 475px;}   
+}
+
+@keyframes move_to_trash_very_large{
+    0% {margin-top: 140px; margin-left: 175px;}
+    100%{margin-top: 125px; margin-left: 625px;}   
 }
 
 @media screen{
@@ -352,6 +363,9 @@ $red: #ed6147;
                             margin-left: 25px;
                             margin-right: 10px;
                         }
+                        @media(min-width:1440px){
+                            margin-left: 175px;
+                        }
                     }
                     .girl_phone{
                         height: 120px;
@@ -363,6 +377,9 @@ $red: #ed6147;
                        @media(min-width:425px){
                             height: 150px;
                             margin-left: 25px;
+                        }
+                        @media(min-width:1440px){
+                            margin-left: 175px;
                         }
                     }
                     .trash{
@@ -377,7 +394,7 @@ $red: #ed6147;
                             margin-right: 0px;
                         }              
                         @media(min-width:1440px){
-                            margin-right: 300px;
+                            margin-right: 150px;
                         }
                     }
                     .bottle{
@@ -387,6 +404,9 @@ $red: #ed6147;
                         margin-top: 180px;
                         margin-left: 90px;
                         animation-duration: 1s;
+                        @media(min-width:1440px){
+                            margin-left: 240px;
+                        }
                     }
                 }
             }
@@ -645,11 +665,11 @@ $red: #ed6147;
             margin: 20px 10px;
             @include flex_trinity(row, space-between);
             flex-wrap: wrap;
+            font-family: "robotoRegular";
             @media(min-width:1024px){
                 align-items: center;
             }
             div{
-                font-family: 'robotoLight';
                 width: 49%;
                 height: 65px;
                 color: white;
@@ -729,6 +749,7 @@ $red: #ed6147;
                     }
                     .title{
                         padding: 10px 0px;
+                        font-family: "robotoLight";
                     }
                 }
                 .my_reductions{
@@ -833,6 +854,9 @@ $red: #ed6147;
                     .sondage_title{
                         @include flex_trinity(row, center);
                         padding: 10px 0px;
+                        .huge_title{
+                            font-family: "robotoLight";
+                        }
                         .little_description{
                             display: none;
                         }
@@ -908,6 +932,9 @@ $red: #ed6147;
                             }
                         }
                     }
+                    .how_many{
+                        font-family: "robotoLight";
+                    }
                 }
             }
         }
@@ -920,6 +947,7 @@ $red: #ed6147;
             padding: 5px;
             color: white;
             box-shadow: 0px 2px 1px $orangeHover;
+            font-family: "robotoLight";
             &:hover{
                 background-color: $orangeHover;
                 box-shadow: 0px 2px 1px $orangeHover;
@@ -939,6 +967,7 @@ $red: #ed6147;
                 display: flex;
                 width: 100%;
                 .insert_code{
+                    font-family: "robotoLight";
                     background-color: #f0816c;
                     text-align: center;
                     width: 50%;
@@ -1046,6 +1075,7 @@ $red: #ed6147;
                     height: 120px;
                 }
                 .info{
+                    padding: 5px;
                     border: 1px solid #e6e6e6;
                     border-radius: 10px;
                     width: 85%;
@@ -1055,10 +1085,12 @@ $red: #ed6147;
                     height: 200px;
                     background-color: #fff;
                     .title{
+                        font-family: "PoppinsMedium";
                         text-align: center;
                         font-size: 18px;
                     }
                     .info_deal{
+                        font-family: 'robotoRegular';
                         @include flex_trinity(row, space-between);
                         margin: 5px;
                     }
@@ -1122,6 +1154,7 @@ $red: #ed6147;
         .all_offers{
             @include flex_trinity(row, space-around);
             flex-wrap: wrap;
+            font-family: "robotoRegular";
             .offer{
                 @include flex_trinity(column, space-between);
                 width: 40%;
@@ -1147,6 +1180,7 @@ $red: #ed6147;
                     @include flex_trinity(column, space-between);
                     .title{
                         text-align: center;
+                        font-family: 'PoppinsMedium';
                     }
                     .buttons{
                         @include flex_trinity(row, space-between);
@@ -1261,17 +1295,18 @@ $red: #ed6147;
     }
 
 .admin_page {
-    width: 260px;
-    margin-left: 32px;
+    @include flex_trinity(column, flex-start);
     margin-bottom: 20px;
+    align-items: center;
     .block-content {
+        width: 80%;
       text-align: center;
-      border: 1px solid #000000;
       margin-top: 50px;
+      padding-top: 5px;
       padding-bottom: 20px;
-      -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
+      -moz-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
+      box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
     }
     p {
       margin-right: 110px;
@@ -1292,7 +1327,7 @@ $red: #ed6147;
       border: none;
       color: white;
       padding: 5px;
-      width: 120px;
+      width: 137px;
     }
     .button-input2 {
       background-color: grey;
@@ -1303,6 +1338,16 @@ $red: #ed6147;
     }
     input {
       margin: 7px;
+      border: 1px solid lightgrey;
+    }
+    .container_basic_action{
+        @include flex_trinity(column, space-around);
+        align-items: center;
+        .inside-block-content{
+            width: 80%;
+            margin-bottom: 20px;
+            border: 1px solid red;
+        }
     }
   }
 

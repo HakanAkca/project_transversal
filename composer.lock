@@ -4,8 +4,12 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "hash": "06d502485519f3b5c40be2955684f8be",
     "content-hash": "33b61c74a5f8ecb57426f79af86c8239",
+=======
+    "content-hash": "06b577f5c64566fc0c2a3ba0d8713d2e",
+>>>>>>> bace536601ae76e9bc9dfdf4ac52c2947e0e08aa
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -81,7 +85,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-03-15 19:32:56"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "picqer/php-barcode-generator",
@@ -150,7 +154,7 @@
                 "svg",
                 "upc"
             ],
-            "time": "2016-10-17 14:20:28"
+            "time": "2016-10-17T14:20:28+00:00"
         },
         {
             "name": "spipu/html2pdf",
@@ -262,7 +266,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2016-11-14 01:06:16"
+            "time": "2016-11-14T01:06:16+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -317,7 +321,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-03-20 09:45:15"
+            "time": "2017-03-20T09:45:15+00:00"
         },
         {
             "name": "tecnickcom/tcpdf",
@@ -443,7 +447,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2017-03-22 15:41:51"
+            "time": "2017-03-22T15:41:51+00:00"
         }
     ],
     "packages-dev": [],

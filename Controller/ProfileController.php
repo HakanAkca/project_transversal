@@ -74,6 +74,7 @@ class ProfileController extends BaseController
                 $res = $manager->checkProfile($_POST);
                 if($res['isFormGood']){
                     $manager->editProfile($res['data']);
+                    header('Location:?action=profile');
                 }else{
                     $errors = $res['errors'];
                 }

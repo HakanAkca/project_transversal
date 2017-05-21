@@ -2,6 +2,7 @@ $neutralColor : #4b4b4b; // nav || footer
 $orange : #f0816c;
 $orangeHover : #FFAB9B;
 $red: #ed6147;
+$grey: grey;
 
 @font-face {
     src: url('../fonts/Roboto-Bold.ttf');
@@ -1266,12 +1267,12 @@ $red: #ed6147;
     margin-bottom: 20px;
     .block-content {
       text-align: center;
-      border: 1px solid #000000;
       margin-top: 50px;
+      padding-top: 5px;
       padding-bottom: 20px;
-      -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-      box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
+      -moz-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
+      box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
     }
     p {
       margin-right: 110px;
@@ -1303,6 +1304,7 @@ $red: #ed6147;
     }
     input {
       margin: 7px;
+      border: 1px solid lightgrey;
     }
   }
 

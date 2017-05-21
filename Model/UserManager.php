@@ -399,7 +399,7 @@ class UserManager
     }
     public function addCatalog($data){
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['image'];;
+        $url = 'uploads/'.$data['image'];
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = ucwords($data['city']);
         $catalog['deal'] = $data['deal']."%";

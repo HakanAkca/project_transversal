@@ -41,7 +41,9 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
-
+            $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+            $bareCodePNG = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode('081231723897', $generator::TYPE_CODE_128)) . '">';
+            echo $bareCodePNG;
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -76,6 +78,7 @@ class ProfileController extends BaseController
                 $my_html="
                     <HTML>
                             <h2>Tritus</h2><br><br>
+                            ".$bareCodePNG."
                              <div style=\"display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;\">
                                 ".$_SESSION['user_username']."<br>Code barre ".$barcode."<br>Offre :".$deal['partner']."<br> City : ".$deal['city']."<br>Deal ".$deal['deal']."
                     
@@ -110,12 +113,15 @@ MERCI !!!
             if (isset($_POST['userVote'])) {
                 if ($manager->checkVote((int)$_SESSION['user_id'])) {
                     $manager->userVote($_POST);
+                    header('Location:?action=profile');
                 } else {
                     $errors[] = 'Vous avez déjà voté'; //
                 }
             }
             //Update permission to vote
             $manager->updateSurvey();
+
+            //$bc = $this->pi_barcode();
 
 
 
@@ -267,9 +273,6 @@ MERCI !!!
 
                         $this->sendMail($email,$object,$content,'...');
                     }
-                }else{
-                    echo "Nope";
-                    var_dump($_POST);
                 }
             }
 

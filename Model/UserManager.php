@@ -414,6 +414,7 @@ class UserManager
         $expirationDate =  strtotime($tmpDate);
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
+        var_dump($filetmpname);
         move_uploaded_file($filetmpname,$url);
     }
     public function checkSurvey($data){
@@ -570,6 +571,7 @@ class UserManager
         return $res;
     }
     public function setSurveysVotes($id, $numbersVotes){
+        var_dump($id);
         return $this->DBManager->findOneSecure("UPDATE surveys SET vote = :numbersVotes WHERE id=:id",
             [
                 'id' => $id,

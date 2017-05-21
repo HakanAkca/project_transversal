@@ -1606,12 +1606,12 @@
   }
   .admin_page .block-content {
     text-align: center;
-    border: 1px solid #000000;
     margin-top: 50px;
+    padding-top: 5px;
     padding-bottom: 20px;
-    -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 30px -1.5px #c2bec2;
+    -moz-box-shadow: 0px 0px 30px -1.5px #c2bec2;
+    box-shadow: 0px 0px 30px -1.5px #c2bec2;
   }
   .admin_page p {
     margin-right: 110px;
@@ -1643,6 +1643,7 @@
   }
   .admin_page input {
     margin: 7px;
+    border: 1px solid lightgrey;
   }
 
   footer {

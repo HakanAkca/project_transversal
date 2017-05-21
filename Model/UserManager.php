@@ -7,16 +7,19 @@ class UserManager
 {
     private $DBManager;
     private static $instance = null;
+
     public static function getInstance()
     {
         if (self::$instance === null)
             self::$instance = new UserManager();
         return self::$instance;
     }
+
     private function __construct()
     {
         $this->DBManager = DBManager::getInstance();
     }
+
     public function getUserById($id)
     {
         $id = (int)$id;
@@ -30,16 +33,19 @@ class UserManager
             ['username' => $username]);
         return $data;
     }
+
     public function allUsers()
     {
         return $this->DBManager->findAllSecure("SELECT * FROM users");
     }
+
     public function getPartnerByName($name)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM partners WHERE name = :name",
             ['name' => $name]);
         return $data;
     }
+
     public function getBarcodeByBarcode($barcode)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM barcodes WHERE barcode = :barcode",
@@ -48,6 +54,7 @@ class UserManager
             ]);
         return $data;
     }
+
     public function getDealById($d)
     {
         $id = (int)$d;
@@ -65,20 +72,20 @@ class UserManager
             [
                 'id' => $id,
             ]);
-        $barcode = $_SESSION['user_id'].$this->generateBarcode();
+        $barcode = $_SESSION['user_id'] . $this->generateBarcode();
 
     }
 
-    public function checkProfile($data){
+    public function checkProfile($data)
+    {
         $isFormGood = true;
         $errors = array();
         $res = array();
-        if(isset($_FILES['userfile']['name']) && !empty($_FILES)){
+        if (isset($_FILES['userfile']['name']) && !empty($_FILES)) {
             $data['userfile'] = $_FILES['userfile']['name'];
             $data['file_tmp_name'] = $_FILES['userfile']['tmp_name'];
             $res['data'] = $data;
-        }
-        else{
+        } else {
             $errors['userfile'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
@@ -86,9 +93,9 @@ class UserManager
             $errors['username'] = 'Veuillez saisir un pseudo de 6 caractères minimum';
             $isFormGood = false;
         }
-        $data2 = $this->getUserByUsername($data['editUsername']);
-        if($data2 !== false){
-            if($_SESSION['user_id'] !== $data2['id']){
+        if ($data['editUsername'] !== $_SESSION['user_username']) {
+            $data2 = $this->getUserByUsername($data['editUsername']);
+            if ($data2 !== false) {
                 $errors['username'] = 'Le pseudo existe déjà';
                 $isFormGood = false;
             }
@@ -106,7 +113,8 @@ class UserManager
         return $res;
     }
 
-    public function editProfile($data){
+    public function editProfile($data)
+    {
         $pseudo = $data['editUsername'];
         $email = $data['editMail'];
         $city = $data['editCity'];
@@ -121,8 +129,9 @@ class UserManager
         }
         if (!empty($file) && !empty($file_tmp_name)) {
             $new_file_url = 'uploads/' . $pseudo . '/' . $file;
-
-            $this->DBManager->findOneSecure(
+            rename('uploads/' . $username, 'uploads/' . $pseudo);
+            move_uploaded_file($file_tmp_name, $new_file_url);
+            return $this->DBManager->findOneSecure(
                 "UPDATE users SET pseudo =:pseudo, email =:email, city =:city, image =:new_file_url  WHERE id=:id",
                 [
                     'pseudo' => $pseudo,
@@ -131,31 +140,17 @@ class UserManager
                     'new_file_url' => $new_file_url,
                     'id' => $id,
                 ]);
-            move_uploaded_file($file_tmp_name, $new_file_url);
         } else {
-
-            $this->DBManager->findOneSecure(
-                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city, image =:new_file_url WHERE id=:id",
+            rename('uploads/' . $username, 'uploads/' . $pseudo);
+            return $this->DBManager->findOneSecure(
+                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city WHERE id=:id",
                 [
                     'pseudo' => $pseudo,
                     'email' => $email,
                     'city' => $city,
                     'id' => $id,
                 ]);
-            $user = $this->getUserByUsername($pseudo);
-            $url = $user['image'];
-            $strImage = (int)(7 + strlen($pseudo));
-            $new_file_url = substr($url, 0, 7).'/'.$pseudo.'/'.$strImage;
-            $this->DBManager->findOneSecure(
-                "UPDATE users SET image =:new_file_url  WHERE id=:id",
-                [
-                    'new_file_url' => $new_file_url,
-                ]);
-
         }
-        $_SESSION['user_username'] = $pseudo;
-        rename('uploads/'.$username,'uploads/'.$pseudo);
-
     }
 
 
@@ -171,17 +166,17 @@ class UserManager
             $isFormGood = false;
         }
         $data2 = $this->getUserByUsername($data['username']);
-        if($data2 !== false){
+        if ($data2 !== false) {
             $errors['username'] = 'Le pseudo existe déjà';
             $isFormGood = false;
         }
 
-        if(!$this->emailValid($data['email'])){
+        if (!$this->emailValid($data['email'])) {
             $errors['email'] = "email non valide";
             $isFormGood = false;
         }
 
-        if(!isset($data['password']) || !$this->passwordValid($data['password'])){
+        if (!isset($data['password']) || !$this->passwordValid($data['password'])) {
             $errors['password'] = "Veiller saisir un mot de passe valide ";
             $isFormGood = false;
         }
@@ -191,7 +186,7 @@ class UserManager
         }*/
 
 
-        if (!isset($data['city']) || !$this->cityValid($data['city'])){
+        if (!isset($data['city']) || !$this->cityValid($data['city'])) {
             $errors['city'] = 'Merci de saissir une ville';
             $isFormGood = false;
         }
@@ -203,21 +198,29 @@ class UserManager
     }
 
 
-
-    private function emailValid($email){
+    private function emailValid($email)
+    {
         return filter_var($email, FILTER_VALIDATE_EMAIL);
     }
-    private function usernameValid($username){
+
+    private function usernameValid($username)
+    {
         return preg_match('`^([a-zA-Z0-9-_]{6,20})$`', $username);
     }
-    private function cityValid($city){
+
+    private function cityValid($city)
+    {
         return preg_match('`^([a-zA-Z0-9-_]{1,15})$`', $city);
     }
+
     //Minimum : 8 caractères avec au moins une lettre majuscule et un nombre
-    private function passwordValid($password){
+    private function passwordValid($password)
+    {
         return preg_match('`^([a-zA-Z0-9-_]{8,20})$`', $password);
     }
-    public function phoneNumberValid($phoneNumber, $international = false){
+
+    public function phoneNumberValid($phoneNumber, $international = false)
+    {
         $phoneNumber = preg_replace('/[^0-9]+/', '', $phoneNumber);
         $phoneNumber = substr($phoneNumber, -9);
         $motif = $international ? '+33 (\1) \2 \3 \4 \5' : '0\1 \2 \3 \4 \5';
@@ -246,8 +249,9 @@ class UserManager
         $user['vote'] = 0;
 
         $this->DBManager->insert('users', $user);
-        mkdir("uploads/". $user['pseudo']);
+        mkdir("uploads/" . $user['pseudo']);
     }
+
     public function userCheckLogin($data)
     {
         $isFormGood = true;
@@ -257,7 +261,7 @@ class UserManager
             $errors['Connexion field'] = 'Missing fields';
             $isFormGood = false;
         }
-        if(!password_verify($data['password'], $user['password'])){
+        if (!password_verify($data['password'], $user['password'])) {
             $errors['matchingPassword'] = 'Login ou mdp incorrect';
             $isFormGood = false;
         }
@@ -277,6 +281,7 @@ class UserManager
         $this->DBManager->watch_action_log('access.log', $write);
         return true;
     }
+
     public function checkPartner($data)
     {
         $errors = array();
@@ -287,11 +292,11 @@ class UserManager
             $isFormGood = false;
         }
         $data2 = $this->getPartnerByName($data['name']);
-        if($data2 !== false){
+        if ($data2 !== false) {
             $errors['name'] = 'Le partenaire existe déjà';
             $isFormGood = false;
         }
-        if(!$this->emailValid($data['email'])){
+        if (!$this->emailValid($data['email'])) {
             $errors['email'] = "email non valide";
             $isFormGood = false;
         }
@@ -313,7 +318,9 @@ class UserManager
         $res['data'] = $data;
         return $res;
     }
-    public function bePartner($data){
+
+    public function bePartner($data)
+    {
         $partner['name'] = $data['name'];
         $partner['email'] = $data['email'];
         $partner['city'] = ucwords($data['city']);
@@ -322,17 +329,18 @@ class UserManager
 
         $this->DBManager->insert('partners', $partner);
     }
+
     public function checkRemoveAccount($data)
     {
         $isFormGood = true;
         $errors = array();
-        if (empty($data['pseudo'])){
+        if (empty($data['pseudo'])) {
             $errors['user'] = 'Le champs pseudo est vide';
             $isFormGood = false;
         }
 
         $user = $this->getUserByUsername($data['pseudo']);
-        if ($user === false){
+        if ($user === false) {
             $errors['user'] = 'Le pseudo existe déjà';
             $isFormGood = false;
         }
@@ -345,61 +353,68 @@ class UserManager
         }
         return $isFormGood;
     }
-    public function deleteAccount($data){
+
+    public function deleteAccount($data)
+    {
         $pseudo = $data['pseudo'];
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à supprimer le compte suivant ' . $data['pseudo'] . "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
         return $this->DBManager->findOneSecure("DELETE FROM users WHERE pseudo =:pseudo",
-                                                ['pseudo' => $pseudo]);
+            ['pseudo' => $pseudo]);
+
+
     }
 
-    public function checkCatalog($data){
+    public function checkCatalog($data)
+    {
         $isFormGood = true;
         $errors = array();
         $res = array();
-        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+        if (isset($_FILES['image']['name']) && !empty($_FILES)) {
             $data['image'] = $_FILES['image']['name'];
             $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
             $res['data'] = $data;
-        }
-        else{
+        } else {
             $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
 
         $data2 = $this->getDealByTitle($data['partner']);
-        if($data2 !== false){
+        if ($data2 !== false) {
             $errors['partner'] = "Veillez un autre titre";
             $isFormGood = false;
         }
-        if(!isset($data['partner']) | empty($data['partner'])){
+        if (!isset($data['partner']) | empty($data['partner'])) {
             $errors['partner'] = "Veillez choisir un partenaire";
             $isFormGood = false;
         }
-        if(!isset($data['city']) | empty($data['city'])){
+        if (!isset($data['city']) | empty($data['city'])) {
             $errors['city'] = "Veillez choisir une ville";
             $isFormGood = false;
         }
-        if(!isset($data['deal']) | empty($data['deal'])){
+        if (!isset($data['deal']) | empty($data['deal'])) {
             $errors['deal'] = "Veillez choisir une offre";
             $isFormGood = false;
         }
-        if(!isset($data['cost']) | empty($data['cost'])){
+        if (!isset($data['cost']) | empty($data['cost'])) {
             $errors['cost'] = "Veillez choisir un cost";
             $isFormGood = false;
         }
-        if(!isset($data['description']) | empty($data['description'])){
+        if (!isset($data['description']) | empty($data['description'])) {
             $isFormGood = false;
             $errors['description'] = "Veillez remplir le champ description";
         }
-        if(!isset($data['expirationDate']) | empty($data['expirationDate'])){
+        if (!isset($data['expirationDate']) | empty($data['expirationDate'])) {
             $errors['expirationDate'] = "Veillez mettre une date d'expiration valide";
             $isFormGood = false;
         }
-        if(isset($data['expirationDate']) && !empty($data['expirationDate'])){
-            if(!$this->checkExpirationDate($data['expirationDate'])){
+        if (isset($data['expirationDate']) && !empty($data['expirationDate'])) {
+            if (!$this->checkExpirationDate($data['expirationDate'])) {
                 $errors['expirationDate'] = "Veillez mettre une date d'expiration valide";
                 $isFormGood = false;
-            }else{
-                $strToDate=  strtotime($data['expirationDate']);
+            } else {
+                $strToDate = strtotime($data['expirationDate']);
                 $expirationDate = date('Y/m/d H:i:s', $strToDate);
                 $data['expirationDate'] = $expirationDate;
             }
@@ -409,51 +424,56 @@ class UserManager
         $res['errors'] = $errors;
         return $res;
     }
-    public function addCatalog($data){
+
+    public function addCatalog($data)
+    {
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['image'];
+        $url = 'uploads/' . $data['image'];
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = ucwords($data['city']);
-        $catalog['deal'] = $data['deal']."%";
+        $catalog['deal'] = $data['deal'] . "%";
         $catalog['cost'] = $data['cost'];
         $catalog['description'] = $data['description'];
         $catalog['image'] = $url;
         $catalog['date'] = $this->getDatetimeNow();
-        $day = (int)substr($data['expirationDate'],0,2);
-        $month = (int)substr($data['expirationDate'],3,2);
-        $year = (int)substr($data['expirationDate'],6,4);
-        $tmpDate = $month.'/'.$day.'/'.$year;
-        $expirationDate =  strtotime($tmpDate);
+        $day = (int)substr($data['expirationDate'], 0, 2);
+        $month = (int)substr($data['expirationDate'], 3, 2);
+        $year = (int)substr($data['expirationDate'], 6, 4);
+        $tmpDate = $month . '/' . $day . '/' . $year;
+        $expirationDate = strtotime($tmpDate);
         $catalog['expirationDate'] = date('Y/m/d H:i:s', $expirationDate);
         $this->DBManager->insert('catalogs', $catalog);
-        move_uploaded_file($filetmpname,$url);
+        move_uploaded_file($filetmpname, $url);
         $date = $this->DBManager->take_date();
-        $write = $date. ' Admin '.$_SESSION['user_username'] .' add catalogs'. "\n";
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter une nouvelle offre  '
+            . ' nom : ' . $data['partner'] . ' ' . 'ville : ' . $data['city'] . ' ' . 'deal : ' . $data['deal'] . '  ' . 'cout : ' . $data['cost']
+            . ' ' . 'description : ' . $data['description'] . ' ' . 'image : ' . $data['image'] . ' ' . 'date expiration : ' . $data['date'] . "\n";
         $this->DBManager->watch_action_log('admin.log', $write);
     }
-    public function checkSurvey($data){
+
+    public function checkSurvey($data)
+    {
         $isFormGood = true;
         $errors = array();
         $res = array();
-        if(isset($_FILES['image']['name']) && !empty($_FILES)){
+        if (isset($_FILES['image']['name']) && !empty($_FILES)) {
             $data['image'] = $_FILES['image']['name'];
             $data['image_tmp_name'] = $_FILES['image']['tmp_name'];
             $res['data'] = $data;
-        }
-        else{
+        } else {
             $errors['image'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
 
-        if(!isset($data['partner']) | empty($data['partner'])){
+        if (!isset($data['partner']) | empty($data['partner'])) {
             $errors['partner'] = "Veillez choisir un partenaire";
             $isFormGood = false;
         }
-        if(!isset($data['description']) | empty($data['description'])){
+        if (!isset($data['description']) | empty($data['description'])) {
             $isFormGood = false;
             $errors['description'] = "Veillez remplir le champ description";
         }
-        if(!isset($data['deal']) | empty($data['deal'])){
+        if (!isset($data['deal']) | empty($data['deal'])) {
             $isFormGood = false;
             $errors['deal'] = "Veillez remplir le champ deal";
         }
@@ -463,14 +483,17 @@ class UserManager
         return $res;
     }
 
-    public function countSurveyTmp(){
+    public function countSurveyTmp()
+    {
         return $this->DBManager->findAllSecure("SELECT COUNT(*) FROM surveys_tmp");
     }
-    public function addSurveyTmp($data){
+
+    public function addSurveyTmp($data)
+    {
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/surveys/'.$data['image'];
+        $url = 'uploads/surveys/' . $data['image'];
         $cur = strtotime($this->getDatetimeNow());
-        $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
+        $expirationDate = date('Y/m/d H:i:s', strtotime('+1 month', $cur));
         $survey['partner'] = $data['partner'];
         $survey['description'] = $data['description'];
         $survey['deal'] = $data['deal'];
@@ -478,19 +501,30 @@ class UserManager
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
         $this->DBManager->insert('surveys_tmp', $survey);
-        move_uploaded_file($filetmpname,$url);
+        move_uploaded_file($filetmpname, $url);
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter une nouveau sondage  '
+            . ' nom : ' . $data['partner'] . ' ' . ' description : ' . $data['description'] . ' ' . 'deal : ' . $data['deal']
+            . ' ' . 'image : ' . $url . ' ' . 'date expiration : ' . $expirationDate . "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
     }
-    public function removeSurveyTmp(){
+
+    public function removeSurveyTmp()
+    {
         return $this->DBManager->findOneSecure("DELETE FROM surveys_tmp");
     }
-    public function surveyNumber(){
+
+    public function surveyNumber()
+    {
         return $this->DBManager->findAllSecure("SELECT * FROM surveys_tmp ORDER BY expirationDate DESC");
     }
-    public function addSurvey($data){
+
+    public function addSurvey($data)
+    {
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/surveys/'.$data['image'];
+        $url = 'uploads/surveys/' . $data['image'];
         $cur = strtotime($this->getDatetimeNow());
-        $expirationDate = date('Y/m/d H:i:s',strtotime('+1 month',$cur));
+        $expirationDate = date('Y/m/d H:i:s', strtotime('+1 month', $cur));
         $survey['partner'] = $data['partner'];
         $survey['description'] = $data['description'];
         $survey['deal'] = $data['deal'];
@@ -498,12 +532,11 @@ class UserManager
         $survey['expirationDate'] = $expirationDate;
         $survey['vote'] = 0;
         $this->DBManager->insert('surveys', $survey);
-        move_uploaded_file($filetmpname,$url);
-        $date = $this->DBManager->take_date();
-        $write = $date. ' Admin '.$_SESSION['user_username'] .' add surveys'. "\n";
-        $this->DBManager->watch_action_log('admin.log', $write);
+        move_uploaded_file($filetmpname, $url);
     }
-    public function getSurvey(){
+
+    public function getSurvey()
+    {
         $cur = strtotime($this->getDatetimeNow());
         $currentDate = date('Y/m/d H:i:s', $cur);
         $res = array();
@@ -511,19 +544,21 @@ class UserManager
 
         foreach ($data as $value) {
             $exp = strtotime($value['expirationDate']);
-            $expirationDate =  date('Y/m/d H:i:s', $exp);
+            $expirationDate = date('Y/m/d H:i:s', $exp);
 
-            $date1=date_create($currentDate);
-            $date2=date_create($expirationDate);
-            $diff=date_diff($date1,$date2);
-            $interval =  (int)$diff->format("%R%a");
-            if($interval >= 0){
+            $date1 = date_create($currentDate);
+            $date2 = date_create($expirationDate);
+            $diff = date_diff($date1, $date2);
+            $interval = (int)$diff->format("%R%a");
+            if ($interval >= 0) {
                 $res[] = $value;
             }
         }
         return $res;
     }
-    public function getSurveyTmp(){
+
+    public function getSurveyTmp()
+    {
         $cur = strtotime($this->getDatetimeNow());
         $currentDate = date('Y/m/d H:i:s', $cur);
         $res = array();
@@ -531,21 +566,23 @@ class UserManager
 
         foreach ($data as $value) {
             $exp = strtotime($value['expirationDate']);
-            $expirationDate =  date('Y/m/d H:i:s', $exp);
+            $expirationDate = date('Y/m/d H:i:s', $exp);
 
-            $date1=date_create($currentDate);
-            $date2=date_create($expirationDate);
-            $diff=date_diff($date1,$date2);
-            $interval =  (int)$diff->format("%R%a");
-            if($interval >= 0){
+            $date1 = date_create($currentDate);
+            $date2 = date_create($expirationDate);
+            $diff = date_diff($date1, $date2);
+            $interval = (int)$diff->format("%R%a");
+            if ($interval >= 0) {
                 $res[] = $value;
             }
         }
         return $res;
     }
-    public function updateSurvey(){
+
+    public function updateSurvey()
+    {
         $data = $this->getSurvey();
-        if(empty($data)){
+        if (empty($data)) {
             $vote = 0;
             $this->DBManager->findAllSecure("UPDATE users SET vote = :vote",
                 [
@@ -553,21 +590,25 @@ class UserManager
                 ]);
         }
     }
-    public function checkVote($id){
+
+    public function checkVote($id)
+    {
         $vote = 0;
         return $this->DBManager->findOneSecure("SELECT * FROM users WHERE id =:id AND vote =:vote",
-                                                        [
-                                                            'vote' => $vote,
-                                                            'id' => $id
-                                                        ]);
+            [
+                'vote' => $vote,
+                'id' => $id
+            ]);
     }
-    public function userVote($data){
+
+    public function userVote($data)
+    {
         $user_id = $_SESSION['user_id'];
         $survey_id = (int)$data['surveyID'];
-        $currentNumbersVotes = $this->getSurveysVotes($survey_id)+1;
+        $currentNumbersVotes = $this->getSurveysVotes($survey_id) + 1;
         $vote = 1;
 
-        $this->setSurveysVotes($survey_id,$currentNumbersVotes);
+        $this->setSurveysVotes($survey_id, $currentNumbersVotes);
 
         $this->DBManager->findOneSecure("UPDATE users SET vote = :vote WHERE id=:user_id",
             [
@@ -575,6 +616,7 @@ class UserManager
                 'vote' => $vote,
             ]);
     }
+
     public function getSurveysVotes($id)
     {
         $res = 0;
@@ -582,28 +624,33 @@ class UserManager
             [
                 'id' => $id,
             ]);
-        foreach ($data as $vote){
+        foreach ($data as $vote) {
             $res += (int)$vote['vote'];
         }
         return $res;
     }
-    public function setSurveysVotes($id, $numbersVotes){
+
+    public function setSurveysVotes($id, $numbersVotes)
+    {
         return $this->DBManager->findOneSecure("UPDATE surveys SET vote = :numbersVotes WHERE id=:id",
             [
                 'id' => $id,
                 'numbersVotes' => $numbersVotes,
             ]);
     }
-    public function allVotes(){
+
+    public function allVotes()
+    {
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT vote FROM surveys");
-        foreach ($data as $vote){
+        foreach ($data as $vote) {
             $res += (int)$vote['vote'];
         }
         return $res;
     }
 
-    public function getAllDeals(){
+    public function getAllDeals()
+    {
         $cur = strtotime($this->getDatetimeNow());
         $currentDate = date('Y/m/d H:i:s', $cur);
         $res = array();
@@ -611,64 +658,68 @@ class UserManager
 
         foreach ($data as $value) {
             $exp = strtotime($value['expirationDate']);
-            $expirationDate =  date('Y/m/d H:i:s', $exp);
+            $expirationDate = date('Y/m/d H:i:s', $exp);
 
-            $date1=date_create($currentDate);
-            $date2=date_create($expirationDate);
-            $diff=date_diff($date1,$date2);
-            $interval =  (int)$diff->format("%R%a");
-            if($interval >= 0){
+            $date1 = date_create($currentDate);
+            $date2 = date_create($expirationDate);
+            $diff = date_diff($date1, $date2);
+            $interval = (int)$diff->format("%R%a");
+            if ($interval >= 0) {
                 $res[] = $value;
             }
         }
         return $res;
     }
 
-    public function getDealsByCity($data){
+    public function getDealsByCity($data)
+    {
         $city = ucwords($data);
         $cur = strtotime($this->getDatetimeNow());
         $currentDate = date('Y/m/d H:i:s', $cur);
         $res = array();
         $data2 = $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE city =:city ORDER BY date DESC",
-                                                ['city' => $city]);
+            ['city' => $city]);
         foreach ($data2 as $value) {
             $exp = strtotime($value['expirationDate']);
-            $expirationDate =  date('Y/m/d H:i:s', $exp);
+            $expirationDate = date('Y/m/d H:i:s', $exp);
 
-            $date1=date_create($currentDate);
-            $date2=date_create($expirationDate);
-            $diff=date_diff($date1,$date2);
-            $interval =  (int)$diff->format("%R%a");
-            if($interval >= 0){
+            $date1 = date_create($currentDate);
+            $date2 = date_create($expirationDate);
+            $diff = date_diff($date1, $date2);
+            $interval = (int)$diff->format("%R%a");
+            if ($interval >= 0) {
                 $res[] = $value;
             }
         }
         return $res;
     }
-    public function getDealByTitle($t){
+
+    public function getDealByTitle($t)
+    {
         $partner = $t;
-        return $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE partner =:partner",['partner' => $partner]);
+        return $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE partner =:partner", ['partner' => $partner]);
     }
-    public function checkUpdateOffer($data){
+
+    public function checkUpdateOffer($data)
+    {
         $isFormGood = true;
         $errors = array();
         $res = array();
-        if(isset($_FILES['fileOffer']['name']) && !empty($_FILES)){
+        if (isset($_FILES['fileOffer']['name']) && !empty($_FILES)) {
             $data['fileOffer'] = $_FILES['fileOffer']['name'];
             $data['fileOffer_tmp_name'] = $_FILES['fileOffer']['tmp_name'];
             $res['data'] = $data;
-        }
-        else{
+        } else {
             $errors['fileOffer'] = 'Veillez choisir une image';
             $isFormGood = false;
         }
 
         $data2 = $this->getDealByTitle($data['partner']);
-        if($data2 !== false && $data2['id'] !== $data['id']){
+        if ($data2 !== false && $data2['id'] !== $data['id']) {
             $errors['partner'] = "Veillez un autre titre";
             $isFormGood = false;
         }
-        if(!isset($data['description']) | empty($data['description'])){
+        if (!isset($data['description']) | empty($data['description'])) {
             $isFormGood = false;
             $errors['description'] = "Veillez remplir le champ description";
         }
@@ -677,7 +728,9 @@ class UserManager
 
         return $res;
     }
-    public function updateOffer($data){
+
+    public function updateOffer($data)
+    {
         $partner = $data['partner'];
         $description = $data['description'];
         $id = (int)$data['id'];
@@ -688,10 +741,10 @@ class UserManager
                     'partner' => $partner,
                     'description' => $description,
                 ]);
-        }else{
-            $image = 'uploads/'.$data['fileOffer'];
+        } else {
+            $image = 'uploads/' . $data['fileOffer'];
             $image_tmp_name = $data['fileOffer_tmp_name'];
-            move_uploaded_file($image_tmp_name,$image);
+            move_uploaded_file($image_tmp_name, $image);
             return $this->DBManager->findOneSecure("UPDATE catalogs SET partner = :partner, description =:description, image =:image WHERE id=:id",
                 [
                     'id' => $id,
@@ -700,12 +753,11 @@ class UserManager
                     'image' => $image,
                 ]);
         }
-        $date = $this->DBManager->take_date();
-        $write = $date. ' Admin '.$_SESSION['user_username'] .' updated offer id= '.$id."\n";
-        $this->DBManager->watch_action_log('admin.log', $write);
 
     }
-    public function getAvailableDeals(){
+
+    public function getAvailableDeals()
+    {
         $cost = $this->getUserCostsNumber();
         $user = $this->getUserById($_SESSION['user_id']);
         $city = $user['city'];
@@ -713,30 +765,32 @@ class UserManager
         $currentDate = date('Y/m/d H:i:s', $cur);
         $res = array();
         $data = $this->DBManager->findAllSecure("SELECT * FROM catalogs WHERE cost <=:cost AND city =:city ORDER BY date DESC",
-                                                [
-                                                    'cost' => $cost,
-                                                    'city' => $city,
-                                                ]);
+            [
+                'cost' => $cost,
+                'city' => $city,
+            ]);
         foreach ($data as $value) {
             $exp = strtotime($value['expirationDate']);
-            $expirationDate =  date('Y/m/d H:i:s', $exp);
+            $expirationDate = date('Y/m/d H:i:s', $exp);
 
-            $date1=date_create($currentDate);
-            $date2=date_create($expirationDate);
-            $diff=date_diff($date1,$date2);
-            $interval =  (int)$diff->format("%R%a");
-            if($interval >= 0){
+            $date1 = date_create($currentDate);
+            $date2 = date_create($expirationDate);
+            $diff = date_diff($date1, $date2);
+            $interval = (int)$diff->format("%R%a");
+            if ($interval >= 0) {
                 $res[] = $value;
             }
         }
         return $res;
     }
-    public function getUserDeals(){
+
+    public function getUserDeals()
+    {
         $res = array();
         $user_id = (string)$_SESSION['user_id'];
         $data = $this->DBManager->findAllSecure("SELECT * FROM deals WHERE user_id =:user_id ORDER BY date DESC",
-                                                    ['user_id' => $user_id]);
-        foreach ($data as $catalog){
+            ['user_id' => $user_id]);
+        foreach ($data as $catalog) {
             $res[] = $this->getDealById($catalog['catalog_id']);
         }
         return $res;
@@ -747,31 +801,38 @@ class UserManager
         return is_numeric($data['bottlesNumber']);
     }
 
-    public function addBarcode($data){
+    public function addBarcode($data)
+    {
         $barcode['barcode'] = $this->generateBarcode();
         $barcode['bottlesNumber'] = (int)$data['bottlesNumber'];
         $barcode['cost'] = $this->setCost((int)$data['bottlesNumber']);
         $barcode['barcodeUsed'] = 0;
-
         $this->DBManager->insert('barcodes', $barcode);
+
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter des nouvelle bouteils ' . "\n";
+        $this->DBManager->watch_action_log('admin.log', $write);
     }
 
-    public function checkUserBarcode($data){
+    public function checkUserBarcode($data)
+    {
         $isFormGood = true;
-        if(empty($data['barcode'])){
-           $isFormGood = false;
-        }else{
+        if (empty($data['barcode'])) {
+            $isFormGood = false;
+        } else {
             $code = $this->getBarcodeByBarcode($data['barcode']);
-            if($code == false){
+            if ($code == false) {
                 $isFormGood = false;
             }
-            if($code !== false && $code['barcodeUsed'] == 1){
+            if ($code !== false && $code['barcodeUsed'] == 1) {
                 $isFormGood = false;
             }
         }
         return $isFormGood;
     }
-    public function barcodeUsed($data){
+
+    public function barcodeUsed($data)
+    {
         $barcode = $data;
         $barcodeUsed = 1;
         return $this->DBManager->findOneSecure("UPDATE barcodes SET barcodeUsed =:barcodeUsed WHERE barcode =:barcode",
@@ -780,7 +841,9 @@ class UserManager
                 'barcodeUsed' => $barcodeUsed,
             ]);
     }
-    public function chechBuyDeal($id){
+
+    public function chechBuyDeal($id)
+    {
         $user_id = $_SESSION['user_id'];
         $deal = $this->getDealById($id);
         $user = $this->getUserById($user_id);
@@ -788,7 +851,9 @@ class UserManager
         $dealCosts = (int)$deal['cost'];
         return ($userCosts >= $dealCosts);
     }
-    public function buyDeal($id){
+
+    public function buyDeal($id)
+    {
         $user_id = $_SESSION['user_id'];
         $deal = $this->getDealById($id);
         $userDeal['user_id'] = $user_id;
@@ -799,86 +864,68 @@ class UserManager
         $this->DBManager->insert('deals', $userDeal);
     }
 
-    public function getAverages(){
+    public function getAverages()
+    {
         $users = $this->allUsers();
-        $currentDate=date_create($this->getDatetimeNow());
+        $currentDate = date_create($this->getDatetimeNow());
         $average = array();
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $id = $user['id'];
             $bottlesNumber = $user['bottlesNumber'];
             $registerDate = $user['date'];
-            $strToDate=  strtotime($registerDate);
+            $strToDate = strtotime($registerDate);
             $registerDate = date('Y/m/d H:i:s', $strToDate);
-            $date1=date_create($registerDate);
-            $diff=date_diff($date1,$currentDate);
-            $interval =  $diff->format("%R%d");
-            $week = (float)$interval/7;
-            if($week == 0){
+            $date1 = date_create($registerDate);
+            $diff = date_diff($date1, $currentDate);
+            $interval = $diff->format("%R%d");
+            $week = (float)$interval / 7;
+            if ($week == 0) {
                 $week = 1;
             }
-            $average[$id] = round(($bottlesNumber)/$week);
+            $average[$id] = round(($bottlesNumber) / $week);
         }
         return $average;
     }
 
-    public function ranking(){
+    public function ranking()
+    {
         $res = array();
         $averages = $this->getAverages();
         $r_averages = $averages;
         rsort($r_averages);
         $newAverage = array();
-        foreach ($averages as $key => $value){
-           $newAverage[$value] = $key;
+        foreach ($averages as $key => $value) {
+            $newAverage[$value] = $key;
         }
-        foreach ($r_averages as $key => $value){
-            $res[$newAverage[$value]] = $key+1;
+        foreach ($r_averages as $key => $value) {
+            $res[$newAverage[$value]] = $key + 1;
         }
         return $res;
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public function checkExpirationDate($date){
-        $day = (int)substr($date,0,2);
-        $month = (int)substr($date,3,2);
-        $year = (int)substr($date,6,4);
+    public function checkExpirationDate($date)
+    {
+        $day = (int)substr($date, 0, 2);
+        $month = (int)substr($date, 3, 2);
+        $year = (int)substr($date, 6, 4);
         $bool = true;
-        if(substr($date,2,1) != '/' || substr($date,5,1) != '/'){
+        if (substr($date, 2, 1) != '/' || substr($date, 5, 1) != '/') {
             $bool = false;
-        }else{
-            if(checkdate($month,$day,$year)){
-               $currentDate = $this->getDatetimeNow();
-               $date = $month.'/'.$day.'/'.$year;
-               $strToDate=  strtotime($date);
-               $expirationDate = date('Y/m/d H:i:s', $strToDate);
-               $date1=date_create($currentDate);
-                $date2=date_create($expirationDate);
-                $diff=date_diff($date1,$date2);
-                $interval =  (int)$diff->format("%R%a");
-                if($interval < 0){
+        } else {
+            if (checkdate($month, $day, $year)) {
+                $currentDate = $this->getDatetimeNow();
+                $date = $month . '/' . $day . '/' . $year;
+                $strToDate = strtotime($date);
+                $expirationDate = date('Y/m/d H:i:s', $strToDate);
+                $date1 = date_create($currentDate);
+                $date2 = date_create($expirationDate);
+                $diff = date_diff($date1, $date2);
+                $interval = (int)$diff->format("%R%a");
+                if ($interval < 0) {
                     $bool = false;
                 }
-            }else{
+            } else {
                 $bool = false;
             }
         }
@@ -886,43 +933,45 @@ class UserManager
     }
 
 
-    public function getUserBarcodes(){
+    public function getUserBarcodes()
+    {
         $user_id = $_SESSION['user_id'];
         $barcodeUsed = 0;
         return $this->DBManager->findAllSecure("SELECT * FROM barcodes WHERE user_id=:user_id AND barcodeUsed =:barcodeUsed",
-                                                [
-                                                    'user_id' => $user_id,
-                                                    'barcodeUsed' => $barcodeUsed,
-                                                ]);
+            [
+                'user_id' => $user_id,
+                'barcodeUsed' => $barcodeUsed,
+            ]);
     }
-    public function updateLevel(){
+
+    public function updateLevel()
+    {
         $user_id = $_SESSION['user_id'];
         $cost = $this->getUserCostsNumber();
-        if($cost < 10){
-            return ;
-        }
-        elseif($cost>=10 && $cost < 30){
+        if ($cost < 10) {
+            return;
+        } elseif ($cost >= 10 && $cost < 30) {
             $level = 2;
             return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
                 [
                     'user_id' => $user_id,
                     'level' => $level,
                 ]);
-        }elseif($cost>=30 && $cost < 60){
+        } elseif ($cost >= 30 && $cost < 60) {
             $level = 3;
             return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
                 [
                     'user_id' => $user_id,
                     'level' => $level,
                 ]);
-        }elseif($cost>=60 && $cost < 100){
+        } elseif ($cost >= 60 && $cost < 100) {
             $level = 4;
             return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
                 [
                     'user_id' => $user_id,
                     'level' => $level,
                 ]);
-        }else{
+        } else {
             $level = 5;
             return $this->DBManager->findOneSecure("UPDATE users SET level = :level WHERE id=:user_id",
                 [
@@ -932,12 +981,14 @@ class UserManager
         }
 
     }
-    public function getAllUsersBottlesRecycled(){
+
+    public function getAllUsersBottlesRecycled()
+    {
         $res = 0;
         $barcodeUsed = 1;
         $data = $this->DBManager->findAllSecure("SELECT bottlesNumber FROM barcodes WHERE barcodeUsed =:barcodeUsed",
-                                                    ['barcodeUsed' => $barcodeUsed]);
-        foreach ($data as $bottles){
+            ['barcodeUsed' => $barcodeUsed]);
+        foreach ($data as $bottles) {
             $res += (int)$bottles['bottlesNumber'];
         }
         return $res;
@@ -950,49 +1001,60 @@ class UserManager
             [
                 'id' => $id,
             ]);
-        foreach ($data as $bottles){
+        foreach ($data as $bottles) {
             $res += (int)$bottles['bottlesNumber'];
         }
         return $res;
     }
-    public function setUserBottlesRecycled($data){
+
+    public function setUserBottlesRecycled($data)
+    {
         $user_id = $_SESSION['user_id'];
-        $bottlesNumber = (int)$data+$this->getUserBottlesRecycled($user_id);
+        $bottlesNumber = (int)$data + $this->getUserBottlesRecycled($user_id);
         return $this->DBManager->findOneSecure("UPDATE users SET bottlesNumber = :bottlesNumber WHERE id=:user_id",
             [
                 'user_id' => $user_id,
                 'bottlesNumber' => $bottlesNumber,
             ]);
     }
-    public function setUserCostsNumber($data){
+
+    public function setUserCostsNumber($data)
+    {
         $user_id = $_SESSION['user_id'];
-        $costs = (int)($data+$this->getUserCostsNumber());
+        $costs = (int)($data + $this->getUserCostsNumber());
         return $this->DBManager->findOneSecure("UPDATE users SET costs = :costs WHERE id=:user_id",
-                                                [
-                                                    'user_id' => $user_id,
-                                                    'costs' => $costs,
-                                                ]);
+            [
+                'user_id' => $user_id,
+                'costs' => $costs,
+            ]);
 
     }
-    public function getUserCostsNumber(){
+
+    public function getUserCostsNumber()
+    {
         $user_id = $_SESSION['user_id'];
         $res = 0;
         $data = $this->DBManager->findAllSecure("SELECT costs FROM users WHERE id =:user_id",
-                                                [
-                                                    'user_id' => $user_id,
-                                                ]);
-        foreach ($data as $cost){
+            [
+                'user_id' => $user_id,
+            ]);
+        foreach ($data as $cost) {
             $res += (int)$cost['costs'];
         }
         return $res;
     }
-    public function setCost($data){
-        return $data*2;
+
+    public function setCost($data)
+    {
+        return $data * 2;
     }
-    public function getDatetimeNow() {
+
+    public function getDatetimeNow()
+    {
         date_default_timezone_set('Europe/Paris');
         return date("Y/m/d H:i:s");
     }
+
     public function generateBarcode()
     {
         $characters = '0123456789';
@@ -1003,12 +1065,13 @@ class UserManager
         return $barcode;
     }
 
-    public function newsletterCheck($data){
+    public function newsletterCheck($data)
+    {
         $errors = array();
         $res = array();
         $isFormGood = true;
 
-        if(!$this->emailValid($data)){
+        if (!$this->emailValid($data)) {
             $errors['lol'] = "email non valide";
             $isFormGood = false;
         }
@@ -1036,15 +1099,14 @@ class UserManager
         $res['object'] = $object;
         $res['content'] = $content;
         return $res;
+
     }
 
     public function checkRemoveOffers($data)
     {
-        if (empty($data))
+        if (empty($data['offers']))
             return false;
-
-        $partner = $data;
-        $offers = $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE partner =:partner",['partner' => $partner]);
+        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
         if ($offers === false)
             return false;
         return true;
@@ -1053,32 +1115,40 @@ class UserManager
     public function removeOffer($data)
     {
         $partner = $data;
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . $_SESSION['user_username'] . ' à supprimé l"offre suivante' . $data . "\n";
+        $this->DBManager->watch_action_log('access.log', $write);
         return $this->DBManager->findOneSecure("DELETE FROM catalogs WHERE partner = :partner",
             ['partner' => $partner]);
     }
+
     public function addMail($data)
     {
         $user['email'] = $data['newsletter'];
 
         $this->DBManager->insert('newsletter', $user);
+        $date = $this->DBManager->take_date();
+        $write = $date . ' -- ' . ' Le mail suivant ' . $date['newsletter'] . ' viens de s"inscrire a la newsletter' . "\n";
+        $this->DBManager->watch_action_log('access.log', $write);
     }
 
-    public function getAllEmails(){
+    public function getAllEmails()
+    {
         return $this->DBManager->findAllSecure("SELECT email FROM newsletter");
     }
 
-    public function checkSendNews($data){
+    public function checkSendNews($data)
+    {
         $isFormGood = true;
-        if(!isset($data['titreNewsletter']) | empty($data['titreNewsletter'])){
+        if (!isset($data['titreNewsletter']) | empty($data['titreNewsletter'])) {
             $isFormGood = false;
             $errors['titreNewsletter'] = "Veillez remplir le champ titreNewsletter";
         }
-        if(!isset($data['newsletterContent']) | empty($data['newsletterContent'])){
+        if (!isset($data['newsletterContent']) | empty($data['newsletterContent'])) {
             $isFormGood = false;
             $errors['newsletterConten'] = "Veillez remplir le champ newsletterContent";
         }
         return $isFormGood;
     }
-
 
 }

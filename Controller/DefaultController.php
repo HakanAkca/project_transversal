@@ -83,44 +83,56 @@ class DefaultController extends BaseController
                                 ]);
     }
 
-    public function partnerAction()
+       public function partnerAction()
     {
         $manager = UserManager::getInstance();
         $bottlesRecycled = $manager->getAllUsersBottlesRecycled();
         $allDeals = $manager->getAllDeals();
         $errors = array();
         $pageActuel = $_GET['action'];
-        $user = array();
-        if(isset($_SESSION['user_id'])){
-            $user = $manager->getUserById($_SESSION['user_id']);
+
+        $user = $manager->getUserById($_SESSION['user_id']);
+        if (isset($_POST['sumbitPartner'])) {
+            $res = $manager->checkPartner($_POST);
+            if ($res['isFormGood']) {
+                //$manager->bePartner($res['data']);
+                $data = $res['data'];
+                $email = $data['email'];
+                $object = "Tritus - Devenir partenaire";
+                $content = "Bonjour ".$data['name']."<br>
+
+Nous avons reçu votre demande et nous sommes heureux de vous annoncer que l'on accepte cette dernière. <br>
+
+Nous sommes très satisfaits de vous compter parmi nos partenaires et nous savons que notre collaboration sera bénéfique pour les deux partis. <br>
+
+Nos clients pourront dès ce soir voter pour votre entreprise afin qu'ils puissent bénéficier de bons de réductions dans votre enseigne le mois prochain. <br>
+
+Nous restons à votre disposition pour toute demande d'information.<br>
+
+Cordialement,<br>
+L'équipe Tritus";
+                $infoUser = "Nom : " . $data['name'] . "<br>Email : " . $data['email'] . "<br>Ville : " . $data['city'] . "<br>Téléphone : " . $data['phone'] . "<br>Statut : " . $data['status'] . "<br>Message " . $data['message'];
+                $this->sendMail($email, $object, $content, '...');
+                $this->sendMailBis($object, $infoUser, $altContent = null);
+            } else {
+                $errors = $res['errors'];
+            }
         }
-            if (isset($_POST['sumbitPartner'])) {
-                $res = $manager->checkPartner($_POST);
-                if ($res['isFormGood']) {
-                    //$manager->bePartner($res['data']);
-                    $data = $res['data'];
-                    $email = $data['email'];
-                    $object = "Tritus - Devenir partenaire";
-                    $content = "On a bien reçu votre message. On vous contactera des que votre demande sera analysée";
-                    $infoUser = "Nom : " . $data['name'] . "<br>Email : " . $data['email'] . "<br>Ville : " . $data['city'] . "<br>Téléphone : " . $data['phone'] . "<br>Statut : " . $data['status'] . "<br>Message " . $data['message'];
-                    $this->sendMail($email, $object, $content, '...');
-                    $this->sendMailBis($object, $infoUser, $altContent = null);
-                } else {
-                    $errors = $res['errors'];
+
+
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+                if($res['isFormGood']){
+                    $manager->addMail($_POST);
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
                 }
             }
-                if (isset($_POST['submitNewsletter'])) {
-                    $res = $manager->newsletterCheck($_POST['newsletter']);
-                    if($res['isFormGood']){
-                        $manager->addMail($_POST);
-                        $res = $manager->newslettersSend($res['data']);
-                        $email = $res['email'];
-                        $object = $res['object'];
-                        $content = $res['content'];
-                        $this->sendMail($email,$object,$content,'...');
-                    }
-                }
-            
+
+
         echo $this->renderView('partner.html.twig',
                                 [
                                     'user' => $user,

@@ -87,9 +87,11 @@ MERCI !!!
                     "source" => $my_html,
                     "action" => 'save',
                     "save_directory" => 'uploads',
-                    "file_name" => 'html_01.pdf');
+                    "file_name" => 'html_01.pdf'
+                    );
 
-                $this->phptopdf($pdf_options);
+                phptopdf($pdf_options);
+                echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             }
             if (isset($_POST['submitBarcode'])) {
@@ -119,11 +121,7 @@ MERCI !!!
 
 
 
-// CALL THE phpToPDF FUNCTION WITH THE OPTIONS SET ABOVE
-            //$this->phptopdf($pdf_options);
 
-// OPTIONAL - PUT A LINK TO DOWNLOAD THE PDF YOU JUST CREATED
-           // echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             echo $this->renderView('profile.html.twig',
                 [
@@ -164,6 +162,17 @@ MERCI !!!
             $allVotes = $manager->allVotes();  //for average
             $pageActuel = $_GET['action'];
 
+            if (isset($_POST['submitNewsletter'])) {
+                $res = $manager->newsletterCheck($_POST['newsletter']);
+                if($res['isFormGood']){
+                    $manager->addMail($_POST);
+                    $res = $manager->newslettersSend($res['data']);
+                    $email = $res['email'];
+                    $object = $res['object'];
+                    $content = $res['content'];
+                    $this->sendMail($email,$object,$content,'...');
+                }
+            }
 
             if (isset($_POST['submitCatalog'])) {
                 $res = $manager->checkCatalog($_POST);
@@ -173,6 +182,7 @@ MERCI !!!
                     $errors = $res['errors'];
                 }
             }
+
             if (isset($_POST['submitAddSurvey'])) {
                 $res = $manager->checkSurvey($_POST);
                 if ($res['isFormGood']) {
@@ -235,6 +245,34 @@ MERCI !!!
                     $manager->addBarcode($_POST);
                 }
             }
+
+
+            if(isset($_POST['submitSendGeneralMail'])){
+                $allMails = $manager->getAllEmails();
+                if($manager->checkSendNews($_POST)){
+                    foreach ($allMails as $value){
+                        $email = $value['email'];
+                        $object = $_POST['titreNewsletter'];
+                        $content = "<html>
+                <head>
+                <title>Vous avez réservé sur notre site ...</title>
+                </head>
+                <body>
+                <p>" . $_POST['newsletterContent'] . "</p>
+                <p>Cordialement</p>
+                <p>La fondation Tritus</p>
+                <p>Contact: tritusfundation@gmail.com</p>
+                </body>
+                </html>";
+
+                        $this->sendMail($email,$object,$content,'...');
+                    }
+                }else{
+                    echo "Nope";
+                    var_dump($_POST);
+                }
+            }
+
             $deals = $manager->getAllDeals();
             echo $this->renderView('admin.html.twig',
                 [

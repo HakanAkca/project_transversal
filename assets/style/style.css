@@ -359,18 +359,18 @@
     font-family: "robotoRegular";
   }
   .home_page .concept #tuto {
-    width: 309px;
+    width: 315px;
     border: 1px solid #f0816c;
   }
 }
 @media screen and (min-width: 768px) {
   .home_page .concept #tuto {
-    width: 555px;
+    width: 560px;
   }
 }
 @media screen and (min-width: 1024px) {
   .home_page .concept #tuto {
-    width: 733px;
+    width: 740px;
   }
 }
 @media screen {

@@ -1257,9 +1257,51 @@ $red: #ed6147;
         }
     }
 
-    .admin_page{
-
+.admin_page {
+    width: 260px;
+    margin-left: 32px;
+    margin-bottom: 20px;
+    .block-content {
+      text-align: center;
+      border: 1px solid #000000;
+      margin-top: 50px;
+      padding-bottom: 20px;
+      -webkit-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 4px 6px 5px 0px rgba(0, 0, 0, 0.75);
     }
+    p {
+      margin-right: 110px;
+      margin-top: 10px;
+    }
+    button {
+      background-color: $red;
+      border: none;
+      color: white;
+      padding: 5px;
+      width: 120px;
+    }
+    #block-top {
+      margin-top: 20px;
+    }
+    .button-input {
+      background-color: $red;
+      border: none;
+      color: white;
+      padding: 5px;
+      width: 120px;
+    }
+    .button-input2 {
+      background-color: $grey;
+      border: none;
+      color: white;
+      padding: 5px;
+      width: 100px;
+    }
+    input {
+      margin: 7px;
+    }
+  }
 
     footer{
         background-color: $neutralColor;

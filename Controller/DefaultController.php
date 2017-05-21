@@ -90,6 +90,7 @@ class DefaultController extends BaseController
         $allDeals = $manager->getAllDeals();
         $errors = array();
         $pageActuel = $_GET['action'];
+        $user = array();
         if(!empty($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
         }

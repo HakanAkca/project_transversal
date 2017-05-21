@@ -45,6 +45,15 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> 1d9b303a5f6de07ab6dfc05ae5504914fc753776
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -68,6 +77,7 @@ class ProfileController extends BaseController
                 $res = $manager->checkProfile($_POST);
                 if($res['isFormGood']){
                     $manager->editProfile($res['data']);
+                    header('Location:?action=profile');
                 }else{
                     $errors = $res['errors'];
                 }
@@ -89,8 +99,8 @@ class ProfileController extends BaseController
                              <div style="display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;">
                                 '.$_SESSION["user_username"].'<br>Offre :'.$deal["partner"].'<br> City : '.$deal["city"].'<br>Deal '.$deal["deal"].'
                     
-</div><br><br>
-MERCI !!!'; // can aso be a url, starting with http..
+                            </div><br><br>
+                            MERCI !!!'; // can aso be a url, starting with http..
                 $result = file_get_contents("http://api.html2pdfrocket.com/pdf?apikey=" . urlencode($apikey) . "&value=" . urlencode($value));
                 file_put_contents('uploads/offers.pdf', $result);
                 $file[$deal["id"]] = "<a href='uploads/offers.pdf' target='_blank'>Télécharger</a>";
@@ -160,7 +170,7 @@ MERCI !!!'; // can aso be a url, starting with http..
     public function adminAction()
     {
         $offers = array();
-        if (!empty($_SESSION['user_username'] == 'adminOmar')) {
+        if (!empty($_SESSION['user_id'] == '1')) {
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);
@@ -214,7 +224,7 @@ MERCI !!!'; // can aso be a url, starting with http..
             }
 
             $res_tmp = $manager->surveyNumber();
-            if(is_array($res_tmp)){
+            if(is_array($res_tmp) && !empty($res_tmp)){
                 $offers[] = $res_tmp[0];
                 if(isset($res_tmp[1])){
                     $offers[] = $res_tmp[1];

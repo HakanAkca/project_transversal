@@ -36,7 +36,6 @@ class ProfileController extends BaseController
             $myDeals = $manager->getUserDeals();
 
             //echo $_SESSION['user_username'];
-
             //Classement !!!
             $average = $manager->getAverages();
             $ranking = $manager->ranking();

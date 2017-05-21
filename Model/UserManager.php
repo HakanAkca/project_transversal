@@ -133,13 +133,23 @@ class UserManager
                 ]);
             move_uploaded_file($file_tmp_name, $new_file_url);
         } else {
+
             $this->DBManager->findOneSecure(
-                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city WHERE id=:id",
+                "UPDATE users SET pseudo =:pseudo, email =:email, city =:city, image =:new_file_url WHERE id=:id",
                 [
                     'pseudo' => $pseudo,
                     'email' => $email,
                     'city' => $city,
                     'id' => $id,
+                ]);
+            $user = $this->getUserByUsername($pseudo);
+            $url = $user['image'];
+            $strImage = (int)(7 + strlen($pseudo));
+            $new_file_url = substr($url, 0, 7).'/'.$pseudo.'/'.$strImage;
+            $this->DBManager->findOneSecure(
+                "UPDATE users SET image =:new_file_url  WHERE id=:id",
+                [
+                    'new_file_url' => $new_file_url,
                 ]);
 
         }

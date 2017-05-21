@@ -373,6 +373,11 @@
     width: 740px;
   }
 }
+@media screen and (min-width: 1440px) {
+  .home_page .concept #tuto {
+    width: 1040px;
+  }
+}
 @media screen {
   .home_page .concept #tuto .info_steps {
     height: 110px;

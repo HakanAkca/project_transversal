@@ -1600,11 +1600,14 @@
   }
 
   .admin_page {
-    width: 260px;
-    margin-left: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     margin-bottom: 20px;
+    align-items: center;
   }
   .admin_page .block-content {
+    width: 80%;
     text-align: center;
     margin-top: 50px;
     padding-top: 5px;
@@ -1632,7 +1635,7 @@
     border: none;
     color: white;
     padding: 5px;
-    width: 120px;
+    width: 137px;
   }
   .admin_page .button-input2 {
     background-color: grey;
@@ -1644,6 +1647,17 @@
   .admin_page input {
     margin: 7px;
     border: 1px solid lightgrey;
+  }
+  .admin_page .container_basic_action {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .admin_page .container_basic_action .inside-block-content {
+    width: 80%;
+    margin-bottom: 20px;
+    border: 1px solid red;
   }
 
   footer {

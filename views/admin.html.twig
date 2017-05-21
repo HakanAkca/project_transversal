@@ -60,8 +60,8 @@
             {% endif %}
 
         </div>
-        <div>
-            <div class="block-content">
+        <div class="block-content">
+            <div class="inside-block-content">
                 <h3>Supprimer un compte indisérable</h3>
                 <div id="errorBlockRemoveAccount"></div>
                 <form method="post" id="removeAccountForm" action="?action=admin">
@@ -71,8 +71,8 @@
                 </form>
             </div>
         </div>
-        <div>
-            <div class="block-content">
+        <div class="block-content container_basic_action">
+            <div class="inside-block-content">
                 <h3>Supprimer une offre</h3>
                 <form method="post" action="?action=admin">
                     offre
@@ -80,7 +80,7 @@
                     <input class="button-input" type="submit" name="deletteOffers" value="Supprimer">
                 </form>
             </div>
-            <div class="block-content">
+            <div class="inside-block-content">
                 <h3>Mettre a jour l'offre</h3>
                 <form method="post" action="?action=admin">
                     <select name="listOffer">
@@ -105,14 +105,14 @@
                     </form>
                 {% endif %}
             </div>
-            <div class="block-content">
+            <div class="inside-block-content">
                 <h3>Vos bouteilles ici</h3>
                 <form action="?action=admin" method="post">
                     <input type="text" name="bottlesNumber" placeholder="vos bouteilles"><br>
                     <input class="button-input" type="submit" name="submitBottles" value="Valider">
                 </form>
             </div>
-            <div class="block-content">
+            <div class="inside-block-content">
                 <h3>Send la newsletter</h3>
                 <form action="?action=admin" method="post">
                     <input type="text" name="titreNewsletter" placeholder="contenu newsletter">

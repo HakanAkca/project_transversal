@@ -1281,10 +1281,11 @@ $grey: grey;
     }
 
 .admin_page {
-    width: 260px;
-    margin-left: 32px;
+    @include flex_trinity(column, flex-start);
     margin-bottom: 20px;
+    align-items: center;
     .block-content {
+        width: 80%;
       text-align: center;
       margin-top: 50px;
       padding-top: 5px;
@@ -1312,7 +1313,7 @@ $grey: grey;
       border: none;
       color: white;
       padding: 5px;
-      width: 120px;
+      width: 137px;
     }
     .button-input2 {
       background-color: grey;
@@ -1324,6 +1325,15 @@ $grey: grey;
     input {
       margin: 7px;
       border: 1px solid lightgrey;
+    }
+    .container_basic_action{
+        @include flex_trinity(column, space-around);
+        align-items: center;
+        .inside-block-content{
+            width: 80%;
+            margin-bottom: 20px;
+            border: 1px solid red;
+        }
     }
   }
 

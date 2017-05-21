@@ -1,41 +1,41 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="background-admin">ADMIN</div>
-    {% if user is not empty %}
-        {% set username = user['pseudo'] %}
-        {% set email = user['email'] %}
-        {% set city = user['city'] %}
-        {% set bottlesNumber = user['bottlesNumber'] %}
-        {% set level = user['level'] %}
-    {% endif %}
-    <p>Résultat sondage</p>
-    {% set cpt = 0 %}
-    {% for survey in surveys %}
-        {% set average = (survey.vote/allVotes)*100 %}
-        Offre {{ cpt }} ---
-        Titre : {{ survey.partner }}
-        Nombre de vote :{{ survey.vote }}
-        Pourcentage : {{ average|round(1, 'floor') }}<br>
-        {% set cpt = cpt + 1 %}
-    {% endfor %}
-    {% set cpt = 0 %}
-    <hr>
-    {% for error in errors %}
-        <p>{{ error }}</p>
-    {% endfor %}
+
     <div class="admin_page">
+        <div id="background-admin">ADMIN</div>
+        {% if user is not empty %}
+            {% set username = user['pseudo'] %}
+            {% set email = user['email'] %}
+            {% set city = user['city'] %}
+            {% set bottlesNumber = user['bottlesNumber'] %}
+            {% set level = user['level'] %}
+        {% endif %}
+        <p>Résultat sondage</p>
+        {% set cpt = 0 %}
+        {% for survey in surveys %}
+            {% set average = (survey.vote/allVotes)*100 %}
+            Offre {{ cpt }} ---
+            Titre : {{ survey.partner }}
+            Nombre de vote :{{ survey.vote }}
+            Pourcentage : {{ average|round(1, 'floor') }}<br>
+            {% set cpt = cpt + 1 %}
+        {% endfor %}
+        {% set cpt = 0 %}
+        <hr>
+        {% for error in errors %}
+            <p>{{ error }}</p>
+        {% endfor %}
         <div class="block-content">
             <h3>Ajouter des offres</h3>
             <form method="POST" action="?action=admin" enctype="multipart/form-data">
                 <input type="text" name="partner" placeholder="Partenaire"><br>
-                <input class="button-input" type="file" name="image">
+                <input class="button-input" type="file" name="image"><br>
                 <input type="text" name="city" placeholder="Secteur"><br>
                 <input type="text" name="deal" placeholder="Réduction"><br>
                 <input type="text" name="cost" placeholder="Coût"><br>
                 <input type="text" name="description" placeholder="Description"><br>
                 <input type="text" name="expirationDate" placeholder="jj/mm/année"><br>
-
                 <button type="submit" name="submitCatalog">Ajouter Offre</button>
             </form>
         </div>
@@ -65,8 +65,8 @@
                 <h3>Supprimer un compte indisérable</h3>
                 <div id="errorBlockRemoveAccount"></div>
                 <form method="post" id="removeAccountForm" action="?action=admin">
-                    pseudo
-                    <input type="text" name="pseudo" placeholder="pseudo">
+                    Pseudo<br>
+                    <input type="text" name="pseudo" placeholder="pseudo"><br>
                     <input class="button-input" type="submit" name="submitAccount" value="Supprimer">
                 </form>
             </div>
@@ -75,28 +75,28 @@
             <div class="inside-block-content">
                 <h3>Supprimer une offre</h3>
                 <form method="post" action="?action=admin">
-                    offre
-                    <input type="text" name="offers" placeholder="nom de l'offre">
+                    Offre<br>
+                    <input type="text" name="offers" placeholder="nom de l'offre"><br>
                     <input class="button-input" type="submit" name="deletteOffers" value="Supprimer">
                 </form>
             </div>
             <div class="inside-block-content">
                 <h3>Mettre a jour l'offre</h3>
                 <form method="post" action="?action=admin">
-                    <select name="listOffer">
+                    <select name="listOffer"><
                         {% for deal in deals %}
                             <option value="{{ deal.partner }}">
                                 {{ deal.partner }}
                             </option>
                         {% endfor %}
-                    </select>
+                    </select><br>
                     <input class="button-input" type="submit" value="Choisir" name="submitChoiceOffer">
                 </form>
                 {% if dealToUpdate is not empty %}
                     <form method="post" action="?action=admin" enctype="multipart/form-data">
                         <input type="text" name="partner" value="{{ dealToUpdate.partner }}">
                         <input class="button-input" type="file" name="fileOffer">
-                        <input type="text" name="description" value="{{ dealToUpdate.description }}">
+                        <textarea name="description">{{ dealToUpdate.description }}</textarea>
                         <input type="text" name="id" value="{{ dealToUpdate.id }}">
                         <div id="block-top">
                             <input class="button-input" type="submit" name="submitUpdateOffer" value="Modifier">
@@ -115,8 +115,8 @@
             <div class="inside-block-content">
                 <h3>Send la newsletter</h3>
                 <form action="?action=admin" method="post">
-                    <input type="text" name="titreNewsletter" placeholder="contenu newsletter">
-                    <input type="text" name="newsletterContent" placeholder="contenu newsletter">
+                    <input type="text" name="titreNewsletter" placeholder="Titre de la newsletterr"><br>
+                    <textarea name="newsletterContent" placeholder="Contenu de la newsletter"></textarea><br>
                     <input class="button-input" type="submit" name="submitNewsletter" value="Valider">
                 </form>
             </div>

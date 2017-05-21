@@ -1,1302 +1,1340 @@
-$neutralColor : #4b4b4b; // nav || footer
-$orange : #f0816c;
-$orangeHover : #FFAB9B;
+$neutralColor: #4b4b4b; // nav || footer
+$orange: #f0816c;
+$orangeHover: #FFAB9B;
 $red: #ed6147;
 $grey: grey;
 
 @font-face {
-    src: url('../fonts/Roboto-Bold.ttf');
-    font-family: 'robotoBold';
+  src: url('../fonts/Roboto-Bold.ttf');
+  font-family: 'robotoBold';
 }
 
 @font-face {
-    src: url('../fonts/Roboto-Regular.ttf');
-    font-family: 'robotoRegular';
+  src: url('../fonts/Roboto-Regular.ttf');
+  font-family: 'robotoRegular';
 }
 
 @font-face {
-    src: url('../fonts/Roboto-Light.ttf');
-    font-family: 'robotoLight';
+  src: url('../fonts/Roboto-Light.ttf');
+  font-family: 'robotoLight';
 }
 
 @font-face {
-    src: url('../fonts/Poppins-Medium.ttf');
-    font-family: 'PoppinsMedium';
+  src: url('../fonts/Poppins-Medium.ttf');
+  font-family: 'PoppinsMedium';
 }
 
 @font-face {
-    src: url('../fonts/Poppins-Regular.ttf');
-    font-family: 'PoppinsRegular';
+  src: url('../fonts/Poppins-Regular.ttf');
+  font-family: 'PoppinsRegular';
 }
 
 @font-face {
-    src: url('../fonts/Poppins-Regular.ttf');
-    font-family: 'PoppinsSemiBold';
+  src: url('../fonts/Poppins-Regular.ttf');
+  font-family: 'PoppinsSemiBold';
 }
 
 @mixin flex_trinity($direction, $content) {
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $content;
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $content;
 }
 
-@keyframes throw_bottle{
-    0%   { margin-top: 180px; margin-left: 90px;}
-    100% { margin-top: 150px; margin-left: 150px;}
+@keyframes throw_bottle {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 150px;
+    margin-left: 150px;
+  }
 }
 
-@keyframes throw_bottle_tablet{
-    0%   { margin-top: 180px; margin-left: 90px;}
-    100% { margin-top: 140px; margin-left: 395px;}
+@keyframes throw_bottle_tablet {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 395px;
+  }
 }
 
-@keyframes throw_bottle_desktop{
-    0%   { margin-top: 180px; margin-left: 90px;}
-    100% { margin-top: 140px; margin-left: 575px;}   
+@keyframes throw_bottle_desktop {
+  0% {
+    margin-top: 180px;
+    margin-left: 90px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 575px;
+  }
 }
 
-@keyframes throw_bottle_very_large{
-    0%   { margin-top: 180px; margin-left: 240px;}
-    100% { margin-top: 140px; margin-left: 720px;}   
+@keyframes throw_bottle_very_large {
+  0% {
+    margin-top: 180px;
+    margin-left: 240px;
+  }
+  100% {
+    margin-top: 140px;
+    margin-left: 720px;
+  }
 }
 
-@keyframes move_to_trash_tablet{
-    0% {margin-top: 140px; margin-left: 25px;}
-    100%{margin-top: 125px; margin-left: 295px;}
+@keyframes move_to_trash_tablet {
+  0% {
+    margin-top: 140px;
+    margin-left: 25px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 295px;
+  }
 }
 
-@keyframes move_to_trash_desktop{
-    0% {margin-top: 140px; margin-left: 25px;}
-    100%{margin-top: 125px; margin-left: 475px;}   
+@keyframes move_to_trash_desktop {
+  0% {
+    margin-top: 140px;
+    margin-left: 25px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 475px;
+  }
 }
 
-@keyframes move_to_trash_very_large{
-    0% {margin-top: 140px; margin-left: 175px;}
-    100%{margin-top: 125px; margin-left: 625px;}   
+@keyframes move_to_trash_very_large {
+  0% {
+    margin-top: 140px;
+    margin-left: 175px;
+  }
+  100% {
+    margin-top: 125px;
+    margin-left: 625px;
+  }
 }
 
-@media screen{
-    
-    body{
-        margin: 0px;
-    }
+@media screen {
 
-    p, ul{
-        margin: 0px;
-        padding: 0px;
-    }
+  body {
+    margin: 0px;
+  }
 
-    li{
-        list-style:none;
-    }
+  p, ul {
+    margin: 0px;
+    padding: 0px;
+  }
 
-    a{
-        text-decoration: none;
-    }
-    
-    header{
-        height: 40px;
-        @include flex_trinity(row, space-between);
-        align-items: center;
-        background-color: $neutralColor;
-        .left_side_mobile{
-            @include flex_trinity(row, flex-start);
-            .burger{
-                height: 19px;
-                width : 20px;
-                margin: 5px;
-                @include flex_trinity(column, space-around);
-                .burger_line{
-                    background-color: white;
-                    height: 2px;
-                    width: 100%;
-                }
-                @media(min-width:1024px){
-                    display: none;
-                }
-            }
-            .mobile_dropdown{
-                display: none;
-                position: absolute;
-                background-color: black;
-                color :white;
-                opacity: 0.8;
-                width: 70%;
-                height: 100vh;
-                margin-top: 35px;
-                z-index: 5;
-                flex-direction: column;
-                li{
-                    padding : 15px 25px;
-                    &:not(:last-child){
-                        border-bottom: 1px solid white;
-                    }
-                    a{
-                        font-family: "robotoRegular";
-                        color:white;
-                    }
-                }
-            }
-            .mobile_logo{
-                height: 25px;
-                width: 115px;
-                margin-left: 5px;
-                margin-top: 5px;
-            }
-        }
-        .menu_desktop{
-            display: none;
-            align-self: center;
-            a{
-                font-family: "robotoRegular";
-                color: white;
-                padding: 0px 20px;
-                white-space: nowrap;
-                &:hover{
-                    color:$orange;
-                }
-            }
-            @media(min-width:1024px){
-                display: flex;
-            }
-        }
-        .stats{
-            @include flex_trinity(column, flex-start);
-            align-items: center;
-            margin-right: 5px;
-            font-family: 'robotoBold';
-            color:white;
-            font-size: 14px;
-            @media(min-width:1024px){
-                flex-direction: row;
-                margin-left: 20px;
-            }
-            span{
-                color:$orange;
-                letter-spacing: 4px;
-                font-weight: bold;
-                font-size: 18px;
-            }
-        }
-        .end_header{
-            width: 30%;
-            justify-content: flex-end;
-            display: none;
-            @media(min-width:1024px){
-                display: flex;
-            }
-            .current{
-                display: none;
-                height: 40px;
-                background-color: $orange;
-                a{
-                    color: white;
-                    font-family: "robotoLight";
-                }
-                margin-right: 40px;
-                margin-left: 20%;
-                padding: 0px 10px;
-                @media(min-width:1024px){
-                    display: flex;
-                }
-            }
-            a{
-                align-self: center;
-                margin-right: 5px;
-                img{
-                    transform: rotate(90deg);
-                    &:hover{
-                        transform: rotate(270deg);
-                        transition: 1s;
-                    }
-                }
-            }
-        }
-    }
+  li {
+    list-style: none;
+  }
 
-    .home_page{
-        .illus_sect{
-            @include flex_trinity(column, flex-end);
-            align-items: center;
-            background: url('../img/bg_home_noadds.png') center 0 no-repeat fixed;
-            width: 100%;
-            height: 70vh;
-            background-size: cover;
-            background-position: 30%;
-            @media(min-width:768px){
-                height: 100vh;
-            }
-            .content{
-                @include flex_trinity(column, flex-start);
-                    width: 80%;
-                    align-items: center;
-                    @media(min-width:1024px){
-                        width: 40%;
-                    }
-                .bold{
-                    font-family: "robotoBold";
-                    color : white;
-                    font-size: 20px;
-                    text-align: center;
-                    z-index: 2;
-                    background-color: #3e3e3e;
-                    padding: 10px;
-                    width: 100%;
-                }
-                .descrip{
-                    @extend .bold;
-                    font-size: 14px;
-                    background-color: rgba(137, 177, 176, 0.8);
-                    font-family: "robotoRegular";
-                    z-index: 2;
-                    padding: 10px;
-                    margin-bottom: 40px;
-                }
-            }
-            .redirect_link{
-                margin-top: 15px;
-                z-index: 2;
-                text-align: center;
-                color: white;
-                background-color: $orange;
-                border-radius: 2px;
-                padding: 15px;
-                width: 80%;
-                box-shadow: 0px 2px 1px #d47260;
-                font-family: "robotoLight";
-                font-size: 17px;
-                &:hover{
-                    background-color: $orangeHover;
-                    box-shadow: 0px 2px 1px $orangeHover;
-                }
-                @media(min-width:1024px){
-                    width: 40%;
-                }
-            }
-            .last_button{
-                @media(min-width: 768px){
-                    margin-bottom: 100px;
-                }
-            }
-        }
-        #couche2{
-            position: absolute;
-            width: 100%;
-            top: 60px;
-            height: 100vh;
-            background: url('../img/hot_air_balloon.png') center 0 no-repeat fixed;
-            background-size: cover;
-        }
-        #couche3{
-            position: absolute;
-            width: 100%;
-            top: 60px;
-            height: 100vh;
-            background: url('../img/cloud.png') center 0 no-repeat fixed;
-            background-size: cover;
-        }
+  a {
+    text-decoration: none;
+  }
 
-        .concept{
-            @include flex_trinity(column, space-around);
-            background-color: #b5f4f2;
-            padding-top: 50px;
-            align-items: center;
-            width: 90%;
-            height: 700px;
-            padding: 0% 5%;
-            .discover_concept{
-                font-family: "robotoRegular";
-                z-index: 2; 
-                @include flex_trinity(column, space-around);
-                align-items: center;
-            }
-            #what_it_is{
-                font-weight: bold;
-                border-left: 3px $red solid;
-                padding-left: 30px;
-                font-family: "robotoRegular";
-            }
-            #tuto{
-                width: 315px;
-                border: 1px solid $orange;
-                @media(min-width:768px){
-                    width: 560px;
-                }
-                @media(min-width:1024px){
-                    width: 740px;
-                }
-                @media(min-width:1440px){
-                    width: 1040px;
-                }
-                .info_steps{
-                    height: 110px;
-                    background-color: #bbfdff;
-                    @media(min-width:768px){
-                        text-align: center;
-                        height: 130px;
-                    }
-                    img{
-                        width: 100%;
-                        @media(min-width:768px){
-                            width: auto;
-                            height: 160px;
-                        }
-                    }
-                    .step_two{
-                        display: none;
-                        @media(min-width:768px){
-                            height: 190px;
-                        }
-                    }
-                }
-                .tuto_area{
-                    background-image: url("../img/img_tuto/bg_tuto.png");
-                    height: 290px;
-                    background-size: cover;
-                    background-position: 75%;
-                    .girl_bottle{
-                        height: 130px;
-                        margin-top: 140px;  
-                        @media(min-width:425px){
-                            height: 150px;
-                            margin-top: 140px;
-                            margin-left: 25px;
-                            margin-right: 10px;
-                        }
-                        @media(min-width:1440px){
-                            margin-left: 175px;
-                        }
-                    }
-                    .girl_phone{
-                        height: 120px;
-                        margin-top: 140px;
-                        margin-right: 10px;
-                        display: none;
-                        margin-right: 0px;
-                        animation-duration: 1s;
-                       @media(min-width:425px){
-                            height: 150px;
-                            margin-left: 25px;
-                        }
-                        @media(min-width:1440px){
-                            margin-left: 175px;
-                        }
-                    }
-                    .trash{
-                        width: 127px;
-                        margin-top: 130px;
-                        float: right;
-                        @media(min-width:425px){
-                            width: 160px;
-                            margin-top: 105px;
-                        }
-                        @media(min-width:1024px){
-                            margin-right: 0px;
-                        }              
-                        @media(min-width:1440px){
-                            margin-right: 150px;
-                        }
-                    }
-                    .bottle{
-                        display: none;
-                        position: absolute;
-                        width: 30px;
-                        margin-top: 180px;
-                        margin-left: 90px;
-                        animation-duration: 1s;
-                        @media(min-width:1440px){
-                            margin-left: 240px;
-                        }
-                    }
-                }
-            }
-            .next_2, .next_3, .next_1{
-                @include flex_trinity(row, flex-start);
-                height: 30px;
-                @media (min-width:768px){
-                    margin-top: 15px;
-                }
-                p{
-                    line-height: 30px;
-                    margin: 0px 15px;
-                }
-            }
-        }
-        .map_area{
-            background-color: #b5f4f2;
-            width: 90%;
-            padding: 0% 5%;
-            padding-bottom: 5%;
-            @include flex_trinity(column, space-around);
-            align-items: center;
-            .find_city{
-                @include flex_trinity(column, space-around);
-                height: 200px;
-                font-family: "robotoRegular";
-                .title{
-                    font-weight: bold;
-                    border-left: 3px $red solid;
-                    padding-left: 30px;
-                    width: 70%;
-                }
-                div{
-                    @include flex_trinity(column, flex-start);
-                    input{
-                        margin-bottom: 10px;
-                        border: none;
-                        padding: 10px 0px;
-                    }
-                    .city_input{
-                        background-color: #e6e6e6;
-                    }
-                    .submit_input{
-                        background-color: #37d074;
-                        color: white;
-                        &:hover{
-                            background-color: #43ff8e;
-                        }
-                    }
-                }
-            }
-            #map{
-                border: solid 5px $orange;
-            }
-        }
-    }
-
-    .modale_login{
-        display: none;
-        position: absolute;
-        top: 0;
-        z-index: 3;
-        height: 100vh;
-        width: 100%;
-        background-color: rgba(0,0,0,0.4);
-        .container_form{
-            width: 80%;
-            margin: auto;
-            margin-top: 20%;
-            background-color: white;
-            border-radius: 5px;
-            height: 30%;
-            padding: 10px;
-            @include flex_trinity(column, flex-start);
-            @media(min-width:768px){
-                width: 60%;
-            }
-            @media(min-width:1024px){
-                width: 40%;
-            }
-            .close_login_md{
-                align-self: flex-end;
-                img{
-                    height: 15px;
-                }
-            }
-            form{
-                width: 80%;
-                margin: auto;
-                height: 100%;
-                @include flex_trinity(column, space-around);
-                align-items: center;
-                @media(min-width:1024px){
-                    align-items: center;
-                }   
-                .login_form{
-                    width: 60%;
-                    text-align: center;
-                    @include flex_trinity(column, space-between);
-                    @media(min-width:1024px){
-                        width: 60%;
-                    }   
-                }
-                .login_button{
-                    border: none;
-                    background-color: $orange;
-                    border-radius: 2px;
-                    box-shadow: 0px 2px 1px #d47260;
-                    padding: 10px;
-                    width: 60%;
-                    &:hover{
-                        background-color: $orangeHover;
-                        box-shadow: 0px 2px 1px $orangeHover;
-                    }
-                }
-            }
-        }
-    }
-
-    .allForm{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        height: 550px;
-        padding-bottom: 15px;
-        .container_form{
-            text-align: center;
-            @media(min-width:1024px){
-                background-color: white;
-                padding: 20px 5%;
-            }
-        }
-        .title{
-            font-family: 'PoppinsMedium';
-            color:$orange;
-        }
-        .form-container{
-            #myRegister{
-                @include flex_trinity(column, flex-start);
-                text-align: center;
-                font-family: "robotoRegular";
-                .form-item-block{
-                    span{
-                        color :$orange;
-                        padding-bottom: 4px;
-                        font-size: 12px;
-                    }
-                    @media(min-width:1024px){
-                        width: 250px;
-                    }
-                }
-                button{
-                    font-family: "robotoRegular";
-                    border : none;
-                    background-color: $orange;
-                    color:white;
-                    box-shadow: 0px 2px 1px #d47260;
-                    &:hover{
-                        background-color: $orangeHover;
-                        box-shadow: 0px 2px 1px $orangeHover;
-                    }
-                }
-                .error{
-                    color: red;
-                    margin: 10px;
-                }
-                #message{
-                    resize: none;
-                    height: 80px;
-                    margin-bottom: 20px;
-                }
-            }
-        }
-        @media(min-width:1024px){
-            background-image: url('../img/inscription.png');
-            height: 600px;
-        }
-    }
-
-    .user_page{
-        background-color: #FBF8F2;
+  header {
+    height: 40px;
+    @include flex_trinity(row, space-between);
+    align-items: center;
+    background-color: $neutralColor;
+    .left_side_mobile {
+      @include flex_trinity(row, flex-start);
+      .burger {
+        height: 19px;
+        width: 20px;
+        margin: 5px;
         @include flex_trinity(column, space-around);
-        @media(min-width:1024px){
-            flex-direction: row;
-            flex-wrap: wrap;
+        .burger_line {
+          background-color: white;
+          height: 2px;
+          width: 100%;
         }
-        .user_info{
-            @include flex_trinity(column, space-between);
-            align-items: center;
-            margin-top: 10px;
-            @media(min-width:1024px){
-                flex-direction: row;
-                width: 50%;
-            }
-            .profil_img{
-                margin: 10px 0px;
-                width: 25%;
-                border-radius: 50%;
-                border: 10px solid #8e8e8e;
-            }
-            .line{
-                width: 60%;
-                height: 2px;
-                background-color: #6a6a6a;
-                @media(min-width:1024px){
-                    height: 60%;
-                    width: 2px;
-                }
-            }
-            .specific_info{
-                margin: 10px 0px;
-                font-size: 16px;
-                @include flex_trinity(column, space-between);
-                width: 60%;
-                .username_lvl{
-                    font-family: 'robotoBold';
-                    font-size: 18px;
-                    width: 100%;
-                    @include flex_trinity(row, space-between);
-                    align-items: baseline;
-                    color: #4b4b4b;
-                    @media(min-width:1024px){
-                        flex-direction: column;
-                    }
-                    .params{
-                        width: 20px;
-                        margin-left: 10px;
-                    }
-                    .lvl{
-                        color : $orange;
-                        font-size: 20px;
-                        font-weight: bold;
-                    }
-                }
-                .classement{
-                    font-size: 12px;
-                    margin: 15px 0px;
-                    font-family: 'robotoLight';
-                    visibility: hidden;
-                    a{
-                        background-color: $orange;
-                        color: white;
-                        padding: 5px 10px;
-                    }
-                }
-                .inscription_date{
-                    font-family: 'robotoLight';
-                    font-size: 11px;
-                    background-color: $orange;
-                    padding: 3px;
-                }
-            }
+        @media(min-width: 1024px) {
+          display: none;
         }
-        .stats{
-            margin: 20px 10px;
-            @include flex_trinity(row, space-between);
-            flex-wrap: wrap;
-            @media(min-width:1024px){
-                align-items: center;
-            }
-            div{
-                font-family: 'robotoLight';
-                width: 49%;
-                height: 65px;
-                color: white;
-                font-size: 18px;
-                @include flex_trinity(column, space-around);
-                text-align: center;
-                span{
-                    margin-top: 5px;
-                }
-                .little{
-                    font-size: 10px;
-                    margin-top: 0px;
-                    margin-bottom: 10px;
-                }
-            }
-            .recycled{
-                background: linear-gradient(to bottom, #4b4b4b 50%, #3e3e3e 50%);
-                text-transform: uppercase;
-            }
-            .points{
-                background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
-                text-transform: uppercase;
-            }
-            .fun_stats{
-                @extend .recycled;
-                font-size: 12px;
-                width: 100%;
-                height: 25px;
-                margin-top: 5px;
-                line-height: 25px;
-                text-align: center;
-                @media (min-width:1024px){
-                    margin-top: -12%;
-                }
-            }
-        }
-        .box{
-            margin: 30px 10px;
-            @media(min-width:1024px){
-                width: 100%;
-            }
-            ul{
-                @include flex_trinity(row, space-between);
-                .tabs{
-                    width: 30%;
-                    border-radius: 5px 5px 0px 0px;
-                    height: 40px;
-                    background-color: #333333;
-                    border-bottom: 1px solid transparent;
-                    box-shadow: 0px -2px 10px black inset;
-                    @include flex_trinity(row, center);
-                    align-items: center;
-                    img{
-                        width: 30px;
-                    }
-                }
-                .active{
-                   box-shadow: none;
-                }
-                @media(min-width:1024px){
-                    display: none;
-                }
-            }
-            .all_changing_contents{
-                color: white;
-                @media(min-width:1024px){
-                    @include flex_trinity(row, space-around);
-                    flex-wrap: wrap;
-                }
-                .changing_content{
-                    text-align: center;
-                    background-color: #333333;
-                    border-bottom-left-radius: 5px;
-                    border-bottom-right-radius: 5px;
-                    @media(min-width:1024px){
-                        border-radius: 5px;
-                    }
-                    .title{
-                        padding: 10px 0px;
-                    }
-                }
-                .my_reductions{
-                    @media(min-width:1024px){
-                        width: 40%;
-                    }
-                    .all_reducs{
-                    overflow: scroll;
-                    max-height: 200px;
-                            .reducs{
-                                @include flex_trinity(row, flex-start);
-                                height: 60px;
-                                .partner_img{
-                                    width: 60px;
-                                    height: 60px;
-                                }
-                                .deal_info{
-                                    background-color: #dadada;
-                                    @include flex_trinity(row, space-around);
-                                    width: 70%;
-                                    line-height: 60px;
-                                    color: black;
-                                    font-family: "robotoRegular";
-                                }
-                                .print{
-                                    width: 25%;
-                                    background-color: $orange;
-                                    @include flex_trinity(row, center);
-                                    align-items: center;
-                                    .submit_form{
-                                        display: none;
-                                    }
-                                    img{
-                                        width: 30px;
-                                        align-self: center;
-                                        height: 30px;
-                                    }
-                                }
-                                &:nth-child(even){
-                                    margin: 10px 0px;
-                                }
-                                .other_info{
-                                    display: none;
-                                }                     
-                            }
-                        }
-                }
-                .available_reductions{
-                    color: #ed6147;
-                    display: none;
-                    @media(min-width:1024px){
-                        display: flex;
-                        width: 40%;
-                        flex-direction: column;
-                    }
-                    .all_available_deal{
-                        overflow: scroll;
-                        max-height: 200px;
-                        .available_deal{
-                            @include flex_trinity(row, flex-start);
-                            height: 60px;
-                            .partner_img{
-                                width: 60px;
-                                height: 60px;
-                            }
-                            .deal_info{
-                                background-color: #dadada;
-                                @include flex_trinity(row, space-around);
-                                width: 70%;
-                                line-height: 60px;
-                                color: black;
-                            }
-                            .deal_cost{
-                                width: 30%;
-                                background-color: $orange;
-                                @include flex_trinity(column, center);
-                                a{
-                                    color: white;
-                                    span:nth-child(2){
-                                        color: #464646;
-                                        font-weight: bold;
-                                    }
-                                }
-                            }
-                            &:nth-child(even){
-                                margin: 10px 0px;
-                            }
-                            .other_info{
-                                display: none;
-                            }
-                        }
-                        
-                    }
-                }
-                .sondage{
-                    display: none;
-                    @media(min-width:1024px){
-                        @include flex_trinity(column, space-around);
-                        width: 90%;
-                        margin-top: 50px;
-                    }
-                    .sondage_title{
-                        @include flex_trinity(row, center);
-                        padding: 10px 0px;
-                        .little_description{
-                            display: none;
-                        }
-                    }
-                    .all_survey_offer{
-                        @include flex_trinity(column, flex-start);
-                        @media(min-width:1024px){
-                            flex-direction: row;
-                            justify-content: space-around;
-                        }
-                        .survey_offer{
-                            padding: 0% 5%;
-                            margin-bottom: 30px;
-                            @media(min-width: 1024px){
-                                padding: 0%;
-                                width: 30%;
-                            }
-                            .header_offer{
-                                background-color: #afada9;
-                                @include flex_trinity(row, flex-start);
-                                align-items: center;
-                                height: 60px;
-                                img{
-                                    height: 60px;
-                                }
-                                p{
-                                    margin-left: 20px;
-                                }
-                            }
-                            .content_offer{
-                                background-color:#dadada;
-                                @include flex_trinity(column, space-around);
-                                height: 250px;
-                                align-items: center;
-                                color: black;
-                                .survey_content_separator{
-                                    height: 1px;
-                                    width: 80%;
-                                    background-color: black;
-                                }
-                            }
-                            .vote_result_area{
-                                background-color: $red;
-                                .vote_area{
-                                    height: 60px;
-                                    @include flex_trinity(row, center);
-                                    align-items: center;
-                                    form{
-                                        .form_vote{
-                                            display: none;
-                                        }
-                                        label img{
-                                            height: 40px;
-                                        }
-                                    }
-                                }
-                                .stat_area{
-                                    @include flex_trinity(row, center);
-                                    align-items: center;
-                                    height: 60px;
-                                    .progress_bar{
-                                        width: 90%;
-                                        height:30px;
-                                        background-color: grey;
-                                        .progress{
-                                            text-align: center;
-                                            height: 30px;
-                                            line-height: 30px;
-                                            background-color: #37d074;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .all_offers_link{
-            background-color: #f0816c;
-            text-align: center;
-            width: 40%;
-            margin: 30px auto;
-            border-radius: 5px;
-            padding: 5px;
-            color: white;
-            box-shadow: 0px 2px 1px $orangeHover;
-            &:hover{
-                background-color: $orangeHover;
-                box-shadow: 0px 2px 1px $orangeHover;
-            }
-            @media(min-width : 1024px){
-                margin: 30px;
-            }
-        }
-        .insert{
-            @include flex_trinity(column, flex-start);
-            align-items: center;
-            padding: 5px;
-            width: 80%;
-            margin: auto;
-            margin-bottom: 15px;
-            div{
-                display: flex;
-                width: 100%;
-                .insert_code{
-                    background-color: #f0816c;
-                    text-align: center;
-                    width: 50%;
-                    margin: auto;
-                    margin-bottom: 20px;
-                    border-radius: 5px;
-                    padding: 5px;
-                    color: white;      
-                    box-shadow: 0px 2px 1px $orangeHover;
-                    @media(min-width : 1024px){
-
-                    }
-                    &:hover{
-                        background-color: $orangeHover;
-                        box-shadow: 0px 2px 1px $orangeHover;
-                    }
-                }
-                .close_insert_code{
-                    height: 15px;
-                    display: none;
-                }
-            }
-            .form_code{
-                display:none;
-                .code_input{
-                    width: 50%;
-                }
-                .button{
-                    background-color: $red;
-                    border: none;
-                    color: white;
-                    padding: 5px;
-                    border-radius: 5px;
-                }
-            }
-        }
-
-    }
-
-    .user_edit{
+      }
+      .mobile_dropdown {
         display: none;
-        background-color: #FBF8F2;
-        padding-bottom: 20px;
-        .area_edit{
-            color: white;
-            background-color: rgba(0,0,0,0.4);
-            width: 80%;
-            padding: 5%;
-            margin: auto;
-            form{
-                @include flex_trinity(column, flex-start);
-                .content_edit{
-                    @include flex_trinity(row, space-between);
-                    .input_img{
-                        align-self: flex-end;
-                    }
-                }
-                .button_edit{
-                    border: none;
-                    background-color: $orange;
-                    margin-top: 15px;
-                    text-align: center;
-                    width: 40%;
-                    border-radius: 5px;
-                    padding: 5px;
-                    color: white;
-                    box-shadow: 0px 2px 1px $orange;
-                    align-self: center;
-                }
-                .close_user_edit{
-                    width: 35%;
-                }
-            }
-        }
-
-    }
-
-    #modale{
-        height: 100vh;
-        width: 100%;
         position: absolute;
-        z-index: 1;
-        background-color: rgba(0,0,0,0.4);
+        background-color: black;
+        color: white;
+        opacity: 0.8;
+        width: 70%;
+        height: 100vh;
+        margin-top: 35px;
+        z-index: 5;
+        flex-direction: column;
+        li {
+          padding: 15px 25px;
+          &:not(:last-child) {
+            border-bottom: 1px solid white;
+          }
+          a {
+            font-family: "robotoRegular";
+            color: white;
+          }
+        }
+      }
+      .mobile_logo {
+        height: 25px;
+        width: 115px;
+        margin-left: 5px;
+        margin-top: 5px;
+      }
+    }
+    .menu_desktop {
+      display: none;
+      align-self: center;
+      a {
+        font-family: "robotoRegular";
+        color: white;
+        padding: 0px 20px;
+        white-space: nowrap;
+        &:hover {
+          color: $orange;
+        }
+      }
+      @media(min-width: 1024px) {
+        display: flex;
+      }
+    }
+    .stats {
+      @include flex_trinity(column, flex-start);
+      align-items: center;
+      margin-right: 5px;
+      font-family: 'robotoBold';
+      color: white;
+      font-size: 14px;
+      @media(min-width: 1024px) {
+        flex-direction: row;
+        margin-left: 20px;
+      }
+      span {
+        color: $orange;
+        letter-spacing: 4px;
+        font-weight: bold;
+        font-size: 18px;
+      }
+    }
+    .end_header {
+      width: 30%;
+      justify-content: flex-end;
+      display: none;
+      @media(min-width: 1024px) {
+        display: flex;
+      }
+      .current {
         display: none;
-        .modale_available_deal{
-            margin-left: 20%;
-            margin-top: 15%;
-            opacity: 1;
-            background-color: #e5e5e5;
+        height: 40px;
+        background-color: $orange;
+        a {
+          color: white;
+          font-family: "robotoLight";
+        }
+        margin-right: 40px;
+        margin-left: 20%;
+        padding: 0px 10px;
+        @media(min-width: 1024px) {
+          display: flex;
+        }
+      }
+      a {
+        align-self: center;
+        margin-right: 5px;
+        img {
+          transform: rotate(90deg);
+          &:hover {
+            transform: rotate(270deg);
+            transition: 1s;
+          }
+        }
+      }
+    }
+  }
+
+  .home_page {
+    .illus_sect {
+      @include flex_trinity(column, flex-end);
+      align-items: center;
+      background: url('../img/bg_home_noadds.png') center 0 no-repeat fixed;
+      width: 100%;
+      height: 70vh;
+      background-size: cover;
+      background-position: 30%;
+      @media(min-width: 768px) {
+        height: 100vh;
+      }
+      .content {
+        @include flex_trinity(column, flex-start);
+        width: 80%;
+        align-items: center;
+        @media(min-width: 1024px) {
+          width: 40%;
+        }
+        .bold {
+          font-family: "robotoBold";
+          color: white;
+          font-size: 20px;
+          text-align: center;
+          z-index: 2;
+          background-color: #3e3e3e;
+          padding: 10px;
+          width: 100%;
+        }
+        .descrip {
+          @extend .bold;
+          font-size: 14px;
+          background-color: rgba(137, 177, 176, 0.8);
+          font-family: "robotoRegular";
+          z-index: 2;
+          padding: 10px;
+          margin-bottom: 40px;
+        }
+      }
+      .redirect_link {
+        margin-top: 15px;
+        z-index: 2;
+        text-align: center;
+        color: white;
+        background-color: $orange;
+        border-radius: 2px;
+        padding: 15px;
+        width: 80%;
+        box-shadow: 0px 2px 1px #d47260;
+        font-family: "robotoLight";
+        font-size: 17px;
+        &:hover {
+          background-color: $orangeHover;
+          box-shadow: 0px 2px 1px $orangeHover;
+        }
+        @media(min-width: 1024px) {
+          width: 40%;
+        }
+      }
+      .last_button {
+        @media(min-width: 768px) {
+          margin-bottom: 100px;
+        }
+      }
+    }
+    #couche2 {
+      position: absolute;
+      width: 100%;
+      top: 60px;
+      height: 100vh;
+      background: url('../img/hot_air_balloon.png') center 0 no-repeat fixed;
+      background-size: cover;
+    }
+    #couche3 {
+      position: absolute;
+      width: 100%;
+      top: 60px;
+      height: 100vh;
+      background: url('../img/cloud.png') center 0 no-repeat fixed;
+      background-size: cover;
+    }
+
+    .concept {
+      @include flex_trinity(column, space-around);
+      background-color: #b5f4f2;
+      padding-top: 50px;
+      align-items: center;
+      width: 90%;
+      height: 700px;
+      padding: 0% 5%;
+      .discover_concept {
+        font-family: "robotoRegular";
+        z-index: 2;
+        @include flex_trinity(column, space-around);
+        align-items: center;
+      }
+      #what_it_is {
+        font-weight: bold;
+        border-left: 3px $red solid;
+        padding-left: 30px;
+        font-family: "robotoRegular";
+      }
+      #tuto {
+        width: 315px;
+        border: 1px solid $orange;
+        @media(min-width: 768px) {
+          width: 560px;
+        }
+        @media(min-width: 1024px) {
+          width: 740px;
+        }
+        @media(min-width: 1440px) {
+          width: 1040px;
+        }
+        .info_steps {
+          height: 110px;
+          background-color: #bbfdff;
+          @media(min-width: 768px) {
+            text-align: center;
+            height: 130px;
+          }
+          img {
+            width: 100%;
+            @media(min-width: 768px) {
+              width: auto;
+              height: 160px;
+            }
+          }
+          .step_two {
+            display: none;
+            @media(min-width: 768px) {
+              height: 190px;
+            }
+          }
+        }
+        .tuto_area {
+          background-image: url("../img/img_tuto/bg_tuto.png");
+          height: 290px;
+          background-size: cover;
+          background-position: 75%;
+          .girl_bottle {
+            height: 130px;
+            margin-top: 140px;
+            @media(min-width: 425px) {
+              height: 150px;
+              margin-top: 140px;
+              margin-left: 25px;
+              margin-right: 10px;
+            }
+            @media(min-width: 1440px) {
+              margin-left: 175px;
+            }
+          }
+          .girl_phone {
+            height: 120px;
+            margin-top: 140px;
+            margin-right: 10px;
+            display: none;
+            margin-right: 0px;
+            animation-duration: 1s;
+            @media(min-width: 425px) {
+              height: 150px;
+              margin-left: 25px;
+            }
+            @media(min-width: 1440px) {
+              margin-left: 175px;
+            }
+          }
+          .trash {
+            width: 127px;
+            margin-top: 130px;
+            float: right;
+            @media(min-width: 425px) {
+              width: 160px;
+              margin-top: 105px;
+            }
+            @media(min-width: 1024px) {
+              margin-right: 0px;
+            }
+            @media(min-width: 1440px) {
+              margin-right: 150px;
+            }
+          }
+          .bottle {
+            display: none;
+            position: absolute;
+            width: 30px;
+            margin-top: 180px;
+            margin-left: 90px;
+            animation-duration: 1s;
+            @media(min-width: 1440px) {
+              margin-left: 240px;
+            }
+          }
+        }
+      }
+      .next_2, .next_3, .next_1 {
+        @include flex_trinity(row, flex-start);
+        height: 30px;
+        @media (min-width: 768px) {
+          margin-top: 15px;
+        }
+        p {
+          line-height: 30px;
+          margin: 0px 15px;
+        }
+      }
+    }
+    .map_area {
+      background-color: #b5f4f2;
+      width: 90%;
+      padding: 0% 5%;
+      padding-bottom: 5%;
+      @include flex_trinity(column, space-around);
+      align-items: center;
+      .find_city {
+        @include flex_trinity(column, space-around);
+        height: 200px;
+        font-family: "robotoRegular";
+        .title {
+          font-weight: bold;
+          border-left: 3px $red solid;
+          padding-left: 30px;
+          width: 70%;
+        }
+        div {
+          @include flex_trinity(column, flex-start);
+          input {
+            margin-bottom: 10px;
+            border: none;
+            padding: 10px 0px;
+          }
+          .city_input {
+            background-color: #e6e6e6;
+          }
+          .submit_input {
+            background-color: #37d074;
+            color: white;
+            &:hover {
+              background-color: #43ff8e;
+            }
+          }
+        }
+      }
+      #map {
+        border: solid 5px $orange;
+      }
+    }
+  }
+
+  .modale_login {
+    display: none;
+    position: absolute;
+    top: 0;
+    z-index: 3;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    .container_form {
+      width: 80%;
+      margin: auto;
+      margin-top: 20%;
+      background-color: white;
+      border-radius: 5px;
+      height: 30%;
+      padding: 10px;
+      @include flex_trinity(column, flex-start);
+      @media(min-width: 768px) {
+        width: 60%;
+      }
+      @media(min-width: 1024px) {
+        width: 40%;
+      }
+      .close_login_md {
+        align-self: flex-end;
+        img {
+          height: 15px;
+        }
+      }
+      form {
+        width: 80%;
+        margin: auto;
+        height: 100%;
+        @include flex_trinity(column, space-around);
+        align-items: center;
+        @media(min-width: 1024px) {
+          align-items: center;
+        }
+        .login_form {
+          width: 60%;
+          text-align: center;
+          @include flex_trinity(column, space-between);
+          @media(min-width: 1024px) {
             width: 60%;
-            height: 80%;
-            border-radius: 15px;
-            @media(min-width:1024px){
-                margin-left: 33%;
-                margin-top: 3%;
-                width: 33%;
-            }
-            .deal_info{
-                @include flex_trinity(column, flex-start);
-                align-items: center;
-                margin-top: 20px;
-                font-size: 16px;
-                .img_modale{
-                    width: 65%;
-                    height: 120px;
-                }
-                .info{
-                    border: 1px solid #e6e6e6;
-                    border-radius: 10px;
-                    width: 85%;
-                    margin-top: 20px;
-                    box-shadow: inset 0px 0px 25px 5px #ddd7d7;
-                    @include flex_trinity(column, space-around);
-                    height: 200px;
-                    background-color: #fff;
-                    .title{
-                        text-align: center;
-                        font-size: 18px;
-                    }
-                    .info_deal{
-                        @include flex_trinity(row, space-between);
-                        margin: 5px;
-                    }
-                    .important{
-                        font-size: 18px;
-                        @include flex_trinity(row, space-around);
-                        .big{
-                            @include flex_trinity(column, flex-start);
-                            align-items : center;
-                        }
-                    }
-                }
-            }
-            .action{
-                @include flex_trinity(column, flex-start);
-                align-items: center;
-                .buy_deal{
-                    width: 50%;
-                    .id{
-                        display: none;
-                    }
-                    .buy{
-                        color: #FFFFFF;
-                        background: $orange;
-                        border: none;
-                        margin:10px 0px;
-                        width: 100%;
-                        padding: 7px 0px;
-                        border-radius: 5px;
-                    }
-                }
-                .close_modale{
-                    color: #FFFFFF;
-                    background: #766b6d;
-                    width: 50%;
-                    text-align: center;
-                    padding: 5px 0px;
-                    border-radius: 5px;
-                }
-            }
+          }
         }
+        .login_button {
+          border: none;
+          background-color: $orange;
+          border-radius: 2px;
+          box-shadow: 0px 2px 1px #d47260;
+          padding: 10px;
+          width: 60%;
+          &:hover {
+            background-color: $orangeHover;
+            box-shadow: 0px 2px 1px $orangeHover;
+          }
+        }
+      }
     }
+  }
 
-    .offer_page{
-        .head_img{
-            background-image: url('../img/mobile_offers.png');
-            background-size: cover;
-            height: 60px;
-            color: white;
-            text-align: center;
-            line-height: 60px;
-            font-weight: bold;
-            font-family: 'PoppinsMedium';
-            @media(min-width: 768px){
-                height: 100px;
-            }
-            @media(min-width: 1024px){
-                height: 130px;
-            }
-        }
-        .all_offers{
-            @include flex_trinity(row, space-around);
-            flex-wrap: wrap;
-            .offer{
-                @include flex_trinity(column, space-between);
-                width: 40%;
-                margin-bottom: 20px;
-                @media(min-width: 768px){
-                    width: 30%;
-                    margin: 10px 0px;
-                }
-                @media(min-width: 1024px){
-                    width: 21%;
-                }
-                .deal_img{
-                    width: 100%;
-                    height: 100px;
-                    @media(min-width: 768px){
-                        height: 180px;
-                    }
-                    @media(min-width: 1024px){
-                        height: 220px;
-                    }
-                }
-                .info{
-                    @include flex_trinity(column, space-between);
-                    .title{
-                        text-align: center;
-                    }
-                    .buttons{
-                        @include flex_trinity(row, space-between);
-                        align-items: center;
-                        text-align: center;
-                        .costs{
-                            background-color: $red;
-                            color: white;
-                            padding: 5px 10px;
-                        }
-                        .more{
-                            @include flex_trinity(row, center);
-                            align-items: center;
-                        }
-                    }
-                    .more_info{
-                        display: none;
-                    }
-                }
-            }
-        }
-        #modale{
-            top: 0;
-        }
+  .allForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 550px;
+    padding-bottom: 15px;
+    .container_form {
+      text-align: center;
+      @media(min-width: 1024px) {
+        background-color: white;
+        padding: 20px 5%;
+      }
     }
-
-    .us{
-        background-color: #f4f4f4;
-        .header_img{
-            height: 80px;
-            color: white;
-            text-align: center;
-            line-height: 80px;
-            font-weight: bold;
-            font-family: 'PoppinsMedium';
-            background-image: url('../img/head_us.png');
-            background-size: cover;
-            background-position: center;
-            @media(min-width:768px){
-                 height: 100px;
-            }
+    .title {
+      font-family: 'PoppinsMedium';
+      color: $orange;
+    }
+    .form-container {
+      #myRegister {
+        @include flex_trinity(column, flex-start);
+        text-align: center;
+        font-family: "robotoRegular";
+        .form-item-block {
+          span {
+            color: $orange;
+            padding-bottom: 4px;
+            font-size: 12px;
+          }
+          @media(min-width: 1024px) {
+            width: 250px;
+          }
         }
-        .content{
-            padding: 0px 20px;
-            padding-bottom: 20px;
-            @media(min-width:768px){
-                @include flex_trinity(row, center);
-            }
-            .txt{
-                margin-top: 30px;
-                color: #989898;
-                @media(min-width:768px){
-                    width: 70%;
-                }
-                .how_it_works{
-                    padding: 0px 15px;
-                    .title{
-                        @include flex_trinity(row, space-between);
-                        font-size: 21px;
-                        font-family: "PoppinMedium";
-                        img{
-                            height: 70px;
-                            @media(min-width: 768px){
-                                display: none;
-                            }
-                        }
-                    }
-                    .works_content{
-                        font-family: "robotoRegular";
-                    }
-                }
-                p{
-                    font-size: 14px;
-                    text-align: justify;
-                }
-                .middle_p{
-                    margin: 15px 0px;
-                }
-                .our_goal{
-                    margin-top: 25px;
-                    padding: 0px 15px;
-                    padding-top: 30px;
-                    background-color: #ffb4a6;
-                    color: white;
-                    @include flex_trinity(column, space-around);
-                    .title{
-                        text-align: center;
-                        font-size: 21px;
-                        font-family: "";
-                    }
-                    img{
-                        height: 70px;
-                        align-self: flex-end;
-                    }
-                    .goal_content{
-                        font-family: "robotoRegular";
-                    }
-                }
-            }
-            .img_aside{
+        button {
+          font-family: "robotoRegular";
+          border: none;
+          background-color: $orange;
+          color: white;
+          box-shadow: 0px 2px 1px #d47260;
+          &:hover {
+            background-color: $orangeHover;
+            box-shadow: 0px 2px 1px $orangeHover;
+          }
+        }
+        .error {
+          color: red;
+          margin: 10px;
+        }
+        #message {
+          resize: none;
+          height: 80px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+    @media(min-width: 1024px) {
+      background-image: url('../img/inscription.png');
+      height: 600px;
+    }
+  }
+
+  .user_page {
+    background-color: #FBF8F2;
+    @include flex_trinity(column, space-around);
+    @media(min-width: 1024px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .user_info {
+      @include flex_trinity(column, space-between);
+      align-items: center;
+      margin-top: 10px;
+      @media(min-width: 1024px) {
+        flex-direction: row;
+        width: 50%;
+      }
+      .profil_img {
+        margin: 10px 0px;
+        width: 25%;
+        border-radius: 50%;
+        border: 10px solid #8e8e8e;
+      }
+      .line {
+        width: 60%;
+        height: 2px;
+        background-color: #6a6a6a;
+        @media(min-width: 1024px) {
+          height: 60%;
+          width: 2px;
+        }
+      }
+      .specific_info {
+        margin: 10px 0px;
+        font-size: 16px;
+        @include flex_trinity(column, space-between);
+        width: 60%;
+        .username_lvl {
+          font-family: 'robotoBold';
+          font-size: 18px;
+          width: 100%;
+          @include flex_trinity(row, space-between);
+          align-items: baseline;
+          color: #4b4b4b;
+          @media(min-width: 1024px) {
+            flex-direction: column;
+          }
+          .params {
+            width: 20px;
+            margin-left: 10px;
+          }
+          .lvl {
+            color: $orange;
+            font-size: 20px;
+            font-weight: bold;
+          }
+        }
+        .classement {
+          font-size: 12px;
+          margin: 15px 0px;
+          font-family: 'robotoLight';
+          visibility: hidden;
+          a {
+            background-color: $orange;
+            color: white;
+            padding: 5px 10px;
+          }
+        }
+        .inscription_date {
+          font-family: 'robotoLight';
+          font-size: 11px;
+          background-color: $orange;
+          padding: 3px;
+        }
+      }
+    }
+    .stats {
+      margin: 20px 10px;
+      @include flex_trinity(row, space-between);
+      flex-wrap: wrap;
+      @media(min-width: 1024px) {
+        align-items: center;
+      }
+      div {
+        font-family: 'robotoLight';
+        width: 49%;
+        height: 65px;
+        color: white;
+        font-size: 18px;
+        @include flex_trinity(column, space-around);
+        text-align: center;
+        span {
+          margin-top: 5px;
+        }
+        .little {
+          font-size: 10px;
+          margin-top: 0px;
+          margin-bottom: 10px;
+        }
+      }
+      .recycled {
+        background: linear-gradient(to bottom, #4b4b4b 50%, #3e3e3e 50%);
+        text-transform: uppercase;
+      }
+      .points {
+        background: linear-gradient(to bottom, #f0816c 50%, #e9725b 50%);
+        text-transform: uppercase;
+      }
+      .fun_stats {
+        @extend .recycled;
+        font-size: 12px;
+        width: 100%;
+        height: 25px;
+        margin-top: 5px;
+        line-height: 25px;
+        text-align: center;
+        @media (min-width: 1024px) {
+          margin-top: -12%;
+        }
+      }
+    }
+    .box {
+      margin: 30px 10px;
+      @media(min-width: 1024px) {
+        width: 100%;
+      }
+      ul {
+        @include flex_trinity(row, space-between);
+        .tabs {
+          width: 30%;
+          border-radius: 5px 5px 0px 0px;
+          height: 40px;
+          background-color: #333333;
+          border-bottom: 1px solid transparent;
+          box-shadow: 0px -2px 10px black inset;
+          @include flex_trinity(row, center);
+          align-items: center;
+          img {
+            width: 30px;
+          }
+        }
+        .active {
+          box-shadow: none;
+        }
+        @media(min-width: 1024px) {
+          display: none;
+        }
+      }
+      .all_changing_contents {
+        color: white;
+        @media(min-width: 1024px) {
+          @include flex_trinity(row, space-around);
+          flex-wrap: wrap;
+        }
+        .changing_content {
+          text-align: center;
+          background-color: #333333;
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+          @media(min-width: 1024px) {
+            border-radius: 5px;
+          }
+          .title {
+            padding: 10px 0px;
+          }
+        }
+        .my_reductions {
+          @media(min-width: 1024px) {
+            width: 40%;
+          }
+          .all_reducs {
+            overflow: scroll;
+            max-height: 200px;
+            .reducs {
+              @include flex_trinity(row, flex-start);
+              height: 60px;
+              .partner_img {
+                width: 60px;
+                height: 60px;
+              }
+              .deal_info {
+                background-color: #dadada;
+                @include flex_trinity(row, space-around);
+                width: 70%;
+                line-height: 60px;
+                color: black;
+                font-family: "robotoRegular";
+              }
+              .print {
+                width: 25%;
+                background-color: $orange;
                 @include flex_trinity(row, center);
                 align-items: center;
+                .submit_form {
+                  display: none;
+                }
+                img {
+                  width: 30px;
+                  align-self: center;
+                  height: 30px;
+                }
+              }
+              &:nth-child(even) {
+                margin: 10px 0px;
+              }
+              .other_info {
                 display: none;
-                @media(min-width: 768px){
-                    display: flex;
-                }
-                img{
-                    width: 250px;
-                }
+              }
             }
+          }
         }
+        .available_reductions {
+          color: #ed6147;
+          display: none;
+          @media(min-width: 1024px) {
+            display: flex;
+            width: 40%;
+            flex-direction: column;
+          }
+          .all_available_deal {
+            overflow: scroll;
+            max-height: 200px;
+            .available_deal {
+              @include flex_trinity(row, flex-start);
+              height: 60px;
+              .partner_img {
+                width: 60px;
+                height: 60px;
+              }
+              .deal_info {
+                background-color: #dadada;
+                @include flex_trinity(row, space-around);
+                width: 70%;
+                line-height: 60px;
+                color: black;
+              }
+              .deal_cost {
+                width: 30%;
+                background-color: $orange;
+                @include flex_trinity(column, center);
+                a {
+                  color: white;
+                  span:nth-child(2) {
+                    color: #464646;
+                    font-weight: bold;
+                  }
+                }
+              }
+              &:nth-child(even) {
+                margin: 10px 0px;
+              }
+              .other_info {
+                display: none;
+              }
+            }
+
+          }
+        }
+        .sondage {
+          display: none;
+          @media(min-width: 1024px) {
+            @include flex_trinity(column, space-around);
+            width: 90%;
+            margin-top: 50px;
+          }
+          .sondage_title {
+            @include flex_trinity(row, center);
+            padding: 10px 0px;
+            .little_description {
+              display: none;
+            }
+          }
+          .all_survey_offer {
+            @include flex_trinity(column, flex-start);
+            @media(min-width: 1024px) {
+              flex-direction: row;
+              justify-content: space-around;
+            }
+            .survey_offer {
+              padding: 0% 5%;
+              margin-bottom: 30px;
+              @media(min-width: 1024px) {
+                padding: 0%;
+                width: 30%;
+              }
+              .header_offer {
+                background-color: #afada9;
+                @include flex_trinity(row, flex-start);
+                align-items: center;
+                height: 60px;
+                img {
+                  height: 60px;
+                }
+                p {
+                  margin-left: 20px;
+                }
+              }
+              .content_offer {
+                background-color: #dadada;
+                @include flex_trinity(column, space-around);
+                height: 250px;
+                align-items: center;
+                color: black;
+                .survey_content_separator {
+                  height: 1px;
+                  width: 80%;
+                  background-color: black;
+                }
+              }
+              .vote_result_area {
+                background-color: $red;
+                .vote_area {
+                  height: 60px;
+                  @include flex_trinity(row, center);
+                  align-items: center;
+                  form {
+                    .form_vote {
+                      display: none;
+                    }
+                    label img {
+                      height: 40px;
+                    }
+                  }
+                }
+                .stat_area {
+                  @include flex_trinity(row, center);
+                  align-items: center;
+                  height: 60px;
+                  .progress_bar {
+                    width: 90%;
+                    height: 30px;
+                    background-color: grey;
+                    .progress {
+                      text-align: center;
+                      height: 30px;
+                      line-height: 30px;
+                      background-color: #37d074;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .all_offers_link {
+      background-color: #f0816c;
+      text-align: center;
+      width: 40%;
+      margin: 30px auto;
+      border-radius: 5px;
+      padding: 5px;
+      color: white;
+      box-shadow: 0px 2px 1px $orangeHover;
+      &:hover {
+        background-color: $orangeHover;
+        box-shadow: 0px 2px 1px $orangeHover;
+      }
+      @media(min-width: 1024px) {
+        margin: 30px;
+      }
+    }
+    .insert {
+      @include flex_trinity(column, flex-start);
+      align-items: center;
+      padding: 5px;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 15px;
+      div {
+        display: flex;
+        width: 100%;
+        .insert_code {
+          background-color: #f0816c;
+          text-align: center;
+          width: 50%;
+          margin: auto;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          padding: 5px;
+          color: white;
+          box-shadow: 0px 2px 1px $orangeHover;
+          @media(min-width: 1024px) {
+
+          }
+          &:hover {
+            background-color: $orangeHover;
+            box-shadow: 0px 2px 1px $orangeHover;
+          }
+        }
+        .close_insert_code {
+          height: 15px;
+          display: none;
+        }
+      }
+      .form_code {
+        display: none;
+        .code_input {
+          width: 50%;
+        }
+        .button {
+          background-color: $red;
+          border: none;
+          color: white;
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
     }
 
-.admin_page {
+  }
+
+  .user_edit {
+    display: none;
+    background-color: #FBF8F2;
+    padding-bottom: 20px;
+    .area_edit {
+      color: white;
+      background-color: rgba(0, 0, 0, 0.4);
+      width: 80%;
+      padding: 5%;
+      margin: auto;
+      form {
+        @include flex_trinity(column, flex-start);
+        .content_edit {
+          @include flex_trinity(row, space-between);
+          .input_img {
+            align-self: flex-end;
+          }
+        }
+        .button_edit {
+          border: none;
+          background-color: $orange;
+          margin-top: 15px;
+          text-align: center;
+          width: 40%;
+          border-radius: 5px;
+          padding: 5px;
+          color: white;
+          box-shadow: 0px 2px 1px $orange;
+          align-self: center;
+        }
+        .close_user_edit {
+          width: 35%;
+        }
+      }
+    }
+
+  }
+
+  #modale {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    .modale_available_deal {
+      margin-left: 20%;
+      margin-top: 15%;
+      opacity: 1;
+      background-color: #e5e5e5;
+      width: 60%;
+      height: 80%;
+      border-radius: 15px;
+      @media(min-width: 1024px) {
+        margin-left: 33%;
+        margin-top: 3%;
+        width: 33%;
+      }
+      .deal_info {
+        @include flex_trinity(column, flex-start);
+        align-items: center;
+        margin-top: 20px;
+        font-size: 16px;
+        .img_modale {
+          width: 65%;
+          height: 120px;
+        }
+        .info {
+          border: 1px solid #e6e6e6;
+          border-radius: 10px;
+          width: 85%;
+          margin-top: 20px;
+          box-shadow: inset 0px 0px 25px 5px #ddd7d7;
+          @include flex_trinity(column, space-around);
+          height: 200px;
+          background-color: #fff;
+          .title {
+            text-align: center;
+            font-size: 18px;
+          }
+          .info_deal {
+            @include flex_trinity(row, space-between);
+            margin: 5px;
+          }
+          .important {
+            font-size: 18px;
+            @include flex_trinity(row, space-around);
+            .big {
+              @include flex_trinity(column, flex-start);
+              align-items: center;
+            }
+          }
+        }
+      }
+      .action {
+        @include flex_trinity(column, flex-start);
+        align-items: center;
+        .buy_deal {
+          width: 50%;
+          .id {
+            display: none;
+          }
+          .buy {
+            color: #FFFFFF;
+            background: $orange;
+            border: none;
+            margin: 10px 0px;
+            width: 100%;
+            padding: 7px 0px;
+            border-radius: 5px;
+          }
+        }
+        .close_modale {
+          color: #FFFFFF;
+          background: #766b6d;
+          width: 50%;
+          text-align: center;
+          padding: 5px 0px;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+
+  .offer_page {
+    .head_img {
+      background-image: url('../img/mobile_offers.png');
+      background-size: cover;
+      height: 60px;
+      color: white;
+      text-align: center;
+      line-height: 60px;
+      font-weight: bold;
+      font-family: 'PoppinsMedium';
+      @media(min-width: 768px) {
+        height: 100px;
+      }
+      @media(min-width: 1024px) {
+        height: 130px;
+      }
+    }
+    .all_offers {
+      @include flex_trinity(row, space-around);
+      flex-wrap: wrap;
+      .offer {
+        @include flex_trinity(column, space-between);
+        width: 40%;
+        margin-bottom: 20px;
+        @media(min-width: 768px) {
+          width: 30%;
+          margin: 10px 0px;
+        }
+        @media(min-width: 1024px) {
+          width: 21%;
+        }
+        .deal_img {
+          width: 100%;
+          height: 100px;
+          @media(min-width: 768px) {
+            height: 180px;
+          }
+          @media(min-width: 1024px) {
+            height: 220px;
+          }
+        }
+        .info {
+          @include flex_trinity(column, space-between);
+          .title {
+            text-align: center;
+          }
+          .buttons {
+            @include flex_trinity(row, space-between);
+            align-items: center;
+            text-align: center;
+            .costs {
+              background-color: $red;
+              color: white;
+              padding: 5px 10px;
+            }
+            .more {
+              @include flex_trinity(row, center);
+              align-items: center;
+            }
+          }
+          .more_info {
+            display: none;
+          }
+        }
+      }
+    }
+    #modale {
+      top: 0;
+    }
+  }
+
+  .us {
+    background-color: #f4f4f4;
+    .header_img {
+      height: 80px;
+      color: white;
+      text-align: center;
+      line-height: 80px;
+      font-weight: bold;
+      font-family: 'PoppinsMedium';
+      background-image: url('../img/head_us.png');
+      background-size: cover;
+      background-position: center;
+      @media(min-width: 768px) {
+        height: 100px;
+      }
+    }
+    .content {
+      padding: 0px 20px;
+      padding-bottom: 20px;
+      @media(min-width: 768px) {
+        @include flex_trinity(row, center);
+      }
+      .txt {
+        margin-top: 30px;
+        color: #989898;
+        @media(min-width: 768px) {
+          width: 70%;
+        }
+        .how_it_works {
+          padding: 0px 15px;
+          .title {
+            @include flex_trinity(row, space-between);
+            font-size: 21px;
+            font-family: "PoppinMedium";
+            img {
+              height: 70px;
+              @media(min-width: 768px) {
+                display: none;
+              }
+            }
+          }
+          .works_content {
+            font-family: "robotoRegular";
+          }
+        }
+        p {
+          font-size: 14px;
+          text-align: justify;
+        }
+        .middle_p {
+          margin: 15px 0px;
+        }
+        .our_goal {
+          margin-top: 25px;
+          padding: 0px 15px;
+          padding-top: 30px;
+          background-color: #ffb4a6;
+          color: white;
+          @include flex_trinity(column, space-around);
+          .title {
+            text-align: center;
+            font-size: 21px;
+            font-family: "";
+          }
+          img {
+            height: 70px;
+            align-self: flex-end;
+          }
+          .goal_content {
+            font-family: "robotoRegular";
+          }
+        }
+      }
+      .img_aside {
+        @include flex_trinity(row, center);
+        align-items: center;
+        display: none;
+        @media(min-width: 768px) {
+          display: flex;
+        }
+        img {
+          width: 250px;
+        }
+      }
+    }
+  }
+
+  .admin_page {
     @include flex_trinity(column, flex-start);
     margin-bottom: 20px;
     align-items: center;
     .block-content {
-        width: 80%;
+      width: 80%;
       text-align: center;
       margin-top: 50px;
       padding-top: 5px;
       padding-bottom: 20px;
-      -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
-      -moz-box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
-      box-shadow: 0px 0px 30px -1.5px rgba(194,190,194,1);
-    }
-    p {
-      margin-right: 110px;
-      margin-top: 10px;
+      -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+      -moz-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+      box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
     }
     button {
       background-color: $red;
@@ -1304,6 +1342,18 @@ $grey: grey;
       color: white;
       padding: 5px;
       width: 120px;
+    }
+    #background-admin {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      align-content: stretch;
+      width: 100%;
+      height: 80px;
+      color: white;
+      background-color: lightgrey;
     }
     #block-top {
       margin-top: 20px;
@@ -1326,122 +1376,165 @@ $grey: grey;
       margin: 7px;
       border: 1px solid lightgrey;
     }
-    .container_basic_action{
-        @include flex_trinity(column, space-around);
-        align-items: center;
-        .inside-block-content{
-            width: 80%;
-            margin-bottom: 20px;
-            border: 1px solid red;
-        }
+    textarea {
+      width: 300px;
+      height: 150px;
+      border: 1px solid lightgrey;
+    }
+    .container_basic_action {
+      @include flex_trinity(column, space-around);
+      align-items: center;
+      .inside-block-content {
+        width: 80%;
+        margin-bottom: 20px;
+        border: 1px solid red;
+      }
+    }
+    @media(min-width: 768px) {
+      .block-content {
+        width: 80%;
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 5px;
+        padding-bottom: 20px;
+        -webkit-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+        -moz-box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+        box-shadow: 0px 0px 30px -1.5px rgba(194, 190, 194, 1);
+      }
+      button {
+        background-color: $red;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 255px;
+        height: 40px;
+      }
+      input {
+        margin: 10px;
+        width: 250px;
+        height: 40px;
+        border: 1px solid lightgrey;
+      }
+      .button-input {
+        background-color: $red;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 245px;
+      }
+      textarea {
+        width: 250px;
+        height: 150px;
+        border: 1px solid lightgrey;
+      }
     }
   }
 
-    footer{
-        background-color: $neutralColor;
-        padding: 20px;
-        color:white;
-        @include flex_trinity(column, space-around);  
-        align-items: center;
-        @media(min-width:768px){
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        div:nth-child(1){
-            font-family: 'PoppinsRegular';
-            @media(min-width:768px){
-                width: 30%;
-                p{
-                    text-align: center;
-                }
-            }
-        }
-        .social{
-            @include flex_trinity(row, space-around);
-            img{
-                width: 45px;
-                height: 45px;
-                &:hover{
-                    transition: 1s;
-                    transform: rotate(360deg);
-                }
-            }
-            @media(min-width:1024px){
-                width: 70%;
-                margin: auto;
-            }
-        }
-        .newsletter{
-            color:white;
-            @include flex_trinity(column, space-around);
-            height: 80px;
-            align-items: center;
-            font-family: "PoppinsSemiBold";
-            @media(min-width:768px){
-                width: 30%;
-            }
-            form{
-                @include flex_trinity(row, flex-start);
-                #buttonNewsletter{
-                    display: none;
-                }
-                input{
-                    height: 22px;
-                    border: none;
-                }
-                img{
-                    height: 24px;
-                    &:hover{
-                        opacity: 0.6;
-                    }
-                }
-            }
-        }
-        .nav{
-            @include flex_trinity(row, space-between);
-            margin: 20px 0px;
-            display: none;
-            @media(min-width:768px){
-                width: 20%;
-                margin-left: 10%;
-                @include flex_trinity(column, space-between);
-                display: none;
-            }
-            div:nth-child(2){
-                margin-left: 28px;
-                @media(min-width:768px){
-                    margin-left: 0px;
-                }
-            }
-            div{
-                @media(min-width:768px){
-                    @include flex_trinity(column, space-between);
-                }
-            }
-            a{
-                color:white;
-                white-space: nowrap;
-                font-size: 14px;
-            }
-        }
-        .footer_logo{
-            @media(min-width:768px){
-                width: 30%
-            }
-            img{
-                width: 100%;
-                @media(min-width:768px){
-                    width: 80%;
-                }
-            }    
-        }
-        .copy{
-            margin-top: 20px;
-            font-size: 12px;
-            width: 30%;
-            text-align: center; 
-            font-family: "PoppinsMedium";
-        }
+  footer {
+    background-color: $neutralColor;
+    padding: 20px;
+    color: white;
+    @include flex_trinity(column, space-around);
+    align-items: center;
+    @media(min-width: 768px) {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
+    div:nth-child(1) {
+      font-family: 'PoppinsRegular';
+      @media(min-width: 768px) {
+        width: 30%;
+        p {
+          text-align: center;
+        }
+      }
+    }
+    .social {
+      @include flex_trinity(row, space-around);
+      img {
+        width: 45px;
+        height: 45px;
+        &:hover {
+          transition: 1s;
+          transform: rotate(360deg);
+        }
+      }
+      @media(min-width: 1024px) {
+        width: 70%;
+        margin: auto;
+      }
+    }
+    .newsletter {
+      color: white;
+      @include flex_trinity(column, space-around);
+      height: 80px;
+      align-items: center;
+      font-family: "PoppinsSemiBold";
+      @media(min-width: 768px) {
+        width: 30%;
+      }
+      form {
+        @include flex_trinity(row, flex-start);
+        #buttonNewsletter {
+          display: none;
+        }
+        input {
+          height: 22px;
+          border: none;
+        }
+        img {
+          height: 24px;
+          &:hover {
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+    .nav {
+      @include flex_trinity(row, space-between);
+      margin: 20px 0px;
+      display: none;
+      @media(min-width: 768px) {
+        width: 20%;
+        margin-left: 10%;
+        @include flex_trinity(column, space-between);
+        display: none;
+      }
+      div:nth-child(2) {
+        margin-left: 28px;
+        @media(min-width: 768px) {
+          margin-left: 0px;
+        }
+      }
+      div {
+        @media(min-width: 768px) {
+          @include flex_trinity(column, space-between);
+        }
+      }
+      a {
+        color: white;
+        white-space: nowrap;
+        font-size: 14px;
+      }
+    }
+    .footer_logo {
+      @media(min-width: 768px) {
+        width: 30%
+      }
+      img {
+        width: 100%;
+        @media(min-width: 768px) {
+          width: 80%;
+        }
+      }
+    }
+    .copy {
+      margin-top: 20px;
+      font-size: 12px;
+      width: 30%;
+      text-align: center;
+      font-family: "PoppinsMedium";
+    }
+  }
 
 }

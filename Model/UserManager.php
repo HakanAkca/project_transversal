@@ -160,7 +160,7 @@ class UserManager
         $res = array();
         $isFormGood = true;
 
-        $data['image'] = 'web/img/avatar.gif';
+        $data['image'] = 'assets/img/defaultProfile.png';
         if (!isset($data['username']) || !$this->usernameValid($data['username'])) {
             $errors['username'] = 'Pseudo de 6 caractères minimum';
             $isFormGood = false;

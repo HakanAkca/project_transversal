@@ -239,7 +239,6 @@ MERCI !!!'; // can aso be a url, starting with http..
             }
 
             if (isset($_POST['deletteOffers'])) {
-                var_dump($_POST);
                 if ($manager->checkRemoveOffers($_POST['offers'])) {
                     $manager->removeOffer($_POST['offers']);
                 }

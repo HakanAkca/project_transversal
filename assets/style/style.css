@@ -1321,9 +1321,16 @@
     font-size: 16px;
   }
   #modale .modale_available_deal .deal_info .img_modale {
-    width: 65%;
+    width: 50%;
     height: 120px;
   }
+}
+@media screen and (min-width: 768px) {
+  #modale .modale_available_deal .deal_info .img_modale {
+    width: 40%;
+  }
+}
+@media screen {
   #modale .modale_available_deal .deal_info .info {
     border: 1px solid #e6e6e6;
     border-radius: 10px;

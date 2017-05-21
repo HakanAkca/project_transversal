@@ -96,8 +96,8 @@ class ProfileController extends BaseController
                              <div style="display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;">
                                 '.$_SESSION["user_username"].'<br>Offre :'.$deal["partner"].'<br> City : '.$deal["city"].'<br>Deal '.$deal["deal"].'
                     
-</div><br><br>
-MERCI !!!'; // can aso be a url, starting with http..
+                            </div><br><br>
+                            MERCI !!!'; // can aso be a url, starting with http..
                 $result = file_get_contents("http://api.html2pdfrocket.com/pdf?apikey=" . urlencode($apikey) . "&value=" . urlencode($value));
                 file_put_contents('uploads/offers.pdf', $result);
                 $file[$deal["id"]] = "<a href='uploads/offers.pdf' target='_blank'>Télécharger</a>";
@@ -167,7 +167,7 @@ MERCI !!!'; // can aso be a url, starting with http..
     public function adminAction()
     {
         $offers = array();
-        if (!empty($_SESSION['user_username'] == 'adminOmar')) {
+        if (!empty($_SESSION['user_id'] == '1')) {
             $manager = UserManager::getInstance();
             $user_id = $_SESSION['user_id'];
             $user = $manager->getUserById($user_id);

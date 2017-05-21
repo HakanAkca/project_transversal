@@ -26,8 +26,17 @@ class SecurityController extends BaseController
             {
                 $res = $manager->userCheckRegister($_POST);
                 if($res['isFormGood']){
+                    $donnee = $res['data'];
+
                     $manager->userRegister($res['data']);
+
+                    $email = $donnee['email'];
+                    $object = "Inscription-Tritus";
+                    $content = "Bonjour et merci de vous être inscrit chez Tritus. Merci de nous rejoindre dans notre aventure écologique. Adieu les bouteilles vides et vive les coupons de réductions. Découvrez notre liste de partenaire en cliquant sur le lien ci-dessous et participez à chaque fin de mois à l'élection de vos enseignes préférées. Alors tous ensemble pour le recyclage et à très bientôt sur notre site ! Pour rappel votre Nom de compte est le : Cordialement, L'équipe Tritus
+";
+                    $this->sendMail($email,$object,$content,'...');
                     $this->redirect('home');
+
                 }else{
                     $errors = $res['errors'];
                 }

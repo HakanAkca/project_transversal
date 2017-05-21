@@ -45,12 +45,15 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
+<<<<<<< HEAD
+=======
 
 
 
 
 
 
+>>>>>>> 1d9b303a5f6de07ab6dfc05ae5504914fc753776
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -74,6 +77,7 @@ class ProfileController extends BaseController
                 $res = $manager->checkProfile($_POST);
                 if($res['isFormGood']){
                     $manager->editProfile($res['data']);
+                    header('Location:?action=profile');
                 }else{
                     $errors = $res['errors'];
                 }

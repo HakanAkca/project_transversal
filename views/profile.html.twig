@@ -125,9 +125,8 @@
                                         <div class="vote_area">
 
                                             <form action="?action=profile" method="POST">
-                                                {{survey.id}}
                                                 <input class="form_vote" type="text" name="surveyID" value="{{survey.id}}">
-                                                <label class="form_vote" for="{{survey.id}}"><img src="assets/img/vote.png"></img></label>
+                                                <label for="{{survey.id}}"><img src="assets/img/vote.png"></img></label>
                                                 <input class="form_vote" id="{{survey.id}}" type="submit" name="userVote" value="Je vote">
                                             </form>
                                         </div>

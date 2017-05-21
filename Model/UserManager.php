@@ -428,7 +428,7 @@ class UserManager
     public function addCatalog($data)
     {
         $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/'.$data['partner'];
+        $url = 'uploads/'.$data['partner'] . '.png';
         $catalog['partner'] = $data['partner'];
         $catalog['city'] = ucwords($data['city']);
         $catalog['deal'] = $data['deal'];
@@ -521,8 +521,6 @@ class UserManager
 
     public function addSurvey($data)
     {
-        $filetmpname = $data['image_tmp_name'];
-        $url = 'uploads/surveys/' . $data['image'];
         $cur = strtotime($this->getDatetimeNow());
         $expirationDate = date('Y/m/d H:i:s', strtotime('+1 month', $cur));
         $survey['partner'] = $data['partner'];
@@ -530,9 +528,8 @@ class UserManager
         $survey['deal'] = $data['deal'];
         $survey['image'] = $data['image'];
         $survey['expirationDate'] = $expirationDate;
-        $survey['vote'] = 0;
+        $survey['vote'] = 1;
         $this->DBManager->insert('surveys', $survey);
-        move_uploaded_file($filetmpname, $url);
     }
 
     public function getSurvey()

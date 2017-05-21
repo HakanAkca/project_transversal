@@ -3,7 +3,8 @@
         "symfony/yaml": "^3.2",
         "twig/twig": "~2.0",
         "phpmailer/phpmailer": "^5.2",
-        "picqer/php-barcode-generator": "^0.2.1"
+        "picqer/php-barcode-generator": "^0.2.1",
+        "spipu/html2pdf": "^4.6"
     },
     "autoload": {
         "psr-4": { "": "." }

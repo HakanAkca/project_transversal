@@ -70,6 +70,7 @@
                                     <form action="?action=profile" method="POST">
                                         <input class="submit_form" type="text" name="IDoffer" value="{{ reduc.id }}">
                                          <label for="submit_print"><img src="assets/img/printer.png"></img></label>
+                                        {{ file[reduc.id] | raw  }}
                                         <input class="submit_form" id="submit_print" type="submit" name="submitPrintOffer" value="Imprimer">
                                     </form>
                                 </div>

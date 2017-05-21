@@ -7,9 +7,11 @@
  */
 
 namespace Controller;
-require('phpToPDF.php');
-
+use Spipu\Html2Pdf\Html2Pdf;
+use Spipu\Html2Pdf\Exception\Html2PdfException;
+use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 use Model\UserManager;
+
 
 class ProfileController extends BaseController
 {
@@ -32,6 +34,7 @@ class ProfileController extends BaseController
             $userBarcode = $manager->getUserBarcodes();
             $myDeals = $manager->getUserDeals();
 
+
             //Classement !!!
             $average = $manager->getAverages();
             $ranking = $manager->ranking();
@@ -41,9 +44,13 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
-            $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
-            $bareCodePNG = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode('081231723897', $generator::TYPE_CODE_128)) . '">';
-            echo $bareCodePNG;
+
+            //var_dump($r);
+
+
+
+
+
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){
@@ -71,30 +78,28 @@ class ProfileController extends BaseController
                 }
             }
 
+            $file = array();
             if (isset($_POST['submitPrintOffer'])) {
                 $id = (int)$_POST['IDoffer'];
                 $deal = $manager->getDealById($id);
-                $barcode  = $manager->generateBarcode();
-                $my_html="
-                    <HTML>
+                $generator = new \Picqer\Barcode\BarcodeGeneratorPNG();
+                $bareCodePNG = '<img src="data:image/png;base64,' . base64_encode($generator->getBarcode('081231723897', $generator::TYPE_CODE_128)) . '">';
+
+                // Set parameters
+                $apikey = '9b47ead4-9c49-4064-9818-5986d6c0b30a';
+                $value = '<title>Test PDF conversion</title>
                             <h2>Tritus</h2><br><br>
-                            ".$bareCodePNG."
-                             <div style=\"display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;\">
-                                ".$_SESSION['user_username']."<br>Code barre ".$barcode."<br>Offre :".$deal['partner']."<br> City : ".$deal['city']."<br>Deal ".$deal['deal']."
+                            <h3>Offre</h3><br><br>
+                            '.$bareCodePNG.'
+                             <div style="display:block; padding:20px; border:2pt solid:#FE9A2E; background-color:#F6E3CE; font-weight:bold;">
+                                '.$_SESSION["user_username"].'<br>Offre :'.$deal["partner"].'<br> City : '.$deal["city"].'<br>Deal '.$deal["deal"].'
                     
 </div><br><br>
-MERCI !!!
-</HTML>";
-                $pdf_options = array(
-                    "source_type" => 'html',
-                    "source" => $my_html,
-                    "action" => 'save',
-                    "save_directory" => 'uploads',
-                    "file_name" => 'html_01.pdf'
-                    );
+MERCI !!!'; // can aso be a url, starting with http..
+                $result = file_get_contents("http://api.html2pdfrocket.com/pdf?apikey=" . urlencode($apikey) . "&value=" . urlencode($value));
+                file_put_contents('uploads/offers.pdf', $result);
+                $file[$deal["id"]] = "<a href='uploads/offers.pdf' target='_blank'>Télécharger</a>";
 
-                phptopdf($pdf_options);
-                echo ("<a href='html_01.pdf'>Download Your PDF</a>");
 
             }
             if (isset($_POST['submitBarcode'])) {
@@ -146,6 +151,7 @@ MERCI !!!
                     'errors' => $errors,
                     'surveys' => $surveys,
                     'allVotes' => $allVotes,
+                    'file' => $file,
                 ]);
         } else {
             $this->redirect('home');

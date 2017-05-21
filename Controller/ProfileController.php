@@ -45,15 +45,6 @@ class ProfileController extends BaseController
             $surveys = $manager->getSurvey();
             $allVotes = $manager->allVotes();  //for average
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
->>>>>>> 1d9b303a5f6de07ab6dfc05ae5504914fc753776
             if (isset($_POST['submitNewsletter'])) {
                 $res = $manager->newsletterCheck($_POST['newsletter']);
                 if($res['isFormGood']){

@@ -451,7 +451,7 @@ class UserManager
         $date = $this->DBManager->take_date();
         $write = $date . ' -- ' . $_SESSION['user_username'] . ' à ajouter une nouvelle offre  '
             . ' nom : ' . $data['partner'] . ' ' . 'ville : ' . $data['city'] . ' ' . 'deal : ' . $data['deal'] . '  ' . 'cout : ' . $data['cost']
-            . ' ' . 'description : ' . $data['description'] . ' ' . 'image : ' . $data['image'] . ' ' . 'date expiration : ' . $data['date'] . "\n";
+            . ' ' . 'description : ' . $data['description'] . ' ' . 'image : ' . $data['image'] . ' ' . 'date expiration : ' . $catalog['date'] . "\n";
         $this->DBManager->watch_action_log('admin.log', $write);
     }
 

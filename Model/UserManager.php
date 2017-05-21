@@ -1040,9 +1040,11 @@ class UserManager
 
     public function checkRemoveOffers($data)
     {
-        if (empty($data['offers']))
+        if (empty($data))
             return false;
-        $offers = $this->DBManager->findAllSecure("SELECT * FROM catalogs");
+
+        $partner = $data;
+        $offers = $this->DBManager->findOneSecure("SELECT * FROM catalogs WHERE partner =:partner",['partner' => $partner]);
         if ($offers === false)
             return false;
         return true;

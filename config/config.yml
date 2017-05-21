@@ -13,5 +13,5 @@ defaut_route: 'home'
 db_config:
     name: 'transversal'
     host: 'localhost'
-    user: 'root'
+    user: ''
     pass: ''

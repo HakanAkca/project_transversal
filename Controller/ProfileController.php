@@ -46,7 +46,6 @@ class ProfileController extends BaseController
             $allVotes = $manager->allVotes();  //for average
 
 
-            //var_dump($r);
 
 
 
@@ -221,7 +220,7 @@ class ProfileController extends BaseController
             }
 
             $res_tmp = $manager->surveyNumber();
-            if(is_array($res_tmp)){
+            if(is_array($res_tmp) && !empty($res_tmp)){
                 $offers[] = $res_tmp[0];
                 if(isset($res_tmp[1])){
                     $offers[] = $res_tmp[1];
